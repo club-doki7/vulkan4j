@@ -10,8 +10,8 @@ for component in "${COMPONENTS[@]}"; do
 done
 
 # See #153
-if [ ! -f "stb_${component}.h" ]; then
-  curl -o "stb_${component}.h" "https://raw.githubusercontent.com/ocornut/imgui/895bff6524549ccb3fb1136aa23ad130b68d0a3e/imstb_truetype.h";
+if [ ! -f "stb_truetype.h" ]; then
+  curl -o "stb_truetype.h" "https://raw.githubusercontent.com/ocornut/imgui/895bff6524549ccb3fb1136aa23ad130b68d0a3e/imstb_truetype.h";
 fi;
 
 # if CC is not set, default to gcc
