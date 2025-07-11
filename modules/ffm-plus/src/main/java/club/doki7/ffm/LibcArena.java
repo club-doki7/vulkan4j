@@ -1,5 +1,6 @@
 package club.doki7.ffm;
 
+import club.doki7.ffm.annotation.Unsafe;
 import club.doki7.ffm.library.JavaSystemLibrary;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -54,6 +55,9 @@ public enum LibcArena implements Arena {
         return ms;
     }
 
+    /// Frees memory that was allocated by {@link LibcArena#allocate(long, long)}.
+    ///
+    /// @param ms The memory segment to free
     public void free(@NotNull MemorySegment ms) {
         if (ms.equals(MemorySegment.NULL)) {
             return;
@@ -68,6 +72,31 @@ public enum LibcArena implements Arena {
             Objects.requireNonNull(HANDLE$free).invokeExact(ms);
         } catch (Throwable e) {
             throw new RuntimeException("Failed to free memory", e);
+        }
+    }
+
+    /// Frees memory that was allocated by libc allocator, but not via
+    /// {@link LibcArena#allocate(long, long)}.
+    ///
+    /// Some libraries, like `stb_vorbis`, may allocate memory using libc allocators internally, and
+    /// require you to free that memory using `free` from the same libc implementation. The best way
+    /// to do this is to use the `free` method encapsulation provided by that library integration.
+    /// But if that is not available, this method can be used as an alternative with some risk.
+    ///
+    /// This function is marked as {@link Unsafe}, because if the memory was not exactly allocated
+    /// by the same allocator {@link LibcArena} found, it will lead to undefined behavior. This
+    /// relates with platforms, build system and many other factors. Double check before really
+    /// doing this.
+    @Unsafe
+    public void freeNonAllocated(@NotNull MemorySegment ms) {
+        if (ms.equals(MemorySegment.NULL)) {
+            return;
+        }
+
+        try {
+            Objects.requireNonNull(HANDLE$free).invokeExact(ms);
+        } catch (Throwable e) {
+            throw new RuntimeException("Failed to free non-allocated memory", e);
         }
     }
 
