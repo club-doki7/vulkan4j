@@ -47,6 +47,16 @@ fun extractSTBImageWriteHeader() = extractSTBHeader(
     hardStop = "#ifdef STB_IMAGE_WRITE_IMPLEMENTATION"
 ).renameEntities("image_write", "stbi_", true)
 
+fun extractSTBVorbisHeader() = extractSTBHeader(
+    fileName = "stb_vorbis.h",
+    startDefn = "STB_VORBIS_INCLUDE_STB_VORBIS_H",
+    fndefMacro = "extern",
+    hardStop = "#endif // STB_VORBIS_INCLUDE_STB_VORBIS_H"
+).renameEntities("vorbis", "stb_vorbis_", true).let {
+    it.enumerations["STBVorbisError".intern()]!!.name.forceRename("STBVorbisError")
+    it
+}
+
 private fun extractSTBHeader(
     fileName: String,
     startDefn: String,
@@ -86,6 +96,7 @@ private fun extractSTBHeader(
         addRule(30, ::detectNonOpaqueStructTypedef, ::parseAndSaveStructure)
         addRule(30, ::detectNonTypedefStruct, ::parseAndSaveStructure2)
         addRule(30, ::detectEnumTypedef, ::parseAndSaveEnumeration)
+        addRule(30, ::detectEnumDefWithoutTypedef, ::parseAndSaveEnumeration)
         addRule(30, ::detectEnumDecl, ::parseAndSaveEnumConstants)
 
         addRule(40, ::detectOpaqueHandle, ::parseOpaqueHandle)
@@ -286,12 +297,26 @@ private fun morphStructFieldDecl(
 // endregion
 
 // region enum (typedef)
+private fun detectEnumDefWithoutTypedef(
+    line: String
+): ControlFlow = if (line.startsWith("enum ") && line.endsWith("{") && !line.startsWith("enum {")) {
+    ControlFlow.ACCEPT
+} else {
+    ControlFlow.NEXT
+}
+
 private fun parseAndSaveEnumeration(
     registry: Registry<EmptyMergeable>,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
 ): Int {
+    var enumName = if (lines[index].startsWith("enum ")) {
+        lines[index].removePrefix("enum").removeSuffix("{").trim()
+    } else {
+        null
+    }
+
     val nextIndex = hparse(
         enumParseConfig,
         registry,
@@ -301,13 +326,16 @@ private fun parseAndSaveEnumeration(
     )
     assert(lines[nextIndex].startsWith("}") && lines[nextIndex].endsWith(";"))
 
-    val enumName = lines[nextIndex]
-        .removePrefix("}")
-        .removeSuffix(";")
-        .trim()
+    if (enumName == null) {
+        enumName = lines[nextIndex]
+            .removePrefix("}")
+            .removeSuffix(";")
+            .trim()
+    }
     val variants = cx["variants"] as MutableList<EnumVariant>
     cx.remove("variants")
     cx.remove("enumValues")
+    cx.remove("lastValue")
 
     registry.enumerations.putEntityIfAbsent(Enumeration(
         name = enumName,
@@ -320,6 +348,7 @@ private val enumParseConfig = ParseConfig<EmptyMergeable>().apply {
     addInit {
         it.put("enumValues", mutableSetOf<Long>())
         it.put("variants", mutableListOf<EnumVariant>())
+        it.put("lastValue", -1L)
     }
 
     addRule(0, { line -> if (line.startsWith("}")) ControlFlow.RETURN else ControlFlow.NEXT }, ::dummyAction)
@@ -339,8 +368,7 @@ private fun parseEnumerator(
     val enumValues = cx["enumValues"] as MutableSet<Long>
     val variants = cx["variants"] as MutableList<EnumVariant>
 
-    val value = enumDecl.value.parseDecOrHex()
-
+    val value = if (enumDecl.value.isEmpty()) cx["lastValue"] as Long + 1 else enumDecl.value.parseDecOrHex()
     variants.add(
         if (enumValues.contains(value)) {
             EnumVariant(name = enumDecl.name, value = listOf("0x${value.toString(16)}"))
@@ -350,6 +378,7 @@ private fun parseEnumerator(
         }
     )
 
+    cx["lastValue"] = value
     return nextIndex
 }
 // endregion

@@ -9,6 +9,13 @@ for component in "${COMPONENTS[@]}"; do
   fi;
 done
 
+C_COMPONENTS=("vorbis")
+for c_component in "${C_COMPONENTS[@]}"; do
+  if [ ! -f "stb_${c_component}.h" ]; then
+    curl -o "stb_${c_component}.h" "${STB_URL_PREFIX}stb_${c_component}.c";
+  fi;
+done
+
 # See #153
 if [ ! -f "stb_truetype.h" ]; then
   curl -o "stb_truetype.h" "https://raw.githubusercontent.com/ocornut/imgui/895bff6524549ccb3fb1136aa23ad130b68d0a3e/imstb_truetype.h";

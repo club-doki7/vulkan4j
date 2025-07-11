@@ -1,3 +1,14 @@
+## UNRELEASED v0.4.4
+
+### New bindings
+
+- (@CousinZe) Added `stb_vorbis` support in `stb` module, which provides bindings for `stb_vorbis.h`.
+
+### Functionality updates
+
+- (@CousinZe) Added `STBUtil.freeMemory` method to free memory allocated by `stb` libraries.
+- (@CousinZe) Added `LibcArena.freeNonAllocated` method to free memory allocated by libc allocator but not via `LibcArena.allocate` method. This is an alternative to library specific `Util.freeMemory` methods with some risk.
+
 ## v0.4.3
 
 Upgrade wrapper modules to v0.4.3.
