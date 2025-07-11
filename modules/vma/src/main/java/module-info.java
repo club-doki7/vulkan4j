@@ -12,7 +12,7 @@
 /// <dependency>
 ///     <groupId>club.doki7</groupId>
 ///     <artifactId>vma</artifactId>
-///     <version>0.4.3</version>
+///     <version>0.4.4</version>
 ///     <scope>compile</scope>
 /// </dependency>
 /// ```
