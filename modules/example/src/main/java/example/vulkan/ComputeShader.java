@@ -207,12 +207,11 @@ final class Application {
         VkPipelineLayout pipelineLayout = Objects.requireNonNull(pPipelineLayout.read());
 
         // 8.3 create Compute Pipeline
-        VkPipelineShaderStageCreateInfo pipelineShaderStageCreateInfo = VkPipelineShaderStageCreateInfo.allocate(arena)
-                .stage(VkShaderStageFlags.COMPUTE)
-                .module(shaderModule)
-                .pName(BytePtr.allocateString(arena, "main"));
         VkComputePipelineCreateInfo computePipelineCreateInfo = VkComputePipelineCreateInfo.allocate(arena)
-                .stage(pipelineShaderStageCreateInfo)
+                .stage(it -> it
+                        .stage(VkShaderStageFlags.COMPUTE)
+                        .module(shaderModule)
+                        .pName(BytePtr.allocateString(arena, "main")))
                 .layout(pipelineLayout);
 
         VkPipeline.Ptr pComputePipeline = VkPipeline.Ptr.allocate(arena);
