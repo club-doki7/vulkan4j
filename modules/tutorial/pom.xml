@@ -45,6 +45,11 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
+            <groupId>club.doki7</groupId>
+            <artifactId>shaderc</artifactId>
+            <version>0.4.3</version>
+        </dependency>
+        <dependency>
             <groupId>org.joml</groupId>
             <artifactId>joml</artifactId>
             <version>1.10.8</version>

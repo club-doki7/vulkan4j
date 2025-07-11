@@ -43,14 +43,17 @@ public final class ShadercExample {
                     MemorySegment.NULL
             );
 
+            BytePtr pFileName = BytePtr.allocateString(arena, "nop.comp");
+            BytePtr pEntryName = BytePtr.allocateString(arena, "main");
+
             BytePtr pShaderCode = BytePtr.allocateString(arena, shaderCode);
             ShadercCompilationResult result = shaderc.compileIntoSPVAssembly(
                     compiler,
                     pShaderCode,
                     pShaderCode.size() - 1,
                     ShadercShaderKind.COMPUTE_SHADER,
-                    BytePtr.allocateString(arena, "nop.comp"),
-                    BytePtr.allocateString(arena, "main"),
+                    pFileName,
+                    pEntryName,
                     options
             );
             long numErrors = shaderc.resultGetNumErrors(result);
@@ -65,7 +68,39 @@ public final class ShadercExample {
             }
 
             BytePtr spvAssembly = Objects.requireNonNull(shaderc.resultGetBytes(result));
+            System.out.println("SPIR-V assembly (text):");
             System.out.println(spvAssembly.readString());
+
+            result = shaderc.compileIntoSPV(
+                    compiler,
+                    pShaderCode,
+                    pShaderCode.size() - 1,
+                    ShadercShaderKind.COMPUTE_SHADER,
+                    pFileName,
+                    pEntryName,
+                    options
+            );
+            numErrors = shaderc.resultGetNumErrors(result);
+            if (numErrors > 0) {
+                System.err.println("Compilation to SPIR-V failed with " + numErrors + " errors:");
+                for (int i = 0; i < numErrors; i++) {
+                    BytePtr errorMessage = Objects.requireNonNull(shaderc.resultGetErrorMessage(result));
+                    System.err.println("Error " + (i + 1) + ": " + errorMessage.readString());
+                }
+                shaderc.resultRelease(result);
+                return;
+            }
+
+            long numBytes = shaderc.resultGetLength(result);
+            BytePtr spv = Objects.requireNonNull(shaderc.resultGetBytes(result)).reinterpret(numBytes);
+            System.out.println("SPIR-V binary size: " + numBytes + " bytes");
+            System.out.println("SPIR-V binary (hex):");
+            for (long i = 0; i < numBytes; i++) {
+                System.out.printf("%02x ", spv.read(i));
+                if ((i + 1) % 16 == 0) {
+                    System.out.println();
+                }
+            }
         } finally {
             shaderc.compileOptionsRelease(options);
             shaderc.compilerRelease(compiler);
