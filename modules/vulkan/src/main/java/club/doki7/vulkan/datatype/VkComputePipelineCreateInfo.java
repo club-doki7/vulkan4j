@@ -39,6 +39,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 ///
 /// This structure has the following members that can be automatically initialized:
 /// - `sType = VK_STRUCTURE_TYPE_COMPUTE_PIPELINE_CREATE_INFO`
+/// - `stage.autoInit()`
 ///
 /// The {@code allocate} ({@link VkComputePipelineCreateInfo#allocate(Arena)}, {@link VkComputePipelineCreateInfo#allocate(Arena, long)})
 /// functions will automatically initialize these fields. Also, you may call {@link VkComputePipelineCreateInfo#autoInit}
@@ -177,7 +178,7 @@ public record VkComputePipelineCreateInfo(@NotNull MemorySegment segment) implem
 
     public static VkComputePipelineCreateInfo allocate(Arena arena) {
         VkComputePipelineCreateInfo ret = new VkComputePipelineCreateInfo(arena.allocate(LAYOUT));
-        ret.sType(VkStructureType.COMPUTE_PIPELINE_CREATE_INFO);
+        ret.autoInit();
         return ret;
     }
 
@@ -185,7 +186,7 @@ public record VkComputePipelineCreateInfo(@NotNull MemorySegment segment) implem
         MemorySegment segment = arena.allocate(LAYOUT, count);
         VkComputePipelineCreateInfo.Ptr ret = new VkComputePipelineCreateInfo.Ptr(segment);
         for (long i = 0; i < count; i++) {
-            ret.at(i).sType(VkStructureType.COMPUTE_PIPELINE_CREATE_INFO);
+            ret.at(i).autoInit();
         }
         return ret;
     }
@@ -198,6 +199,7 @@ public record VkComputePipelineCreateInfo(@NotNull MemorySegment segment) implem
 
     public void autoInit() {
         sType(VkStructureType.COMPUTE_PIPELINE_CREATE_INFO);
+        stage().autoInit();
     }
 
     public @EnumType(VkStructureType.class) int sType() {

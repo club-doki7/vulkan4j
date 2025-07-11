@@ -36,6 +36,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 ///
 /// This structure has the following members that can be automatically initialized:
 /// - `sType = VK_STRUCTURE_TYPE_PIPELINE_SAMPLE_LOCATIONS_STATE_CREATE_INFO_EXT`
+/// - `sampleLocationsInfo.autoInit()`
 ///
 /// The {@code allocate} ({@link VkPipelineSampleLocationsStateCreateInfoEXT#allocate(Arena)}, {@link VkPipelineSampleLocationsStateCreateInfoEXT#allocate(Arena, long)})
 /// functions will automatically initialize these fields. Also, you may call {@link VkPipelineSampleLocationsStateCreateInfoEXT#autoInit}
@@ -174,7 +175,7 @@ public record VkPipelineSampleLocationsStateCreateInfoEXT(@NotNull MemorySegment
 
     public static VkPipelineSampleLocationsStateCreateInfoEXT allocate(Arena arena) {
         VkPipelineSampleLocationsStateCreateInfoEXT ret = new VkPipelineSampleLocationsStateCreateInfoEXT(arena.allocate(LAYOUT));
-        ret.sType(VkStructureType.PIPELINE_SAMPLE_LOCATIONS_STATE_CREATE_INFO_EXT);
+        ret.autoInit();
         return ret;
     }
 
@@ -182,7 +183,7 @@ public record VkPipelineSampleLocationsStateCreateInfoEXT(@NotNull MemorySegment
         MemorySegment segment = arena.allocate(LAYOUT, count);
         VkPipelineSampleLocationsStateCreateInfoEXT.Ptr ret = new VkPipelineSampleLocationsStateCreateInfoEXT.Ptr(segment);
         for (long i = 0; i < count; i++) {
-            ret.at(i).sType(VkStructureType.PIPELINE_SAMPLE_LOCATIONS_STATE_CREATE_INFO_EXT);
+            ret.at(i).autoInit();
         }
         return ret;
     }
@@ -195,6 +196,7 @@ public record VkPipelineSampleLocationsStateCreateInfoEXT(@NotNull MemorySegment
 
     public void autoInit() {
         sType(VkStructureType.PIPELINE_SAMPLE_LOCATIONS_STATE_CREATE_INFO_EXT);
+        sampleLocationsInfo().autoInit();
     }
 
     public @EnumType(VkStructureType.class) int sType() {

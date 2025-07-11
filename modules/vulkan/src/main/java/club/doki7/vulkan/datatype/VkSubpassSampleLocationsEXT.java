@@ -30,6 +30,15 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 /// } VkSubpassSampleLocationsEXT;
 /// }
 ///
+/// ## Auto initialization
+///
+/// This structure has the following members that can be automatically initialized:
+/// - `sampleLocationsInfo.autoInit()`
+///
+/// The {@code allocate} ({@link VkSubpassSampleLocationsEXT#allocate(Arena)}, {@link VkSubpassSampleLocationsEXT#allocate(Arena, long)})
+/// functions will automatically initialize these fields. Also, you may call {@link VkSubpassSampleLocationsEXT#autoInit}
+/// to initialize these fields manually for non-allocated instances.
+///
 /// ## Contracts
 ///
 /// The property {@link #segment()} should always be not-null
@@ -162,18 +171,28 @@ public record VkSubpassSampleLocationsEXT(@NotNull MemorySegment segment) implem
     }
 
     public static VkSubpassSampleLocationsEXT allocate(Arena arena) {
-        return new VkSubpassSampleLocationsEXT(arena.allocate(LAYOUT));
+        VkSubpassSampleLocationsEXT ret = new VkSubpassSampleLocationsEXT(arena.allocate(LAYOUT));
+        ret.sampleLocationsInfo().autoInit();
+        return ret;
     }
 
     public static VkSubpassSampleLocationsEXT.Ptr allocate(Arena arena, long count) {
         MemorySegment segment = arena.allocate(LAYOUT, count);
-        return new VkSubpassSampleLocationsEXT.Ptr(segment);
+        VkSubpassSampleLocationsEXT.Ptr ret = new VkSubpassSampleLocationsEXT.Ptr(segment);
+        for (long i = 0; i < count; i++) {
+            ret.at(i).sampleLocationsInfo(VkSampleLocationsInfoEXT.null);
+        }
+        return ret;
     }
 
     public static VkSubpassSampleLocationsEXT clone(Arena arena, VkSubpassSampleLocationsEXT src) {
         VkSubpassSampleLocationsEXT ret = allocate(arena);
         ret.segment.copyFrom(src.segment);
         return ret;
+    }
+
+    public void autoInit() {
+        sampleLocationsInfo().autoInit();
     }
 
     public @Unsigned int subpassIndex() {

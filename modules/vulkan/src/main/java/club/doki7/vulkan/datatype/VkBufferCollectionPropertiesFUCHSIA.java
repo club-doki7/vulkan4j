@@ -45,6 +45,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 ///
 /// This structure has the following members that can be automatically initialized:
 /// - `sType = VK_STRUCTURE_TYPE_BUFFER_COLLECTION_PROPERTIES_FUCHSIA`
+/// - `sysmemColorSpaceIndex.autoInit()`
 ///
 /// The {@code allocate} ({@link VkBufferCollectionPropertiesFUCHSIA#allocate(Arena)}, {@link VkBufferCollectionPropertiesFUCHSIA#allocate(Arena, long)})
 /// functions will automatically initialize these fields. Also, you may call {@link VkBufferCollectionPropertiesFUCHSIA#autoInit}
@@ -183,7 +184,7 @@ public record VkBufferCollectionPropertiesFUCHSIA(@NotNull MemorySegment segment
 
     public static VkBufferCollectionPropertiesFUCHSIA allocate(Arena arena) {
         VkBufferCollectionPropertiesFUCHSIA ret = new VkBufferCollectionPropertiesFUCHSIA(arena.allocate(LAYOUT));
-        ret.sType(VkStructureType.BUFFER_COLLECTION_PROPERTIES_FUCHSIA);
+        ret.autoInit();
         return ret;
     }
 
@@ -191,7 +192,7 @@ public record VkBufferCollectionPropertiesFUCHSIA(@NotNull MemorySegment segment
         MemorySegment segment = arena.allocate(LAYOUT, count);
         VkBufferCollectionPropertiesFUCHSIA.Ptr ret = new VkBufferCollectionPropertiesFUCHSIA.Ptr(segment);
         for (long i = 0; i < count; i++) {
-            ret.at(i).sType(VkStructureType.BUFFER_COLLECTION_PROPERTIES_FUCHSIA);
+            ret.at(i).autoInit();
         }
         return ret;
     }
@@ -204,6 +205,7 @@ public record VkBufferCollectionPropertiesFUCHSIA(@NotNull MemorySegment segment
 
     public void autoInit() {
         sType(VkStructureType.BUFFER_COLLECTION_PROPERTIES_FUCHSIA);
+        sysmemColorSpaceIndex().autoInit();
     }
 
     public @EnumType(VkStructureType.class) int sType() {

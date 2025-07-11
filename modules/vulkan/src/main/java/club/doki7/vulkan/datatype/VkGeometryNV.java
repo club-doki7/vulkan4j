@@ -37,6 +37,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 ///
 /// This structure has the following members that can be automatically initialized:
 /// - `sType = VK_STRUCTURE_TYPE_GEOMETRY_NV`
+/// - `geometry.autoInit()`
 ///
 /// The {@code allocate} ({@link VkGeometryNV#allocate(Arena)}, {@link VkGeometryNV#allocate(Arena, long)})
 /// functions will automatically initialize these fields. Also, you may call {@link VkGeometryNV#autoInit}
@@ -175,7 +176,7 @@ public record VkGeometryNV(@NotNull MemorySegment segment) implements IVkGeometr
 
     public static VkGeometryNV allocate(Arena arena) {
         VkGeometryNV ret = new VkGeometryNV(arena.allocate(LAYOUT));
-        ret.sType(VkStructureType.GEOMETRY_NV);
+        ret.autoInit();
         return ret;
     }
 
@@ -183,7 +184,7 @@ public record VkGeometryNV(@NotNull MemorySegment segment) implements IVkGeometr
         MemorySegment segment = arena.allocate(LAYOUT, count);
         VkGeometryNV.Ptr ret = new VkGeometryNV.Ptr(segment);
         for (long i = 0; i < count; i++) {
-            ret.at(i).sType(VkStructureType.GEOMETRY_NV);
+            ret.at(i).autoInit();
         }
         return ret;
     }
@@ -196,6 +197,7 @@ public record VkGeometryNV(@NotNull MemorySegment segment) implements IVkGeometr
 
     public void autoInit() {
         sType(VkStructureType.GEOMETRY_NV);
+        geometry().autoInit();
     }
 
     public @EnumType(VkStructureType.class) int sType() {

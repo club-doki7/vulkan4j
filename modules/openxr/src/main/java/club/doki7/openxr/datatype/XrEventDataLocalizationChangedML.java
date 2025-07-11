@@ -43,6 +43,7 @@ import club.doki7.vulkan.handle.*;
 ///
 /// This structure has the following members that can be automatically initialized:
 /// - `type = XR_TYPE_EVENT_DATA_LOCALIZATION_CHANGED_ML`
+/// - `map.autoInit()`
 ///
 /// The {@code allocate} ({@link XrEventDataLocalizationChangedML#allocate(Arena)}, {@link XrEventDataLocalizationChangedML#allocate(Arena, long)})
 /// functions will automatically initialize these fields. Also, you may call {@link XrEventDataLocalizationChangedML#autoInit}
@@ -181,7 +182,7 @@ public record XrEventDataLocalizationChangedML(@NotNull MemorySegment segment) i
 
     public static XrEventDataLocalizationChangedML allocate(Arena arena) {
         XrEventDataLocalizationChangedML ret = new XrEventDataLocalizationChangedML(arena.allocate(LAYOUT));
-        ret.type(XrStructureType.EVENT_DATA_LOCALIZATION_CHANGED_ML);
+        ret.autoInit();
         return ret;
     }
 
@@ -189,7 +190,7 @@ public record XrEventDataLocalizationChangedML(@NotNull MemorySegment segment) i
         MemorySegment segment = arena.allocate(LAYOUT, count);
         XrEventDataLocalizationChangedML.Ptr ret = new XrEventDataLocalizationChangedML.Ptr(segment);
         for (long i = 0; i < count; i++) {
-            ret.at(i).type(XrStructureType.EVENT_DATA_LOCALIZATION_CHANGED_ML);
+            ret.at(i).autoInit();
         }
         return ret;
     }
@@ -202,6 +203,7 @@ public record XrEventDataLocalizationChangedML(@NotNull MemorySegment segment) i
 
     public void autoInit() {
         type(XrStructureType.EVENT_DATA_LOCALIZATION_CHANGED_ML);
+        map().autoInit();
     }
 
     public @EnumType(XrStructureType.class) int type() {

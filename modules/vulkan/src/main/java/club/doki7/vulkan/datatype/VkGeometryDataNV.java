@@ -30,6 +30,16 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 /// } VkGeometryDataNV;
 /// }
 ///
+/// ## Auto initialization
+///
+/// This structure has the following members that can be automatically initialized:
+/// - `triangles.autoInit()`
+/// - `aabbs.autoInit()`
+///
+/// The {@code allocate} ({@link VkGeometryDataNV#allocate(Arena)}, {@link VkGeometryDataNV#allocate(Arena, long)})
+/// functions will automatically initialize these fields. Also, you may call {@link VkGeometryDataNV#autoInit}
+/// to initialize these fields manually for non-allocated instances.
+///
 /// ## Contracts
 ///
 /// The property {@link #segment()} should always be not-null
@@ -162,18 +172,29 @@ public record VkGeometryDataNV(@NotNull MemorySegment segment) implements IVkGeo
     }
 
     public static VkGeometryDataNV allocate(Arena arena) {
-        return new VkGeometryDataNV(arena.allocate(LAYOUT));
+        VkGeometryDataNV ret = new VkGeometryDataNV(arena.allocate(LAYOUT));
+        ret.autoInit();
+        return ret;
     }
 
     public static VkGeometryDataNV.Ptr allocate(Arena arena, long count) {
         MemorySegment segment = arena.allocate(LAYOUT, count);
-        return new VkGeometryDataNV.Ptr(segment);
+        VkGeometryDataNV.Ptr ret = new VkGeometryDataNV.Ptr(segment);
+        for (long i = 0; i < count; i++) {
+            ret.at(i).autoInit();
+        }
+        return ret;
     }
 
     public static VkGeometryDataNV clone(Arena arena, VkGeometryDataNV src) {
         VkGeometryDataNV ret = allocate(arena);
         ret.segment.copyFrom(src.segment);
         return ret;
+    }
+
+    public void autoInit() {
+        triangles().autoInit();
+        aabbs().autoInit();
     }
 
     public @NotNull VkGeometryTrianglesNV triangles() {
