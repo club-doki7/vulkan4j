@@ -1,4 +1,6 @@
-## UNRELEASED v0.4.4
+## v0.4.4
+
+Upgrade `ffm-plus` to v0.2.7, and other wrapper modules to v0.4.4.
 
 ### New bindings
 
