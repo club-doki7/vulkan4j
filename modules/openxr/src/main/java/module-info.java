@@ -10,7 +10,7 @@
 /// <dependency>
 ///     <groupId>club.doki7</groupId>
 ///     <artifactId>openxr</artifactId>
-///     <version>0.4.3</version>
+///     <version>0.4.4</version>
 ///     <scope>compile</scope>
 /// </dependency>
 /// ```
