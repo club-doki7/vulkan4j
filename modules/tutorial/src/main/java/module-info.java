@@ -9,4 +9,5 @@ module tutorial {
     requires java.desktop;
     requires obj;
     requires org.jetbrains.annotations;
+    requires club.doki7.shaderc;
 }
