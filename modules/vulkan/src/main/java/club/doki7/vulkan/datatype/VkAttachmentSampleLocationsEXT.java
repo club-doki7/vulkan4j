@@ -180,7 +180,7 @@ public record VkAttachmentSampleLocationsEXT(@NotNull MemorySegment segment) imp
         MemorySegment segment = arena.allocate(LAYOUT, count);
         VkAttachmentSampleLocationsEXT.Ptr ret = new VkAttachmentSampleLocationsEXT.Ptr(segment);
         for (long i = 0; i < count; i++) {
-            ret.at(i).sampleLocationsInfo(VkSampleLocationsInfoEXT.null);
+            ret.at(i).sampleLocationsInfo().autoInit();
         }
         return ret;
     }

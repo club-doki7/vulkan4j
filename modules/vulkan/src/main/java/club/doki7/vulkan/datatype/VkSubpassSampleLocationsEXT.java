@@ -180,7 +180,7 @@ public record VkSubpassSampleLocationsEXT(@NotNull MemorySegment segment) implem
         MemorySegment segment = arena.allocate(LAYOUT, count);
         VkSubpassSampleLocationsEXT.Ptr ret = new VkSubpassSampleLocationsEXT.Ptr(segment);
         for (long i = 0; i < count; i++) {
-            ret.at(i).sampleLocationsInfo(VkSampleLocationsInfoEXT.null);
+            ret.at(i).sampleLocationsInfo().autoInit();
         }
         return ret;
     }

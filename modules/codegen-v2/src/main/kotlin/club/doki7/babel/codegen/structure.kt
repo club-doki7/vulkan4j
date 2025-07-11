@@ -446,7 +446,11 @@ fun generateStructure(
                 "for (long i = 0; i < count; i++)" {
                     if (autoInitMembers.size == 1) {
                         val it = autoInitMembers.first()
-                        +"ret.at(i).${it.name}(${(it.type as IdentifierType).ident}.${it.values});"
+                        if (it.values != null) {
+                            +"ret.at(i).${it.name}(${(it.type as IdentifierType).ident}.${it.values});"
+                        } else {
+                            +"ret.at(i).${it.name}().autoInit();"
+                        }
                     } else {
                         +"ret.at(i).autoInit();"
                     }
