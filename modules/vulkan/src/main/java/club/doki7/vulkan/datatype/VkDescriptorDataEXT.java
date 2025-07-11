@@ -24,7 +24,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 /// ## Structure
 ///
 /// {@snippet lang=c :
-/// typedef struct VkDescriptorDataEXT {
+/// typedef union VkDescriptorDataEXT {
 ///     VkSampler const* pSampler; // @link substring="VkSampler" target="VkSampler" @link substring="pSampler" target="#pSampler"
 ///     VkDescriptorImageInfo const* pCombinedImageSampler; // @link substring="VkDescriptorImageInfo" target="VkDescriptorImageInfo" @link substring="pCombinedImageSampler" target="#pCombinedImageSampler"
 ///     VkDescriptorImageInfo const* pInputAttachmentImage; // @link substring="VkDescriptorImageInfo" target="VkDescriptorImageInfo" @link substring="pInputAttachmentImage" target="#pInputAttachmentImage"

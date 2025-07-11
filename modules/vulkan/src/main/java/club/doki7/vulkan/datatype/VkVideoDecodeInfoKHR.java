@@ -42,6 +42,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 ///
 /// This structure has the following members that can be automatically initialized:
 /// - `sType = VK_STRUCTURE_TYPE_VIDEO_DECODE_INFO_KHR`
+/// - `dstPictureResource.autoInit()`
 ///
 /// The {@code allocate} ({@link VkVideoDecodeInfoKHR#allocate(Arena)}, {@link VkVideoDecodeInfoKHR#allocate(Arena, long)})
 /// functions will automatically initialize these fields. Also, you may call {@link VkVideoDecodeInfoKHR#autoInit}
@@ -180,7 +181,7 @@ public record VkVideoDecodeInfoKHR(@NotNull MemorySegment segment) implements IV
 
     public static VkVideoDecodeInfoKHR allocate(Arena arena) {
         VkVideoDecodeInfoKHR ret = new VkVideoDecodeInfoKHR(arena.allocate(LAYOUT));
-        ret.sType(VkStructureType.VIDEO_DECODE_INFO_KHR);
+        ret.autoInit();
         return ret;
     }
 
@@ -188,7 +189,7 @@ public record VkVideoDecodeInfoKHR(@NotNull MemorySegment segment) implements IV
         MemorySegment segment = arena.allocate(LAYOUT, count);
         VkVideoDecodeInfoKHR.Ptr ret = new VkVideoDecodeInfoKHR.Ptr(segment);
         for (long i = 0; i < count; i++) {
-            ret.at(i).sType(VkStructureType.VIDEO_DECODE_INFO_KHR);
+            ret.at(i).autoInit();
         }
         return ret;
     }
@@ -201,6 +202,7 @@ public record VkVideoDecodeInfoKHR(@NotNull MemorySegment segment) implements IV
 
     public void autoInit() {
         sType(VkStructureType.VIDEO_DECODE_INFO_KHR);
+        dstPictureResource().autoInit();
     }
 
     public @EnumType(VkStructureType.class) int sType() {

@@ -42,6 +42,7 @@ import club.doki7.vulkan.handle.*;
 ///
 /// This structure has the following members that can be automatically initialized:
 /// - `type = XR_TYPE_COMPOSITION_LAYER_PASSTHROUGH_HTC`
+/// - `color.autoInit()`
 ///
 /// The {@code allocate} ({@link XrCompositionLayerPassthroughHTC#allocate(Arena)}, {@link XrCompositionLayerPassthroughHTC#allocate(Arena, long)})
 /// functions will automatically initialize these fields. Also, you may call {@link XrCompositionLayerPassthroughHTC#autoInit}
@@ -180,7 +181,7 @@ public record XrCompositionLayerPassthroughHTC(@NotNull MemorySegment segment) i
 
     public static XrCompositionLayerPassthroughHTC allocate(Arena arena) {
         XrCompositionLayerPassthroughHTC ret = new XrCompositionLayerPassthroughHTC(arena.allocate(LAYOUT));
-        ret.type(XrStructureType.COMPOSITION_LAYER_PASSTHROUGH_HTC);
+        ret.autoInit();
         return ret;
     }
 
@@ -188,7 +189,7 @@ public record XrCompositionLayerPassthroughHTC(@NotNull MemorySegment segment) i
         MemorySegment segment = arena.allocate(LAYOUT, count);
         XrCompositionLayerPassthroughHTC.Ptr ret = new XrCompositionLayerPassthroughHTC.Ptr(segment);
         for (long i = 0; i < count; i++) {
-            ret.at(i).type(XrStructureType.COMPOSITION_LAYER_PASSTHROUGH_HTC);
+            ret.at(i).autoInit();
         }
         return ret;
     }
@@ -201,6 +202,7 @@ public record XrCompositionLayerPassthroughHTC(@NotNull MemorySegment segment) i
 
     public void autoInit() {
         type(XrStructureType.COMPOSITION_LAYER_PASSTHROUGH_HTC);
+        color().autoInit();
     }
 
     public @EnumType(XrStructureType.class) int type() {

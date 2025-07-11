@@ -7,6 +7,7 @@ import club.doki7.babel.registry.IdentifierType
 import club.doki7.babel.registry.OpaqueTypedef
 import club.doki7.babel.registry.PointerType
 import club.doki7.babel.registry.RegistryBase
+import club.doki7.babel.registry.Structure
 import club.doki7.babel.registry.Type
 import kotlin.collections.contains
 
@@ -324,7 +325,7 @@ data class CFloatType(
     }
 }
 
-data class CStructType(val name: String, val isUnion: Boolean): CType {
+data class CStructType(val name: String, val isUnion: Boolean, val structureRef: Structure): CType {
     override val jType: String = "I$name"
     override val jRawType: String = "@NativeType(\"$name\") MemorySegment"
     override val jLayout: String = "$name.LAYOUT"
@@ -708,10 +709,10 @@ fun lowerIdentifierType(
 
 fun identifierTypeLookup(registry: RegistryBase, refRegistries: List<RegistryBase>, type: IdentifierType) =
     if (registry.structures.contains(type.ident)) {
-        CStructType(type.ident.value, false)
+        CStructType(type.ident.value, false, registry.structures[type.ident]!!)
     }
     else if (registry.unions.contains(type.ident)) {
-        CStructType(type.ident.value, true)
+        CStructType(type.ident.value, true, registry.unions[type.ident]!!)
     }
     else if (registry.enumerations.contains(type.ident)) {
         CEnumType(type.ident.value, isBitmask = false)

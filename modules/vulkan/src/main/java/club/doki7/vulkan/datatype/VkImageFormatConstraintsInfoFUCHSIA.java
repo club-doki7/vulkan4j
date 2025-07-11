@@ -40,6 +40,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 ///
 /// This structure has the following members that can be automatically initialized:
 /// - `sType = VK_STRUCTURE_TYPE_IMAGE_FORMAT_CONSTRAINTS_INFO_FUCHSIA`
+/// - `imageCreateInfo.autoInit()`
 ///
 /// The {@code allocate} ({@link VkImageFormatConstraintsInfoFUCHSIA#allocate(Arena)}, {@link VkImageFormatConstraintsInfoFUCHSIA#allocate(Arena, long)})
 /// functions will automatically initialize these fields. Also, you may call {@link VkImageFormatConstraintsInfoFUCHSIA#autoInit}
@@ -178,7 +179,7 @@ public record VkImageFormatConstraintsInfoFUCHSIA(@NotNull MemorySegment segment
 
     public static VkImageFormatConstraintsInfoFUCHSIA allocate(Arena arena) {
         VkImageFormatConstraintsInfoFUCHSIA ret = new VkImageFormatConstraintsInfoFUCHSIA(arena.allocate(LAYOUT));
-        ret.sType(VkStructureType.IMAGE_FORMAT_CONSTRAINTS_INFO_FUCHSIA);
+        ret.autoInit();
         return ret;
     }
 
@@ -186,7 +187,7 @@ public record VkImageFormatConstraintsInfoFUCHSIA(@NotNull MemorySegment segment
         MemorySegment segment = arena.allocate(LAYOUT, count);
         VkImageFormatConstraintsInfoFUCHSIA.Ptr ret = new VkImageFormatConstraintsInfoFUCHSIA.Ptr(segment);
         for (long i = 0; i < count; i++) {
-            ret.at(i).sType(VkStructureType.IMAGE_FORMAT_CONSTRAINTS_INFO_FUCHSIA);
+            ret.at(i).autoInit();
         }
         return ret;
     }
@@ -199,6 +200,7 @@ public record VkImageFormatConstraintsInfoFUCHSIA(@NotNull MemorySegment segment
 
     public void autoInit() {
         sType(VkStructureType.IMAGE_FORMAT_CONSTRAINTS_INFO_FUCHSIA);
+        imageCreateInfo().autoInit();
     }
 
     public @EnumType(VkStructureType.class) int sType() {

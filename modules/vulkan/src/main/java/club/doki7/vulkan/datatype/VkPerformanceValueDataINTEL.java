@@ -24,7 +24,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 /// ## Structure
 ///
 /// {@snippet lang=c :
-/// typedef struct VkPerformanceValueDataINTEL {
+/// typedef union VkPerformanceValueDataINTEL {
 ///     uint32_t value32; // @link substring="value32" target="#value32"
 ///     uint64_t value64; // @link substring="value64" target="#value64"
 ///     float valueFloat; // @link substring="valueFloat" target="#valueFloat"

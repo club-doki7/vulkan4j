@@ -24,7 +24,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 /// ## Structure
 ///
 /// {@snippet lang=c :
-/// typedef struct VkPerformanceCounterResultKHR {
+/// typedef union VkPerformanceCounterResultKHR {
 ///     int32_t int32; // @link substring="int32" target="#int32"
 ///     int64_t int64; // @link substring="int64" target="#int64"
 ///     uint32_t uint32; // @link substring="uint32" target="#uint32"

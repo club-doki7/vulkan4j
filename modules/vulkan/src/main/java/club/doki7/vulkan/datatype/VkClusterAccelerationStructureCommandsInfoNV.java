@@ -42,6 +42,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 ///
 /// This structure has the following members that can be automatically initialized:
 /// - `sType = VK_STRUCTURE_TYPE_CLUSTER_ACCELERATION_STRUCTURE_COMMANDS_INFO_NV`
+/// - `input.autoInit()`
 ///
 /// The {@code allocate} ({@link VkClusterAccelerationStructureCommandsInfoNV#allocate(Arena)}, {@link VkClusterAccelerationStructureCommandsInfoNV#allocate(Arena, long)})
 /// functions will automatically initialize these fields. Also, you may call {@link VkClusterAccelerationStructureCommandsInfoNV#autoInit}
@@ -180,7 +181,7 @@ public record VkClusterAccelerationStructureCommandsInfoNV(@NotNull MemorySegmen
 
     public static VkClusterAccelerationStructureCommandsInfoNV allocate(Arena arena) {
         VkClusterAccelerationStructureCommandsInfoNV ret = new VkClusterAccelerationStructureCommandsInfoNV(arena.allocate(LAYOUT));
-        ret.sType(VkStructureType.CLUSTER_ACCELERATION_STRUCTURE_COMMANDS_INFO_NV);
+        ret.autoInit();
         return ret;
     }
 
@@ -188,7 +189,7 @@ public record VkClusterAccelerationStructureCommandsInfoNV(@NotNull MemorySegmen
         MemorySegment segment = arena.allocate(LAYOUT, count);
         VkClusterAccelerationStructureCommandsInfoNV.Ptr ret = new VkClusterAccelerationStructureCommandsInfoNV.Ptr(segment);
         for (long i = 0; i < count; i++) {
-            ret.at(i).sType(VkStructureType.CLUSTER_ACCELERATION_STRUCTURE_COMMANDS_INFO_NV);
+            ret.at(i).autoInit();
         }
         return ret;
     }
@@ -201,6 +202,7 @@ public record VkClusterAccelerationStructureCommandsInfoNV(@NotNull MemorySegmen
 
     public void autoInit() {
         sType(VkStructureType.CLUSTER_ACCELERATION_STRUCTURE_COMMANDS_INFO_NV);
+        input().autoInit();
     }
 
     public @EnumType(VkStructureType.class) int sType() {

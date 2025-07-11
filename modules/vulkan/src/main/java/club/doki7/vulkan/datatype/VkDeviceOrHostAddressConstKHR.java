@@ -24,7 +24,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 /// ## Structure
 ///
 /// {@snippet lang=c :
-/// typedef struct VkDeviceOrHostAddressConstKHR {
+/// typedef union VkDeviceOrHostAddressConstKHR {
 ///     VkDeviceAddress deviceAddress; // @link substring="deviceAddress" target="#deviceAddress"
 ///     void const* hostAddress; // @link substring="hostAddress" target="#hostAddress"
 /// } VkDeviceOrHostAddressConstKHR;

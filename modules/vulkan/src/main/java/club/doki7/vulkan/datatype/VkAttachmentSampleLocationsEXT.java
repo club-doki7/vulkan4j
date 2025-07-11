@@ -30,6 +30,15 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 /// } VkAttachmentSampleLocationsEXT;
 /// }
 ///
+/// ## Auto initialization
+///
+/// This structure has the following members that can be automatically initialized:
+/// - `sampleLocationsInfo.autoInit()`
+///
+/// The {@code allocate} ({@link VkAttachmentSampleLocationsEXT#allocate(Arena)}, {@link VkAttachmentSampleLocationsEXT#allocate(Arena, long)})
+/// functions will automatically initialize these fields. Also, you may call {@link VkAttachmentSampleLocationsEXT#autoInit}
+/// to initialize these fields manually for non-allocated instances.
+///
 /// ## Contracts
 ///
 /// The property {@link #segment()} should always be not-null
@@ -162,18 +171,28 @@ public record VkAttachmentSampleLocationsEXT(@NotNull MemorySegment segment) imp
     }
 
     public static VkAttachmentSampleLocationsEXT allocate(Arena arena) {
-        return new VkAttachmentSampleLocationsEXT(arena.allocate(LAYOUT));
+        VkAttachmentSampleLocationsEXT ret = new VkAttachmentSampleLocationsEXT(arena.allocate(LAYOUT));
+        ret.sampleLocationsInfo().autoInit();
+        return ret;
     }
 
     public static VkAttachmentSampleLocationsEXT.Ptr allocate(Arena arena, long count) {
         MemorySegment segment = arena.allocate(LAYOUT, count);
-        return new VkAttachmentSampleLocationsEXT.Ptr(segment);
+        VkAttachmentSampleLocationsEXT.Ptr ret = new VkAttachmentSampleLocationsEXT.Ptr(segment);
+        for (long i = 0; i < count; i++) {
+            ret.at(i).sampleLocationsInfo().autoInit();
+        }
+        return ret;
     }
 
     public static VkAttachmentSampleLocationsEXT clone(Arena arena, VkAttachmentSampleLocationsEXT src) {
         VkAttachmentSampleLocationsEXT ret = allocate(arena);
         ret.segment.copyFrom(src.segment);
         return ret;
+    }
+
+    public void autoInit() {
+        sampleLocationsInfo().autoInit();
     }
 
     public @Unsigned int attachmentIndex() {

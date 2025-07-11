@@ -39,6 +39,7 @@ import club.doki7.vulkan.handle.*;
 ///
 /// This structure has the following members that can be automatically initialized:
 /// - `type = XR_TYPE_SPATIAL_ENTITY_COMPONENT_DATA_LOCATION_BD`
+/// - `location.autoInit()`
 ///
 /// The {@code allocate} ({@link XrSpatialEntityComponentDataLocationBD#allocate(Arena)}, {@link XrSpatialEntityComponentDataLocationBD#allocate(Arena, long)})
 /// functions will automatically initialize these fields. Also, you may call {@link XrSpatialEntityComponentDataLocationBD#autoInit}
@@ -177,7 +178,7 @@ public record XrSpatialEntityComponentDataLocationBD(@NotNull MemorySegment segm
 
     public static XrSpatialEntityComponentDataLocationBD allocate(Arena arena) {
         XrSpatialEntityComponentDataLocationBD ret = new XrSpatialEntityComponentDataLocationBD(arena.allocate(LAYOUT));
-        ret.type(XrStructureType.SPATIAL_ENTITY_COMPONENT_DATA_LOCATION_BD);
+        ret.autoInit();
         return ret;
     }
 
@@ -185,7 +186,7 @@ public record XrSpatialEntityComponentDataLocationBD(@NotNull MemorySegment segm
         MemorySegment segment = arena.allocate(LAYOUT, count);
         XrSpatialEntityComponentDataLocationBD.Ptr ret = new XrSpatialEntityComponentDataLocationBD.Ptr(segment);
         for (long i = 0; i < count; i++) {
-            ret.at(i).type(XrStructureType.SPATIAL_ENTITY_COMPONENT_DATA_LOCATION_BD);
+            ret.at(i).autoInit();
         }
         return ret;
     }
@@ -198,6 +199,7 @@ public record XrSpatialEntityComponentDataLocationBD(@NotNull MemorySegment segm
 
     public void autoInit() {
         type(XrStructureType.SPATIAL_ENTITY_COMPONENT_DATA_LOCATION_BD);
+        location().autoInit();
     }
 
     public @EnumType(XrStructureType.class) int type() {

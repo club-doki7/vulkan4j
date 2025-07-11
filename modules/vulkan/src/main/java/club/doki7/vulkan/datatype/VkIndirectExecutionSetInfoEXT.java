@@ -24,7 +24,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 /// ## Structure
 ///
 /// {@snippet lang=c :
-/// typedef struct VkIndirectExecutionSetInfoEXT {
+/// typedef union VkIndirectExecutionSetInfoEXT {
 ///     VkIndirectExecutionSetPipelineInfoEXT const* pPipelineInfo; // @link substring="VkIndirectExecutionSetPipelineInfoEXT" target="VkIndirectExecutionSetPipelineInfoEXT" @link substring="pPipelineInfo" target="#pPipelineInfo"
 ///     VkIndirectExecutionSetShaderInfoEXT const* pShaderInfo; // @link substring="VkIndirectExecutionSetShaderInfoEXT" target="VkIndirectExecutionSetShaderInfoEXT" @link substring="pShaderInfo" target="#pShaderInfo"
 /// } VkIndirectExecutionSetInfoEXT;

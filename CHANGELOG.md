@@ -9,6 +9,25 @@
 - (@CousinZe) Added `STBUtil.freeMemory` method to free memory allocated by `stb` libraries.
 - (@CousinZe) Added `LibcArena.freeNonAllocated` method to free memory allocated by libc allocator but not via `LibcArena.allocate` method. This is an alternative to library specific `Util.freeMemory` methods with some risk.
 
+### Quality of Life updates
+
+- Supported auto-initialization of nested structures (#147). Now structures like `VkComputePipelineCreateInfo` will have their nested structures automatically initialized:
+
+    ```java
+    VkComputePipelineCreateInfo createInfo = VkComputePipelineCreateInfo.allocate(arena)
+        .stage(it -> it
+                // .sType(VkStructureType.PIPELINE_SHADER_STAGE_CREATE_INFO) // <-- no more needed
+                .stage(VkShaderStageFlags.COMPUTE)
+                .module(computeShader.handle)
+                .pName(entryName)
+                .pSpecializationInfo(specInfo))
+        .layout(layout.handle);
+    ```
+
+### Bugfixes
+
+- Fixed a JavaDoc generation issue #158, where `union` types incorrectly have `struct` in their layout documentation.
+
 ## v0.4.3
 
 Upgrade wrapper modules to v0.4.3.

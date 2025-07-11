@@ -24,7 +24,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 /// ## Structure
 ///
 /// {@snippet lang=c :
-/// typedef struct VkClusterAccelerationStructureOpInputNV {
+/// typedef union VkClusterAccelerationStructureOpInputNV {
 ///     VkClusterAccelerationStructureClustersBottomLevelInputNV* pClustersBottomLevel; // @link substring="VkClusterAccelerationStructureClustersBottomLevelInputNV" target="VkClusterAccelerationStructureClustersBottomLevelInputNV" @link substring="pClustersBottomLevel" target="#pClustersBottomLevel"
 ///     VkClusterAccelerationStructureTriangleClusterInputNV* pTriangleClusters; // @link substring="VkClusterAccelerationStructureTriangleClusterInputNV" target="VkClusterAccelerationStructureTriangleClusterInputNV" @link substring="pTriangleClusters" target="#pTriangleClusters"
 ///     VkClusterAccelerationStructureMoveObjectsInputNV* pMoveObjects; // @link substring="VkClusterAccelerationStructureMoveObjectsInputNV" target="VkClusterAccelerationStructureMoveObjectsInputNV" @link substring="pMoveObjects" target="#pMoveObjects"

@@ -37,6 +37,8 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 ///
 /// This structure has the following members that can be automatically initialized:
 /// - `sType = VK_STRUCTURE_TYPE_BUFFER_CONSTRAINTS_INFO_FUCHSIA`
+/// - `createInfo.autoInit()`
+/// - `bufferCollectionConstraints.autoInit()`
 ///
 /// The {@code allocate} ({@link VkBufferConstraintsInfoFUCHSIA#allocate(Arena)}, {@link VkBufferConstraintsInfoFUCHSIA#allocate(Arena, long)})
 /// functions will automatically initialize these fields. Also, you may call {@link VkBufferConstraintsInfoFUCHSIA#autoInit}
@@ -175,7 +177,7 @@ public record VkBufferConstraintsInfoFUCHSIA(@NotNull MemorySegment segment) imp
 
     public static VkBufferConstraintsInfoFUCHSIA allocate(Arena arena) {
         VkBufferConstraintsInfoFUCHSIA ret = new VkBufferConstraintsInfoFUCHSIA(arena.allocate(LAYOUT));
-        ret.sType(VkStructureType.BUFFER_CONSTRAINTS_INFO_FUCHSIA);
+        ret.autoInit();
         return ret;
     }
 
@@ -183,7 +185,7 @@ public record VkBufferConstraintsInfoFUCHSIA(@NotNull MemorySegment segment) imp
         MemorySegment segment = arena.allocate(LAYOUT, count);
         VkBufferConstraintsInfoFUCHSIA.Ptr ret = new VkBufferConstraintsInfoFUCHSIA.Ptr(segment);
         for (long i = 0; i < count; i++) {
-            ret.at(i).sType(VkStructureType.BUFFER_CONSTRAINTS_INFO_FUCHSIA);
+            ret.at(i).autoInit();
         }
         return ret;
     }
@@ -196,6 +198,8 @@ public record VkBufferConstraintsInfoFUCHSIA(@NotNull MemorySegment segment) imp
 
     public void autoInit() {
         sType(VkStructureType.BUFFER_CONSTRAINTS_INFO_FUCHSIA);
+        createInfo().autoInit();
+        bufferCollectionConstraints().autoInit();
     }
 
     public @EnumType(VkStructureType.class) int sType() {

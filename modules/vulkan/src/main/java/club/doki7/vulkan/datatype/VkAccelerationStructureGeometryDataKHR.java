@@ -24,12 +24,23 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 /// ## Structure
 ///
 /// {@snippet lang=c :
-/// typedef struct VkAccelerationStructureGeometryDataKHR {
+/// typedef union VkAccelerationStructureGeometryDataKHR {
 ///     VkAccelerationStructureGeometryTrianglesDataKHR triangles; // @link substring="VkAccelerationStructureGeometryTrianglesDataKHR" target="VkAccelerationStructureGeometryTrianglesDataKHR" @link substring="triangles" target="#triangles"
 ///     VkAccelerationStructureGeometryAabbsDataKHR aabbs; // @link substring="VkAccelerationStructureGeometryAabbsDataKHR" target="VkAccelerationStructureGeometryAabbsDataKHR" @link substring="aabbs" target="#aabbs"
 ///     VkAccelerationStructureGeometryInstancesDataKHR instances; // @link substring="VkAccelerationStructureGeometryInstancesDataKHR" target="VkAccelerationStructureGeometryInstancesDataKHR" @link substring="instances" target="#instances"
 /// } VkAccelerationStructureGeometryDataKHR;
 /// }
+///
+/// ## Auto initialization
+///
+/// This structure has the following members that can be automatically initialized:
+/// - `triangles.autoInit()`
+/// - `aabbs.autoInit()`
+/// - `instances.autoInit()`
+///
+/// The {@code allocate} ({@link VkAccelerationStructureGeometryDataKHR#allocate(Arena)}, {@link VkAccelerationStructureGeometryDataKHR#allocate(Arena, long)})
+/// functions will automatically initialize these fields. Also, you may call {@link VkAccelerationStructureGeometryDataKHR#autoInit}
+/// to initialize these fields manually for non-allocated instances.
 ///
 /// ## Contracts
 ///
@@ -163,18 +174,30 @@ public record VkAccelerationStructureGeometryDataKHR(@NotNull MemorySegment segm
     }
 
     public static VkAccelerationStructureGeometryDataKHR allocate(Arena arena) {
-        return new VkAccelerationStructureGeometryDataKHR(arena.allocate(LAYOUT));
+        VkAccelerationStructureGeometryDataKHR ret = new VkAccelerationStructureGeometryDataKHR(arena.allocate(LAYOUT));
+        ret.autoInit();
+        return ret;
     }
 
     public static VkAccelerationStructureGeometryDataKHR.Ptr allocate(Arena arena, long count) {
         MemorySegment segment = arena.allocate(LAYOUT, count);
-        return new VkAccelerationStructureGeometryDataKHR.Ptr(segment);
+        VkAccelerationStructureGeometryDataKHR.Ptr ret = new VkAccelerationStructureGeometryDataKHR.Ptr(segment);
+        for (long i = 0; i < count; i++) {
+            ret.at(i).autoInit();
+        }
+        return ret;
     }
 
     public static VkAccelerationStructureGeometryDataKHR clone(Arena arena, VkAccelerationStructureGeometryDataKHR src) {
         VkAccelerationStructureGeometryDataKHR ret = allocate(arena);
         ret.segment.copyFrom(src.segment);
         return ret;
+    }
+
+    public void autoInit() {
+        triangles().autoInit();
+        aabbs().autoInit();
+        instances().autoInit();
     }
 
     public @NotNull VkAccelerationStructureGeometryTrianglesDataKHR triangles() {

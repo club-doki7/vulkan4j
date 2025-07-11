@@ -35,6 +35,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 ///
 /// This structure has the following members that can be automatically initialized:
 /// - `sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LAYERED_API_VULKAN_PROPERTIES_KHR`
+/// - `properties.autoInit()`
 ///
 /// The {@code allocate} ({@link VkPhysicalDeviceLayeredApiVulkanPropertiesKHR#allocate(Arena)}, {@link VkPhysicalDeviceLayeredApiVulkanPropertiesKHR#allocate(Arena, long)})
 /// functions will automatically initialize these fields. Also, you may call {@link VkPhysicalDeviceLayeredApiVulkanPropertiesKHR#autoInit}
@@ -173,7 +174,7 @@ public record VkPhysicalDeviceLayeredApiVulkanPropertiesKHR(@NotNull MemorySegme
 
     public static VkPhysicalDeviceLayeredApiVulkanPropertiesKHR allocate(Arena arena) {
         VkPhysicalDeviceLayeredApiVulkanPropertiesKHR ret = new VkPhysicalDeviceLayeredApiVulkanPropertiesKHR(arena.allocate(LAYOUT));
-        ret.sType(VkStructureType.PHYSICAL_DEVICE_LAYERED_API_VULKAN_PROPERTIES_KHR);
+        ret.autoInit();
         return ret;
     }
 
@@ -181,7 +182,7 @@ public record VkPhysicalDeviceLayeredApiVulkanPropertiesKHR(@NotNull MemorySegme
         MemorySegment segment = arena.allocate(LAYOUT, count);
         VkPhysicalDeviceLayeredApiVulkanPropertiesKHR.Ptr ret = new VkPhysicalDeviceLayeredApiVulkanPropertiesKHR.Ptr(segment);
         for (long i = 0; i < count; i++) {
-            ret.at(i).sType(VkStructureType.PHYSICAL_DEVICE_LAYERED_API_VULKAN_PROPERTIES_KHR);
+            ret.at(i).autoInit();
         }
         return ret;
     }
@@ -194,6 +195,7 @@ public record VkPhysicalDeviceLayeredApiVulkanPropertiesKHR(@NotNull MemorySegme
 
     public void autoInit() {
         sType(VkStructureType.PHYSICAL_DEVICE_LAYERED_API_VULKAN_PROPERTIES_KHR);
+        properties().autoInit();
     }
 
     public @EnumType(VkStructureType.class) int sType() {

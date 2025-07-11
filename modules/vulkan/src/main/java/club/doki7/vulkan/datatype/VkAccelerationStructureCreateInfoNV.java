@@ -36,6 +36,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 ///
 /// This structure has the following members that can be automatically initialized:
 /// - `sType = VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_CREATE_INFO_NV`
+/// - `info.autoInit()`
 ///
 /// The {@code allocate} ({@link VkAccelerationStructureCreateInfoNV#allocate(Arena)}, {@link VkAccelerationStructureCreateInfoNV#allocate(Arena, long)})
 /// functions will automatically initialize these fields. Also, you may call {@link VkAccelerationStructureCreateInfoNV#autoInit}
@@ -174,7 +175,7 @@ public record VkAccelerationStructureCreateInfoNV(@NotNull MemorySegment segment
 
     public static VkAccelerationStructureCreateInfoNV allocate(Arena arena) {
         VkAccelerationStructureCreateInfoNV ret = new VkAccelerationStructureCreateInfoNV(arena.allocate(LAYOUT));
-        ret.sType(VkStructureType.ACCELERATION_STRUCTURE_CREATE_INFO_NV);
+        ret.autoInit();
         return ret;
     }
 
@@ -182,7 +183,7 @@ public record VkAccelerationStructureCreateInfoNV(@NotNull MemorySegment segment
         MemorySegment segment = arena.allocate(LAYOUT, count);
         VkAccelerationStructureCreateInfoNV.Ptr ret = new VkAccelerationStructureCreateInfoNV.Ptr(segment);
         for (long i = 0; i < count; i++) {
-            ret.at(i).sType(VkStructureType.ACCELERATION_STRUCTURE_CREATE_INFO_NV);
+            ret.at(i).autoInit();
         }
         return ret;
     }
@@ -195,6 +196,7 @@ public record VkAccelerationStructureCreateInfoNV(@NotNull MemorySegment segment
 
     public void autoInit() {
         sType(VkStructureType.ACCELERATION_STRUCTURE_CREATE_INFO_NV);
+        info().autoInit();
     }
 
     public @EnumType(VkStructureType.class) int sType() {

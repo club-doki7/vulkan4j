@@ -24,7 +24,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 /// ## Structure
 ///
 /// {@snippet lang=c :
-/// typedef struct VkClearValue {
+/// typedef union VkClearValue {
 ///     VkClearColorValue color; // @link substring="VkClearColorValue" target="VkClearColorValue" @link substring="color" target="#color"
 ///     VkClearDepthStencilValue depthStencil; // @link substring="VkClearDepthStencilValue" target="VkClearDepthStencilValue" @link substring="depthStencil" target="#depthStencil"
 /// } VkClearValue;

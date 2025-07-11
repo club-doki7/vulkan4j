@@ -5,6 +5,7 @@ import club.doki7.babel.ctype.*
 import club.doki7.babel.ctype.lowerType
 import club.doki7.babel.registry.Identifier
 import club.doki7.babel.registry.IdentifierType
+import club.doki7.babel.registry.Member
 import club.doki7.babel.registry.PointerType
 import club.doki7.babel.registry.RegistryBase
 import club.doki7.babel.registry.Structure
@@ -173,7 +174,7 @@ fun generateStructure(
     +"/// ## Structure"
     +"///"
     +"/// {@snippet lang=c :"
-    +"/// typedef struct $originalTypeName {"
+    +"/// typedef ${if (isUnion) "union" else "struct"} $originalTypeName {"
     layouts.forEach {
         when (it) {
             is LayoutField.Bitfields -> {
@@ -213,13 +214,17 @@ fun generateStructure(
     +"/// }"
     +"///"
 
-    val autoInitMembers = structure.members.filter { it.values != null && it.type is IdentifierType }
-    if (autoInitMembers.isNotEmpty()) {
+    val autoInitMembers = getAutoInit(structure, registryBase, codegenOptions, mutableSetOf())
+    if (autoInitMembers != null) {
         +"/// ## Auto initialization"
         +"///"
         +"/// This structure has the following members that can be automatically initialized:"
         autoInitMembers.forEach {
-            +"/// - `${it.name} = ${it.values!!.original}`"
+            if (it.values != null) {
+                +"/// - `${it.name} = ${it.values.original}`"
+            } else {
+                +"/// - `${it.name}.autoInit()`"
+            }
         }
         +"///"
         +"/// The {@code allocate} ({@link $className#allocate(Arena)}, {@link $className#allocate(Arena, long)})"
@@ -415,11 +420,15 @@ fun generateStructure(
         +""
 
         defun("public static", className, "allocate", "Arena arena") {
-            if (autoInitMembers.isNotEmpty()) {
+            if (autoInitMembers != null) {
                 +"$className ret = new $className(arena.allocate(LAYOUT));"
                 if (autoInitMembers.size == 1) {
                     val it = autoInitMembers.first()
-                    +"ret.${it.name}(${(it.type as IdentifierType).ident}.${it.values});"
+                    if (it.values != null) {
+                        +"ret.${it.name}(${(it.type as IdentifierType).ident}.${it.values});"
+                    } else {
+                        +"ret.${it.name}().autoInit();"
+                    }
                 } else {
                     +"ret.autoInit();"
                 }
@@ -432,12 +441,16 @@ fun generateStructure(
 
         defun("public static", "$className.Ptr", "allocate", "Arena arena", "long count") {
             +"MemorySegment segment = arena.allocate(LAYOUT, count);"
-            if (autoInitMembers.isNotEmpty()) {
+            if (autoInitMembers != null) {
                 +"$className.Ptr ret = new $className.Ptr(segment);"
                 "for (long i = 0; i < count; i++)" {
                     if (autoInitMembers.size == 1) {
                         val it = autoInitMembers.first()
-                        +"ret.at(i).${it.name}(${(it.type as IdentifierType).ident}.${it.values});"
+                        if (it.values != null) {
+                            +"ret.at(i).${it.name}(${(it.type as IdentifierType).ident}.${it.values});"
+                        } else {
+                            +"ret.at(i).${it.name}().autoInit();"
+                        }
                     } else {
                         +"ret.at(i).autoInit();"
                     }
@@ -456,11 +469,15 @@ fun generateStructure(
         }
         +""
 
-        if (autoInitMembers.isNotEmpty()) {
+        if (autoInitMembers != null) {
             +"public void autoInit() {"
             indent {
                 autoInitMembers.forEach {
-                    +"${it.name}(${(it.type as IdentifierType).ident}.${it.values});"
+                    if (it.values != null) {
+                        +"${it.name}(${(it.type as IdentifierType).ident}.${it.values});"
+                    } else {
+                        +"${it.name}().autoInit();"
+                    }
                 }
             }
             +"}"
@@ -716,3 +733,44 @@ private fun tryFindRootNonPlainType(cType: CType): String? = when (cType) {
     is CStructType -> cType.name
     is CVoidType, is CBoolType, is CFixedIntType, is CFloatType, is CPlatformDependentIntType -> null
 }
+
+private fun getAutoInit(
+    structure: Structure,
+    registry: RegistryBase,
+    codegenOptions: CodegenOptions,
+    importEnumerations: MutableSet<Pair<Identifier, Identifier>>?
+): Set<Member>? {
+    if (autoInitCached.contains(structure.name)) {
+        return autoInitCached[structure.name]
+    }
+
+    if (structure.members.isEmpty()) {
+        return null
+    }
+
+    val autoInit = mutableSetOf<Member>()
+    for (member in structure.members) {
+        if (member.values != null) {
+            autoInit.add(member)
+            continue
+        }
+
+        val loweredType = lowerType(registry, codegenOptions.refRegistries, member.type, importEnumerations)
+        if (loweredType is CStructType
+            && !loweredType.isUnion
+            && getAutoInit(loweredType.structureRef, registry, codegenOptions, importEnumerations) != null) {
+            autoInit.add(member)
+        }
+    }
+
+    if (autoInit.isEmpty()) {
+        autoInitCached[structure.name] = null
+        return null
+    } else {
+        val ret = autoInit.toSet()
+        autoInitCached[structure.name] = ret
+        return autoInit
+    }
+}
+
+private val autoInitCached: MutableMap<Identifier, Set<Member>?> = mutableMapOf()
