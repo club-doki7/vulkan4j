@@ -176,6 +176,10 @@ If your shader contains a syntax error then the compiler will tell you the line 
 
 Compiling shaders on the commandline is one of the most straightforward options and it's the one that we'll use in this tutorial, but it's also possible to compile shaders directly from your own code. The Vulkan SDK includes [libshaderc](https://github.com/google/shaderc), which is a library to compile GLSL code to SPIR-V from within your program.
 
+> Note: `libshaderc` integration
+> 
+> We also provide a handy `libshaderc` integration via another package: `club.doki7.shaderc`. See these two examples: [`ShadercExample.java`](https://github.com/club-doki7/vulkan4j/blob/master/modules/example/src/main/java/example/shaderc/ShadercExample.java), [`ch_ex4/Main.java`](https://github.com/club-doki7/vulkan4j/tree/master/modules/tutorial/src/main/java/tutorial/vulkan/part_ex/ch_ex4/Main.java).
+
 ## Loading a shader
 
 Now that we have a way of producing SPIR-V shaders, it's time to load them into our program to plug them into the graphics pipeline at some point. We'll first write a simple helper function to load the binary data from the files.
