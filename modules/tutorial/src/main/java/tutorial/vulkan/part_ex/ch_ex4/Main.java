@@ -136,6 +136,8 @@ class Application {
         instanceCommands.destroyInstance(instance, null);
         glfw.destroyWindow(window);
         glfw.terminate();
+        shaderc.compileOptionsRelease(shadercCompileOptions);
+        shaderc.compilerRelease(shadercCompiler);
     }
 
     private void createInstance() {
