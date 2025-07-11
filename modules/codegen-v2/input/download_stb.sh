@@ -11,5 +11,13 @@ for component in "${COMPONENTS[@]}"; do
   cat "stb/stb_${component}.h" | clang-format --style=file:.clang-format > "stb_formatted/stb_${component}.h";
 done
 
+C_COMPONENTS=("vorbis")
+for c_component in "${C_COMPONENTS[@]}"; do
+  if [ ! -f "stb_${c_component}.h" ]; then
+    curl -o "stb_${c_component}.h" "${STB_URL_PREFIX}stb_${c_component}.c";
+    cat "stb_${c_component}.h" | clang-format --style=file:.clang-format > "stb_formatted/stb_${c_component}.h";
+  fi;
+done
+
 curl -o "stb/stb_truetype.h" "https://raw.githubusercontent.com/ocornut/imgui/895bff6524549ccb3fb1136aa23ad130b68d0a3e/imstb_truetype.h";
 cat "stb/stb_truetype.h" | clang-format --style=file:.clang-format > "stb_formatted/stb_truetype.h";

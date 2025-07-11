@@ -15,6 +15,10 @@ static void vk4jStbAssertFail(const char *asserter, const char *condition) {
     abort();
 }
 
+extern void vk4jStbFreeMemory(void *ptr) {
+    free(ptr);
+}
+
 #define VK4J_STB_GENERAL_ASSERT(ASSERTER, CONDITION) \
     ((CONDITION)                                     \
         ? (void)0                                    \
@@ -49,3 +53,10 @@ static void vk4jStbAssertFail(const char *asserter, const char *condition) {
 
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
+
+#ifdef assert
+#undef assert
+#endif
+#define assert(CONDITION) VK4J_STB_GENERAL_ASSERT("assert", CONDITION)
+#include "stb_vorbis.h"
+#undef assert

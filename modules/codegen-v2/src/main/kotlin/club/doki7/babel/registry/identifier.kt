@@ -23,6 +23,15 @@ class Identifier internal constructor(val original: String) : Comparable<Identif
         _renamed = true
     }
 
+    fun forceRename(value: String) {
+        if (value == _value) {
+            return
+        }
+
+        _value = value
+        _renamed = true
+    }
+
     override fun toString(): String {
         return _value
     }

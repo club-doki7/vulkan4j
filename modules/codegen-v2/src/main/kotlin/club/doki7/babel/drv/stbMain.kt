@@ -12,6 +12,7 @@ import club.doki7.babel.extract.stb.extractSTBImageHeader
 import club.doki7.babel.extract.stb.extractSTBImageResizeHeader
 import club.doki7.babel.extract.stb.extractSTBImageWriteHeader
 import club.doki7.babel.extract.stb.extractSTBTrueTypeHeader
+import club.doki7.babel.extract.stb.extractSTBVorbisHeader
 import club.doki7.babel.registry.EmptyMergeable
 import club.doki7.babel.registry.OpaqueHandleTypedef
 import club.doki7.babel.registry.Registry
@@ -26,6 +27,7 @@ fun main() {
     val stbTrueTypeRegistry = extractSTBTrueTypeHeader()
     val stbImageResizeRegistry = extractSTBImageResizeHeader()
     val stbImageWriteRegistry = extractSTBImageWriteHeader()
+    val stbVorbisRegistry = extractSTBVorbisHeader()
 
     val stbImageCodegenOptions = CodegenOptions(
         packageName = "club.doki7.stb.image",
@@ -55,11 +57,19 @@ fun main() {
         functionTypeClassName = "STBIWFunctionTypes",
         refRegistries = listOf()
     )
+    val stbVorbisCodegenOptions = CodegenOptions(
+        packageName = "club.doki7.stb.vorbis",
+        extraImport = listOf(),
+        constantClassName = "STBVorbisConstants",
+        functionTypeClassName = "STBVorbisFunctionTypes",
+        refRegistries = listOf()
+    )
 
     codegen("stb/src/main/java/club/doki7/stb/image", "STBI", stbImageRegistry, stbImageCodegenOptions)
     codegen("stb/src/main/java/club/doki7/stb/truetype", "STBTT", stbTrueTypeRegistry, stbTrueTypeCodegenOptions)
     codegen("stb/src/main/java/club/doki7/stb/imageresize", "STBIR", stbImageResizeRegistry, stbImageResizeCodegenOptions)
     codegen("stb/src/main/java/club/doki7/stb/imagewrite", "STBIW", stbImageWriteRegistry, stbImageWriteCodegenOptions)
+    codegen("stb/src/main/java/club/doki7/stb/vorbis", "STBVorbis", stbVorbisRegistry, stbVorbisCodegenOptions)
 }
 
 private fun codegen(

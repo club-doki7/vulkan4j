@@ -8,6 +8,7 @@
 /// - `stb_image_write.h` (package {@link club.doki7.stb.imagewrite})
 /// - `stb_image_resize2.h` (package {@link club.doki7.stb.imageresize})
 /// - `stb_truetype.h` (package {@link club.doki7.stb.truetype})
+/// - `stb_vorbis.c` (package {@link club.doki7.stb.vorbis})
 ///
 /// ## Use in Maven
 ///
@@ -34,6 +35,11 @@ module club.doki7.stb {
 
     exports club.doki7.stb.truetype;
     exports club.doki7.stb.truetype.datatype;
+
+    exports club.doki7.stb.vorbis;
+    exports club.doki7.stb.vorbis.datatype;
+    exports club.doki7.stb.vorbis.enumtype;
+    exports club.doki7.stb.vorbis.handle;
 
     requires club.doki7.ffm;
     requires org.jetbrains.annotations;
