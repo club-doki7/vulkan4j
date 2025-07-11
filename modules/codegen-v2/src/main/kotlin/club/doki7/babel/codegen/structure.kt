@@ -174,7 +174,7 @@ fun generateStructure(
     +"/// ## Structure"
     +"///"
     +"/// {@snippet lang=c :"
-    +"/// typedef struct $originalTypeName {"
+    +"/// typedef ${if (isUnion) "union" else "struct"} $originalTypeName {"
     layouts.forEach {
         when (it) {
             is LayoutField.Bitfields -> {

@@ -24,7 +24,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 /// ## Structure
 ///
 /// {@snippet lang=c :
-/// typedef struct VkAccelerationStructureGeometryDataKHR {
+/// typedef union VkAccelerationStructureGeometryDataKHR {
 ///     VkAccelerationStructureGeometryTrianglesDataKHR triangles; // @link substring="VkAccelerationStructureGeometryTrianglesDataKHR" target="VkAccelerationStructureGeometryTrianglesDataKHR" @link substring="triangles" target="#triangles"
 ///     VkAccelerationStructureGeometryAabbsDataKHR aabbs; // @link substring="VkAccelerationStructureGeometryAabbsDataKHR" target="VkAccelerationStructureGeometryAabbsDataKHR" @link substring="aabbs" target="#aabbs"
 ///     VkAccelerationStructureGeometryInstancesDataKHR instances; // @link substring="VkAccelerationStructureGeometryInstancesDataKHR" target="VkAccelerationStructureGeometryInstancesDataKHR" @link substring="instances" target="#instances"

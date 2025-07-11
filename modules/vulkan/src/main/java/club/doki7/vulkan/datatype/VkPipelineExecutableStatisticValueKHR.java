@@ -24,7 +24,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 /// ## Structure
 ///
 /// {@snippet lang=c :
-/// typedef struct VkPipelineExecutableStatisticValueKHR {
+/// typedef union VkPipelineExecutableStatisticValueKHR {
 ///     VkBool32 b32; // @link substring="b32" target="#b32"
 ///     int64_t i64; // @link substring="i64" target="#i64"
 ///     uint64_t u64; // @link substring="u64" target="#u64"

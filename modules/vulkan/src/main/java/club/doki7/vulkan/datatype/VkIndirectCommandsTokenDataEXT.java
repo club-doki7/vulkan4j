@@ -24,7 +24,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 /// ## Structure
 ///
 /// {@snippet lang=c :
-/// typedef struct VkIndirectCommandsTokenDataEXT {
+/// typedef union VkIndirectCommandsTokenDataEXT {
 ///     VkIndirectCommandsPushConstantTokenEXT const* pPushConstant; // @link substring="VkIndirectCommandsPushConstantTokenEXT" target="VkIndirectCommandsPushConstantTokenEXT" @link substring="pPushConstant" target="#pPushConstant"
 ///     VkIndirectCommandsVertexBufferTokenEXT const* pVertexBuffer; // @link substring="VkIndirectCommandsVertexBufferTokenEXT" target="VkIndirectCommandsVertexBufferTokenEXT" @link substring="pVertexBuffer" target="#pVertexBuffer"
 ///     VkIndirectCommandsIndexBufferTokenEXT const* pIndexBuffer; // @link substring="VkIndirectCommandsIndexBufferTokenEXT" target="VkIndirectCommandsIndexBufferTokenEXT" @link substring="pIndexBuffer" target="#pIndexBuffer"

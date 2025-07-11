@@ -24,7 +24,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 /// ## Structure
 ///
 /// {@snippet lang=c :
-/// typedef struct VkAccelerationStructureMotionInstanceDataNV {
+/// typedef union VkAccelerationStructureMotionInstanceDataNV {
 ///     VkAccelerationStructureInstanceKHR staticInstance; // @link substring="VkAccelerationStructureInstanceKHR" target="VkAccelerationStructureInstanceKHR" @link substring="staticInstance" target="#staticInstance"
 ///     VkAccelerationStructureMatrixMotionInstanceNV matrixMotionInstance; // @link substring="VkAccelerationStructureMatrixMotionInstanceNV" target="VkAccelerationStructureMatrixMotionInstanceNV" @link substring="matrixMotionInstance" target="#matrixMotionInstance"
 ///     VkAccelerationStructureSRTMotionInstanceNV srtMotionInstance; // @link substring="VkAccelerationStructureSRTMotionInstanceNV" target="VkAccelerationStructureSRTMotionInstanceNV" @link substring="srtMotionInstance" target="#srtMotionInstance"

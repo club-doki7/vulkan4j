@@ -24,7 +24,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 /// ## Structure
 ///
 /// {@snippet lang=c :
-/// typedef struct VkClearColorValue {
+/// typedef union VkClearColorValue {
 ///     float[4] float32; // @link substring="float32" target="#float32"
 ///     int32_t[4] int32; // @link substring="int32" target="#int32"
 ///     uint32_t[4] uint32; // @link substring="uint32" target="#uint32"
