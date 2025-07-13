@@ -55,61 +55,6 @@ If you're using a package manager, all things should be set up for you automatic
 
 In realworld production you may want to bundle the native libraries with your application (usually a JAR file), in that case you may use some solution like [native-utils](https://github.com/adamheinrich/native-utils).
 
-### Using `lwjgl-natives`
-
-LWJGL comes with a handy bundle of native library binaries, which can also be used by `vulkan4j`. The setup is a little bit tricky, but also helps avoiding some complications.
-
-Open the [Customize LWJGL](https://www.lwjgl.org/customize) page, choose Maven mode, and pick natives from the left column according to your need. Select only `GLFW` from contents. After doing these, the web page may look like such:
-
-![](../../images/lwjgl_natives_setup.png)
-
-And you will get your Maven configuration below:
-
-![](../../images/lwjgl_generated_maven_config.png)
-
-Copy the configuration to your project's `pom.xml`, but remove the `org.lwjgl.lwjgl-glfw` dependency: we only need the native binaries and library loader provided by LWJGL, not the GLFW wrapper. The content you need to copy may look like:
-
-```xml
-<properties>
-    <lwjgl.version>3.3.4</lwjgl.version>
-</properties>
-
-<profiles>
-    <!-- your selected profiles here -->
-</profiles>
-
-<dependencyManagement>
-    <dependencies>
-        <dependency>
-            <groupId>org.lwjgl</groupId>
-            <artifactId>lwjgl-bom</artifactId>
-            <version>${lwjgl.version}</version>
-            <scope>import</scope>
-            <type>pom</type>
-        </dependency>
-    </dependencies>
-</dependencyManagement>
-
-<dependencies>
-    <dependency>
-        <groupId>org.lwjgl</groupId>
-        <artifactId>lwjgl</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.lwjgl</groupId>
-        <artifactId>lwjgl</artifactId>
-        <classifier>${lwjgl.natives}</classifier>
-    </dependency>
-    <dependency>
-        <groupId>org.lwjgl</groupId>
-        <artifactId>lwjgl-glfw</artifactId>
-        <classifier>${lwjgl.natives}</classifier>
-    </dependency>
-</dependencies>
-```
-
-Then you can load GLFW from `lwjgl-natives`. We'll come back to this topic in the [Base code](./01-setup/instance.md) chapter.
-
 ## Vulkan SDK
 
 The most important component you'll need for developing Vulkan applications is the SDK. It includes the headers, standard validation layers, debugging tools and a loader for the Vulkan functions. The loader looks up the functions in the driver at runtime, similarly to GLEW for OpenGL - if you're familiar with that.

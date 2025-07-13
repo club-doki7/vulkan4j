@@ -59,61 +59,6 @@ If you're using a package manager, all things should be set up for you automatic
 
 In realworld production you may want to bundle the native libraries with your application (usually a JAR file), in that case you may use some solution like [native-utils](https://github.com/adamheinrich/native-utils).
 
-### Using `lwjgl-natives`
-
-LWJGL comes with a handy bundle of native library binaries, which can also be used by `vulkan4j`. The setup is a little bit tricky, but also helps avoiding some complications.
-
-Open the [Customize LWJGL](https://www.lwjgl.org/customize) page, choose Maven mode, and pick natives from the left column according to your need. Select only `GLFW` from contents. After doing these, the web page may look like such:
-
-![](../../images/lwjgl_natives_setup.png)
-
-And you will get your Maven configuration below:
-
-![](../../images/lwjgl_generated_maven_config.png)
-
-Copy the configuration to your project's `pom.xml`, but remove the `org.lwjgl.lwjgl-glfw` dependency: we only need the native binaries and library loader provided by LWJGL, not the GLFW wrapper. The content you need to copy may look like:
-
-```xml
-<properties>
-    <lwjgl.version>3.3.4</lwjgl.version>
-</properties>
-
-<profiles>
-    <!-- your selected profiles here -->
-</profiles>
-
-<dependencyManagement>
-    <dependencies>
-        <dependency>
-            <groupId>org.lwjgl</groupId>
-            <artifactId>lwjgl-bom</artifactId>
-            <version>${lwjgl.version}</version>
-            <scope>import</scope>
-            <type>pom</type>
-        </dependency>
-    </dependencies>
-</dependencyManagement>
-
-<dependencies>
-    <dependency>
-        <groupId>org.lwjgl</groupId>
-        <artifactId>lwjgl</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.lwjgl</groupId>
-        <artifactId>lwjgl</artifactId>
-        <classifier>${lwjgl.natives}</classifier>
-    </dependency>
-    <dependency>
-        <groupId>org.lwjgl</groupId>
-        <artifactId>lwjgl-glfw</artifactId>
-        <classifier>${lwjgl.natives}</classifier>
-    </dependency>
-</dependencies>
-```
-
-Then you can load GLFW from `lwjgl-natives`.
-
 ## Base code
 
 Let's start with the following code:
@@ -162,21 +107,6 @@ public class Main {
 ```
 
 You may read the JavaDoc and the implementation of `GLFWLoader` to see how it works.
-
-If you are using `lwjgl-natives`, you will need the following code instead:
-
-```java
-import org.lwjgl.system.Library;
-import org.lwjgl.system.SharedLibrary;
-
-public class Main {
-    public static void main(String[] args) {
-        try (SharedLibrary libGLFW = Library.loadNative(Library.class, "org.lwjgl.glfw", "glfw", true)) {
-            GLFW glfw = new GLFW(name -> MemorySegment.ofAddress(libGLFW.getFunctionAddress(name)));
-        }
-    }
-}
-```
 
 Finally, create an instance of `Application` and call its `run` method:
 

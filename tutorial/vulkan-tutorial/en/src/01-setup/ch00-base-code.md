@@ -79,27 +79,6 @@ Then we want to load the GLFW functions. Add another private field to the `Appli
 private static final GLFW glfw = GLFWLoader.loadGLFW(libGLFW);
 ```
 
-### Initializing GLFW with `lwjgl-natives`
-
-If you used `lwjgl-natives` in the [Development environment](../development-environment.md) chapter, you'll need a slightly different way to setup GLFW.
-
-First, create a `static final` field to store the GLFW shared library itself:
-
-```java
-private static final SharedLibrary libGLFW = Library.loadNative(Library.class, "org.lwjgl.glfw", "glfw", true);
-```
-
-Here we use the LWJGL `org.lwjgl.system.Library` class to load shared library from `lwjgl-natives`. Once the library is loaded, we can load functions into `GLFW` class from it, using the following code:
-
-```java
-private void initWindow() {
-    // ...
-    new GLFW(name -> MemorySegment.ofAddress(libGLFW.getFunctionAddress(name)));
-}
-```
-
-*--- End of `lwjgl-natives` specific setup ---*
-
 Then we can call `GLFW::init()` to initialize the GLFW library. If it fails, we'll throw an exception:
 
 ```java
