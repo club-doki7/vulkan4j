@@ -1,0 +1,421 @@
+package club.doki7.babel.extract.opencl
+
+import club.doki7.babel.cdecl.RawFunctionType
+import club.doki7.babel.cdecl.parseInlineFunctionPointerField
+import club.doki7.babel.cdecl.parseStructFieldDecl
+import club.doki7.babel.cdecl.toType
+import club.doki7.babel.registry.ArrayType
+import club.doki7.babel.registry.Bitflag
+import club.doki7.babel.registry.Bitmask
+import club.doki7.babel.registry.Command
+import club.doki7.babel.registry.Constant
+import club.doki7.babel.registry.EmptyMergeable
+import club.doki7.babel.registry.Entity
+import club.doki7.babel.registry.EnumVariant
+import club.doki7.babel.registry.Enumeration
+import club.doki7.babel.registry.FunctionTypedef
+import club.doki7.babel.registry.Identifier
+import club.doki7.babel.registry.IdentifierType
+import club.doki7.babel.registry.Member
+import club.doki7.babel.registry.OpaqueHandleTypedef
+import club.doki7.babel.registry.OpaqueTypedef
+import club.doki7.babel.registry.Param
+import club.doki7.babel.registry.PointerType
+import club.doki7.babel.registry.Registry
+import club.doki7.babel.registry.Structure
+import club.doki7.babel.registry.Type
+import club.doki7.babel.registry.Typedef
+import club.doki7.babel.registry.intern
+import club.doki7.babel.registry.putEntityIfAbsent
+import club.doki7.babel.util.Either
+import club.doki7.babel.util.attrs
+import club.doki7.babel.util.children
+import club.doki7.babel.util.getAttributeText
+import club.doki7.babel.util.getElementSeq
+import club.doki7.babel.util.getFirstElement
+import club.doki7.babel.util.parseDecOrHex
+import club.doki7.babel.util.parseXML
+import club.doki7.babel.util.query
+import club.doki7.babel.util.toList
+import org.w3c.dom.Element
+import org.w3c.dom.Node
+import java.math.BigInteger
+import java.util.logging.Logger
+import kotlin.io.path.Path
+
+internal val log = Logger.getLogger("c.d.b.extract.openxr")
+private val inputDir = Path("codegen-v2/input")
+
+fun main() {
+    val reg = extractOpenCLRegistry()
+}
+
+fun extractOpenCLRegistry(): Registry<EmptyMergeable> {
+    val reg = inputDir.resolve("cl.xml")
+        .toFile()
+        .readText()
+        .parseXML()
+        .extractEntities()
+
+    return reg
+}
+
+private fun <T : Entity> Sequence<T>.associate(): MutableMap<Identifier, T> {
+    return associateByTo(mutableMapOf(), Entity::name)
+}
+
+private fun Element.extractEntities(): Registry<EmptyMergeable> {
+    val e = this
+    val typedefs = e.query("types/type[@category='define']")
+        .filter(::isTypedefDefine)
+        .mapNotNull(::extractTypedef)
+        .associate()
+
+    val opaqueHandleTypedefs = mutableMapOf<Identifier, OpaqueHandleTypedef>()
+    val opaqueTypedefs = mutableMapOf<Identifier, OpaqueTypedef>()
+
+    e.query("types/type[@category='define']")
+        .filter(::isTypedefDefine)
+        .mapNotNull(::extractHandleTypedef)
+        .forEach {
+            when (it) {
+                is Either.Left<OpaqueHandleTypedef, *> -> opaqueHandleTypedefs.putEntityIfAbsent(it.value)
+                is Either.Right<*, OpaqueTypedef> -> opaqueTypedefs.putEntityIfAbsent(it.value)
+            }
+        }
+
+    val structuresAndUnions = e.query("types/type[@category='struct']")
+        .map(::extractStruct)
+
+    val structures = structuresAndUnions
+        .map { it.first }
+        .associate()
+
+    val unions = structuresAndUnions
+        .map { it.second }
+        .flatMap { it }
+        .associate()
+
+    val constants = e.query("enums[not(@type='bitmask')]/enum")
+        .map(::extractConstants)
+        .associate()
+
+    val bitmasks = e.query("enums[@type='bitmask']")
+        .map(::extractBitmask)
+        .associate()
+
+    val rawCommands = e.query("commands/command")
+        .map(::extractCommand)
+
+    val commands = rawCommands.map { it.first }.associate()
+    val counter = mutableMapOf<Identifier, Int>()
+    val funcTypedefs = mutableMapOf<Identifier, FunctionTypedef>()
+
+    rawCommands
+        .map { it.second }
+        .flatMap { it }
+        .forEach {
+            val idx = counter.getOrPut(it.name) { 0 }
+            counter.put(it.name, idx + 1)
+            val value = FunctionTypedef("${it.name.value}_$idx", it.params, it.result, it.isPointer)
+            funcTypedefs.put(value.name, value)
+        }
+
+    return Registry(
+        aliases = typedefs,
+        bitmasks = bitmasks,
+        constants = constants,
+        commands = commands,
+        functionTypedefs = funcTypedefs,
+        opaqueHandleTypedefs = opaqueHandleTypedefs,
+        opaqueTypedefs = opaqueTypedefs,
+        structures = structures,
+        unions = unions,
+        ext = EmptyMergeable()
+    )
+}
+
+private fun String.sanitizeFlagBits() = replace("FlagBits", "Flags")
+
+// copy from vulkan
+private fun extractType(e: Element): Type {
+    val identifier = IdentifierType(e.textContent.trim().sanitizeFlagBits().intern())
+
+    // Array types, e.g.:
+    // `<type>float</type> <name>matrix</name>[3][4]`
+    // `<type>uint8_t</type> <name>deviceUUID</name>[<enum>VK_UUID_SIZE</enum>]`
+    if (e.parentNode is Element) {
+        val contents =
+            e.parentNode.childNodes
+                .toList()
+                .filter { it.nodeType == Node.TEXT_NODE || (it is Element && it.tagName == "enum") }
+                .joinToString("") { it.textContent }
+                .trim()
+
+        if (contents.startsWith('[') && contents.endsWith(']')) {
+            val lengths = contents
+                .removePrefix("[")
+                .removeSuffix("]")
+                .split("][")
+                .map { it.trim().intern() }
+                .reversed()
+
+            var array = ArrayType(identifier, lengths[0])
+            lengths.subList(1, lengths.size).forEach { array = ArrayType(array, it) }
+            return array
+        }
+    }
+
+    // Pointer types, e.g.:
+    // `<type>void</type>*`
+    // `const <type>char</type>* const*`
+    val next = e.nextSibling?.textContent?.trim()
+    if (next != null && next.startsWith("*")) {
+        val previous = e.previousSibling ?: e.parentNode
+        val const = previous?.textContent?.contains("const") ?: false
+        val pointer = PointerType(identifier, const)
+        return when {
+            next.startsWith("* const*") -> PointerType(pointer, true)
+            next.startsWith("**") -> PointerType(pointer, const)
+            else -> pointer
+        }
+    }
+
+    return identifier
+}
+
+/**
+ * @param e in form `<some_tag>TYPE <name>NAME</name></some_tag>`
+ */
+private fun extractTypeJudgement(e: Element): Pair<String, Type> {
+    val name = getName(e)
+    val type = extractType(e.getFirstElement("type")!!)
+    return name to type
+}
+
+/**
+ * Extract the name child of given element
+ */
+private fun getName(e: Element): String {
+    return e.getFirstElement("name")!!.textContent.trim()
+}
+
+fun isTypedefDefine(e: Element): Boolean {
+    return e.textContent.trimStart().startsWith("typedef")
+}
+
+/**
+ * @param e in form `<type category="define">typedef MAYBE_TYPE <name>NAME</name> </type>`
+ */
+fun extractTypedef(e: Element): Typedef? {
+    val type = e.getFirstElement("type")
+    val name = getName(e)
+    if (type == null) return null
+
+    return Typedef(name, extractType(type))
+}
+
+/**
+ * @param e in form `<type category="define">typedef MAYBE_TYPE <name>NAME</name> </type>`
+ */
+fun extractHandleTypedef(e: Element): Either<OpaqueHandleTypedef, OpaqueTypedef>? {
+    val type by e.children
+    val nameNode = e.getFirstElement("name")!!
+    val name = nameNode.textContent.trim()
+    if (type != null) return null
+
+    val isHandle = nameNode.previousSibling.textContent.trim().endsWith('*')
+    return if (isHandle) {
+        Either.Left(OpaqueHandleTypedef(name))
+    } else {
+        Either.Right(OpaqueTypedef(name, isHandle = true))
+    }
+}
+
+/**
+ * @param e in form `<type category="struct" name="NAME">MEMBER+</type>`
+ */
+fun extractStruct(e: Element): Pair<Structure, List<Structure>> {
+    val name = e.getAttributeText("name")!!
+    val membersAndUnions = e.getElementSeq("member")
+        .map { extractMember(it, name) }
+
+    val members = membersAndUnions.map { it.first }
+    val unions = membersAndUnions.mapNotNull { it.second }
+
+    return Structure(name, members.toMutableList()) to unions.toList()
+}
+
+/**
+ * @param e in form `<member>TYPE <name>NAME</name></member>`
+ */
+fun extractMember(e: Element, structName: String): Pair<Member, Structure?> {
+    val nameNode = e.getFirstElement("name")
+    val typeNode = e.getFirstElement("type")
+
+    if (nameNode != null && typeNode != null) {
+        val name = nameNode.textContent.trim()
+        val type = extractType(typeNode)
+        return Member(name, type, null, null, null, false, null) to null
+    } else {
+        val content = e.textContent.trim()
+        assert(content.startsWith("union"))
+        val members = extractUnion(content.lines())
+        val name = members.joinToString("_or_") { it.name.value }
+        val union = Structure(structName + "_" + name, members)
+        return Member(
+            name,
+            IdentifierType(union.name),
+            null, null, null, false, null
+        ) to union
+    }
+}
+
+fun extractUnion(lines: List<String>): MutableList<Member> {
+    val members = mutableListOf<Member>()
+    var idx = 0
+    while (idx < lines.size) {
+        val line = lines[idx]
+        if (line.startsWith("union")) {
+            idx++
+            continue
+        }
+
+        if (line.endsWith("}")) break
+
+        val (decl, newIdx) = parseStructFieldDecl(lines, idx)
+        decl.forEach {
+            members.add(Member(it.name, it.type.toType(), null, null, null, false, null))
+        }
+
+        idx = newIdx
+    }
+
+    return members
+}
+
+/**
+ * @param e in form `<enum value="..." name="..." />`
+ */
+fun extractConstants(e: Element): Constant {
+    val value = e.getAttributeText("value")!!
+    val name = e.getAttributeText("name")!!
+
+    val type = when {
+        value[0] == '+' || value[0] == '-' -> "int32_t"
+        value.contains('.') -> if (value.endsWith('f')) "float" else "double"
+        name == "CL_LONG_MAX" || name == "CL_LONG_MIN" -> "int64_t"
+        name == "CL_ULONG_MAX" -> "uint64_t"
+        name == "CL_HUGE_VALF" -> "float"
+        name == "CL_HUGE_VAL" -> "double"
+        name == "CL_MAXFLOAT" -> "float"
+        name == "CL_NAN" -> "float"      // TODO
+        name == "CL_INFINITY" -> "float"     // TODO
+        else -> "uint32_t"
+    }.let(::IdentifierType)
+
+    return Constant(name, type, value)
+}
+
+/**
+ * @param e in form `<enums name="NAME.MAYBE_SUBNAME">ENUM*</enums>`
+ * @return returned [Enumeration] uses `NAME` as it's identifier, therefore the caller should merge all enumeration with same name.
+ */
+fun extractEnumeration(e: Element): Enumeration {
+    val name by e.attrs
+    val realName = name!!.split('.').first()
+    val variants = e.getElementSeq("enum")
+        .map(::extractEnumVariant)
+
+    return Enumeration(realName, variants.toMutableList())
+}
+
+/**
+ * @param e in form `<enum value="VALUE" name="NAME"></enum>`
+ */
+fun extractEnumVariant(e: Element): EnumVariant {
+    val value = e.getAttributeText("value")!!
+    val name by e.attrs
+
+    val walue: Either<Long, List<String>> = try {
+        Either.Left(value.parseDecOrHex())
+    } catch (_: NumberFormatException) {
+        Either.Right(listOf(value))
+    }
+
+    return EnumVariant(name!!.intern(), walue)
+}
+
+/**
+ * @param e in form `<enums name="NAME" type="bitmask"></enums>`
+ */
+fun extractBitmask(e: Element): Bitmask {
+    val name by e.attrs
+    val bitflags = e.getElementSeq("enum")
+        .map(::extractBitflag)
+
+    return Bitmask(name!!, null, bitflags.toMutableList())
+}
+
+/**
+ * @param e in form `<enum bitpos="MAYBE_SET" value="SET_IF_bitpos_NOTSET" name="NAME" />`
+ */
+fun extractBitflag(e: Element): Bitflag {
+    val name by e.attrs
+    val bitpos = e.getAttributeText("bitpos")
+    val value = e.getAttributeText("value")
+
+    val realValue = if (bitpos != null) {
+        BigInteger.ONE.shiftLeft(bitpos.parseDecOrHex().toInt())
+    } else {
+        value!!.parseDecOrHex().toBigInteger()
+    }
+
+    return Bitflag(name!!, realValue)
+}
+
+/**
+ * @param e in form `<param>TYPE <name>NAME</name></param>`
+ */
+private fun extractParam(e: Element): Pair<Param, FunctionTypedef?> {
+    val name = getName(e)
+    val typeNode = e.getFirstElement("type")
+    var typedef: FunctionTypedef? = null
+    val type = if (typeNode == null) {
+        val content = e.textContent
+        assert(content.contains("CL_CALLBACK"))
+        val (decl, _) = parseInlineFunctionPointerField(listOf(content + ";"), 0)
+        val funcType = decl.type as RawFunctionType
+        typedef = FunctionTypedef(decl.name, funcType.params.map { it.second.toType() }, funcType.returnType.toType())
+        IdentifierType(typedef.name)
+    } else {
+        extractType(typeNode)
+    }
+
+    return Param(name, type, null, null, true).apply {
+        if (type is PointerType) {
+            type.pointerToOne = true
+        }
+    } to typedef
+}
+
+/**
+ * @param e in form `<command>PROTO PARAM*</command>`
+ */
+private fun extractCommand(e: Element): Pair<Command, List<FunctionTypedef>> {
+    val (name, retType) = extractTypeJudgement(e.getFirstElement("proto")!!)
+
+    val rawParams = e.query("param")
+        .map(::extractParam)
+        .toList()
+
+    val params = rawParams.map { it.first }
+    val typedefs = rawParams.mapNotNull { it.second }
+
+    return Command(
+        name,
+        params,
+        retType,
+        null, null
+    ) to typedefs
+}
