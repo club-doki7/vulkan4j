@@ -143,7 +143,7 @@ public final class WGPUSync {
     ) {
         @Nullable WGPUAdapter adapterHandle = adapter == MemorySegment.NULL
                 ? null
-                : new WGPUAdapter(adapter);
+                : new WGPUAdapter(MemorySegment.ofAddress(adapter.address()));
         @Nullable String messageString = WGPUUtil.readStringView(message);
         saveSlot.value = new RequestAdapterResult(status, adapterHandle, messageString);
     }
@@ -158,7 +158,7 @@ public final class WGPUSync {
     ) {
         @Nullable WGPUDevice deviceHandle = device == MemorySegment.NULL
                 ? null
-                : new WGPUDevice(device);
+                : new WGPUDevice(MemorySegment.ofAddress(device.address()));
         @Nullable String messageString = WGPUUtil.readStringView(message);
         saveSlot.value = new RequestDeviceResult(status, deviceHandle, messageString);
     }
