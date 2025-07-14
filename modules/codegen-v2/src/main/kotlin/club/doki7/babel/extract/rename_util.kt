@@ -28,6 +28,48 @@ internal fun String.toSnakeCase(): String {
     return result.toString()
 }
 
+/**
+ * @receiver the string must be either snake_case or c/CamlCase
+ */
+internal fun String.parseName(): List<String> {
+    if (this.contains('_')) return split('_')
+
+    val parts = mutableListOf<String>()
+    var buffer = StringBuilder()
+
+    for (c in this) {
+        // We don't commit the buffer if:
+        // * c is uppercase and buffer is a uppercase string, for example, `buffer = "KH"` and `c = 'R'`
+        // * c is uppercase and buffer is empty, for example, `buffer = ""` and `c = 'K'`
+        // we commit the buffer if:
+        // * c is lowercase and buffer is a uppercase string with length `> 1`, for example, `buffer = URLE` and `c = n`
+        // (the whole string is "URLEncoder")
+        // otherwise, we commit the buffer, for example, `buffer = "Space"` and `c = 'K'`
+        // (the whole string is "VkColorSpaceKHR")
+        if (c.isUpperCase()) {
+            if (buffer.isNotEmpty() && !buffer.last().isUpperCase()) {
+                parts.add(buffer.toString())
+                buffer = StringBuilder()
+            }
+        } else {
+            // c is lower case
+            if (buffer.length > 1 && buffer.last().isUpperCase()) {
+                // in this case, the last uppercase character in buffer belongs to the next part
+                val prev = buffer.last()
+                // this is why buffer.length > 1, otherwise we will commit an empty string
+                parts.add(buffer.dropLast(1).toString())
+                buffer = StringBuilder()
+                buffer.append(prev)
+            }
+        }
+
+        buffer.append(c)
+    }
+
+    if (buffer.isNotEmpty()) parts.add(buffer.toString())
+    return parts
+}
+
 internal fun renameVariantOrBitflag(
     name: String,
     parent: String,

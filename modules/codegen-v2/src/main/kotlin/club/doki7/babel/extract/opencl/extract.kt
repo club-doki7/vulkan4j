@@ -4,39 +4,8 @@ import club.doki7.babel.cdecl.RawFunctionType
 import club.doki7.babel.cdecl.parseInlineFunctionPointerField
 import club.doki7.babel.cdecl.parseStructFieldDecl
 import club.doki7.babel.cdecl.toType
-import club.doki7.babel.registry.ArrayType
-import club.doki7.babel.registry.Bitflag
-import club.doki7.babel.registry.Bitmask
-import club.doki7.babel.registry.Command
-import club.doki7.babel.registry.Constant
-import club.doki7.babel.registry.EmptyMergeable
-import club.doki7.babel.registry.Entity
-import club.doki7.babel.registry.EnumVariant
-import club.doki7.babel.registry.Enumeration
-import club.doki7.babel.registry.FunctionTypedef
-import club.doki7.babel.registry.Identifier
-import club.doki7.babel.registry.IdentifierType
-import club.doki7.babel.registry.Member
-import club.doki7.babel.registry.OpaqueHandleTypedef
-import club.doki7.babel.registry.OpaqueTypedef
-import club.doki7.babel.registry.Param
-import club.doki7.babel.registry.PointerType
-import club.doki7.babel.registry.Registry
-import club.doki7.babel.registry.Structure
-import club.doki7.babel.registry.Type
-import club.doki7.babel.registry.Typedef
-import club.doki7.babel.registry.intern
-import club.doki7.babel.registry.putEntityIfAbsent
-import club.doki7.babel.util.Either
-import club.doki7.babel.util.attrs
-import club.doki7.babel.util.children
-import club.doki7.babel.util.getAttributeText
-import club.doki7.babel.util.getElementSeq
-import club.doki7.babel.util.getFirstElement
-import club.doki7.babel.util.parseDecOrHex
-import club.doki7.babel.util.parseXML
-import club.doki7.babel.util.query
-import club.doki7.babel.util.toList
+import club.doki7.babel.registry.*
+import club.doki7.babel.util.*
 import org.w3c.dom.Element
 import org.w3c.dom.Node
 import java.math.BigInteger
@@ -318,36 +287,7 @@ fun extractConstants(e: Element): Constant {
 }
 
 /**
- * @param e in form `<enums name="NAME.MAYBE_SUBNAME">ENUM*</enums>`
- * @return returned [Enumeration] uses `NAME` as it's identifier, therefore the caller should merge all enumeration with same name.
- */
-fun extractEnumeration(e: Element): Enumeration {
-    val name by e.attrs
-    val realName = name!!.split('.').first()
-    val variants = e.getElementSeq("enum")
-        .map(::extractEnumVariant)
-
-    return Enumeration(realName, variants.toMutableList())
-}
-
-/**
- * @param e in form `<enum value="VALUE" name="NAME"></enum>`
- */
-fun extractEnumVariant(e: Element): EnumVariant {
-    val value = e.getAttributeText("value")!!
-    val name by e.attrs
-
-    val walue: Either<Long, List<String>> = try {
-        Either.Left(value.parseDecOrHex())
-    } catch (_: NumberFormatException) {
-        Either.Right(listOf(value))
-    }
-
-    return EnumVariant(name!!.intern(), walue)
-}
-
-/**
- * @param e in form `<enums name="NAME" type="bitmask"></enums>`
+ * @param e in form `<enums name="NAME" type="bitmask">BITFLAG+</enums>`
  */
 fun extractBitmask(e: Element): Bitmask {
     val name by e.attrs
