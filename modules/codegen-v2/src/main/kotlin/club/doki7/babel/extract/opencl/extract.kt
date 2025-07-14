@@ -19,7 +19,7 @@ fun main() {
     val reg = extractOpenCLRegistry()
 }
 
-fun extractOpenCLRegistry(): Registry<EmptyMergeable> {
+fun extractOpenCLRegistry(): Registry<OpenCLRegistryExt> {
     val reg = inputDir.resolve("cl.xml")
         .toFile()
         .readText()
@@ -34,7 +34,7 @@ private fun <T : Entity> Sequence<T>.associate(): MutableMap<Identifier, T> {
     return associateByTo(mutableMapOf(), Entity::name)
 }
 
-private fun Element.extractEntities(): Registry<EmptyMergeable> {
+private fun Element.extractEntities(): Registry<OpenCLRegistryExt> {
     val e = this
     val typedefs = e.query("types/type[@category='define']")
         .filter(::isTypedefDefine)
@@ -87,6 +87,16 @@ private fun Element.extractEntities(): Registry<EmptyMergeable> {
             funcTypedefs.put(value.name, value)
         }
 
+    // extract features/extensions
+
+    val features = e.query("feature")
+        .map(::extractFeatures)
+        .associate()
+
+    val extensions = e.query("extensions/extension")
+        .map(::extractExtensions)
+        .associate()
+
     return Registry(
         aliases = typedefs,
         constants = constants,
@@ -96,7 +106,7 @@ private fun Element.extractEntities(): Registry<EmptyMergeable> {
         opaqueTypedefs = opaqueTypedefs,
         structures = structures,
         unions = unions,
-        ext = EmptyMergeable()
+        ext = OpenCLRegistryExt(features, extensions)
     )
 }
 
@@ -336,4 +346,59 @@ private fun extractCommand(e: Element): Pair<Command, List<FunctionTypedef>> {
         retType,
         null, null
     ) to typedefs
+}
+
+/**
+ * @param e in form `<require>TYPE_OR_ENUM_OR_COMMAND</require>`
+ */
+private fun extractRequire(e: Element): OpenCLRequire {
+    val (headers, types) = e.getElementSeq("type")
+        .map { it.getAttributeText("name")!! }
+        .partition { it.endsWith(".h") }
+
+    val enums = e.getElementSeq("enum")
+        .map { it.getAttributeText("name")!!.intern() }
+        .toList()
+
+    val commands = e.getElementSeq("command")
+        .map { it.getAttributeText("name")!!.intern() }
+        .toList()
+
+    return OpenCLRequire(types, enums, commands, headers)
+}
+
+/**
+ * @param e in form `<feature api="opencl" name="NAME" number="FLOAT" comment="...">REQUIRE*</feature>`
+ */
+private fun extractFeatures(e: Element): OpenCLVersion {
+    val name by e.attrs
+    val number by e.attrs
+    val requires = e.getElementSeq("require")
+        .map(::extractRequire)
+        .toList()
+
+    return OpenCLVersion(name!!, number!!.toFloat(), requires)
+}
+
+private fun extractExtensions(e: Element): OpenCLExtension {
+    val name by e.attrs
+    val supported by e.attrs
+    val revision by e.attrs
+    val experimental by e.attrs
+    val depends by e.attrs
+    val ratified by e.attrs
+    val promotedto by e.attrs
+    val obsoletedby by e.attrs
+    val condition by e.attrs
+    val requires = e.getElementSeq("require")
+        .map(::extractRequire)
+        .toList()
+
+    return OpenCLExtension(
+        name!!,
+        supported!!,
+        revision!!,
+        experimental == "true",
+        depends, ratified, promotedto, obsoletedby, condition, requires
+    )
 }

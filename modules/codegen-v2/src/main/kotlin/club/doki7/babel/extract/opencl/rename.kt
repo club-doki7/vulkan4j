@@ -2,10 +2,9 @@ package club.doki7.babel.extract.opencl
 
 import club.doki7.babel.extract.ensureLowerCamelCase
 import club.doki7.babel.registry.Entity
-import club.doki7.babel.registry.IMergeable
 import club.doki7.babel.registry.Registry
 
-internal fun <T : IMergeable<T>> Registry<T>.renameEntities() {
+internal fun Registry<OpenCLRegistryExt>.renameEntities() {
     val renamed = mutableMapOf<String, String>()
 
     fun putEntityIfNameReplaced(entity: Entity) {
