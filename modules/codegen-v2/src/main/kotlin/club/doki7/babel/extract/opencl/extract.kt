@@ -71,16 +71,15 @@ private fun Element.extractEntities(): Registry<OpenCLRegistryExt> {
         .map(::extractConstants)
         .associate()
 
-    val counter = mutableMapOf<Identifier, Int>()
+    val counter = mutableMapOf<String, Int>()
     val funcTypedefs = mutableMapOf<Identifier, FunctionTypedef>()
     val commands = e.query("commands/command")
         .toList()       // so that we can use side effect in .map
         .map {
             extractCommand(it) { name, params, ret ->
-                val id = name.intern()
-                val idx = counter.getOrPut(id) { 0 }
-                counter.put(id, idx + 1)
-                val value = FunctionTypedef(id, params, ret)
+                val idx = counter.getOrPut(name) { 0 }
+                counter.put(name, idx + 1)
+                val value = FunctionTypedef(name + "_$idx", params, ret)
                 funcTypedefs.put(value.name, value)
                 value
             }

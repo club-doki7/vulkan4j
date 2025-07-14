@@ -49,7 +49,7 @@ fun openclMain(dryRun: Boolean): Registry<OpenCLRegistryExt> {
         generateStructures()
         generateUnions()
         generateOpaqueHandles()
-        // TODO: gen opaque typedefs
+        generateOpaqueTypedefs()
         generateCommands()
     }
 
@@ -59,7 +59,7 @@ fun openclMain(dryRun: Boolean): Registry<OpenCLRegistryExt> {
 private fun openclLinkProvider(e: Entity): String? = when (e) {
     is Constant, is Command, is Structure, is OpaqueHandleTypedef, is OpaqueTypedef -> {
         val name = e.name.original
-        val url = "https://registry.khronos.org/OpenCL/sdk/lastest/docs/man/html/$name.html"
+        val url = "https://registry.khronos.org/OpenCL/sdk/latest/docs/man/html/$name.html"
         "<a href=\"$url\">$name</a>"
     }
 
@@ -120,6 +120,14 @@ private data class ClCodegenContext<T : IMergeable<T>>(
 
     fun generateOpaqueHandles() {
         registry.opaqueHandleTypedefs.values.forEach(::generateOpaqueHandle)
+    }
+
+    fun generateOpaqueTypedefs() {
+        registry.opaqueTypedefs.values
+            .asSequence()
+            .filter { it.isHandle }
+            .map { OpaqueHandleTypedef(it.name) }
+            .forEach(::generateOpaqueHandle)
     }
 
     fun generateCommands() {
