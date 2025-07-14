@@ -513,6 +513,7 @@ private val knownTypes = mapOf(
     "wl_output" to voidType.copy(cType = "wl_output"),
 
     // Windows
+    "UINT" to uint32Type.copyWithComment("UINT"),
     "DWORD" to uint32Type.copyWithComment(comment = "DWORD"),
     "LONG" to int32Type.copyWithComment("LONG"),
     "HANDLE" to pvoidType("HANDLE"),
@@ -568,14 +569,25 @@ private val knownTypes = mapOf(
     // Microsoft Windows COM and Direct3D
     "IUnknown" to pvoidType("IUnknown"),
     "ID3D11Device" to pvoidType("ID3D11Device"),
+    "ID3D11Buffer" to pvoidType("ID3D11Buffer"),
     "ID3D11Texture2D" to pvoidType("ID3D11Texture2D"),
+    "ID3D11Texture3D" to pvoidType("ID3D11Texture3D"),
     "ID3D12CommandQueue" to pvoidType("ID3D12CommandQueue"),
     "ID3D12Device" to pvoidType("ID3D12Device"),
     "ID3D12Resource" to pvoidType("ID3D12Resource"),
     "D3D_FEATURE_LEVEL" to uint32Type.copyWithComment("D3D_FEATURE_LEVEL"),
+    "ID3D10Buffer" to pvoidType("ID3D10Buffer"),
+    "ID3D10Texture2D" to pvoidType("ID3D10Texture2D"),
+    "ID3D10Texture3D" to pvoidType("ID3D10Texture3D"),
+    "IDirect3DSurface9" to pvoidType("IDirect3DSurface9"),
+    "D3DFORMAT" to uint32Type.copyWithComment("D3DFORMAT"),
+    "DXGI_FORMAT" to uint32Type.copyWithComment("DXGI_FORMAT"),
 
     // JNI
-    "jobject" to pvoidType("jobject")
+    "jobject" to pvoidType("jobject"),
+
+    // VA https://intel.github.io/libva/va_8h_source.html
+    "VASurfaceID" to uint32Type.copyWithComment("VASurfaceID")
 )
 
 fun lowerType(

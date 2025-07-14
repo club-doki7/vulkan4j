@@ -27,6 +27,7 @@ fun extractOpenCLRegistry(): Registry<OpenCLRegistryExt> {
         .extractEntities()
 
     reg.renameEntities()
+    reg.addDependencies()
     return reg
 }
 
@@ -70,22 +71,21 @@ private fun Element.extractEntities(): Registry<OpenCLRegistryExt> {
         .map(::extractConstants)
         .associate()
 
-    val rawCommands = e.query("commands/command")
-        .map(::extractCommand)
-
-    val commands = rawCommands.map { it.first }.associate()
     val counter = mutableMapOf<Identifier, Int>()
     val funcTypedefs = mutableMapOf<Identifier, FunctionTypedef>()
-
-    rawCommands
-        .map { it.second }
-        .flatMap { it }
-        .forEach {
-            val idx = counter.getOrPut(it.name) { 0 }
-            counter.put(it.name, idx + 1)
-            val value = FunctionTypedef("${it.name.value}_$idx", it.params, it.result, it.isPointer)
-            funcTypedefs.put(value.name, value)
-        }
+    val commands = e.query("commands/command")
+        .toList()       // so that we can use side effect in .map
+        .map {
+            extractCommand(it) { name, params, ret ->
+                val id = name.intern()
+                val idx = counter.getOrPut(id) { 0 }
+                counter.put(id, idx + 1)
+                val value = FunctionTypedef(id, params, ret)
+                funcTypedefs.put(value.name, value)
+                value
+            }
+        }.asSequence()
+        .associate()
 
     // extract features/extensions
 
@@ -281,8 +281,10 @@ fun extractConstants(e: Element): Constant {
 
     if (value == null) {
         assert(bitpos != null)
-        type = IdentifierType("uint32_t")
-        finalValue = BigInteger.ONE.shiftLeft(bitpos!!.parseDecOrHex().toInt()).toString()
+        val pos = bitpos!!.parseDecOrHex().toInt()
+        type = if (pos < 32) IdentifierTypes.uint32_t else IdentifierTypes.uint64_t
+        val postfix = if (pos < 32) "" else "L"
+        finalValue = "0x" + BigInteger.ONE.shiftLeft(pos).toString(16) + postfix
     } else {
         finalValue = value
         type = when {
@@ -305,16 +307,16 @@ fun extractConstants(e: Element): Constant {
 /**
  * @param e in form `<param>TYPE <name>NAME</name></param>`
  */
-private fun extractParam(e: Element): Pair<Param, FunctionTypedef?> {
+private fun extractParam(e: Element, funcTypedefRegister: (String, List<Type>, Type) -> FunctionTypedef): Param {
     val name = getName(e)
     val typeNode = e.getFirstElement("type")
-    var typedef: FunctionTypedef? = null
     val type = if (typeNode == null) {
         val content = e.textContent
         assert(content.contains("CL_CALLBACK"))
-        val (decl, _) = parseInlineFunctionPointerField(listOf(content + ";"), 0)
+        val (decl, _) = parseInlineFunctionPointerField(listOf("$content;"), 0)
         val funcType = decl.type as RawFunctionType
-        typedef = FunctionTypedef(decl.name, funcType.params.map { it.second.toType() }, funcType.returnType.toType())
+        val typedef =
+            funcTypedefRegister(decl.name, funcType.params.map { it.second.toType() }, funcType.returnType.toType())
         IdentifierType(typedef.name)
     } else {
         extractType(typeNode)
@@ -324,28 +326,25 @@ private fun extractParam(e: Element): Pair<Param, FunctionTypedef?> {
         if (type is PointerType) {
             type.pointerToOne = true
         }
-    } to typedef
+    }
 }
 
 /**
  * @param e in form `<command>PROTO PARAM*</command>`
  */
-private fun extractCommand(e: Element): Pair<Command, List<FunctionTypedef>> {
+private fun extractCommand(e: Element, funcTypedefRegister: (String, List<Type>, Type) -> FunctionTypedef): Command {
     val (name, retType) = extractTypeJudgement(e.getFirstElement("proto")!!)
 
-    val rawParams = e.query("param")
-        .map(::extractParam)
+    val params = e.query("param")
+        .map { extractParam(it, funcTypedefRegister) }
         .toList()
-
-    val params = rawParams.map { it.first }
-    val typedefs = rawParams.mapNotNull { it.second }
 
     return Command(
         name,
         params,
         retType,
         null, null
-    ) to typedefs
+    )
 }
 
 /**

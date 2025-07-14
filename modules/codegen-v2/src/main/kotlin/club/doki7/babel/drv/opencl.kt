@@ -97,19 +97,11 @@ private data class ClCodegenContext<T : IMergeable<T>>(
         generateFunctionTypedefs(registry, codegenOptions).writeTo("${codegenOptions.functionTypeClassName}.java")
     }
 
-    fun generateBitmask(bitmask: Bitmask) {
-        generateBitmask(bitmask, codegenOptions).writeTo("bitmask/${bitmask.name}.java")
-    }
-
-    fun generateEnumeration(enumeration: Enumeration) {
-        generateEnumeration(registry, enumeration, codegenOptions).writeTo("enumtype/${enumeration.name}.java")
-    }
-
     fun generateStructure(structure: Structure, isUnion: Boolean) {
         generateStructureInterface(structure, codegenOptions)
             .writeTo("datatype/I${structure.name}.java")
 
-        generateStructure(registry, structure, false, codegenOptions)
+        generateStructure(registry, structure, isUnion, codegenOptions)
             .writeTo("datatype/${structure.name}.java")
     }
 

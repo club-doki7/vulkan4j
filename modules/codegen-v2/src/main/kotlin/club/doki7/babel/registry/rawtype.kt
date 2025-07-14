@@ -27,3 +27,8 @@ fun tryFindIdentifierType(type: Type): String? = when (type) {
     is PointerType -> tryFindIdentifierType(type.pointee)
     is IdentifierType -> type.ident.toString()
 }
+
+object IdentifierTypes {
+    val uint32_t: IdentifierType = IdentifierType("uint32_t")
+    val uint64_t: IdentifierType = IdentifierType("uint64_t")
+}

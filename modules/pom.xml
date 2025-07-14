@@ -73,6 +73,7 @@
         <!-- experimental -->
         <module>sdl3</module>
         <module>openxr</module>
+        <module>opencl</module>
     </modules>
 
     <build>
