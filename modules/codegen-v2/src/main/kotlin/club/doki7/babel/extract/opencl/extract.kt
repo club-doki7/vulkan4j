@@ -26,6 +26,7 @@ fun extractOpenCLRegistry(): Registry<EmptyMergeable> {
         .parseXML()
         .extractEntities()
 
+    reg.renameEntities()
     return reg
 }
 
@@ -65,12 +66,8 @@ private fun Element.extractEntities(): Registry<EmptyMergeable> {
         .flatMap { it }
         .associate()
 
-    val constants = e.query("enums[not(@type='bitmask')]/enum")
+    val constants = e.query("enums/enum")
         .map(::extractConstants)
-        .associate()
-
-    val bitmasks = e.query("enums[@type='bitmask']")
-        .map(::extractBitmask)
         .associate()
 
     val rawCommands = e.query("commands/command")
@@ -92,7 +89,6 @@ private fun Element.extractEntities(): Registry<EmptyMergeable> {
 
     return Registry(
         aliases = typedefs,
-        bitmasks = bitmasks,
         constants = constants,
         commands = commands,
         functionTypedefs = funcTypedefs,
@@ -264,54 +260,36 @@ fun extractUnion(lines: List<String>): MutableList<Member> {
 }
 
 /**
- * @param e in form `<enum value="..." name="..." />`
+ * @param e in form `<enum value="MAYBE_SET" bitpos="MAYBE_SET" name="..." />`
  */
 fun extractConstants(e: Element): Constant {
-    val value = e.getAttributeText("value")!!
-    val name = e.getAttributeText("name")!!
-
-    val type = when {
-        value[0] == '+' || value[0] == '-' -> "int32_t"
-        value.contains('.') -> if (value.endsWith('f')) "float" else "double"
-        name == "CL_LONG_MAX" || name == "CL_LONG_MIN" -> "int64_t"
-        name == "CL_ULONG_MAX" -> "uint64_t"
-        name == "CL_HUGE_VALF" -> "float"
-        name == "CL_HUGE_VAL" -> "double"
-        name == "CL_MAXFLOAT" -> "float"
-        name == "CL_NAN" -> "float"      // TODO
-        name == "CL_INFINITY" -> "float"     // TODO
-        else -> "uint32_t"
-    }.let(::IdentifierType)
-
-    return Constant(name, type, value)
-}
-
-/**
- * @param e in form `<enums name="NAME" type="bitmask">BITFLAG+</enums>`
- */
-fun extractBitmask(e: Element): Bitmask {
-    val name by e.attrs
-    val bitflags = e.getElementSeq("enum")
-        .map(::extractBitflag)
-
-    return Bitmask(name!!, null, bitflags.toMutableList())
-}
-
-/**
- * @param e in form `<enum bitpos="MAYBE_SET" value="SET_IF_bitpos_NOTSET" name="NAME" />`
- */
-fun extractBitflag(e: Element): Bitflag {
-    val name by e.attrs
-    val bitpos = e.getAttributeText("bitpos")
     val value = e.getAttributeText("value")
+    val bitpos = e.getAttributeText("bitpos")
+    val name = e.getAttributeText("name")!!
+    val type: Type
+    val finalValue: String
 
-    val realValue = if (bitpos != null) {
-        BigInteger.ONE.shiftLeft(bitpos.parseDecOrHex().toInt())
+    if (value == null) {
+        assert(bitpos != null)
+        type = IdentifierType("uint32_t")
+        finalValue = BigInteger.ONE.shiftLeft(bitpos!!.parseDecOrHex().toInt()).toString()
     } else {
-        value!!.parseDecOrHex().toBigInteger()
+        finalValue = value
+        type = when {
+            value[0] == '+' || value[0] == '-' -> "int32_t"
+            value.contains('.') -> if (value.endsWith('f')) "float" else "double"
+            name == "CL_LONG_MAX" || name == "CL_LONG_MIN" -> "int64_t"
+            name == "CL_ULONG_MAX" -> "uint64_t"
+            name == "CL_HUGE_VALF" -> "float"
+            name == "CL_HUGE_VAL" -> "double"
+            name == "CL_MAXFLOAT" -> "float"
+            name == "CL_NAN" -> "float"      // TODO
+            name == "CL_INFINITY" -> "float"     // TODO
+            else -> "uint32_t"
+        }.let(::IdentifierType)
     }
 
-    return Bitflag(name!!, realValue)
+    return Constant(name, type, finalValue)
 }
 
 /**

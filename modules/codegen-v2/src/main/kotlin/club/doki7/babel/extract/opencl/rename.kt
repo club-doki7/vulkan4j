@@ -34,13 +34,39 @@ internal fun <T : IMergeable<T>> Registry<T>.renameEntities() {
             putEntityIfNameReplaced(member)
         }
     }
+
+    opaqueHandleTypedefs.values.forEach {
+        it.rename { renameSnakeCase(true) }
+        putEntityIfNameReplaced(it)
+    }
+
+    opaqueTypedefs.values.forEach {
+        it.rename { renameSnakeCase(true) }
+        putEntityIfNameReplaced(it)
+    }
+
+    unions.values.forEach {
+        it.rename { renameSnakeCase(true) }
+        putEntityIfNameReplaced(it)
+    }
+
+    functionTypedefs.values.forEach {
+        it.rename {
+            val realName = if (startsWith("pfn_")) {
+                substring(4)
+            } else this
+            "PFN_" + realName.renameSnakeCase(true)
+        }
+
+        putEntityIfNameReplaced(it)
+    }
 }
 
 private fun String.renameSnakeCase(upperCaml: Boolean): String {
-    var parts = split('_')
+    val parts = split('_')
     assert(parts.isNotEmpty())
 
     return parts.joinToString(separator = "") {
         it[0].uppercaseChar() + it.substring(1)
-    }.let { if (upperCaml) this else ensureLowerCamelCase() }
+    }.let { if (upperCaml) it else it.ensureLowerCamelCase() }
 }
