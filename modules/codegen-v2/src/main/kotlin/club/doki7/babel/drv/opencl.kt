@@ -53,10 +53,14 @@ fun openclMain(dryRun: Boolean): Registry<OpenCLRegistryExt> {
 }
 
 private fun openclLinkProvider(e: Entity): String? = when (e) {
-    is Constant, is Command, is Structure, is OpaqueHandleTypedef, is OpaqueTypedef -> {
-        val name = e.name.original
-        val url = "https://registry.khronos.org/OpenCL/sdk/latest/docs/man/html/$name.html"
-        "<a href=\"$url\">$name</a>"
+    is Command, is Structure, is OpaqueHandleTypedef, is OpaqueTypedef -> {
+        if (e.name.original.startsWith("VA")) {
+            null
+        } else {
+            val name = e.name.original
+            val url = "https://registry.khronos.org/OpenCL/sdk/latest/docs/man/html/$name.html"
+            "<a href=\"$url\">$name</a>"
+        }
     }
 
     else -> null

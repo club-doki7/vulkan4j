@@ -17,7 +17,7 @@ import club.doki7.opencl.handle.*;
 import static club.doki7.opencl.CLConstants.*;
 import club.doki7.opencl.CLFunctionTypes.*;
 
-/// Represents a pointer to a <a href="https://registry.khronos.org/OpenCL/sdk/latest/docs/man/html/VAImageFormat.html">VAImageFormat</a> structure in native memory.
+/// Represents a pointer to a {@code VAImageFormat} structure in native memory.
 ///
 /// ## Structure
 ///
@@ -44,12 +44,10 @@ import club.doki7.opencl.CLFunctionTypes.*;
 ///
 /// The constructor of this class is marked as {@link UnsafeConstructor}, because it does not
 /// perform any runtime check. The constructor can be useful for automatic code generators.
-///
-/// @see <a href="https://registry.khronos.org/OpenCL/sdk/latest/docs/man/html/VAImageFormat.html">VAImageFormat</a>
 @ValueBasedCandidate
 @UnsafeConstructor
 public record VAImageFormatCLREF(@NotNull MemorySegment segment) implements IVAImageFormatCLREF {
-    /// Represents a pointer to / an array of <a href="https://registry.khronos.org/OpenCL/sdk/latest/docs/man/html/VAImageFormat.html">VAImageFormat</a> structure(s) in native memory.
+    /// Represents a pointer to / an array of null structure(s) in native memory.
     ///
     /// Technically speaking, this type has no difference with {@link VAImageFormatCLREF}. This type
     /// is introduced mainly for user to distinguish between a pointer to a single structure
