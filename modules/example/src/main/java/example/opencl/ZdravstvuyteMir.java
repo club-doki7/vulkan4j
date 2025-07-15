@@ -31,7 +31,7 @@ public final class ZdravstvuyteMir {
             CLPlatformId.Ptr pPlatformId = CLPlatformId.Ptr.allocate(arena);
             int err = cl.getPlatformIDs(1, pPlatformId, pNumPlatforms);
             checkError(err, "clGetPlatformIDs");
-            CLPlatformId platformId = Objects.requireNonNull(pPlatformId.read());
+            CLPlatformId ignoredUnusedPlatformId = Objects.requireNonNull(pPlatformId.read());
 
             CLDeviceId.Ptr pDeviceId = CLDeviceId.Ptr.allocate(arena);
             err = cl.getDeviceIDs(pPlatformId.read(), CL.DEVICE_TYPE_GPU, 1, pDeviceId, null);
