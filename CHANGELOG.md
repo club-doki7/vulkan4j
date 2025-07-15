@@ -1,3 +1,13 @@
+## Unreleased v0.4.5
+
+### New bindings
+
+- (@HoshinoTented) Added `opencl` module, which provides bindings for OpenCL. This module is generated from Khronos OpenCL XML registry files.
+
+### Bugfixes
+
+- Mitigated a JDK FFM implementation issue (#163, [BUG Filed on JDK BUG System](https://bugs.openjdk.org/browse/JDK-8362169)) via manually resetting the memory session of `MemorySegment`s accepted in callback functions.
+
 ## v0.4.4
 
 Upgrade `ffm-plus` to v0.2.7, and other wrapper modules to v0.4.4.
