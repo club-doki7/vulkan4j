@@ -71,4 +71,10 @@ modules/webgpu/src/main/java/club/doki7/webgpu/WGPU.java linguist-generated
 modules/webgpu/src/main/java/club/doki7/webgpu/WGPUConstants.java linguist-generated
 modules/webgpu/src/main/java/club/doki7/webgpu/WGPUFunctionTypes.java linguist-generated
 
+modules/opencl/src/main/java/club/doki7/opencl/datatype/*.java linguist-generated
+modules/opencl/src/main/java/club/doki7/opencl/handle/*.java linguist-generated
+modules/opencl/src/main/java/club/doki7/opencl/CL.java linguist-generated
+modules/opencl/src/main/java/club/doki7/opencl/CLConstants.java linguist-generated
+modules/opencl/src/main/java/club/doki7/opencl/CLFunctionTypes.java linguist-generated
+
 modules/tutorial/src/main/java/**/*.java linguist-documentation
