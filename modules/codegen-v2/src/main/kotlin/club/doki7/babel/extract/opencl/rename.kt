@@ -25,47 +25,38 @@ internal fun Registry<OpenCLRegistryExt>.renameEntities() {
     // Since OpenCL uses snake case, we have to rename structures
 
     structures.values.forEach { struct ->
-        struct.rename { renameSnakeCase(true) }
+        struct.rename(String::renameType)
         putEntityIfNameReplaced(struct)
 
         struct.members.forEach { member ->
-            member.rename { renameSnakeCase(false) }
+            member.rename(String::renameVariable)
+            putEntityIfNameReplaced(member)
+        }
+    }
+
+    unions.values.forEach { union ->
+        union.rename(String::renameType)
+        putEntityIfNameReplaced(union)
+
+        union.members.forEach { member ->
+            member.rename(String::renameVariable)
             putEntityIfNameReplaced(member)
         }
     }
 
     opaqueHandleTypedefs.values.forEach {
-        it.rename { renameSnakeCase(true) }
+        it.rename(String::renameType)
         putEntityIfNameReplaced(it)
     }
 
     opaqueTypedefs.values.forEach {
-        it.rename { renameSnakeCase(true) }
-        putEntityIfNameReplaced(it)
-    }
-
-    unions.values.forEach {
-        it.rename { renameSnakeCase(true) }
-        putEntityIfNameReplaced(it)
-    }
-
-    functionTypedefs.values.forEach {
-        it.rename {
-            val realName = if (startsWith("pfn_")) {
-                substring(4)
-            } else this
-            "PFN_" + realName.renameSnakeCase(true)
-        }
-
+        it.rename(String::renameType)
         putEntityIfNameReplaced(it)
     }
 }
 
-private fun String.renameSnakeCase(upperCaml: Boolean): String {
-    val parts = split('_')
-    assert(parts.isNotEmpty())
+private fun String.renameType(): String =
+    "CL" + this.removePrefix("cl_").split("_").joinToString("") { it[0].uppercaseChar() + it.substring(1) }
 
-    return parts.joinToString(separator = "") {
-        it[0].uppercaseChar() + it.substring(1)
-    }.let { if (upperCaml) it else it.ensureLowerCamelCase() }
-}
+private fun String.renameVariable(): String =
+    this.split("_").joinToString("") { it[0].uppercaseChar() + it.substring(1) }.ensureLowerCamelCase()

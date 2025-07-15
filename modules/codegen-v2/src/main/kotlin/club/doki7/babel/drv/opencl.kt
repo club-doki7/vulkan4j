@@ -1,21 +1,17 @@
 package club.doki7.babel.drv
 
 import club.doki7.babel.codegen.CodegenOptions
-import club.doki7.babel.codegen.generateBitmask
 import club.doki7.babel.codegen.generateCommandFile
 import club.doki7.babel.codegen.generateConstants
-import club.doki7.babel.codegen.generateEnumeration
 import club.doki7.babel.codegen.generateFunctionTypedefs
 import club.doki7.babel.codegen.generateHandle
 import club.doki7.babel.codegen.generateStructure
 import club.doki7.babel.codegen.generateStructureInterface
 import club.doki7.babel.extract.opencl.OpenCLRegistryExt
 import club.doki7.babel.extract.opencl.extractOpenCLRegistry
-import club.doki7.babel.registry.Bitmask
 import club.doki7.babel.registry.Command
 import club.doki7.babel.registry.Constant
 import club.doki7.babel.registry.Entity
-import club.doki7.babel.registry.Enumeration
 import club.doki7.babel.registry.IMergeable
 import club.doki7.babel.registry.OpaqueHandleTypedef
 import club.doki7.babel.registry.OpaqueTypedef
@@ -137,7 +133,7 @@ private data class ClCodegenContext<T : IMergeable<T>>(
             registry.commands.values.toList(),
             codegenOptions,
             true,
-            "command"
-        ).writeTo("command/$commandFileName.java")
+            null
+        ).writeTo("$commandFileName.java")
     }
 }

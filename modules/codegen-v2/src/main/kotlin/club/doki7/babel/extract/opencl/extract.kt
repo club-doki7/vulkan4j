@@ -1,6 +1,7 @@
 package club.doki7.babel.extract.opencl
 
 import club.doki7.babel.cdecl.RawFunctionType
+import club.doki7.babel.cdecl.isIdentifier
 import club.doki7.babel.cdecl.parseInlineFunctionPointerField
 import club.doki7.babel.cdecl.parseStructFieldDecl
 import club.doki7.babel.cdecl.toType
@@ -14,10 +15,6 @@ import kotlin.io.path.Path
 
 internal val log = Logger.getLogger("c.d.b.extract.openxr")
 private val inputDir = Path("codegen-v2/input")
-
-fun main() {
-    val reg = extractOpenCLRegistry()
-}
 
 fun extractOpenCLRegistry(): Registry<OpenCLRegistryExt> {
     val reg = inputDir.resolve("cl.xml")
@@ -285,17 +282,40 @@ fun extractConstants(e: Element): Constant {
         val postfix = if (pos < 32) "" else "L"
         finalValue = "0x" + BigInteger.ONE.shiftLeft(pos).toString(16) + postfix
     } else {
-        finalValue = value
+        finalValue = when {
+            name == "CL_HUGE_VALF" || name == "CL_INFINITY" -> "Float.POSITIVE_INFINITY"
+            name == "CL_HUGE_VAL" -> "Double.POSITIVE_INFINITY"
+            name == "CL_NAN" -> "Float.NaN"
+            name == "CL_LONG_MAX" -> "Long.MAX_VALUE"
+            name == "CL_LONG_MIN" -> "Long.MIN_VALUE"
+            // TODO: use NativeLayout.UINT64_MAX in a future version
+            name == "CL_ULONG_MAX" -> "0xFFFFFFFF_FFFFFFFFL"
+            name == "CL_CHAR_MAX" || name == "CL_SCHAR_MAX" -> "Byte.MAX_VALUE"
+            name == "CL_CHAR_MIN" || name == "CL_SCHAR_MIN" -> "Byte.MIN_VALUE"
+            // TODO: use NativeLayout.SIZE_MAX in a future version
+            value == "SIZE_MAX" -> "0xFFFFFFFF_FFFFFFFFL"
+            value.startsWith("((cl_double)") -> value.removePrefix("((cl_double)").removeSuffix(")").trim()
+            value.startsWith("((cl_float)") -> value.removePrefix("((cl_float)").removeSuffix(")").trim()
+            value.startsWith("((cl_device_partition_property_ext)") -> value.removePrefix("((cl_device_partition_property_ext)").removeSuffix(")").trim()
+            value.isIdentifier() -> value.removePrefix("CL_")
+            value.endsWith("U") -> value.removeSuffix("U")
+            else -> value
+        }
         type = when {
-            value[0] == '+' || value[0] == '-' -> "int32_t"
-            value.contains('.') -> if (value.endsWith('f')) "float" else "double"
             name == "CL_LONG_MAX" || name == "CL_LONG_MIN" -> "int64_t"
             name == "CL_ULONG_MAX" -> "uint64_t"
-            name == "CL_HUGE_VALF" -> "float"
             name == "CL_HUGE_VAL" -> "double"
+            name == "CL_HUGE_VALF" -> "float"
             name == "CL_MAXFLOAT" -> "float"
-            name == "CL_NAN" -> "float"      // TODO
-            name == "CL_INFINITY" -> "float"     // TODO
+            name == "CL_NAN" -> "float"
+            name == "CL_INFINITY" -> "float"
+            name == "CL_CHAR_MAX" || name == "CL_SCHAR_MAX" || name == "CL_CHAR_MIN" || name == "CL_SCHAR_MIN" -> "int8_t"
+            value == "SIZE_MAX" -> "size_t"
+            value[0] == '+' || value[0] == '-' -> "int32_t"
+            value.contains('.') -> if (value.endsWith('f')) "float" else "double"
+            value.startsWith("((cl_double)") -> "double"
+            value.startsWith("((cl_float)") -> "double"
+            value.startsWith("((cl_device_partition_property_ext)") -> "uint64_t"
             else -> "uint32_t"
         }.let(::IdentifierType)
     }
