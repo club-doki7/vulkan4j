@@ -38,3 +38,7 @@ curl -o efx-presets.h https://raw.githubusercontent.com/kcat/openal-soft/$AL_VER
 # echo Downloading SDL
 # curl -o SDL3.tar.gz https://github.com/libsdl-org/SDL/releases/download/release-3.2.14/SDL3-3.2.14.tar.gz
 # tar -xzf SDL3-3.2.14.tar.gz
+
+echo Downloading OpenCL cl.xml
+CL_VERSION="refs/tags/v3.0.19"
+curl -o cl.xml https://raw.githubusercontent.com/KhronosGroup/OpenCL-Docs/$CL_VERSION/xml/cl.xml

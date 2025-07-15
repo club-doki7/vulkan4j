@@ -11,4 +11,5 @@ module example {
     requires club.doki7.webgpu;
     requires java.desktop;
     requires org.jetbrains.annotations;
+    requires club.doki7.opencl;
 }
