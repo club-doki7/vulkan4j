@@ -1,0 +1,16 @@
+
+{
+    "library":{
+        "versions":{
+            "0.4.4": ["vulkan","vma","opengl","glfw","ffm-plus","openal","shaderc","sdl3","stb","openxr","webgpu"],
+            "0.4.3": ["vulkan","vma","opengl","glfw","ffm-plus","openal","shaderc","sdl3","stb","openxr","webgpu"],
+            "0.4.2": ["vulkan","vma","opengl","glfw","ffm-plus","openal","shaderc","sdl3","stb","openxr","webgpu"],
+            "0.4.1": ["vulkan","vma","opengl","glfw","ffm-plus","openal","shaderc","sdl3","stb","openxr"],
+            "0.4.0": ["vulkan","vma","opengl","glfw","ffm-plus","openal","shaderc","sdl3","stb"],
+            "0.3.4": ["vulkan","vma","opengl","glfw","ffm-plus","openal","shaderc"],
+            "0.3.2":["vulkan","vma","opengl","glfw","ffm-plus","openal"],
+            "0.3.1":["vulkan","vma","opengl","glfw","ffm-plus"],
+            "0.3.0": ["vulkan","vma","opengl","glfw","ffm-plus"]
+        }
+    }
+}
