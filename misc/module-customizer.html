@@ -117,6 +117,7 @@ body {
 
 body > div {
     flex: 1 0 auto;
+    min-width: 0px;
     min-height: 0px;
     max-height: 100%;
     display: flex;
@@ -128,6 +129,7 @@ body > div {
     padding: 0.75em;
     row-gap: 1em;
     background-color: var(--section-background-color);
+    margin-top: 1px;
 }
 
 .card-title {
@@ -196,10 +198,19 @@ body > div {
     max-height: 100%;
     overflow: auto;
     margin: 0;
+    margin-top: -1px;
+    z-index: -10;
     padding: 0.5em;
     background-color: var(--detail-background-color);
     border: 1px solid var(--border-color);
     user-select: text;
+}
+
+.allow-wrap {
+    text-wrap: break-word;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    word-break: break-all;
 }
         </style>
         <style id="runtime-style-stub">
@@ -408,6 +419,10 @@ const main = () => {
         $('#modules-selector').appendChild(moduleSwitchContainer)
     }
 
+    $('#tabs').querySelectorAll('div').forEach(tab => {
+        tab.addEventListener('click', onTabClicked)
+    })
+
     onDetailedDisplayChange()
     onEditionChange()
 }
@@ -458,6 +473,7 @@ const generateCode = () => {
     const generationMode = $('#tabs').querySelector('.current').getAttribute('value')
 
     let code
+    let allowWrap = false
     switch (generationMode) {
         case 'maven':
             code = generateMavenCode(edition, ffmPlusVersion, modules)
@@ -469,16 +485,24 @@ const generateCode = () => {
             code = generateGradleCode(edition, ffmPlusVersion, modules)
             break
         case 'vmoptions':
-            code = generateVMOptionsCode(edition, ffmPlusVersion, modules)
+            code = generateVMOptionsCode(modules)
+            allowWrap = true
             break
         case 'manifest':
-            code = generateManifestCode(edition, ffmPlusVersion, modules)
+            code = generateManifestCode(modules)
+            allowWrap = true
             break
         default:
             code = 'Unknown generation mode'
     }
 
-    $('#generated-content').innerText = code
+    const generatedContent = $('#generated-content')
+    generatedContent.innerText = code
+    if (allowWrap) {
+        generatedContent.classList.add('allow-wrap')
+    } else {
+        generatedContent.classList.remove('allow-wrap')
+    }
 }
 
 const generateMavenCode = (edition, ffmPlusVersion, modules) => {
@@ -510,6 +534,61 @@ const generateMavenCode = (edition, ffmPlusVersion, modules) => {
     return code.trim()
 }
 
+const generateGradleKotlinCode = (edition, ffmPlusVersion, modules) => {
+    const editionDescription = editionDescriptions[edition]
+    const ffmPlusModule = metadata.ffmPlus.module
+    const ffmPlusVersionDescription = `ffm-plus ${ffmPlusVersion} (${metadata.ffmPlus.encapsulationEditionUseMinVersion[edition]})`
+
+    let code = String.raw`
+dependencies {
+    implementation("club.doki7:ffm-plus:${ffmPlusVersion}")
+`
+
+    for (const module of modules) {
+        const moduleData = metadata.modules.find(m => m.module === module)
+        if (moduleData) {
+            code += `    implementation("club.doki7:${moduleData.module}:${edition}")\n`
+        }
+    }
+    code += '}'
+    return code.trim()
+}
+
+const generateGradleCode = (edition, ffmPlusVersion, modules) => {
+    const editionDescription = editionDescriptions[edition]
+    const ffmPlusModule = metadata.ffmPlus.module
+    const ffmPlusVersionDescription = `ffm-plus ${ffmPlusVersion} (${metadata.ffmPlus.encapsulationEditionUseMinVersion[edition]})`
+
+    let code = String.raw`
+dependencies {
+    compile 'club.doki7:ffm-plus:${ffmPlusVersion}'
+`
+    for (const module of modules) {
+        const moduleData = metadata.modules.find(m => m.module === module)
+        if (moduleData) {
+            code += `    compile 'club.doki7:${moduleData.module}:${edition}'\n`
+        }
+    }
+    code += '}'
+    return code.trim()
+}
+
+const generateVMOptionsCode = modules => {
+    let code = '--enable-native-access=club.doki7.ffm-plus'
+    for (const module of modules) {
+        code += `,club.doki7.${module}`
+    }
+    return code.trim()
+}
+
+const generateManifestCode = modules => {
+    let code = 'Enable-Native-Access: club.doki7.ffm-plus'
+    for (const module of modules) {
+        code += `, club.doki7.${module}`
+    }
+    return code.trim()
+}
+
 document.addEventListener('DOMContentLoaded', main)
 
 const onDetailedDisplayChange = () => {
@@ -534,6 +613,16 @@ const onEditionChange = () => {
     updateCompatibleFFMPlusVersions(edition)
     updateEditionSupportedModules(edition)
     updateReleaseNotes(edition)
+
+    generateCode()
+}
+
+const onTabClicked = event => {
+    if (event.target.classList.contains('current')) {
+        return
+    }
+    $('#tabs').querySelector('.current').classList.remove('current')
+    event.target.classList.add('current')
 
     generateCode()
 }
