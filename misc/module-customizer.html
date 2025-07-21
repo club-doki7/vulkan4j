@@ -611,16 +611,16 @@ repositories {
     mavenCentral()
 }
 
-def vulkan4jEdition = '${edition}'
-def ffmPlusVersion = '${ffmPlusVersion}'
+def vulkan4jEdition = "${edition}"
+def ffmPlusVersion = "${ffmPlusVersion}"
 
 dependencies {
-    implementation 'club.doki7:ffm-plus:$ffmPlusVersion'
+    implementation "club.doki7:ffm-plus:$ffmPlusVersion"
 `
     for (const module of modules) {
         const moduleData = metadata.modules.find(m => m.module === module)
         if (moduleData) {
-            code += `    implementation 'club.doki7:${moduleData.module}:$vulkan4jEdition'\n`
+            code += `    implementation "club.doki7:${moduleData.module}:$vulkan4jEdition"\n`
         }
     }
     code += '}'
