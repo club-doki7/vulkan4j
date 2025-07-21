@@ -134,30 +134,6 @@ body > div {
     background-color: var(--section-background-color);
 }
 
-#tabs {
-    display: flex;
-    flex-direction: row;
-}
-
-#tabs > div {
-    background-color: var(--navbar-background-color);
-    color: var(--navbar-text-color);
-    border: 1px solid var(--border-color);
-    border-right: none;
-    padding: 0.5em;
-    cursor: pointer;
-}
-
-#tabs > div:last-child {
-    border-right: 1px solid var(--border-color);
-}
-
-#tabs > div.current {
-    background-color: var(--selected-background-color);
-    border-bottom: 1px solid var(--selected-background-color);
-    color: var(--selected-text-color);
-}
-
 .card-title {
     font-size: 14pt;
 }
@@ -188,6 +164,40 @@ body > div {
 .module-switch-container {
     display: flex;
     align-items: flex-start;
+}
+
+#tabs {
+    display: flex;
+    flex-direction: row;
+}
+
+#tabs > div {
+    background-color: var(--navbar-background-color);
+    color: var(--navbar-text-color);
+    border: 1px solid var(--border-color);
+    border-right: none;
+    padding: 0.5em;
+    cursor: pointer;
+}
+
+#tabs > div:last-child {
+    border-right: 1px solid var(--border-color);
+}
+
+#tabs > div.current {
+    background-color: var(--selected-background-color);
+    border-bottom: 1px solid var(--selected-background-color);
+    color: var(--selected-text-color);
+}
+
+#generated-content {
+    flex: 1 0 auto;
+    min-height: 0px;
+    max-height: 100%;
+    overflow: auto;
+    padding: 0.5em;
+    background-color: var(--detail-background-color);
+    border: 1px solid var(--border-color);
 }
         </style>
         <style id="runtime-style-stub">
@@ -283,13 +293,6 @@ body > div {
             "status": "obsolete"
         },
         {
-            "name": "SDL3",
-            "module": "sdl3",
-            "version": "0.3.4-sdl3-alpha1",
-            "description": "Simple DirectMedia Layer is a cross-platform development library designed to provide low level access to audio, keyboard, mouse, joystick, and graphics hardware via OpenGL and Direct3D.",
-            "status": "experimental"
-        },
-        {
             "name": "OpenXR",
             "module": "openxr",
             "since": "0.4.1",
@@ -354,7 +357,19 @@ const main = () => {
 
     const newestEdition = metadata.editions[0][0]
 
+    let prevStatus = 'notset'
     for (const module of metadata.modules) {
+        const moduleStatus = module.status
+        if (moduleStatus !== prevStatus) {
+            console.info(moduleStatus)
+            const moduleStateElement = document.createElement('b')
+            moduleStateElement.innerText = moduleStatus
+                ? (moduleStatus.charAt(0).toUpperCase() + moduleStatus.slice(1))
+                : 'Supported'
+            $('#modules-selector').appendChild(moduleStateElement)
+            prevStatus = moduleStatus
+        }
+
         const moduleSwitch = document.createElement('input')
         moduleSwitch.type = 'checkbox'
         moduleSwitch.id = `module-${module.module}`
@@ -430,6 +445,7 @@ document.addEventListener('DOMContentLoaded', main)
                 <div>VM Options</div>
                 <div>Manifest</div>
             </div>
+            <div id="generated-content"></div>
         </div>
     </body>
 </html>
