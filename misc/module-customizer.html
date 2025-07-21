@@ -1,4 +1,5 @@
-<head>
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <title>Module Customizer</title>
@@ -83,49 +84,152 @@
 }
         </style>
         <style id="main-style">
+* {
+    font-family: 'Fira Code', 'Fira Sans Mono', 'Consolas', 'Lucida Console', 'Courier New', monospace;
+    font-size: 12pt;
+    user-select: none;
+
+    scrollbar-color: var(--body-text-color) var(--section-background-color);
+    scrollbar-width: thin;
+}
+
+a {
+    color: var(--link-color);
+}
+
+.selectable-code {
+    user-select: auto;
+}
+
+select {
+    color: var(--search-input-text-color);
+    background-color: var(--search-input-background-color);
+}
+
 body {
     background-color: var(--body-background-color);
-    color: var(--body-text-color)
+    color: var(--body-text-color);
+
+    width: calc(100vw - 2em);
+    height: calc(100vh - 2em);
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1em;
+    padding: 1em;
 }
+
+body > div {
+    flex: 1 0 auto;
+    min-height: 0px;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#options {
+    border: 1px solid var(--border-color);
+    padding: 0.75em;
+    row-gap: 1em;
+    background-color: var(--section-background-color);
+}
+
+#tabs {
+    display: flex;
+    flex-direction: row;
+}
+
+#tabs > div {
+    background-color: var(--navbar-background-color);
+    color: var(--navbar-text-color);
+    border: 1px solid var(--border-color);
+    border-right: none;
+    padding: 0.5em;
+    cursor: pointer;
+}
+
+#tabs > div:last-child {
+    border-right: 1px solid var(--border-color);
+}
+
+#tabs > div.current {
+    background-color: var(--selected-background-color);
+    border-bottom: 1px solid var(--selected-background-color);
+    color: var(--selected-text-color);
+}
+
+.card-title {
+    font-size: 14pt;
+}
+
+#version-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 0.5em;
+}
+
+#modules-selector {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5em;
+    align-items: flex-start;
+    border: 1px solid var(--border-color);
+    padding: 0.5em;
+    min-height: 0px;
+    max-height: 100%;
+    overflow: auto;
+}
+
+.module-details {
+    font-size: 10pt;
+    margin-top: 0.25em;
+}
+
+.module-switch-container {
+    display: flex;
+    align-items: flex-start;
+}
+        </style>
+        <style id="runtime-style-stub">
         </style>
 
         <script id="modules-metadata" type="application/json">
 {
-    "editions": {
-        "0.3.0": "Fresh start, code generator rewrite",
-        "0.3.1": "Bugfixes",
-        "0.3.2": "varargs variants of write series functions, set method chaining, LWJGL-alike set methods for structure members, access constants via command wrapper classes",
-        "0.3.3": "Bugfixes",
-        "0.3.4": "Bugfixes",
-        "0.4.0": "Library loading enhancements",
-        "0.4.1": "Collection<T> variants of allocate/write series functions, LWGJL-alike set methods for structure array fields, C-style null-terminated string utilites",
-        "0.4.2": "Full wchar_t support, bugfixes to library loading mechanism",
-        "0.4.3": "Automatic function pointer auto-wrapping",
-        "0.4.4": "Automatic nested structure initialization"
-    },
-    "ffm-plus": {
+    "editions": [
+        ["0.4.4", "Automatic nested structure initialization"],
+        ["0.4.3", "Automatic function pointer auto-wrapping"],
+        ["0.4.2", "Full wchar_t support, bugfixes to library loading mechanism"],
+        ["0.4.1", "Collection<T> variants of allocate/write series functions, LWGJL-alike set methods for structure array fields, C-style null-terminated string utilites"],
+        ["0.4.0", "Library loading enhancements"],
+        ["0.3.4", "Bugfixes"],
+        ["0.3.3", "Bugfixes"],
+        ["0.3.2", "varargs variants of write series functions, set method chaining, LWJGL-alike set [methods for structure members, access constants via command wrapper classes"],
+        ["0.3.1", "Bugfixes"],
+        ["0.3.0", "Fresh start, code generator rewrite"]
+    ],
+    "ffmPlus": {
         "module": "ffm-plus",
         "versions": [
-            "0.2.0",
-            "0.2.1",
-            "0.2.2",
-            "0.2.3",
-            "0.2.4",
-            "0.2.5",
+            "0.2.7",
             "0.2.6",
-            "0.2.7"
+            "0.2.5",
+            "0.2.4",
+            "0.2.3",
+            "0.2.2",
+            "0.2.1",
+            "0.2.0"
         ],
         "encapsulationEditionUseMinVersion": {
-            "0.3.0": "0.2.0",
-            "0.3.1": "0.2.0",
-            "0.3.2": "0.2.1",
-            "0.3.3": "0.2.1",
-            "0.3.4": "0.2.2",
-            "0.4.0": "0.2.4",
-            "0.4.1": "0.2.5",
-            "0.4.2": "0.2.6",
+            "0.4.4": "0.2.7",
             "0.4.3": "0.2.6",
-            "0.4.4": "0.2.7"
+            "0.4.2": "0.2.6",
+            "0.4.1": "0.2.5",
+            "0.4.0": "0.2.4",
+            "0.3.4": "0.2.2",
+            "0.3.3": "0.2.1",
+            "0.3.2": "0.2.1",
+            "0.3.1": "0.2.0",
+            "0.3.0": "0.2.0"
         }
     },
     "modules": [
@@ -203,18 +307,9 @@ body {
 }
         </script>
 
-        <script id="min-jquery">
-const __hiddenAjaxObject = {
-  get: async (url, headers, responder) => {
-    responder = responder || (x => x.json())
-    const resp = await fetch(url, {headers})
-    return await responder(resp)
-  }
-}
-
+        <script id="coreutils">
 const $ = element => document.querySelector(element)
-        </script>
-        <script id="min-semver">
+
 const semVerLessThanOrEqualTo = (a, b) => {
     const aParts = a.split('.').map(Number)
     const bParts = b.split('.').map(Number)
@@ -235,24 +330,106 @@ const semVerLessThanOrEqualTo = (a, b) => {
         </script>
         <script id="main-script">
 const metadata = JSON.parse($('#modules-metadata').innerText)
+const editionDescriptions = {}
 const modulesAvailableInEditions = {}
+const compatibleFFMPlusVersions = {}
 
 const main = () => {
-    for (const edition in metadata.editions) {
-        modulesAvailableInEditions[edition] = []
+    for (const [edition, description] of metadata.editions) {
+        modulesAvailableInEditions[edition] = new Set()
         for (const module of metadata.modules) {
             if (module.since && semVerLessThanOrEqualTo(module.since, edition)) {
-                modulesAvailableInEditions[edition].push(module)
+                modulesAvailableInEditions[edition].add(module.module)
             }
         }
+
+        const minimalCompatibleFFMPlusVersion = metadata.ffmPlus.encapsulationEditionUseMinVersion[edition]
+        const minimalCompatibleFFMPlusVersionIndex = metadata.ffmPlus.versions.indexOf(minimalCompatibleFFMPlusVersion)
+        const cmpatibleFFMPlusVersions = metadata.ffmPlus.versions.slice(0, minimalCompatibleFFMPlusVersionIndex + 1)
+        compatibleFFMPlusVersions[edition] = cmpatibleFFMPlusVersions
+
+        $('#edition-select').append(new Option(edition, edition))
+        editionDescriptions[edition] = description
+    }
+
+    const newestEdition = metadata.editions[0][0]
+
+    for (const module of metadata.modules) {
+        const moduleSwitch = document.createElement('input')
+        moduleSwitch.type = 'checkbox'
+        moduleSwitch.id = `module-${module.module}`
+        moduleSwitch.dataset.module = module.module
+
+        const moduleDetails = document.createElement('i')
+        moduleDetails.className = 'details module-details'
+        moduleDetails.innerText = module.description
+
+        const moduleInfo = document.createElement('div')
+        moduleInfo.className = 'module-info'
+        moduleInfo.appendChild(document.createTextNode(module.name))
+        moduleInfo.appendChild(moduleDetails)
+
+        const moduleSwitchContainer = document.createElement('div')
+        moduleSwitchContainer.className = 'module-switch-container'
+        moduleSwitchContainer.appendChild(moduleSwitch)
+        moduleSwitchContainer.appendChild(moduleInfo)
+
+        $('#modules-selector').appendChild(moduleSwitchContainer)
+    }
+
+    for (const compatibleFFMPlusVersion of compatibleFFMPlusVersions[newestEdition]) {
+        $('#ffm-plus-select').append(new Option(compatibleFFMPlusVersion, compatibleFFMPlusVersion))
+    }
+
+    const editionChangelog = $('#edition-changelog')
+    editionChangelog.href = `https://github.com/club-doki7/vulkan4j/releases/tag/v${newestEdition}`
+    editionChangelog.innerText = `Edition ${newestEdition} release notes`
+
+    changeDetailedDisplay()
+}
+
+const changeDetailedDisplay = () => {
+    const isChecked = $('#detailed-display-switch').checked
+    if (isChecked) {
+        $('#runtime-style-stub').innerText = '.details { display: block; }'
+    } else {
+        $('#runtime-style-stub').innerText = '.details { display: none; }'
     }
 }
 
-main()
-console.info(metadata)
-console.info(modulesAvailableInEditions)
+document.addEventListener('DOMContentLoaded', main)
         </script>
     </head>
     <body>
+        <div id="options">
+            <b class="card-title">Options</b>
+            <div>
+                <input type="checkbox" id="detailed-display-switch" onchange="changeDetailedDisplay()">Show detailed descriptions</input>
+            </div>
+            <div id="version-selector">
+                    <span>Edition:</span>
+                    <select id="edition-select">
+                        <option value="newest">Newest - auto</option>
+                    </select>
+                    <span>ffm-plus version:</span>
+                    <select id="ffm-plus-select">
+                        <option value="newest">Newest - auto</option>
+                        <option value="minimal">Minimal compatible - auto</option>
+                    </select>
+            </div>
+            <a id="edition-changelog"></a>
+            <b class="card-title">Modules</b>
+            <div id="modules-selector">
+            </div>
+        </div>
+        <div id="generated">
+            <div id="tabs">
+                <div class="current">Maven</div>
+                <div>Gradle (Kotlin)</div>
+                <div>Gradle (Groovy)</div>
+                <div>VM Options</div>
+                <div>Manifest</div>
+            </div>
+        </div>
     </body>
-</head>
+</html>
