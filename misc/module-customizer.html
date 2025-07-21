@@ -102,6 +102,11 @@ select {
     background-color: var(--search-input-background-color);
 }
 
+label {
+    display: flex;
+    cursor: pointer;
+}
+
 body {
     background-color: var(--body-background-color);
     color: var(--body-text-color);
@@ -162,10 +167,6 @@ body > div {
 .module-switch-container {
     display: flex;
     align-items: flex-start;
-}
-
-.module-name {
-    cursor: pointer;
 }
 
 #tabs {
@@ -418,19 +419,13 @@ const main = () => {
         moduleSwitch.dataset.module = module.module
         moduleSwitch.onchange = generateCode
 
+        const moduleName = document.createElement('label')
+        moduleName.innerText = module.name
+        moduleName.setAttribute('for', moduleSwitch.id)
+
         const moduleDetails = document.createElement('i')
         moduleDetails.className = 'details module-details'
         moduleDetails.innerText = module.description
-
-        const moduleName = document.createElement('span')
-        moduleName.innerText = module.name
-        moduleName.className = 'module-name'
-        moduleName.onclick = () => {
-            if (!moduleSwitch.disabled) {
-                moduleSwitch.checked = !moduleSwitch.checked
-                generateCode()
-            }
-        }
 
         const moduleInfo = document.createElement('div')
         moduleInfo.className = 'module-info'
@@ -565,16 +560,13 @@ const generateMavenCode = (edition, ffmPlusVersion, modules) => {
     </dependency>`
 
     for (const module of modules) {
-        const moduleData = metadata.modules.find(m => m.module === module)
-            if (moduleData) {
-                code += `
+        code += `
     <dependency>
         <groupId>club.doki7</groupId>
-        <artifactId>${moduleData.module}</artifactId>
+        <artifactId>${module}</artifactId>
         <version>\${vulkan4j.edition}</version>
         <scope>compile</scope>
     </dependency>`
-            }
     }
 
     code += '\n</dependencies>'
@@ -596,10 +588,7 @@ dependencies {
 `
 
     for (const module of modules) {
-        const moduleData = metadata.modules.find(m => m.module === module)
-        if (moduleData) {
-            code += `    implementation("club.doki7:${moduleData.module}:$vulkan4jEdition")\n`
-        }
+        code += `    implementation("club.doki7:${module}:$vulkan4jEdition")\n`
     }
     code += '}'
     return code.trim()
@@ -618,10 +607,7 @@ dependencies {
     implementation "club.doki7:ffm-plus:$ffmPlusVersion"
 `
     for (const module of modules) {
-        const moduleData = metadata.modules.find(m => m.module === module)
-        if (moduleData) {
-            code += `    implementation "club.doki7:${moduleData.module}:$vulkan4jEdition"\n`
-        }
+        code += `    implementation "club.doki7:${module}:$vulkan4jEdition"\n`
     }
     code += '}'
     return code.trim()
@@ -685,9 +671,9 @@ const onTabClicked = event => {
     <body>
         <div id="options">
             <b class="card-title">Options</b>
-            <div>
-                <input type="checkbox" id="detailed-display-switch" onchange="onDetailedDisplayChange()">Show detailed descriptions</input>
-            </div>
+            <label>
+                <input type="checkbox" id="detailed-display-switch" onchange="onDetailedDisplayChange()" />Show detailed descriptions
+            </label>
             <div id="version-selector">
                     <span>Edition:</span>
                     <select id="edition-select" onchange="onEditionChange()">
