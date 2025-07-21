@@ -180,6 +180,7 @@ body > div {
     border-right: none;
     padding: 0.5em;
     cursor: pointer;
+    z-index: 10;
 }
 
 #tabs > div:last-child {
@@ -199,11 +200,11 @@ body > div {
     overflow: auto;
     margin: 0;
     margin-top: -1px;
-    z-index: -10;
     padding: 0.5em;
     background-color: var(--detail-background-color);
     border: 1px solid var(--border-color);
     user-select: text;
+    position: relative;
 }
 
 .allow-wrap {
@@ -211,6 +212,22 @@ body > div {
     word-wrap: break-word;
     white-space: pre-wrap;
     word-break: break-all;
+}
+
+#copy-all {
+    position: absolute;
+    right: 0.5em;
+    top: 0.5em;
+    background-color: var(--detail-background-color);
+    border: 1px solid var(--border-color);
+    padding: 0.5em;
+    cursor: pointer;
+    display: flex;
+}
+
+#copy-all:hover {
+    background-color: var(--selected-background-color);
+    color: var(--selected-text-color);
 }
         </style>
         <style id="runtime-style-stub">
@@ -356,6 +373,9 @@ const modules = {}
 const editionDescriptions = {}
 const modulesAvailableInEditions = {}
 const compatibleFFMPlusVersions = {}
+
+const svgCopy = '<svg aria-hidden="true" focusable="false" class="octicon octicon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align: text-bottom;"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>'
+const svgOk = '<svg aria-hidden="true" focusable="false" class="octicon octicon-check" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align: text-bottom;"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path></svg>'
 
 const main = () => {
     for (const [edition, description] of metadata.editions) {
@@ -509,6 +529,20 @@ const generateCode = () => {
     } else {
         generatedContent.classList.remove('allow-wrap')
     }
+
+    const copyAllButton = document.createElement('span')
+    copyAllButton.id = 'copy-all'
+    copyAllButton.innerHTML = svgCopy
+    copyAllButton.onclick = () => navigator.clipboard
+        .writeText(generatedContent.innerText)
+        .then(() => {
+            copyAllButton.innerHTML = svgOk
+            setTimeout(() => {
+                copyAllButton.innerHTML = svgCopy
+            }, 2000)
+        })
+
+    generatedContent.appendChild(copyAllButton)
 }
 
 const generateMavenCode = (edition, ffmPlusVersion, modules) => {
@@ -516,44 +550,55 @@ const generateMavenCode = (edition, ffmPlusVersion, modules) => {
     const ffmPlusModule = metadata.ffmPlus.module
     const ffmPlusVersionDescription = `ffm-plus ${ffmPlusVersion} (${metadata.ffmPlus.encapsulationEditionUseMinVersion[edition]})`
 
-    let code = String.raw`
-<dependency>
-    <groupId>club.doki7</groupId>
-    <artifactId>ffm-plus</artifactId>
-    <version>${ffmPlusVersion}</version>
-    <scope>compile</scope>
-</dependency>`
+    let code = `
+<properties>
+    <club.doki7.vulkan4j.edition>${edition}</club.doki7.vulkan4j.edition>
+    <club.doki7.ffm-plus.version>${ffmPlusVersion}</club.doki7.ffm-plus.version>
+</properties>
+
+<dependencies>
+    <dependency>
+        <groupId>club.doki7</groupId>
+        <artifactId>ffm-plus</artifactId>
+        <version>\${club.doki7.ffm-plus.version}</version>
+        <scope>compile</scope>
+    </dependency>`
 
     for (const module of modules) {
         const moduleData = metadata.modules.find(m => m.module === module)
             if (moduleData) {
-                code += String.raw`
-<dependency>
-    <groupId>club.doki7</groupId>
-    <artifactId>${moduleData.module}</artifactId>
-    <version>${edition}</version>
-    <scope>compile</scope>
-</dependency>`
+                code += `
+    <dependency>
+        <groupId>club.doki7</groupId>
+        <artifactId>${moduleData.module}</artifactId>
+        <version>\${club.doki7.vulkan4j.edition}</version>
+        <scope>compile</scope>
+    </dependency>`
             }
     }
+
+    code += '\n</dependencies>'
 
     return code.trim()
 }
 
 const generateGradleKotlinCode = (edition, ffmPlusVersion, modules) => {
-    let code = String.raw`
+    let code = `
 repositories {
     mavenCentral()
 }
 
+val clubDoki7Vulkan4jEdition = "${edition}"
+val clubDoki7FfmPlusVersion = "${ffmPlusVersion}"
+
 dependencies {
-    implementation("club.doki7:ffm-plus:${ffmPlusVersion}")
+    implementation("club.doki7:ffm-plus:$clubDoki7FfmPlusVersion")
 `
 
     for (const module of modules) {
         const moduleData = metadata.modules.find(m => m.module === module)
         if (moduleData) {
-            code += `    implementation("club.doki7:${moduleData.module}:${edition}")\n`
+            code += `    implementation("club.doki7:${moduleData.module}:$clubDoki7Vulkan4jEdition")\n`
         }
     }
     code += '}'
@@ -561,18 +606,21 @@ dependencies {
 }
 
 const generateGradleCode = (edition, ffmPlusVersion, modules) => {
-    let code = String.raw`
+    let code = `
 repositories {
     mavenCentral()
 }
 
+def clubDoki7Vulkan4jEdition = '${edition}'
+def clubDoki7FfmPlusVersion = '${ffmPlusVersion}'
+
 dependencies {
-    compile 'club.doki7:ffm-plus:${ffmPlusVersion}'
+    implementation 'club.doki7:ffm-plus:$clubDoki7FfmPlusVersion'
 `
     for (const module of modules) {
         const moduleData = metadata.modules.find(m => m.module === module)
         if (moduleData) {
-            code += `    compile 'club.doki7:${moduleData.module}:${edition}'\n`
+            code += `    implementation 'club.doki7:${moduleData.module}:$clubDoki7Vulkan4jEdition'\n`
         }
     }
     code += '}'
@@ -661,7 +709,7 @@ const onTabClicked = event => {
                 <div value="vmoptions">VM Options</div>
                 <div value="manifest">Manifest</div>
             </div>
-            <pre id="generated-content"></pre>
+            <pre id="generated-content" class="generated-content"></pre>
         </div>
     </body>
 </html>
