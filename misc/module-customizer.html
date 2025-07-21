@@ -293,6 +293,12 @@ body > div {
             "description": "STB is a collection of single-file public domain libraries for C/C++ that provide various utilities such as image loading, font rendering, and more."
         },
         {
+            "name": "Google Shaderc",
+            "module": "shaderc",
+            "since": "0.3.4",
+            "description": "A collection of tools, libraries and tests for shader compilation."
+        },
+        {
             "name": "OpenCL",
             "module": "opencl",
             "since": "0.4.4",
@@ -535,11 +541,11 @@ const generateMavenCode = (edition, ffmPlusVersion, modules) => {
 }
 
 const generateGradleKotlinCode = (edition, ffmPlusVersion, modules) => {
-    const editionDescription = editionDescriptions[edition]
-    const ffmPlusModule = metadata.ffmPlus.module
-    const ffmPlusVersionDescription = `ffm-plus ${ffmPlusVersion} (${metadata.ffmPlus.encapsulationEditionUseMinVersion[edition]})`
-
     let code = String.raw`
+repositories {
+    mavenCentral()
+}
+
 dependencies {
     implementation("club.doki7:ffm-plus:${ffmPlusVersion}")
 `
@@ -555,11 +561,11 @@ dependencies {
 }
 
 const generateGradleCode = (edition, ffmPlusVersion, modules) => {
-    const editionDescription = editionDescriptions[edition]
-    const ffmPlusModule = metadata.ffmPlus.module
-    const ffmPlusVersionDescription = `ffm-plus ${ffmPlusVersion} (${metadata.ffmPlus.encapsulationEditionUseMinVersion[edition]})`
-
     let code = String.raw`
+repositories {
+    mavenCentral()
+}
+
 dependencies {
     compile 'club.doki7:ffm-plus:${ffmPlusVersion}'
 `
@@ -574,7 +580,7 @@ dependencies {
 }
 
 const generateVMOptionsCode = modules => {
-    let code = '--enable-native-access=club.doki7.ffm-plus'
+    let code = '--enable-native-access=club.doki7.ffm'
     for (const module of modules) {
         code += `,club.doki7.${module}`
     }
@@ -582,7 +588,7 @@ const generateVMOptionsCode = modules => {
 }
 
 const generateManifestCode = modules => {
-    let code = 'Enable-Native-Access: club.doki7.ffm-plus'
+    let code = 'Enable-Native-Access: club.doki7.ffm'
     for (const module of modules) {
         code += `, club.doki7.${module}`
     }
