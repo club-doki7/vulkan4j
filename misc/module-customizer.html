@@ -97,10 +97,6 @@ a {
     color: var(--link-color);
 }
 
-.selectable-code {
-    user-select: auto;
-}
-
 select {
     color: var(--search-input-text-color);
     background-color: var(--search-input-background-color);
@@ -166,6 +162,10 @@ body > div {
     align-items: flex-start;
 }
 
+.module-name {
+    cursor: pointer;
+}
+
 #tabs {
     display: flex;
     flex-direction: row;
@@ -191,13 +191,15 @@ body > div {
 }
 
 #generated-content {
-    flex: 1 0 auto;
+    flex: 1 1 auto;
     min-height: 0px;
     max-height: 100%;
     overflow: auto;
+    margin: 0;
     padding: 0.5em;
     background-color: var(--detail-background-color);
     border: 1px solid var(--border-color);
+    user-select: text;
 }
         </style>
         <style id="runtime-style-stub">
@@ -333,6 +335,7 @@ const semVerLessThanOrEqualTo = (a, b) => {
         </script>
         <script id="main-script">
 const metadata = JSON.parse($('#modules-metadata').innerText)
+const modules = {}
 const editionDescriptions = {}
 const modulesAvailableInEditions = {}
 const compatibleFFMPlusVersions = {}
@@ -356,12 +359,14 @@ const main = () => {
     }
 
     const newestEdition = metadata.editions[0][0]
+    const newestFFMPlusVersion = metadata.ffmPlus.versions[0]
 
-    let prevStatus = 'notset'
+    let prevStatus = 'unset'
     for (const module of metadata.modules) {
+        modules[module.module] = module
+
         const moduleStatus = module.status
         if (moduleStatus !== prevStatus) {
-            console.info(moduleStatus)
             const moduleStateElement = document.createElement('b')
             moduleStateElement.innerText = moduleStatus
                 ? (moduleStatus.charAt(0).toUpperCase() + moduleStatus.slice(1))
@@ -374,14 +379,25 @@ const main = () => {
         moduleSwitch.type = 'checkbox'
         moduleSwitch.id = `module-${module.module}`
         moduleSwitch.dataset.module = module.module
+        moduleSwitch.onchange = generateCode
 
         const moduleDetails = document.createElement('i')
         moduleDetails.className = 'details module-details'
         moduleDetails.innerText = module.description
 
+        const moduleName = document.createElement('span')
+        moduleName.innerText = module.name
+        moduleName.className = 'module-name'
+        moduleName.onclick = () => {
+            if (!moduleSwitch.disabled) {
+                moduleSwitch.checked = !moduleSwitch.checked
+                generateCode()
+            }
+        }
+
         const moduleInfo = document.createElement('div')
         moduleInfo.className = 'module-info'
-        moduleInfo.appendChild(document.createTextNode(module.name))
+        moduleInfo.appendChild(moduleName)
         moduleInfo.appendChild(moduleDetails)
 
         const moduleSwitchContainer = document.createElement('div')
@@ -392,18 +408,111 @@ const main = () => {
         $('#modules-selector').appendChild(moduleSwitchContainer)
     }
 
-    for (const compatibleFFMPlusVersion of compatibleFFMPlusVersions[newestEdition]) {
-        $('#ffm-plus-select').append(new Option(compatibleFFMPlusVersion, compatibleFFMPlusVersion))
-    }
-
-    const editionChangelog = $('#edition-changelog')
-    editionChangelog.href = `https://github.com/club-doki7/vulkan4j/releases/tag/v${newestEdition}`
-    editionChangelog.innerText = `Edition ${newestEdition} release notes`
-
-    changeDetailedDisplay()
+    onDetailedDisplayChange()
+    onEditionChange()
 }
 
-const changeDetailedDisplay = () => {
+const updateReleaseNotes = edition => {
+    const editionChangelog = $('#edition-changelog')
+}
+
+const updateCompatibleFFMPlusVersions = edition => {
+    const ffmPlusSelect = $('#ffm-plus-select')
+    ffmPlusSelect.innerHTML = ''
+    ffmPlusSelect.append(new Option('Newest - auto', 'newest'))
+    ffmPlusSelect.append(new Option('Minimal compatible - auto', 'minimal'))
+
+    for (const ffmPlusVersion of Object.values(compatibleFFMPlusVersions[edition])) {
+        ffmPlusSelect.append(new Option(ffmPlusVersion, ffmPlusVersion))
+    }
+}
+
+const updateEditionSupportedModules = edition => {
+    for (const moduleSwitch of $('#modules-selector').querySelectorAll('input[type="checkbox"]')) {
+        const module = moduleSwitch.dataset.module
+        if (modulesAvailableInEditions[edition].has(module)) {
+            moduleSwitch.disabled = false
+        } else {
+            moduleSwitch.disabled = true
+            moduleSwitch.checked = false
+        }
+    }
+}
+
+const generateCode = () => {
+    let edition = $('#edition-select').value
+    if (edition === 'newest') {
+        edition = metadata.editions[0][0]
+    }
+
+    let ffmPlusVersion = $('#ffm-plus-select').value
+    if (ffmPlusVersion === 'newest') {
+        ffmPlusVersion = metadata.ffmPlus.versions[0]
+    } else if (ffmPlusVersion === 'minimal') {
+        ffmPlusVersion = metadata.ffmPlus.encapsulationEditionUseMinVersion[edition]
+    }
+
+    const modules = [...$('#modules-selector').querySelectorAll('input[type="checkbox"]')]
+        .filter(input => input.checked)
+        .map(input => input.dataset.module)
+    const generationMode = $('#tabs').querySelector('.current').getAttribute('value')
+
+    let code
+    switch (generationMode) {
+        case 'maven':
+            code = generateMavenCode(edition, ffmPlusVersion, modules)
+            break
+        case 'gradle-kotlin':
+            code = generateGradleKotlinCode(edition, ffmPlusVersion, modules)
+            break
+        case 'gradle':
+            code = generateGradleCode(edition, ffmPlusVersion, modules)
+            break
+        case 'vmoptions':
+            code = generateVMOptionsCode(edition, ffmPlusVersion, modules)
+            break
+        case 'manifest':
+            code = generateManifestCode(edition, ffmPlusVersion, modules)
+            break
+        default:
+            code = 'Unknown generation mode'
+    }
+
+    $('#generated-content').innerText = code
+}
+
+const generateMavenCode = (edition, ffmPlusVersion, modules) => {
+    const editionDescription = editionDescriptions[edition]
+    const ffmPlusModule = metadata.ffmPlus.module
+    const ffmPlusVersionDescription = `ffm-plus ${ffmPlusVersion} (${metadata.ffmPlus.encapsulationEditionUseMinVersion[edition]})`
+
+    let code = String.raw`
+<dependency>
+    <groupId>club.doki7</groupId>
+    <artifactId>ffm-plus</artifactId>
+    <version>${ffmPlusVersion}</version>
+    <scope>compile</scope>
+</dependency>`
+
+    for (const module of modules) {
+        const moduleData = metadata.modules.find(m => m.module === module)
+            if (moduleData) {
+                code += String.raw`
+<dependency>
+    <groupId>club.doki7</groupId>
+    <artifactId>${moduleData.module}</artifactId>
+    <version>${edition}</version>
+    <scope>compile</scope>
+</dependency>`
+            }
+    }
+
+    return code.trim()
+}
+
+document.addEventListener('DOMContentLoaded', main)
+
+const onDetailedDisplayChange = () => {
     const isChecked = $('#detailed-display-switch').checked
     if (isChecked) {
         $('#runtime-style-stub').innerText = '.details { display: block; }'
@@ -412,25 +521,37 @@ const changeDetailedDisplay = () => {
     }
 }
 
-document.addEventListener('DOMContentLoaded', main)
+const onEditionChange = () => {
+    let edition = $('#edition-select').value
+    if (edition === 'newest') {
+        edition = metadata.editions[0][0]
+    }
+
+    const editionChangelog = $('#edition-changelog')
+    editionChangelog.href = `https://github.com/club-doki7/vulkan4j/releases/tag/v${edition}`
+    editionChangelog.innerText = `Edition ${edition} release notes`
+
+    updateCompatibleFFMPlusVersions(edition)
+    updateEditionSupportedModules(edition)
+    updateReleaseNotes(edition)
+
+    generateCode()
+}
         </script>
     </head>
     <body>
         <div id="options">
             <b class="card-title">Options</b>
             <div>
-                <input type="checkbox" id="detailed-display-switch" onchange="changeDetailedDisplay()">Show detailed descriptions</input>
+                <input type="checkbox" id="detailed-display-switch" onchange="onDetailedDisplayChange()">Show detailed descriptions</input>
             </div>
             <div id="version-selector">
                     <span>Edition:</span>
-                    <select id="edition-select">
+                    <select id="edition-select" onchange="onEditionChange()">
                         <option value="newest">Newest - auto</option>
                     </select>
                     <span>ffm-plus version:</span>
-                    <select id="ffm-plus-select">
-                        <option value="newest">Newest - auto</option>
-                        <option value="minimal">Minimal compatible - auto</option>
-                    </select>
+                    <select id="ffm-plus-select" onchange="generateCode()"></select>
             </div>
             <a id="edition-changelog"></a>
             <b class="card-title">Modules</b>
@@ -439,13 +560,13 @@ document.addEventListener('DOMContentLoaded', main)
         </div>
         <div id="generated">
             <div id="tabs">
-                <div class="current">Maven</div>
-                <div>Gradle (Kotlin)</div>
-                <div>Gradle (Groovy)</div>
-                <div>VM Options</div>
-                <div>Manifest</div>
+                <div class="current" value="maven">Maven</div>
+                <div value="gradle-kotlin">Gradle (Kotlin)</div>
+                <div value="gradle">Gradle (Groovy)</div>
+                <div value="vmoptions">VM Options</div>
+                <div value="manifest">Manifest</div>
             </div>
-            <div id="generated-content"></div>
+            <pre id="generated-content"></pre>
         </div>
     </body>
 </html>
