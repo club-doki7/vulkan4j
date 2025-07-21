@@ -390,8 +390,8 @@ const main = () => {
 
         const minimalCompatibleFFMPlusVersion = metadata.ffmPlus.encapsulationEditionUseMinVersion[edition]
         const minimalCompatibleFFMPlusVersionIndex = metadata.ffmPlus.versions.indexOf(minimalCompatibleFFMPlusVersion)
-        const cmpatibleFFMPlusVersions = metadata.ffmPlus.versions.slice(0, minimalCompatibleFFMPlusVersionIndex + 1)
-        compatibleFFMPlusVersions[edition] = cmpatibleFFMPlusVersions
+        const compatibleFFMPlusVersions = metadata.ffmPlus.versions.slice(0, minimalCompatibleFFMPlusVersionIndex + 1)
+        compatibleFFMPlusVersions[edition] = compatibleFFMPlusVersions
 
         $('#edition-select').append(new Option(edition, edition))
         editionDescriptions[edition] = description
