@@ -154,6 +154,7 @@ body > div {
     align-items: flex-start;
     border: 1px solid var(--border-color);
     padding: 0.5em;
+    flex: 1 1 auto;
     min-height: 0px;
     max-height: 100%;
     overflow: auto;
@@ -201,7 +202,7 @@ body > div {
     overflow: auto;
     margin: 0;
     margin-top: -1px;
-    padding: 0.5em;
+    padding: 0.75em;
     background-color: var(--detail-background-color);
     border: 1px solid var(--border-color);
     user-select: text;
@@ -448,14 +449,10 @@ const main = () => {
     onEditionChange()
 }
 
-const updateReleaseNotes = edition => {
-    const editionChangelog = $('#edition-changelog')
-}
-
 const updateCompatibleFFMPlusVersions = edition => {
     const ffmPlusSelect = $('#ffm-plus-select')
     ffmPlusSelect.innerHTML = ''
-    ffmPlusSelect.append(new Option('Newest - auto', 'newest'))
+    ffmPlusSelect.append(new Option('Latest - auto', 'newest'))
     ffmPlusSelect.append(new Option('Minimal compatible - auto', 'minimal'))
 
     for (const ffmPlusVersion of Object.values(compatibleFFMPlusVersions[edition])) {
@@ -473,6 +470,12 @@ const updateEditionSupportedModules = edition => {
             moduleSwitch.checked = false
         }
     }
+}
+
+const updateReleaseNotes = edition => {
+    const editionChangelog = $('#edition-changelog')
+    editionChangelog.href = `https://github.com/club-doki7/vulkan4j/releases/tag/v${edition}`
+    editionChangelog.innerText = `Edition ${edition} release notes`
 }
 
 const generateCode = () => {
@@ -646,10 +649,6 @@ const onEditionChange = () => {
         edition = metadata.editions[0][0]
     }
 
-    const editionChangelog = $('#edition-changelog')
-    editionChangelog.href = `https://github.com/club-doki7/vulkan4j/releases/tag/v${edition}`
-    editionChangelog.innerText = `Edition ${edition} release notes`
-
     updateCompatibleFFMPlusVersions(edition)
     updateEditionSupportedModules(edition)
     updateReleaseNotes(edition)
@@ -675,17 +674,19 @@ const onTabClicked = event => {
                 <input type="checkbox" id="detailed-display-switch" onchange="onDetailedDisplayChange()" />Show detailed descriptions
             </label>
             <div id="version-selector">
-                    <span>Edition:</span>
-                    <select id="edition-select" onchange="onEditionChange()">
-                        <option value="newest">Newest - auto</option>
-                    </select>
-                    <span>ffm-plus version:</span>
-                    <select id="ffm-plus-select" onchange="generateCode()"></select>
+                <b>Edition:</b>
+                <select id="edition-select" onchange="onEditionChange()">
+                    <option value="newest">Latest - auto</option>
+                </select>
+                <b>ffm-plus version:</b>
+                <select id="ffm-plus-select" onchange="generateCode()"></select>
             </div>
             <a id="edition-changelog"></a>
+
             <b class="card-title">Modules</b>
             <div id="modules-selector">
             </div>
+            <span><b>Note:</b> Currently vulkan4j does <b>NOT</b> provide bundled native binaries, you need to setup them on yourself.</span>
         </div>
         <div id="generated">
             <div id="tabs">
