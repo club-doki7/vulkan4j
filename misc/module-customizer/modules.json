@@ -1,0 +1,111 @@
+{
+    "editions": {
+        "0.3.0": "Fresh start, code generator rewrite",
+        "0.3.1": "Bugfixes",
+        "0.3.2": "varargs variants of write series functions, set method chaining, LWJGL-alike set methods for structure members, access constants via command wrapper classes",
+        "0.3.3": "Bugfixes",
+        "0.3.4": "Bugfixes",
+        "0.4.0": "Library loading enhancements",
+        "0.4.1": "Collection<T> variants of allocate/write series functions, LWGJL-alike set methods for structure array fields, C-style null-terminated string utilites",
+        "0.4.2": "Full wchar_t support, bugfixes to library loading mechanism",
+        "0.4.3": "Automatic function pointer auto-wrapping",
+        "0.4.4": "Automatic nested structure initialization"
+    },
+    "ffm-plus": {
+        "module": "ffm-plus",
+        "versions": [
+            "0.2.0",
+            "0.2.1",
+            "0.2.2",
+            "0.2.3",
+            "0.2.4",
+            "0.2.5",
+            "0.2.6",
+            "0.2.7"
+        ],
+        "encapsulationEditionUseMinVersion": {
+            "0.3.0": "0.2.0",
+            "0.3.1": "0.2.0",
+            "0.3.2": "0.2.1",
+            "0.3.3": "0.2.1",
+            "0.3.4": "0.2.2",
+            "0.4.0": "0.2.4",
+            "0.4.1": "0.2.5",
+            "0.4.2": "0.2.6",
+            "0.4.3": "0.2.6",
+            "0.4.4": "0.2.7"
+        }
+    },
+    "modules": [
+        {
+            "name": "Vulkan",
+            "module": "vulkan",
+            "since": "0.3.0",
+            "description": "Vulkan is a new generation graphics and compute API that provides high-efficiency, cross-platform access to modern GPUs used in a wide variety of devices from PCs and consoles to mobile phones and embedded platforms."
+        },
+        {
+            "name": "Vulkan Memory Allocator",
+            "module": "vma",
+            "since": "0.3.0",
+            "description": "Vulkan Memory Allocator (VMA) is an easy to integrate library that help game developers to manage memory allocations and resource creation."
+        },
+        {
+            "name": "GLFW",
+            "module": "glfw",
+            "since": "0.3.0",
+            "description": "GLFW is an Open Source, multi-platform library for OpenGL, OpenGL ES and Vulkan development on the desktop. It provides a simple API for creating windows, contexts and surfaces, receiving input and events."
+        },
+        {
+            "name": "OpenGL",
+            "module": "opengl",
+            "since": "0.3.2",
+            "description": "The industry's foundation for high performance graphics, from games to virtual reality, mobile phones to supercomputers."
+        },
+        {
+            "name": "OpenAL",
+            "module": "openal",
+            "since": "0.3.2",
+            "description": "OpenAL is a cross-platform 3D audio API appropriate for use with gaming applications and many other types of audio applications."
+        },
+        {
+            "name": "STB",
+            "module": "stb",
+            "since": "0.3.4",
+            "description": "STB is a collection of single-file public domain libraries for C/C++ that provide various utilities such as image loading, font rendering, and more."
+        },
+        {
+            "name": "OpenCL",
+            "module": "opencl",
+            "since": "0.4.4",
+            "description": "OpenCL is the ultimate standard for cross-platform parallel programming on any hardware."
+        },
+        {
+            "name": "OpenGL ES 2.0 Only",
+            "module": "gles2",
+            "since": "0.3.0",
+            "description": "OpenGL ES is royalty-free, cross-platform API for full-function 2D and 3D graphics on embedded systems - including consoles, phones, appliances and vehicles. It consists of well-defined subsets of desktop OpenGL, creating a flexible and powerful low-level interface between software and graphics acceleration.",
+            "status": "obsolete"
+        },
+        {
+            "name": "SDL3",
+            "module": "sdl3",
+            "version": "0.3.4-sdl3-alpha1",
+            "description": "Simple DirectMedia Layer is a cross-platform development library designed to provide low level access to audio, keyboard, mouse, joystick, and graphics hardware via OpenGL and Direct3D.",
+            "status": "experimental"
+        },
+        {
+            "name": "OpenXR",
+            "module": "openxr",
+            "since": "0.4.1",
+            "description": "OpenXR is a royalty-free, open standard that provides a common set of APIs for developing XR applications that run across a wide range of AR and VR devices.",
+            "status": "experimental"
+        },
+        {
+            "name": "WebGPU Native",
+            "module": "webgpu",
+            "since": "0.4.2",
+            "description": "WebGPU is an API that exposes the capabilities of GPU hardware for the Web.",
+            "status": "experimental"
+        }
+    ]
+}
