@@ -552,15 +552,15 @@ const generateMavenCode = (edition, ffmPlusVersion, modules) => {
 
     let code = `
 <properties>
-    <club.doki7.vulkan4j.edition>${edition}</club.doki7.vulkan4j.edition>
-    <club.doki7.ffm-plus.version>${ffmPlusVersion}</club.doki7.ffm-plus.version>
+    <vulkan4j.edition>${edition}</vulkan4j.edition>
+    <ffm-plus.version>${ffmPlusVersion}</ffm-plus.version>
 </properties>
 
 <dependencies>
     <dependency>
         <groupId>club.doki7</groupId>
         <artifactId>ffm-plus</artifactId>
-        <version>\${club.doki7.ffm-plus.version}</version>
+        <version>\${ffm-plus.version}</version>
         <scope>compile</scope>
     </dependency>`
 
@@ -571,7 +571,7 @@ const generateMavenCode = (edition, ffmPlusVersion, modules) => {
     <dependency>
         <groupId>club.doki7</groupId>
         <artifactId>${moduleData.module}</artifactId>
-        <version>\${club.doki7.vulkan4j.edition}</version>
+        <version>\${vulkan4j.edition}</version>
         <scope>compile</scope>
     </dependency>`
             }
@@ -588,17 +588,17 @@ repositories {
     mavenCentral()
 }
 
-val clubDoki7Vulkan4jEdition = "${edition}"
-val clubDoki7FfmPlusVersion = "${ffmPlusVersion}"
+val vulkan4jEdition = "${edition}"
+val ffmPlusVersion = "${ffmPlusVersion}"
 
 dependencies {
-    implementation("club.doki7:ffm-plus:$clubDoki7FfmPlusVersion")
+    implementation("club.doki7:ffm-plus:$ffmPlusVersion")
 `
 
     for (const module of modules) {
         const moduleData = metadata.modules.find(m => m.module === module)
         if (moduleData) {
-            code += `    implementation("club.doki7:${moduleData.module}:$clubDoki7Vulkan4jEdition")\n`
+            code += `    implementation("club.doki7:${moduleData.module}:$vulkan4jEdition")\n`
         }
     }
     code += '}'
@@ -611,16 +611,16 @@ repositories {
     mavenCentral()
 }
 
-def clubDoki7Vulkan4jEdition = '${edition}'
-def clubDoki7FfmPlusVersion = '${ffmPlusVersion}'
+def vulkan4jEdition = '${edition}'
+def ffmPlusVersion = '${ffmPlusVersion}'
 
 dependencies {
-    implementation 'club.doki7:ffm-plus:$clubDoki7FfmPlusVersion'
+    implementation 'club.doki7:ffm-plus:$ffmPlusVersion'
 `
     for (const module of modules) {
         const moduleData = metadata.modules.find(m => m.module === module)
         if (moduleData) {
-            code += `    implementation 'club.doki7:${moduleData.module}:$clubDoki7Vulkan4jEdition'\n`
+            code += `    implementation 'club.doki7:${moduleData.module}:$vulkan4jEdition'\n`
         }
     }
     code += '}'
