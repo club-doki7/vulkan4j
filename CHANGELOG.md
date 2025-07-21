@@ -53,7 +53,7 @@ Upgrade wrapper modules to v0.4.3.
     MemorySegment segment = Linker.nativeLinker().upcallStub(...);
     library.commandThatUsesFunctionPointer(segment);
     ```
-  
+
     After:
 
     ```java

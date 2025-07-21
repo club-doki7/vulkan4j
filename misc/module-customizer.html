@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Module Customizer</title>
+        <style id="color-theme">
+/* 取材自 GitHub Light/Dark Colorblind 颜色主题，使用 Gemini-2.5 Pro 自动生成 */
+:root {
+    /* 背景颜色 */
+    --body-background-color: #ffffff; /* editor.background */
+    --section-background-color: #f6f8fa; /* panel.background or sideBar.background */
+    --detail-background-color: #f6f8fa; /* Similar to section */
+    --navbar-background-color: #e6e8ea; /* editorGroupHeader.tabsBackground or sideBar.background */
+    --subnav-background-color: #e6e8ea; /* Similar to navbar, or for table headers */
+    --selected-background-color: #0969da; /* badge.background or textLink.foreground (used as bg) */
+    --even-row-color: #f6f8fa; /* Slightly off-white, like section backgrounds */
+    --odd-row-color: #ffffff; /* editor.background, for alternating rows */
+
+    /* 文本颜色 */
+    --body-text-color: #24292f; /* foreground or editor.foreground */
+    --block-text-color: #24292f; /* foreground */
+    --navbar-text-color: #57606a; /* tab.inactiveForeground or titleBar.activeForeground */
+    --selected-text-color: #ffffff; /* button.foreground (white text on blue background) */
+    --selected-link-color: #ffffff; /* Assuming white link on selected blue background */
+    --title-color: #24292f; /* settings.headerForeground or main foreground */
+    --link-color: #0969da; /* textLink.foreground */
+    --toc-link-color: #0969da; /* textLink.foreground */
+    --link-color-active: #0969da; /* textLink.activeForeground */
+
+    /* 特定功能颜色 */
+    --snippet-background-color: #afb8c133; /* textCodeBlock.background. Note: includes alpha. Solid: #f6f8fa */
+    --snippet-text-color: #57606a; /* textPreformat.foreground */
+    --snippet-highlight-color: #0969da; /* list.highlightForeground (for highlighted text) */
+    --border-color: #d0d7de; /* panel.border or textBlockQuote.border */
+    --table-border-color: #d0d7de; /* panel.border */
+    --search-input-background-color: #ffffff; /* input.background */
+    --search-input-text-color: #24292f; /* input.foreground */
+    --search-input-placeholder-color: #6e7781; /* input.placeholderForeground */
+    --search-tag-highlight-color: #bf8700; /* editor.findMatchBackground (background for search tags) */
+    --copy-icon-brightness: 1.0; /* Assume 1.0 is normal. GitHub icon.foreground is #57606a, suitable for light theme */
+    --copy-button-background-color-active: #0969da; /* button.hoverBackground */
+    --invalid-tag-background-color: #b35900; /* errorForeground, used as background for emphasis */
+    --invalid-tag-text-color: #ffffff; /* White text for contrast on the orange error background */
+}
+
+@media(prefers-color-scheme: dark) {
+    :root {
+        /* 背景颜色 */
+        --body-background-color: #0d1117; /* editor.background */
+        --section-background-color: #161b22; /* editorWidget.background or panel.background (darker: #010409) */
+        --detail-background-color: #161b22; /* Similar to section */
+        --navbar-background-color: #010409; /* editorGroupHeader.tabsBackground or sideBar.background */
+        --subnav-background-color: #010409; /* editorGroupHeader.tabsBackground or table header-like */
+        --selected-background-color: #1f6feb; /* button.background or list.activeSelectionBackground (greyer: #6e768166) */
+        --even-row-color: #161b22; /* A slightly different dark shade, like editorWidget.background */
+        --odd-row-color: #0d1117; /* editor.background, for alternating rows */
+
+        /* 文本颜色 */
+        --body-text-color: #c9d1d9; /* foreground or editor.foreground */
+        --block-text-color: #c9d1d9; /* foreground */
+        --navbar-text-color: #8b949e; /* tab.inactiveForeground or titleBar.activeForeground */
+        --selected-text-color: #ffffff; /* button.foreground (on a blue background) */
+        --selected-link-color: #ffffff; /* Assuming white link on selected blue background for contrast */
+        --title-color: #c9d1d9; /* settings.headerForeground or main foreground */
+        --link-color: #58a6ff; /* textLink.foreground */
+        --toc-link-color: #58a6ff; /* textLink.foreground */
+        --link-color-active: #58a6ff; /* textLink.activeForeground */
+
+        /* 特定功能颜色 */
+        --snippet-background-color: #6e768166; /* textCodeBlock.background or textPreformat.background */
+        --snippet-text-color: #8b949e; /* textPreformat.foreground */
+        --snippet-highlight-color: #58a6ff; /* list.highlightForeground (for highlighted text, not background) */
+        --border-color: #30363d; /* panel.border or textBlockQuote.border */
+        --table-border-color: #30363d; /* panel.border */
+        --search-input-background-color: #0d1117; /* input.background */
+        --search-input-text-color: #c9d1d9; /* input.foreground */
+        --search-input-placeholder-color: #6e7681; /* input.placeholderForeground */
+        --search-tag-highlight-color: #9e6a03; /* editor.findMatchBackground (background for search tags) */
+        --copy-icon-brightness: 1.2; /* Assuming a multiplier for filter: brightness(). 1 is normal. GitHub icons are #8b949e, general text #c9d1d9, so slightly brighter. */
+        --copy-button-background-color-active: #388bfd; /* button.hoverBackground */
+        --invalid-tag-background-color: #d47616; /* errorForeground, used as background */
+        --invalid-tag-text-color: #ffffff; /* For contrast against an orange/error background */
+    }
+}
+        </style>
+        <style id="main-style">
+* {
+    font-family: 'Fira Code', 'Fira Sans Mono', 'Consolas', 'Lucida Console', 'Courier New', monospace;
+    font-size: 12pt;
+    user-select: none;
+
+    scrollbar-color: var(--body-text-color) var(--section-background-color);
+    scrollbar-width: thin;
+}
+
+a {
+    color: var(--link-color);
+}
+
+select {
+    color: var(--search-input-text-color);
+    background-color: var(--search-input-background-color);
+}
+
+label {
+    display: flex;
+    cursor: pointer;
+}
+
+body {
+    background-color: var(--body-background-color);
+    color: var(--body-text-color);
+
+    width: calc(100vw - 2em);
+    height: calc(100vh - 2em);
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1em;
+    padding: 1em;
+}
+
+body > div {
+    flex: 1 0 auto;
+    min-width: 0px;
+    min-height: 0px;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#options {
+    border: 1px solid var(--border-color);
+    padding: 0.75em;
+    row-gap: 1em;
+    background-color: var(--section-background-color);
+    margin-top: 1px;
+}
+
+.card-title {
+    font-size: 14pt;
+}
+
+#version-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 0.5em;
+}
+
+#modules-selector {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5em;
+    align-items: flex-start;
+    border: 1px solid var(--border-color);
+    padding: 0.5em;
+    flex: 1 1 auto;
+    min-height: 0px;
+    max-height: 100%;
+    overflow: auto;
+}
+
+.module-details {
+    font-size: 10pt;
+    margin-top: 0.25em;
+}
+
+.module-switch-container {
+    display: flex;
+    align-items: flex-start;
+}
+
+#tabs {
+    display: flex;
+    flex-direction: row;
+}
+
+#tabs > div {
+    background-color: var(--navbar-background-color);
+    color: var(--navbar-text-color);
+    border: 1px solid var(--border-color);
+    border-right: none;
+    padding: 0.5em;
+    cursor: pointer;
+    z-index: 10;
+}
+
+#tabs > div:last-child {
+    border-right: 1px solid var(--border-color);
+}
+
+#tabs > div.current {
+    background-color: var(--selected-background-color);
+    border-bottom: 1px solid var(--selected-background-color);
+    color: var(--selected-text-color);
+}
+
+#generated-content {
+    flex: 1 1 auto;
+    min-height: 0px;
+    max-height: 100%;
+    overflow: auto;
+    margin: 0;
+    margin-top: -1px;
+    padding: 0.75em;
+    background-color: var(--detail-background-color);
+    border: 1px solid var(--border-color);
+    user-select: text;
+    position: relative;
+}
+
+.allow-wrap {
+    text-wrap: break-word;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+#copy-all {
+    position: absolute;
+    right: 0.5em;
+    top: 0.5em;
+    background-color: var(--detail-background-color);
+    border: 1px solid var(--border-color);
+    padding: 0.5em;
+    cursor: pointer;
+    display: flex;
+}
+
+#copy-all:hover {
+    background-color: var(--selected-background-color);
+    color: var(--selected-text-color);
+}
+        </style>
+        <style id="runtime-style-stub">
+        </style>
+
+        <script id="modules-metadata" type="application/json">
+{
+    "editions": [
+        ["0.4.4", "Automatic nested structure initialization"],
+        ["0.4.3", "Automatic function pointer auto-wrapping"],
+        ["0.4.2", "Full wchar_t support, bugfixes to library loading mechanism"],
+        ["0.4.1", "Collection<T> variants of allocate/write series functions, LWGJL-alike set methods for structure array fields, C-style null-terminated string utilites"],
+        ["0.4.0", "Library loading enhancements"],
+        ["0.3.4", "Bugfixes"],
+        ["0.3.3", "Bugfixes"],
+        ["0.3.2", "varargs variants of write series functions, set method chaining, LWJGL-alike set methods for structure members, access constants via command wrapper classes"],
+        ["0.3.1", "Bugfixes"],
+        ["0.3.0", "Fresh start, code generator rewrite"]
+    ],
+    "ffmPlus": {
+        "module": "ffm-plus",
+        "versions": [
+            "0.2.7",
+            "0.2.6",
+            "0.2.5",
+            "0.2.4",
+            "0.2.3",
+            "0.2.2",
+            "0.2.1",
+            "0.2.0"
+        ],
+        "encapsulationEditionUseMinVersion": {
+            "0.4.4": "0.2.7",
+            "0.4.3": "0.2.6",
+            "0.4.2": "0.2.6",
+            "0.4.1": "0.2.5",
+            "0.4.0": "0.2.4",
+            "0.3.4": "0.2.2",
+            "0.3.3": "0.2.1",
+            "0.3.2": "0.2.1",
+            "0.3.1": "0.2.0",
+            "0.3.0": "0.2.0"
+        }
+    },
+    "modules": [
+        {
+            "name": "Vulkan",
+            "module": "vulkan",
+            "since": "0.3.0",
+            "description": "Vulkan is a new generation graphics and compute API that provides high-efficiency, cross-platform access to modern GPUs used in a wide variety of devices from PCs and consoles to mobile phones and embedded platforms."
+        },
+        {
+            "name": "Vulkan Memory Allocator",
+            "module": "vma",
+            "since": "0.3.0",
+            "description": "Vulkan Memory Allocator (VMA) is an easy to integrate library that help game developers to manage memory allocations and resource creation."
+        },
+        {
+            "name": "GLFW",
+            "module": "glfw",
+            "since": "0.3.0",
+            "description": "GLFW is an Open Source, multi-platform library for OpenGL, OpenGL ES and Vulkan development on the desktop. It provides a simple API for creating windows, contexts and surfaces, receiving input and events."
+        },
+        {
+            "name": "OpenGL",
+            "module": "opengl",
+            "since": "0.3.2",
+            "description": "The industry's foundation for high performance graphics, from games to virtual reality, mobile phones to supercomputers."
+        },
+        {
+            "name": "OpenAL",
+            "module": "openal",
+            "since": "0.3.2",
+            "description": "OpenAL is a cross-platform 3D audio API appropriate for use with gaming applications and many other types of audio applications."
+        },
+        {
+            "name": "STB",
+            "module": "stb",
+            "since": "0.3.4",
+            "description": "STB is a collection of single-file public domain libraries for C/C++ that provide various utilities such as image loading, font rendering, and more."
+        },
+        {
+            "name": "Google Shaderc",
+            "module": "shaderc",
+            "since": "0.3.4",
+            "description": "A collection of tools, libraries and tests for shader compilation."
+        },
+        {
+            "name": "OpenCL",
+            "module": "opencl",
+            "since": "0.4.4",
+            "description": "OpenCL is the ultimate standard for cross-platform parallel programming on any hardware."
+        },
+        {
+            "name": "OpenGL ES 2.0 Only",
+            "module": "gles2",
+            "since": "0.3.0",
+            "description": "OpenGL ES is royalty-free, cross-platform API for full-function 2D and 3D graphics on embedded systems - including consoles, phones, appliances and vehicles. It consists of well-defined subsets of desktop OpenGL, creating a flexible and powerful low-level interface between software and graphics acceleration.",
+            "status": "obsolete"
+        },
+        {
+            "name": "OpenXR",
+            "module": "openxr",
+            "since": "0.4.1",
+            "description": "OpenXR is a royalty-free, open standard that provides a common set of APIs for developing XR applications that run across a wide range of AR and VR devices.",
+            "status": "experimental"
+        },
+        {
+            "name": "WebGPU Native",
+            "module": "webgpu",
+            "since": "0.4.2",
+            "description": "WebGPU is an API that exposes the capabilities of GPU hardware for the Web.",
+            "status": "experimental"
+        }
+    ]
+}
+        </script>
+
+        <script id="coreutils">
+const $ = element => document.querySelector(element)
+
+const semVerLessThanOrEqualTo = (a, b) => {
+    const aParts = a.split('.').map(Number)
+    const bParts = b.split('.').map(Number)
+    const maxLength = Math.max(aParts.length, bParts.length)
+
+    for (let i = 0; i < maxLength; i++) {
+        const aPart = aParts[i] || 0
+        const bPart = bParts[i] || 0
+
+        if (aPart < bPart) {
+            return true
+        } else if (aPart > bPart) {
+            return false
+        }
+    }
+    return true
+}
+        </script>
+        <script id="main-script">
+const metadata = JSON.parse($('#modules-metadata').innerText)
+const modules = {}
+const editionDescriptions = {}
+const modulesAvailableInEditions = {}
+const compatibleFFMPlusVersions = {}
+
+const svgCopy = '<svg aria-hidden="true" focusable="false" class="octicon octicon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align: text-bottom;"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>'
+const svgOk = '<svg aria-hidden="true" focusable="false" class="octicon octicon-check" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align: text-bottom;"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path></svg>'
+
+const main = () => {
+    for (const [edition, description] of metadata.editions) {
+        modulesAvailableInEditions[edition] = new Set()
+        for (const module of metadata.modules) {
+            if (module.since && semVerLessThanOrEqualTo(module.since, edition)) {
+                modulesAvailableInEditions[edition].add(module.module)
+            }
+        }
+
+        const minimalCompatibleFFMPlusVersion = metadata.ffmPlus.encapsulationEditionUseMinVersion[edition]
+        const minimalCompatibleFFMPlusVersionIndex = metadata.ffmPlus.versions.indexOf(minimalCompatibleFFMPlusVersion)
+        const compatibleFFMPlusVersionsWithThisEdition = metadata.ffmPlus.versions.slice(0, minimalCompatibleFFMPlusVersionIndex + 1)
+        compatibleFFMPlusVersions[edition] = compatibleFFMPlusVersionsWithThisEdition
+
+        $('#edition-select').append(new Option(edition, edition))
+        editionDescriptions[edition] = description
+    }
+
+    const newestEdition = metadata.editions[0][0]
+    const newestFFMPlusVersion = metadata.ffmPlus.versions[0]
+
+    let prevStatus = 'unset'
+    for (const module of metadata.modules) {
+        modules[module.module] = module
+
+        const moduleStatus = module.status
+        if (moduleStatus !== prevStatus) {
+            const moduleStateElement = document.createElement('b')
+            moduleStateElement.innerText = moduleStatus
+                ? (moduleStatus.charAt(0).toUpperCase() + moduleStatus.slice(1))
+                : 'Supported'
+            $('#modules-selector').appendChild(moduleStateElement)
+            prevStatus = moduleStatus
+        }
+
+        const moduleSwitch = document.createElement('input')
+        moduleSwitch.type = 'checkbox'
+        moduleSwitch.id = `module-${module.module}`
+        moduleSwitch.dataset.module = module.module
+        moduleSwitch.onchange = generateCode
+
+        const moduleName = document.createElement('label')
+        moduleName.innerText = module.name
+        moduleName.setAttribute('for', moduleSwitch.id)
+
+        const moduleDetails = document.createElement('i')
+        moduleDetails.className = 'details module-details'
+        moduleDetails.innerText = module.description
+
+        const moduleInfo = document.createElement('div')
+        moduleInfo.className = 'module-info'
+        moduleInfo.appendChild(moduleName)
+        moduleInfo.appendChild(moduleDetails)
+
+        const moduleSwitchContainer = document.createElement('div')
+        moduleSwitchContainer.className = 'module-switch-container'
+        moduleSwitchContainer.appendChild(moduleSwitch)
+        moduleSwitchContainer.appendChild(moduleInfo)
+
+        $('#modules-selector').appendChild(moduleSwitchContainer)
+    }
+
+    $('#tabs').querySelectorAll('div').forEach(tab => {
+        tab.addEventListener('click', onTabClicked)
+    })
+
+    onDetailedDisplayChange()
+    onEditionChange()
+}
+
+const updateCompatibleFFMPlusVersions = edition => {
+    const ffmPlusSelect = $('#ffm-plus-select')
+    ffmPlusSelect.innerHTML = ''
+    ffmPlusSelect.append(new Option('Latest - auto', 'newest'))
+    ffmPlusSelect.append(new Option('Minimal compatible - auto', 'minimal'))
+
+    console.info(compatibleFFMPlusVersions)
+    for (const ffmPlusVersion of compatibleFFMPlusVersions[edition]) {
+        ffmPlusSelect.append(new Option(ffmPlusVersion, ffmPlusVersion))
+    }
+}
+
+const updateEditionSupportedModules = edition => {
+    for (const moduleSwitch of $('#modules-selector').querySelectorAll('input[type="checkbox"]')) {
+        const module = moduleSwitch.dataset.module
+        if (modulesAvailableInEditions[edition].has(module)) {
+            moduleSwitch.disabled = false
+        } else {
+            moduleSwitch.disabled = true
+            moduleSwitch.checked = false
+        }
+    }
+}
+
+const updateReleaseNotes = edition => {
+    const editionChangelog = $('#edition-changelog')
+    editionChangelog.href = `https://github.com/club-doki7/vulkan4j/releases/tag/v${edition}`
+    editionChangelog.innerText = `Edition ${edition} release notes`
+}
+
+const generateCode = () => {
+    let edition = $('#edition-select').value
+    if (edition === 'newest') {
+        edition = metadata.editions[0][0]
+    }
+
+    let ffmPlusVersion = $('#ffm-plus-select').value
+    if (ffmPlusVersion === 'newest') {
+        ffmPlusVersion = metadata.ffmPlus.versions[0]
+    } else if (ffmPlusVersion === 'minimal') {
+        ffmPlusVersion = metadata.ffmPlus.encapsulationEditionUseMinVersion[edition]
+    }
+
+    const modules = [...$('#modules-selector').querySelectorAll('input[type="checkbox"]')]
+        .filter(input => input.checked)
+        .map(input => input.dataset.module)
+    const generationMode = $('#tabs').querySelector('.current').getAttribute('value')
+
+    let code
+    let allowWrap = false
+    switch (generationMode) {
+        case 'maven':
+            code = generateMavenCode(edition, ffmPlusVersion, modules)
+            break
+        case 'gradle-kotlin':
+            code = generateGradleKotlinCode(edition, ffmPlusVersion, modules)
+            break
+        case 'gradle':
+            code = generateGradleCode(edition, ffmPlusVersion, modules)
+            break
+        case 'vmoptions':
+            code = generateVMOptionsCode(modules)
+            allowWrap = true
+            break
+        case 'manifest':
+            code = generateManifestCode(modules)
+            allowWrap = true
+            break
+        default:
+            code = 'Unknown generation mode'
+    }
+
+    const generatedContent = $('#generated-content')
+    generatedContent.innerText = code
+    if (allowWrap) {
+        generatedContent.classList.add('allow-wrap')
+    } else {
+        generatedContent.classList.remove('allow-wrap')
+    }
+
+    const copyAllButton = document.createElement('span')
+    copyAllButton.id = 'copy-all'
+    copyAllButton.innerHTML = svgCopy
+    copyAllButton.onclick = () => navigator.clipboard
+        .writeText(generatedContent.innerText)
+        .then(() => {
+            copyAllButton.innerHTML = svgOk
+            setTimeout(() => {
+                copyAllButton.innerHTML = svgCopy
+            }, 2000)
+        })
+
+    generatedContent.appendChild(copyAllButton)
+}
+
+const generateMavenCode = (edition, ffmPlusVersion, modules) => {
+    const editionDescription = editionDescriptions[edition]
+    const ffmPlusModule = metadata.ffmPlus.module
+    const ffmPlusVersionDescription = `ffm-plus ${ffmPlusVersion} (${metadata.ffmPlus.encapsulationEditionUseMinVersion[edition]})`
+
+    let code = `
+<properties>
+    <vulkan4j.edition>${edition}</vulkan4j.edition>
+    <ffm-plus.version>${ffmPlusVersion}</ffm-plus.version>
+</properties>
+
+<dependencies>
+    <dependency>
+        <groupId>club.doki7</groupId>
+        <artifactId>ffm-plus</artifactId>
+        <version>\${ffm-plus.version}</version>
+        <scope>compile</scope>
+    </dependency>`
+
+    for (const module of modules) {
+        code += `
+    <dependency>
+        <groupId>club.doki7</groupId>
+        <artifactId>${module}</artifactId>
+        <version>\${vulkan4j.edition}</version>
+        <scope>compile</scope>
+    </dependency>`
+    }
+
+    code += '\n</dependencies>'
+
+    return code.trim()
+}
+
+const generateGradleKotlinCode = (edition, ffmPlusVersion, modules) => {
+    let code = `
+repositories {
+    mavenCentral()
+}
+
+val vulkan4jEdition = "${edition}"
+val ffmPlusVersion = "${ffmPlusVersion}"
+
+dependencies {
+    implementation("club.doki7:ffm-plus:$ffmPlusVersion")
+`
+
+    for (const module of modules) {
+        code += `    implementation("club.doki7:${module}:$vulkan4jEdition")\n`
+    }
+    code += '}'
+    return code.trim()
+}
+
+const generateGradleCode = (edition, ffmPlusVersion, modules) => {
+    let code = `
+repositories {
+    mavenCentral()
+}
+
+def vulkan4jEdition = "${edition}"
+def ffmPlusVersion = "${ffmPlusVersion}"
+
+dependencies {
+    implementation "club.doki7:ffm-plus:$ffmPlusVersion"
+`
+    for (const module of modules) {
+        code += `    implementation "club.doki7:${module}:$vulkan4jEdition"\n`
+    }
+    code += '}'
+    return code.trim()
+}
+
+const generateVMOptionsCode = modules => {
+    let code = '--enable-native-access=club.doki7.ffm'
+    for (const module of modules) {
+        code += `,club.doki7.${module}`
+    }
+    return code.trim()
+}
+
+const generateManifestCode = modules => {
+    let code = 'Enable-Native-Access: club.doki7.ffm'
+    for (const module of modules) {
+        code += `, club.doki7.${module}`
+    }
+    return code.trim()
+}
+
+document.addEventListener('DOMContentLoaded', main)
+
+const onDetailedDisplayChange = () => {
+    const isChecked = $('#detailed-display-switch').checked
+    if (isChecked) {
+        $('#runtime-style-stub').innerText = '.details { display: block; }'
+    } else {
+        $('#runtime-style-stub').innerText = '.details { display: none; }'
+    }
+}
+
+const onEditionChange = () => {
+    let edition = $('#edition-select').value
+    if (edition === 'newest') {
+        edition = metadata.editions[0][0]
+    }
+
+    updateCompatibleFFMPlusVersions(edition)
+    updateEditionSupportedModules(edition)
+    updateReleaseNotes(edition)
+
+    generateCode()
+}
+
+const onTabClicked = event => {
+    if (event.target.classList.contains('current')) {
+        return
+    }
+    $('#tabs').querySelector('.current').classList.remove('current')
+    event.target.classList.add('current')
+
+    generateCode()
+}
+        </script>
+    </head>
+    <body>
+        <div id="options">
+            <b class="card-title">Options</b>
+            <label>
+                <input type="checkbox" id="detailed-display-switch" onchange="onDetailedDisplayChange()" />Show detailed descriptions
+            </label>
+            <div id="version-selector">
+                <b>Edition:</b>
+                <select id="edition-select" onchange="onEditionChange()">
+                    <option value="newest">Latest - auto</option>
+                </select>
+                <b>ffm-plus version:</b>
+                <select id="ffm-plus-select" onchange="generateCode()"></select>
+            </div>
+            <a id="edition-changelog"></a>
+
+            <b class="card-title">Modules</b>
+            <div id="modules-selector">
+            </div>
+            <span><b>Note:</b> Currently vulkan4j does <b>NOT</b> provide bundled native binaries, you need to setup them on yourself.</span>
+        </div>
+        <div id="generated">
+            <div id="tabs">
+                <div class="current" value="maven">Maven</div>
+                <div value="gradle-kotlin">Gradle (Kotlin)</div>
+                <div value="gradle">Gradle (Groovy)</div>
+                <div value="vmoptions">VM Options</div>
+                <div value="manifest">Manifest</div>
+            </div>
+            <pre id="generated-content" class="generated-content"></pre>
+        </div>
+    </body>
+</html>

@@ -56,6 +56,8 @@ jobs:
           cp -r ./tutorial/vulkan-tutorial/images ./website-output/tutorial/
           cp -r ./tutorial/learn-opengl/en/book/* ./website-output/learnopengl/en/
           cp -r ./tutorial/learn-opengl/images ./website-output/learnopengl/
+      - name: Copy module customizer to website directory
+        run: cp -r ./misc/module-customizer.html ./website-output
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

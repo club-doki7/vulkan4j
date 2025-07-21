@@ -4,7 +4,7 @@
 [![Maven Central Version](https://img.shields.io/maven-central/v/club.doki7/vulkan?label=vulkan)](https://repo1.maven.org/maven2/club/doki7/vulkan/)
 [![Maven Central Version](https://img.shields.io/maven-central/v/club.doki7/ffm-plus?label=ffm-plus)](https://repo1.maven.org/maven2/club/doki7/ffm-plus/)
 
-> [Website & JavaDoc](https://vulkan4j.doki7.club) | [Vulkan Tutorial port](https://vulkan4j.doki7.club/tutorial/en/) | [LearnOpenGL port](https://vulkan4j.doki7.club/learnopengl/en/) | [Examples](https://github.com/club-doki7/vulkan4j/tree/master/modules/example/src/main/java/example) | [Discord](https://discord.gg/UsmRvrt4gg)
+> [Website & JavaDoc](https://vulkan4j.doki7.club) | [Module Customizer](https://vulkan4j.doki7.club/module-customizer.html) | [Vulkan Tutorial port](https://vulkan4j.doki7.club/tutorial/en/) | [LearnOpenGL port](https://vulkan4j.doki7.club/learnopengl/en/) | [Examples](https://github.com/club-doki7/vulkan4j/tree/master/modules/example/src/main/java/example) | [Discord](https://discord.gg/UsmRvrt4gg)
 
 *This project is heavily inspired by the [`vulkanalia`](https://github.com/KyleMayes/vulkanalia) crate.*
 
