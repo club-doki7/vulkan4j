@@ -390,8 +390,8 @@ const main = () => {
 
         const minimalCompatibleFFMPlusVersion = metadata.ffmPlus.encapsulationEditionUseMinVersion[edition]
         const minimalCompatibleFFMPlusVersionIndex = metadata.ffmPlus.versions.indexOf(minimalCompatibleFFMPlusVersion)
-        const compatibleFFMPlusVersions = metadata.ffmPlus.versions.slice(0, minimalCompatibleFFMPlusVersionIndex + 1)
-        compatibleFFMPlusVersions[edition] = compatibleFFMPlusVersions
+        const compatibleFFMPlusVersionsWithThisEdition = metadata.ffmPlus.versions.slice(0, minimalCompatibleFFMPlusVersionIndex + 1)
+        compatibleFFMPlusVersions[edition] = compatibleFFMPlusVersionsWithThisEdition
 
         $('#edition-select').append(new Option(edition, edition))
         editionDescriptions[edition] = description
@@ -455,7 +455,8 @@ const updateCompatibleFFMPlusVersions = edition => {
     ffmPlusSelect.append(new Option('Latest - auto', 'newest'))
     ffmPlusSelect.append(new Option('Minimal compatible - auto', 'minimal'))
 
-    for (const ffmPlusVersion of Object.values(compatibleFFMPlusVersions[edition])) {
+    console.info(compatibleFFMPlusVersions)
+    for (const ffmPlusVersion of compatibleFFMPlusVersions[edition]) {
         ffmPlusSelect.append(new Option(ffmPlusVersion, ffmPlusVersion))
     }
 }
