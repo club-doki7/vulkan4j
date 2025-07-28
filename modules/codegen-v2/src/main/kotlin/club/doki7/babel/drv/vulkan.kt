@@ -11,17 +11,17 @@ import club.doki7.babel.codegen.generateStructure
 import club.doki7.babel.codegen.generateStructureInterface
 import club.doki7.babel.extract.vulkan.VulkanRegistryExt
 import club.doki7.babel.extract.vulkan.extractVulkanRegistry
-import club.doki7.babel.registry.Bitmask
-import club.doki7.babel.registry.Command
-import club.doki7.babel.registry.Constant
-import club.doki7.babel.registry.Entity
-import club.doki7.babel.registry.Enumeration
-import club.doki7.babel.registry.FunctionTypedef
-import club.doki7.babel.registry.IdentifierType
-import club.doki7.babel.registry.OpaqueHandleTypedef
-import club.doki7.babel.registry.Registry
-import club.doki7.babel.registry.Structure
-import club.doki7.babel.registry.tryFindIdentifierType
+import club.doki7.sennaar.registry.Bitmask
+import club.doki7.sennaar.registry.Command
+import club.doki7.sennaar.registry.Constant
+import club.doki7.sennaar.registry.Entity
+import club.doki7.sennaar.registry.Enumeration
+import club.doki7.sennaar.registry.FunctionTypedef
+import club.doki7.sennaar.registry.IdentifierType
+import club.doki7.sennaar.registry.OpaqueHandleTypedef
+import club.doki7.sennaar.registry.Registry
+import club.doki7.sennaar.registry.Structure
+import club.doki7.sennaar.registry.tryFindIdentifierType
 import club.doki7.babel.util.render
 import java.io.File
 
@@ -59,7 +59,7 @@ internal fun vulkanMain(): Registry<VulkanRegistryExt> {
             .writeText(render(enumerationDoc))
     }
 
-    for (structure in vulkanRegistry.structures.values) {
+    for (structure in vulkanRegistry.structs.values) {
         val structureInterfaceDoc = generateStructureInterface(structure, codegenOptions)
         File("$packageDir/datatype/I${structure.name}.java")
             .writeText(render(structureInterfaceDoc))

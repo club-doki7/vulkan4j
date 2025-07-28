@@ -13,9 +13,9 @@ import club.doki7.babel.extract.stb.extractSTBImageResizeHeader
 import club.doki7.babel.extract.stb.extractSTBImageWriteHeader
 import club.doki7.babel.extract.stb.extractSTBTrueTypeHeader
 import club.doki7.babel.extract.stb.extractSTBVorbisHeader
-import club.doki7.babel.registry.EmptyMergeable
-import club.doki7.babel.registry.OpaqueHandleTypedef
-import club.doki7.babel.registry.Registry
+import club.doki7.sennaar.registry.EmptyMergeable
+import club.doki7.sennaar.registry.OpaqueHandleTypedef
+import club.doki7.sennaar.registry.Registry
 import club.doki7.babel.util.render
 import club.doki7.babel.util.setupLog
 import java.io.File
@@ -75,7 +75,7 @@ fun main() {
 private fun codegen(
     packageDir: String,
     commandClassName: String,
-    registry: Registry<EmptyMergeable>,
+    registry: Registry,
     codegenOptions: CodegenOptions
 ) {
     val commandsDoc = generateCommandFile(
@@ -103,8 +103,8 @@ private fun codegen(
         }
     }
 
-    if (registry.structures.isNotEmpty()) {
-        for (structure in registry.structures.values) {
+    if (registry.structs.isNotEmpty()) {
+        for (structure in registry.structs.values) {
             val structureInterfaceDoc = generateStructureInterface(structure, codegenOptions)
             File("$packageDir/datatype/I${structure.name}.java").writeText(render(structureInterfaceDoc))
 

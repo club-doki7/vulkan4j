@@ -2,12 +2,16 @@ package club.doki7.babel.extract.gles2
 
 import club.doki7.babel.cdecl.parseType
 import club.doki7.babel.cdecl.toType
-import club.doki7.babel.registry.*
+import club.doki7.sennaar.registry.*
 import club.doki7.babel.util.asSequence
 import club.doki7.babel.util.getAttributeText
 import club.doki7.babel.util.getElementSeq
 import club.doki7.babel.util.parseXML
+import club.doki7.babel.util.putEntityIfAbsent
 import club.doki7.babel.util.query
+import club.doki7.sennaar.Identifier
+import club.doki7.sennaar.cpl.CIntLiteralExpr
+import club.doki7.sennaar.interned
 import org.w3c.dom.Element
 import java.util.logging.Logger
 import kotlin.io.path.Path
@@ -15,7 +19,7 @@ import kotlin.io.path.Path
 private val inputDir = Path("codegen-v2/input")
 internal val log = Logger.getLogger("c.d.b.extract.gles2")
 
-fun extractGLES2Registry(): Registry<EmptyMergeable> {
+fun extractGLES2Registry(): Registry {
     val r = inputDir.resolve("gl.xml")
         .toFile()
         .readText()
@@ -25,7 +29,7 @@ fun extractGLES2Registry(): Registry<EmptyMergeable> {
     return r
 }
 
-private fun Element.extractEntities(): Registry<EmptyMergeable> {
+private fun Element.extractEntities(): Registry {
     val e = this
 
     val allCommands = e.query("commands/command")
@@ -42,30 +46,21 @@ private fun Element.extractEntities(): Registry<EmptyMergeable> {
     for (require in featureElement.getElementSeq(TAG_REQUIRE)) {
         for (commandRequire in require.getElementSeq(TAG_COMMAND)) {
             val name = commandRequire.getAttributeText(ATTR_NAME)!!
-            val command = allCommands[name.intern()]!!
+            val command = allCommands[name.interned()]!!
             commands.putEntityIfAbsent(command)
         }
 
         for (enumRequire in require.getElementSeq(TAG_ENUM)) {
             val name = enumRequire.getAttributeText(ATTR_NAME)!!
-            val constant = allConstants[name.intern()]!!
+            val constant = allConstants[name.interned()]!!
             constants.putEntityIfAbsent(constant)
         }
     }
 
-    return Registry(
-        aliases = mutableMapOf(),
-        bitmasks = mutableMapOf(),
-        constants = constants,
-        commands = commands,
-        enumerations = mutableMapOf(),
-        functionTypedefs = mutableMapOf(),
-        opaqueHandleTypedefs = mutableMapOf(),
-        opaqueTypedefs = mutableMapOf(),
-        structures = mutableMapOf(),
-        unions = mutableMapOf(),
-        ext = EmptyMergeable()
-    )
+    val ret = Registry("gles2")
+    ret.commands = commands
+    ret.constants = constants
+    return ret
 }
 
 private const val ATTR_VALUE = "value"
@@ -86,7 +81,11 @@ private fun extractEnumConstant(e: Element, constants: MutableMap<Identifier, Co
     val name = e.getAttributeText(ATTR_NAME)!!
     val value = e.getAttributeText(ATTR_VALUE)!!
 
-    constants.putEntityIfAbsent(Constant(name, IdentifierType("GLenum"), value))
+    constants.putEntityIfAbsent(Constant(
+        name = name,
+        ty = IdentifierType("GLenum"),
+        expr = CIntLiteralExpr(value)
+    ))
 }
 
 /// endregion constant
@@ -125,8 +124,8 @@ private fun extractCommand(e: Element): Command {
         name = name,
         params = params,
         result = type,
-        successCodes = null,
-        errorCodes = null,
+        successCodes = mutableListOf(),
+        errorCodes = mutableListOf()
     )
 }
 
@@ -135,7 +134,12 @@ private fun extractCommand(e: Element): Command {
  */
 private fun extractParam(e: Element): Param {
     val (name, type) = extractTypeJudgement(e)
-    return Param(name, type, null, null, true)
+    return Param(
+        name = name,
+        ty = type,
+        optional = true,
+        len = null
+    )
 }
 
 /// endregion command

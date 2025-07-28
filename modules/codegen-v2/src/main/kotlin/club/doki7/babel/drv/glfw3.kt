@@ -8,14 +8,14 @@ import club.doki7.babel.codegen.generateHandle
 import club.doki7.babel.codegen.generateStructure
 import club.doki7.babel.codegen.generateStructureInterface
 import club.doki7.babel.extract.glfw3.extractGLFWHeader
-import club.doki7.babel.registry.OpaqueHandleTypedef
-import club.doki7.babel.registry.RegistryBase
+import club.doki7.sennaar.registry.OpaqueHandleTypedef
+import club.doki7.sennaar.registry.Registry
 import club.doki7.babel.util.render
 import java.io.File
 
 private const val packageDir = "glfw/src/main/java/club/doki7/glfw"
 
-fun glfw3Main(vulkanRegistry: RegistryBase, vulkanAdditionalRegistry: RegistryBase) {
+fun glfw3Main(vulkanRegistry: Registry, vulkanAdditionalRegistry: Registry) {
     val registry = extractGLFWHeader()
 
     val codegenOptions = CodegenOptions(
@@ -48,7 +48,7 @@ fun glfw3Main(vulkanRegistry: RegistryBase, vulkanAdditionalRegistry: RegistryBa
     File("$packageDir/GLFW.java")
         .writeText(render(commandsDoc))
 
-    for (structure in registry.structures.values) {
+    for (structure in registry.structs.values) {
         val structureInterfaceDoc = generateStructureInterface(structure, codegenOptions)
         File("$packageDir/datatype/I${structure.name}.java")
             .writeText(render(structureInterfaceDoc))

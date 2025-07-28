@@ -1,16 +1,21 @@
 package club.doki7.babel.extract.webgpu
 
-import club.doki7.babel.registry.IdentifierType
-import club.doki7.babel.registry.Type
-import club.doki7.babel.registry.PointerType
+import club.doki7.sennaar.registry.IdentifierType
+import club.doki7.sennaar.registry.Type
+import club.doki7.sennaar.registry.PointerType
 
 internal fun classifyType(type: String, pointer: String?): Type {
     val baseType = classifyBaseType(type)
     return if (pointer != null) {
         if (baseType is PointerType) {
-            baseType.copy(const = pointer == "immutable")
+            baseType.copy(isConst = pointer == "immutable")
         } else {
-            PointerType(baseType, const = pointer == "immutable")
+            PointerType(
+                baseType,
+                isConst = pointer == "immutable",
+                pointerToOne = false,
+                nullable = true
+            )
         }
     } else {
         baseType
@@ -93,5 +98,5 @@ val specialTypeMap = mapOf(
     "float64_supertype" to IdentifierType("double"),
     "nullable_float32" to IdentifierType("float"),
 
-    "c_void" to PointerType(IdentifierType("void")),
+    "c_void" to PointerType(IdentifierType("void"), isConst = false, pointerToOne = false, nullable = true)
 )

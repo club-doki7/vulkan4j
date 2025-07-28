@@ -1,12 +1,12 @@
 package club.doki7.babel.extract.sdl3
 
-import club.doki7.babel.registry.Constant
-import club.doki7.babel.registry.IdentifierType
-import club.doki7.babel.registry.RegistryBase
-import club.doki7.babel.registry.intern
+import club.doki7.sennaar.registry.Constant
+import club.doki7.sennaar.registry.IdentifierType
+import club.doki7.sennaar.registry.Registry
+import club.doki7.sennaar.interned
 import club.doki7.babel.util.parseDecOrHex
 
-internal fun postprocessConstant(registry: RegistryBase, constant: Constant): Constant {
+internal fun postprocessConstant(registry: Registry, constant: Constant): Constant {
     val constantValue = constant.expr
     val (type, finalValue) = if (constantValue.startsWith('"') && constantValue.endsWith('"')) {
         // It's a string constant
@@ -19,12 +19,12 @@ internal fun postprocessConstant(registry: RegistryBase, constant: Constant): Co
         val typeName = parts[0]
         val actualValue = parts[1]
 
-        when (typeName.intern()) {
+        when (typeName.interned()) {
             in registry.enumerations -> {
                 Pair(IdentifierType("uint32_t"), actualValue)
             }
             in registry.bitmasks -> {
-                val bitmaskType = registry.bitmasks[typeName.intern()]!!
+                val bitmaskType = registry.bitmasks[typeName.interned()]!!
                 Pair(
                     IdentifierType(when (bitmaskType.bitwidth) {
                         8 -> "uint8_t"
@@ -37,7 +37,7 @@ internal fun postprocessConstant(registry: RegistryBase, constant: Constant): Co
                 )
             }
             in registry.aliases -> {
-                val aliasedType = registry.aliases[typeName.intern()]!!.type as IdentifierType
+                val aliasedType = registry.aliases[typeName.interned()]!!.type as IdentifierType
                 Pair(aliasedType, actualValue)
             }
             else -> error("Unknown type in constant definition: $typeName")
@@ -50,7 +50,7 @@ internal fun postprocessConstant(registry: RegistryBase, constant: Constant): Co
             .map(String::trim)
             .toMutableList()
         val firstConstant = constants.first()
-        val linkedConstant = registry.constants[firstConstant.intern()]!!
+        val linkedConstant = registry.constants[firstConstant.interned()]!!
 
         if (linkedConstant.type.ident.original == "INDETERMINATE") {
             // don't change and wait for next turn

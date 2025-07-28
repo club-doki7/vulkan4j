@@ -1,39 +1,38 @@
 package club.doki7.babel.extract.opencl
 
-import club.doki7.babel.registry.ArrayType
-import club.doki7.babel.registry.Identifier
-import club.doki7.babel.registry.IdentifierTypes
-import club.doki7.babel.registry.Member
-import club.doki7.babel.registry.Registry
-import club.doki7.babel.registry.Structure
-import club.doki7.babel.registry.intern
-import club.doki7.babel.registry.putEntityIfAbsent
+import club.doki7.babel.util.IdentifierTypes
+import club.doki7.babel.util.putEntityIfAbsent
+import club.doki7.sennaar.registry.ArrayType
+import club.doki7.sennaar.cpl.CIntLiteralExpr
+import club.doki7.sennaar.registry.Member
+import club.doki7.sennaar.registry.Registry
+import club.doki7.sennaar.registry.Structure
+import club.doki7.sennaar.interned
 
-internal fun Registry<OpenCLRegistryExt>.addDependencies() {
+internal fun Registry.addDependencies() {
     log.info("手动添加类型 VAImageFormat")
-    val VAImageFormat = "VAImageFormat".intern()
+    val VAImageFormat = "VAImageFormat".interned()
     VAImageFormat.rename("VAImageFormatCLREF")
-    structures.putEntityIfAbsent(
+    structs.putEntityIfAbsent(
         Structure(
             VAImageFormat,
             mutableListOf(
-                Member("fourcc", IdentifierTypes.uint32_t, null, null, null, false, null),
-                Member("byte_order", IdentifierTypes.uint32_t, null, null, null, false, null),
-                Member("bits_per_pixel", IdentifierTypes.uint32_t, null, null, null, false, null),
-                Member("depth", IdentifierTypes.uint32_t, null, null, null, false, null),
-                Member("red_mask", IdentifierTypes.uint32_t, null, null, null, false, null),
-                Member("green_mask", IdentifierTypes.uint32_t, null, null, null, false, null),
-                Member("blue_mask", IdentifierTypes.uint32_t, null, null, null, false, null),
-                Member("alpha_mask", IdentifierTypes.uint32_t, null, null, null, false, null),
+                Member(name = "fourcc", ty = IdentifierTypes.uint32_t, bits = null, init = null, optional = false, len = null),
+                Member(name = "byte_order", ty = IdentifierTypes.uint32_t, bits = null, init = null, optional = false, len = null),
+                Member(name = "bits_per_pixel", ty = IdentifierTypes.uint32_t, bits = null, init = null, optional = false, len = null),
+                Member(name = "depth", ty = IdentifierTypes.uint32_t, bits = null, init = null, optional = false, len = null),
+                Member(name = "red_mask", ty = IdentifierTypes.uint32_t, bits = null, init = null, optional = false, len = null),
+                Member(name = "green_mask", ty = IdentifierTypes.uint32_t, bits = null, init = null, optional = false, len = null),
+                Member(name = "blue_mask", ty = IdentifierTypes.uint32_t, bits = null, init = null, optional = false, len = null),
+                Member(name = "alpha_mask", ty = IdentifierTypes.uint32_t, bits = null, init = null, optional = false, len = null),
                 // #define VA_PADDING_LOW   4
                 Member(
-                    "va_reserved",
-                    ArrayType(IdentifierTypes.uint32_t, Identifier("4")),
-                    null,
-                    null,
-                    null,
-                    false,
-                    null
+                    name = "va_reserved",
+                    ty = ArrayType(IdentifierTypes.uint32_t, CIntLiteralExpr("4")),
+                    bits = null,
+                    init = null,
+                    optional = false,
+                    len = null
                 )
             )
         )

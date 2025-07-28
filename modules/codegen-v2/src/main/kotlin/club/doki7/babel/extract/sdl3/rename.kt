@@ -1,17 +1,17 @@
 package club.doki7.babel.extract.sdl3
 
 import club.doki7.babel.extract.ensureLowerCamelCase
-import club.doki7.babel.registry.EmptyMergeable
-import club.doki7.babel.registry.Entity
-import club.doki7.babel.registry.Registry
-import club.doki7.babel.registry.intern
+import club.doki7.sennaar.registry.EmptyMergeable
+import club.doki7.sennaar.registry.Entity
+import club.doki7.sennaar.registry.Registry
+import club.doki7.sennaar.interned
 import club.doki7.babel.util.Either
 import club.doki7.babel.util.commonPrefix
 import java.io.File
 
 private const val renamedEntitiesFile = "codegen-v2/output/sdl-renamed-entities.csv"
 
-internal fun Registry<EmptyMergeable>.renameEntities() {
+internal fun Registry.renameEntities() {
     val renamed = mutableMapOf<String, String>()
 
     fun putEntityIfNameReplaced(entity: Entity) {
@@ -46,7 +46,7 @@ internal fun Registry<EmptyMergeable>.renameEntities() {
             if (variant.value is Either.Right) {
                 variant.value = Either.Right(
                     (variant.value as Either.Right<Long, List<String>>).value.map { value ->
-                        value.intern().value
+                        value.interned().value
                     }
                 )
             }
@@ -77,7 +77,7 @@ internal fun Registry<EmptyMergeable>.renameEntities() {
         }
     }
 
-    "SDL_GLOB_CASEINSENSITIVE".intern().rename("CASEINSENSITIVE")
+    "SDL_GLOB_CASEINSENSITIVE".interned().rename("CASEINSENSITIVE")
     renamed.putIfAbsent("SDL_GLOB_CASEINSENSITIVE", "CASEINSENSITIVE")
 
     log.info(" - 重命名完成，重命名了 ${renamed.size} 个项目，完整列表可参见 $renamedEntitiesFile")

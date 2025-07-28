@@ -3,16 +3,28 @@ package club.doki7.babel.codegen
 import club.doki7.babel.codegen.accessor.*
 import club.doki7.babel.ctype.*
 import club.doki7.babel.ctype.lowerType
-import club.doki7.babel.registry.Identifier
-import club.doki7.babel.registry.IdentifierType
-import club.doki7.babel.registry.Member
-import club.doki7.babel.registry.PointerType
-import club.doki7.babel.registry.RegistryBase
-import club.doki7.babel.registry.Structure
-import club.doki7.babel.registry.Type
-import club.doki7.babel.registry.tryFindIdentifierType
+import club.doki7.sennaar.Identifier
+import club.doki7.sennaar.registry.IdentifierType
+import club.doki7.sennaar.registry.Member
+import club.doki7.sennaar.registry.PointerType
+import club.doki7.sennaar.registry.Registry
+import club.doki7.sennaar.registry.Structure
+import club.doki7.sennaar.registry.Type
+import club.doki7.babel.util.tryFindIdentifierType
 import club.doki7.babel.util.Doc
 import club.doki7.babel.util.buildDoc
+import club.doki7.babel.util.interfaceName
+import club.doki7.sennaar.registry.ArrayType
+
+private val Type.cDisplay: String get() = when(this) {
+    is ArrayType -> "${element.cDisplay}[$length]"
+    is IdentifierType -> this.ident.original
+    is PointerType -> if (isConst) {
+        "${pointee.cDisplay}*"
+    } else {
+        "${pointee.cDisplay} const*"
+    }
+}
 
 /**
  * @param name the name of the layout, such as "pNext"
@@ -86,7 +98,7 @@ fun generateStructureInterface(
 }
 
 fun generateStructure(
-    registryBase: RegistryBase,
+    registry: Registry,
     structure: Structure,
     isUnion: Boolean,
     codegenOptions: CodegenOptions,
@@ -99,7 +111,7 @@ fun generateStructure(
     val importEnums = mutableSetOf<Pair<Identifier, Identifier>>()
 
     lowerMemberTypes(
-        registryBase,
+        registry,
         codegenOptions,
         structure,
         layouts,
@@ -127,16 +139,15 @@ fun generateStructure(
     imports("club.doki7.ffm.annotation.*")
     imports("club.doki7.ffm.ptr.*")
 
-    if (registryBase.bitmasks.isNotEmpty()) {
+    if (registry.bitmasks.isNotEmpty()) {
         imports("$packageName.bitmask.*")
     }
 
-    if (registryBase.opaqueHandleTypedefs.isNotEmpty()
-        || registryBase.opaqueTypedefs.values.any { it.isHandle }) {
+    if (registry.opaqueHandleTypedefs.isNotEmpty() || registry.opaqueTypedefs.isNotEmpty()) {
         imports("$packageName.handle.*")
     }
 
-    if (registryBase.enumerations.isNotEmpty()) {
+    if (registry.enumerations.isNotEmpty()) {
         imports("$packageName.enumtype.*")
     }
     if (importEnums.isNotEmpty()) {
@@ -145,11 +156,11 @@ fun generateStructure(
         }
     }
 
-    if (registryBase.constants.isNotEmpty()) {
+    if (registry.constants.isNotEmpty()) {
         imports("$packageName.${codegenOptions.constantClassName}.*", true)
     }
 
-    importFunctionTypedefs(registryBase, codegenOptions)
+    importFunctionTypedefs(registry, codegenOptions)
 
     for (extra in codegenOptions.extraImport) {
         imports(extra)
@@ -160,8 +171,8 @@ fun generateStructure(
 
     val seeLink = codegenOptions.seeLinkProvider(structure)
 
-    if (structure.doc != null) {
-        for (line in structure.doc!!) {
+    if (structure.doc.isNotEmpty()) {
+        for (line in structure.doc) {
             +"/// $line"
         }
     } else if (seeLink != null) {
@@ -195,7 +206,7 @@ fun generateStructure(
                     val maybeOptionalComment = if (it.optional) " // optional" else ""
                     val cType = it.type
                     val fieldTypeSubstring = tryFindRootNonPlainType(cType)
-                    val fieldTypeTarget = if (cType is CFunctionPointerType && !cType.functionTypedef.pfnNativeApi) {
+                    val fieldTypeTarget = if (cType is CFunctionPointerType && !cType.functionTypedef.isNativeAPI) {
                         cType.functionTypedef.interfaceName
                     } else {
                         tryFindIdentifierType(it.unresolvedType)
@@ -214,14 +225,14 @@ fun generateStructure(
     +"/// }"
     +"///"
 
-    val autoInitMembers = getAutoInit(structure, registryBase, codegenOptions, mutableSetOf())
+    val autoInitMembers = getAutoInit(structure, registry, codegenOptions, mutableSetOf())
     if (autoInitMembers != null) {
         +"/// ## Auto initialization"
         +"///"
         +"/// This structure has the following members that can be automatically initialized:"
         autoInitMembers.forEach {
-            if (it.values != null) {
-                +"/// - `${it.name} = ${it.values.original}`"
+            if (it.init != null) {
+                +"/// - `${it.name} = ${it.init}`"
             } else {
                 +"/// - `${it.name}.autoInit()`"
             }
@@ -243,16 +254,16 @@ fun generateStructure(
     +"/// The constructor of this class is marked as {@link UnsafeConstructor}, because it does not"
     +"/// perform any runtime check. The constructor can be useful for automatic code generators."
 
-    val hasMemberDoc = structure.members.any { it.doc != null }
+    val hasMemberDoc = structure.members.any { it.doc.isNotEmpty() }
     if (hasMemberDoc) {
         +"///"
         +"/// ## Member documentation"
         +"///"
         +"/// <ul>"
         structure.members.forEach {
-            if (it.doc != null) {
-                val first = it.doc!!.first()
-                val following = it.doc!!.subList(1, it.doc!!.size)
+            if (it.doc.isNotEmpty()) {
+                val first = it.doc.first()
+                val following = it.doc.subList(1, it.doc.size)
 
                 +"/// <li>{@link #${it.name}} $first${if (following.isEmpty()) "</li>" else ""}"
                 if (following.isNotEmpty()) {
@@ -424,8 +435,8 @@ fun generateStructure(
                 +"$className ret = new $className(arena.allocate(LAYOUT));"
                 if (autoInitMembers.size == 1) {
                     val it = autoInitMembers.first()
-                    if (it.values != null) {
-                        +"ret.${it.name}(${(it.type as IdentifierType).ident}.${it.values});"
+                    if (it.init != null) {
+                        +"ret.${it.name}(${(it.ty as IdentifierType).ident}.${it.init});"
                     } else {
                         +"ret.${it.name}().autoInit();"
                     }
@@ -446,8 +457,8 @@ fun generateStructure(
                 "for (long i = 0; i < count; i++)" {
                     if (autoInitMembers.size == 1) {
                         val it = autoInitMembers.first()
-                        if (it.values != null) {
-                            +"ret.at(i).${it.name}(${(it.type as IdentifierType).ident}.${it.values});"
+                        if (it.init != null) {
+                            +"ret.at(i).${it.name}(${(it.ty as IdentifierType).ident}.${it.init});"
                         } else {
                             +"ret.at(i).${it.name}().autoInit();"
                         }
@@ -473,8 +484,8 @@ fun generateStructure(
             +"public void autoInit() {"
             indent {
                 autoInitMembers.forEach {
-                    if (it.values != null) {
-                        +"${it.name}(${(it.type as IdentifierType).ident}.${it.values});"
+                    if (it.init != null) {
+                        +"${it.name}(${(it.ty as IdentifierType).ident}.${it.init});"
                     } else {
                         +"${it.name}().autoInit();"
                     }
@@ -573,7 +584,7 @@ fun generateStructure(
 internal fun String.isUnusedReservedField() = this.startsWith("reserved") && this.removePrefix("reserved").all { it.isDigit() }
 
 private fun lowerMemberTypes(
-    registry: RegistryBase,
+    registry: Registry,
     codegenOptions: CodegenOptions,
     structure: Structure,
     layouts: MutableList<LayoutField>,
@@ -582,11 +593,11 @@ private fun lowerMemberTypes(
     var i = 0
     while (i < structure.members.size) {
         val current = structure.members[i]
-        val cType = lowerType(registry, codegenOptions.refRegistries, current.type, importEnums)
+        val cType = lowerType(registry, codegenOptions.refRegistries, current.ty, importEnums)
         if (current.bits != null) {
             val storageUnitBits = (cType as CFixedSizeType).byteSize * 8
             var storageUnitBegin = i
-            var alreadyStoredBits: Int = current.bits
+            var alreadyStoredBits: Int = current.bits!!
             i += 1
 
             var storageUnitCounter = 0
@@ -601,11 +612,11 @@ private fun lowerMemberTypes(
                     break
                 }
 
-                if (field.type != current.type) {
+                if (field.ty != current.ty) {
                     val fieldTypeLowered = lowerType(
                         registry,
                         codegenOptions.refRegistries,
-                        field.type
+                        field.ty
                     )
 
                     if ((fieldTypeLowered as CFixedSizeType).byteSize != cType.byteSize) {
@@ -615,11 +626,11 @@ private fun lowerMemberTypes(
                     }
                 }
 
-                if (field.bits > storageUnitBits) {
+                if (field.bits!! > storageUnitBits) {
                     error("Field ${field.name} exceeds storage unit size ($storageUnitBits)")
                 }
 
-                if (alreadyStoredBits + field.bits > storageUnitBits) {
+                if (alreadyStoredBits + field.bits!! > storageUnitBits) {
                     // summarize previous bit fields
                     val storageUnitEnd = i - 1
                     summarizeBitfieldStorageUnit(
@@ -636,7 +647,7 @@ private fun lowerMemberTypes(
                     storageUnitCounter += 1
                 }
 
-                alreadyStoredBits += field.bits
+                alreadyStoredBits += field.bits!!
                 i += 1
             }
 
@@ -650,7 +661,7 @@ private fun lowerMemberTypes(
                 layouts
             )
         } else {
-            val identifierType = if (current.type is PointerType) tryFindIdentifierType(current.type) else null
+            val identifierType = if (current.ty is PointerType) tryFindIdentifierType(current.ty) else null
             val layout = if (identifierType != null && identifierType == structure.name.toString()) {
                 // avoid cyclic reference
                 "ValueLayout.ADDRESS.withName(\"${current.name}\")"
@@ -669,7 +680,7 @@ private fun lowerMemberTypes(
                 current.name.toString(),
                 layout,
                 cType,
-                current.type,
+                current.ty,
                 current.optional
             ))
 
@@ -685,7 +696,7 @@ private fun summarizeBitfieldStorageUnit(
     storageUnitEnd: Int,
     layouts: MutableList<LayoutField>,
 ) {
-    val storageUnitUnresolvedType = structure.members[storageUnitBegin].type
+    val storageUnitUnresolvedType = structure.members[storageUnitBegin].ty
     val storageUnitBeginMemberName = structure.members[storageUnitBegin].name.value
     val storageUnitEndMemberName = structure.members[storageUnitEnd].name.value
 
@@ -697,7 +708,7 @@ private fun summarizeBitfieldStorageUnit(
     for (i in storageUnitBegin..storageUnitEnd) {
         val member = structure.members[i]
         bitfields.add(LayoutField.Bitfield(member.name.toString(), bitfieldOffset, member.bits!!))
-        bitfieldOffset += member.bits
+        bitfieldOffset += member.bits!!
     }
 
     layouts.add(
@@ -727,7 +738,7 @@ private fun generateMemberAccessor(className: String, layout: LayoutField.Typed)
 private fun tryFindRootNonPlainType(cType: CType): String? = when (cType) {
     is CArrayType -> tryFindRootNonPlainType(cType.element)
     is CPointerType -> tryFindRootNonPlainType(cType.pointee)
-    is CFunctionPointerType -> if (cType.functionTypedef.pfnNativeApi) null else cType.functionTypedef.name.value
+    is CFunctionPointerType -> if (cType.functionTypedef.isNativeAPI) null else cType.functionTypedef.name.value
     is CHandleType -> cType.name
     is CEnumType -> cType.name
     is CStructType -> cType.name
@@ -736,7 +747,7 @@ private fun tryFindRootNonPlainType(cType: CType): String? = when (cType) {
 
 private fun getAutoInit(
     structure: Structure,
-    registry: RegistryBase,
+    registry: Registry,
     codegenOptions: CodegenOptions,
     importEnumerations: MutableSet<Pair<Identifier, Identifier>>?
 ): Set<Member>? {
@@ -750,12 +761,12 @@ private fun getAutoInit(
 
     val autoInit = mutableSetOf<Member>()
     for (member in structure.members) {
-        if (member.values != null) {
+        if (member.init != null) {
             autoInit.add(member)
             continue
         }
 
-        val loweredType = lowerType(registry, codegenOptions.refRegistries, member.type, importEnumerations)
+        val loweredType = lowerType(registry, codegenOptions.refRegistries, member.ty, importEnumerations)
         if (loweredType is CStructType
             && !loweredType.isUnion
             && getAutoInit(loweredType.structureRef, registry, codegenOptions, importEnumerations) != null) {

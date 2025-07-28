@@ -9,8 +9,8 @@ import club.doki7.babel.codegen.generateHandle
 import club.doki7.babel.codegen.generateStructure
 import club.doki7.babel.codegen.generateStructureInterface
 import club.doki7.babel.extract.sdl3.extractSDLRegistry
-import club.doki7.babel.registry.IdentifierType
-import club.doki7.babel.registry.OpaqueHandleTypedef
+import club.doki7.sennaar.registry.IdentifierType
+import club.doki7.sennaar.registry.OpaqueHandleTypedef
 import club.doki7.babel.util.render
 import club.doki7.babel.util.setupLog
 import java.io.File
@@ -38,7 +38,7 @@ fun main() {
     File("$packageDir/${codegenOptions.functionTypeClassName}.java")
         .writeText(render(functionTypeDoc))
 
-    for (structure in registry.structures.values) {
+    for (structure in registry.structs.values) {
         val structureInterfaceDoc = generateStructureInterface(structure, codegenOptions)
         File("$packageDir/datatype/I${structure.name}.java")
             .writeText(render(structureInterfaceDoc))

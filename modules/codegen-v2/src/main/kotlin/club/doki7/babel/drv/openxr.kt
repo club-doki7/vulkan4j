@@ -14,15 +14,15 @@ import club.doki7.babel.extract.openxr.extractOpenXRRegistry
 import club.doki7.babel.extract.vulkan.VulkanRegistryExt
 import club.doki7.babel.extract.vulkan.extractVulkanRegistry
 import club.doki7.babel.extract.vulkanAdditionalRegistry
-import club.doki7.babel.registry.Bitmask
-import club.doki7.babel.registry.Command
-import club.doki7.babel.registry.EmptyMergeable
-import club.doki7.babel.registry.Entity
-import club.doki7.babel.registry.Enumeration
-import club.doki7.babel.registry.IMergeable
-import club.doki7.babel.registry.OpaqueHandleTypedef
-import club.doki7.babel.registry.Registry
-import club.doki7.babel.registry.Structure
+import club.doki7.sennaar.registry.Bitmask
+import club.doki7.sennaar.registry.Command
+import club.doki7.sennaar.registry.EmptyMergeable
+import club.doki7.sennaar.registry.Entity
+import club.doki7.sennaar.registry.Enumeration
+import club.doki7.sennaar.registry.IMergeable
+import club.doki7.sennaar.registry.OpaqueHandleTypedef
+import club.doki7.sennaar.registry.Registry
+import club.doki7.sennaar.registry.Structure
 import club.doki7.babel.util.Doc
 import club.doki7.babel.util.render
 import club.doki7.babel.util.setupLog
@@ -40,7 +40,7 @@ fun main() {
 
 private fun openxrMain(
     vulkanRegistry: Registry<VulkanRegistryExt>,
-    vulkanAdditionRegistry: Registry<EmptyMergeable>,
+    vulkanAdditionRegistry: Registry,
     dryRun: Boolean
 ): Registry<OpenXRRegistryExt> {
     val reg = extractOpenXRRegistry()
@@ -149,7 +149,7 @@ private data class CodegenContext<T : IMergeable<T>>(
     }
 
     fun generateStructures() {
-        registry.structures.values.forEach(::generateStructure)
+        registry.structs.values.forEach(::generateStructure)
     }
 
     fun generateOpaqueHandle(handle: OpaqueHandleTypedef) {

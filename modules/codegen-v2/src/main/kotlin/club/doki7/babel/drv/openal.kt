@@ -6,7 +6,7 @@ import club.doki7.babel.codegen.generateConstants
 import club.doki7.babel.codegen.generateFunctionTypedefs
 import club.doki7.babel.codegen.generateHandle
 import club.doki7.babel.extract.openal.extractOpenALHeader
-import club.doki7.babel.registry.OpaqueHandleTypedef
+import club.doki7.sennaar.registry.OpaqueHandleTypedef
 import club.doki7.babel.util.buildDoc
 import club.doki7.babel.util.render
 import java.io.File

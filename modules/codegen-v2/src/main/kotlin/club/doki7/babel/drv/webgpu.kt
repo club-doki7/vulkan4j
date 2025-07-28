@@ -52,7 +52,7 @@ fun webgpuMain() {
             .safeWrite(render(enumerationDoc))
     }
 
-    for (structure in webgpuRegistry.structures.values) {
+    for (structure in webgpuRegistry.structs.values) {
         val structureInterfaceDoc = generateStructureInterface(structure, codegenOptions)
         File("$packageDir/datatype/I${structure.name}.java")
             .safeWrite(render(structureInterfaceDoc))

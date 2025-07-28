@@ -1,16 +1,16 @@
 package club.doki7.babel.extract.openxr
 
-import club.doki7.babel.registry.Bitflag
-import club.doki7.babel.registry.Bitmask
-import club.doki7.babel.registry.Constant
-import club.doki7.babel.registry.Entity
-import club.doki7.babel.registry.EnumVariant
-import club.doki7.babel.registry.Enumeration
-import club.doki7.babel.registry.Identifier
-import club.doki7.babel.registry.IdentifierType
-import club.doki7.babel.registry.Registry
-import club.doki7.babel.registry.intern
-import club.doki7.babel.registry.putEntityIfAbsent
+import club.doki7.sennaar.registry.Bitflag
+import club.doki7.sennaar.registry.Bitmask
+import club.doki7.sennaar.registry.Constant
+import club.doki7.sennaar.registry.Entity
+import club.doki7.sennaar.registry.EnumVariant
+import club.doki7.sennaar.registry.Enumeration
+import club.doki7.sennaar.Identifier
+import club.doki7.sennaar.registry.IdentifierType
+import club.doki7.sennaar.registry.Registry
+import club.doki7.sennaar.interned
+import club.doki7.sennaar.registry.putEntityIfAbsent
 import club.doki7.babel.util.Either
 import club.doki7.babel.util.parseDecOrHex
 import java.io.File
@@ -59,7 +59,7 @@ private fun extendBitmask(
     bitmasks: Map<Identifier, Bitmask>,
     addedEntities: MutableMap<Entity, Identifier>,
 ) {
-    val bitmask = bitmasks[requireValue.extends!!.intern()]
+    val bitmask = bitmasks[requireValue.extends!!.interned()]
     val bitpos = requireValue.bitpos
     if (bitmask != null && bitpos != null) {
         val value = BigInteger.ONE.shiftLeft(bitpos.toInt())
@@ -76,7 +76,7 @@ private fun extendEnum(
     addedEntities: MutableMap<Entity, Identifier>,
     extNumber: Long?
 ) {
-    val enum = enums[requireValue.extends!!.intern()]
+    val enum = enums[requireValue.extends!!.interned()]
     val value = getVariantValue(requireValue, extNumber)
     if (enum != null && value != null) {
         val variant = EnumVariant(name = requireValue.name, value = value)
@@ -122,7 +122,7 @@ private fun extractConstant(
         return
     }
 
-    if (addedEntities.putIfAbsent(requireValue, "Constants".intern()) != null) {
+    if (addedEntities.putIfAbsent(requireValue, "Constants".interned()) != null) {
         return
     }
 

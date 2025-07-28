@@ -1,17 +1,17 @@
 package club.doki7.babel.extract.stb
 
 import club.doki7.babel.extract.ensureLowerCamelCase
-import club.doki7.babel.registry.EmptyMergeable
-import club.doki7.babel.registry.Entity
-import club.doki7.babel.registry.Registry
+import club.doki7.sennaar.registry.EmptyMergeable
+import club.doki7.sennaar.registry.Entity
+import club.doki7.sennaar.registry.Registry
 import club.doki7.babel.util.commonPrefix
 import java.io.File
 
-internal fun Registry<EmptyMergeable>.renameEntities(
+internal fun Registry.renameEntities(
     component: String,
     prefix: String,
     functionSnakeCase: Boolean
-): Registry<EmptyMergeable> {
+): Registry {
     val renamedEntitiesFile = "codegen-v2/output/stb-${component}-renamed-entities.csv"
 
     val renamed = mutableMapOf<String, String>()

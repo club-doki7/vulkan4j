@@ -5,8 +5,9 @@ import club.doki7.babel.cdecl.isIdentifier
 import club.doki7.babel.cdecl.parseInlineFunctionPointerField
 import club.doki7.babel.cdecl.parseStructFieldDecl
 import club.doki7.babel.cdecl.toType
-import club.doki7.babel.registry.*
+import club.doki7.sennaar.registry.*
 import club.doki7.babel.util.*
+import club.doki7.sennaar.Identifier
 import org.w3c.dom.Element
 import org.w3c.dom.Node
 import java.math.BigInteger
@@ -16,7 +17,7 @@ import kotlin.io.path.Path
 internal val log = Logger.getLogger("c.d.b.extract.openxr")
 private val inputDir = Path("codegen-v2/input")
 
-fun extractOpenCLRegistry(): Registry<OpenCLRegistryExt> {
+fun extractOpenCLRegistry(): Registry {
     val reg = inputDir.resolve("cl.xml")
         .toFile()
         .readText()
@@ -32,7 +33,7 @@ private fun <T : Entity> Sequence<T>.associate(): MutableMap<Identifier, T> {
     return associateByTo(mutableMapOf(), Entity::name)
 }
 
-private fun Element.extractEntities(): Registry<OpenCLRegistryExt> {
+private fun Element.extractEntities(): Registry {
     val e = this
     val typedefs = e.query("types/type[@category='define']")
         .filter(::isTypedefDefine)
@@ -94,7 +95,10 @@ private fun Element.extractEntities(): Registry<OpenCLRegistryExt> {
         .associate()
 
     return Registry(
+        name = "opencl",
+        imports = mutableSetOf(),
         aliases = typedefs,
+        bitmasks = mutableMapOf(),
         constants = constants,
         commands = commands,
         functionTypedefs = funcTypedefs,
@@ -110,7 +114,7 @@ private fun String.sanitizeFlagBits() = replace("FlagBits", "Flags")
 
 // copy from vulkan
 private fun extractType(e: Element): Type {
-    val identifier = IdentifierType(e.textContent.trim().sanitizeFlagBits().intern())
+    val identifier = IdentifierType(e.textContent.trim().sanitizeFlagBits().interned())
 
     // Array types, e.g.:
     // `<type>float</type> <name>matrix</name>[3][4]`
@@ -128,7 +132,7 @@ private fun extractType(e: Element): Type {
                 .removePrefix("[")
                 .removeSuffix("]")
                 .split("][")
-                .map { it.trim().intern() }
+                .map { it.trim().interned() }
                 .reversed()
 
             var array = ArrayType(identifier, lengths[0])
@@ -375,11 +379,11 @@ private fun extractRequire(e: Element): OpenCLRequire {
         .partition { it.endsWith(".h") }
 
     val enums = e.getElementSeq("enum")
-        .map { it.getAttributeText("name")!!.intern() }
+        .map { it.getAttributeText("name")!!.interned() }
         .toList()
 
     val commands = e.getElementSeq("command")
-        .map { it.getAttributeText("name")!!.intern() }
+        .map { it.getAttributeText("name")!!.interned() }
         .toList()
 
     return OpenCLRequire(types, enums, commands, headers)

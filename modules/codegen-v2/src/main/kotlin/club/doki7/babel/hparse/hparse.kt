@@ -1,7 +1,6 @@
 package club.doki7.babel.hparse
 
 import club.doki7.babel.cdecl.FunctionDecl
-import club.doki7.babel.cdecl.RawFunctionType
 import club.doki7.babel.cdecl.TypedefDecl
 import club.doki7.babel.cdecl.isIdentChar
 import club.doki7.babel.cdecl.parseBlockDoxygen
@@ -9,14 +8,11 @@ import club.doki7.babel.cdecl.parseFunctionDecl
 import club.doki7.babel.cdecl.parseTriSlashDoxygen
 import club.doki7.babel.cdecl.parseTypedefDecl
 import club.doki7.babel.cdecl.toType
-import club.doki7.babel.registry.Command
-import club.doki7.babel.registry.FunctionTypedef
-import club.doki7.babel.registry.IMergeable
-import club.doki7.babel.registry.IdentifierType
-import club.doki7.babel.registry.Param
-import club.doki7.babel.registry.Registry
-import club.doki7.babel.registry.Typedef
-import club.doki7.babel.registry.putEntityIfAbsent
+import club.doki7.babel.util.putEntityIfAbsent
+import club.doki7.sennaar.registry.Command
+import club.doki7.sennaar.registry.Param
+import club.doki7.sennaar.registry.Registry
+import club.doki7.sennaar.registry.Typedef
 import java.util.logging.Logger
 
 enum class ControlFlow {
@@ -26,19 +22,19 @@ enum class ControlFlow {
 typealias InitContext = (MutableMap<String, Any>) -> Unit
 typealias LineMatcher = (List<String>, Int) -> ControlFlow
 typealias SingleLineMatcher = (String) -> ControlFlow
-typealias LineAction<E> = (Registry<E>, MutableMap<String, Any>, List<String>, Int) -> Int
+typealias LineAction = (Registry, MutableMap<String, Any>, List<String>, Int) -> Int
 
 internal val log = Logger.getLogger("c.d.b.hparse")
 
-internal class LineHandler<E: IMergeable<E>>(
+internal class LineHandler(
     val priority: Int,
     val matcher: LineMatcher,
-    val action: LineAction<E>
+    val action: LineAction
 )
 
-class ParseConfig<E: IMergeable<E>> internal constructor(
+class ParseConfig internal constructor(
     internal val initSet: MutableSet<InitContext>,
-    internal val handlerSet: MutableSet<LineHandler<E>>
+    internal val handlerSet: MutableSet<LineHandler>
 ) {
     constructor() : this(mutableSetOf(), mutableSetOf())
 
@@ -46,18 +42,18 @@ class ParseConfig<E: IMergeable<E>> internal constructor(
         initSet.add(init)
     }
 
-    fun addRule(priority: Int, matcher: LineMatcher, action: LineAction<E>) {
+    fun addRule(priority: Int, matcher: LineMatcher, action: LineAction) {
         handlerSet.add(LineHandler(priority, matcher, action))
     }
-    fun addRule(priority: Int, matcher: SingleLineMatcher, action: LineAction<E>) {
+    fun addRule(priority: Int, matcher: SingleLineMatcher, action: LineAction) {
         val matcher: LineMatcher = { lines, index -> matcher(lines[index]) }
         addRule(priority, matcher, action)
     }
 }
 
-fun <E: IMergeable<E>> hparse(
-    config: ParseConfig<E>,
-    registry: Registry<E>,
+fun hparse(
+    config: ParseConfig,
+    registry: Registry,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -103,8 +99,8 @@ fun detectTriSlashDoxygen(line: String) =
         ControlFlow.NEXT
     }
 
-fun <E: IMergeable<E>> parseAndSaveTriSlashDoxygen(
-    @Suppress("unused") registry: Registry<E>,
+fun parseAndSaveTriSlashDoxygen(
+    @Suppress("unused") registry: Registry,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -126,8 +122,8 @@ fun detectBlockDoxygen(line: String) =
         ControlFlow.NEXT
     }
 
-fun <E: IMergeable<E>> parseAndSaveBlockDoxygen(
-    @Suppress("unused") registry: Registry<E>,
+fun parseAndSaveBlockDoxygen(
+    @Suppress("unused") registry: Registry,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -173,8 +169,8 @@ fun detectFunctionAlikeMacro(line: String): ControlFlow {
     }
 }
 
-fun <E: IMergeable<E>> skipPreprocessor(
-    @Suppress("unused") registry: Registry<E>,
+fun skipPreprocessor(
+    @Suppress("unused") registry: Registry,
     @Suppress("unused") cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -191,8 +187,8 @@ fun <E: IMergeable<E>> skipPreprocessor(
     return index1 + 1
 }
 
-fun <E: IMergeable<E>> nextLine(
-    @Suppress("unused") registry: Registry<E>,
+fun nextLine(
+    @Suppress("unused") registry: Registry,
     @Suppress("unused") cx: MutableMap<String, Any>,
     @Suppress("unused") lines: List<String>,
     index: Int
@@ -205,8 +201,8 @@ fun detectBlockComment(line: String) =
         ControlFlow.NEXT
     }
 
-fun <E: IMergeable<E>> skipBlockComment(
-    @Suppress("unused") registry: Registry<E>,
+fun skipBlockComment(
+    @Suppress("unused") registry: Registry,
     @Suppress("unused") cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -222,8 +218,8 @@ fun <E: IMergeable<E>> skipBlockComment(
     return i + 1
 }
 
-fun <E: IMergeable<E>> dummyAction(
-    @Suppress("unused") registry: Registry<E>,
+fun dummyAction(
+    @Suppress("unused") registry: Registry,
     @Suppress("unused") cx: MutableMap<String, Any>,
     @Suppress("unused") lines: List<String>,
     index: Int
@@ -239,8 +235,8 @@ fun detectIfdefCplusplus(line: String) =
         ControlFlow.NEXT
     }
 
-fun <E: IMergeable<E>> skipIfdefCplusplusExternC(
-    @Suppress("unused") registry: Registry<E>,
+fun skipIfdefCplusplusExternC(
+    @Suppress("unused") registry: Registry,
     @Suppress("unused") cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -270,8 +266,8 @@ fun detectNonOpaqueStructTypedef(line: String): ControlFlow =
         ControlFlow.NEXT
     }
 
-fun <E : IMergeable<E>> parseAndSaveSimpleFuncDecl(
-    registry: Registry<E>,
+fun parseAndSaveSimpleFuncDecl(
+    registry: Registry,
     @Suppress("unused") cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -286,19 +282,18 @@ private fun morphSimpleFuncDecl(functionDecl: FunctionDecl) = Command(
     params = functionDecl.params.map {
         Param(
             name = it.name,
-            type = it.type.toType(),
+            ty = it.type.toType(),
             len = null,
-            argLen = null,
             optional = true,
         )
-    },
+    }.toMutableList(),
     result = functionDecl.returnType.toType(),
-    successCodes = null,
-    errorCodes = null
+    successCodes = mutableListOf(),
+    errorCodes = mutableListOf()
 )
 
-fun <E : IMergeable<E>> parseAndSaveSimpleTypeAlias(
-    registry: Registry<E>,
+fun parseAndSaveSimpleTypeAlias(
+    registry: Registry,
     @Suppress("unused") cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -313,5 +308,5 @@ fun <E : IMergeable<E>> parseAndSaveSimpleTypeAlias(
 
 private fun morphSimpleTypedefAlias(typedef: TypedefDecl) = Typedef(
     name = typedef.name,
-    type = (typedef.aliasedType.toType() as IdentifierType),
+    target = typedef.aliasedType.toType()
 )

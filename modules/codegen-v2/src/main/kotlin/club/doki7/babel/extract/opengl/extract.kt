@@ -5,7 +5,7 @@ import club.doki7.babel.cdecl.TypedefDecl
 import club.doki7.babel.cdecl.parseType
 import club.doki7.babel.cdecl.parseTypedefDecl
 import club.doki7.babel.cdecl.toType
-import club.doki7.babel.registry.*
+import club.doki7.sennaar.registry.*
 import club.doki7.babel.util.asSequence
 import club.doki7.babel.util.getAttributeText
 import club.doki7.babel.util.getElementSeq
@@ -18,7 +18,7 @@ import kotlin.io.path.Path
 private val inputDir = Path("codegen-v2/input")
 internal val log = Logger.getLogger("c.d.b.extract.opengl")
 
-fun extractOpenGLRegistry(): Registry<EmptyMergeable> {
+fun extractOpenGLRegistry(): Registry {
     val r = inputDir.resolve("gl.xml")
         .toFile()
         .readText()
@@ -28,7 +28,7 @@ fun extractOpenGLRegistry(): Registry<EmptyMergeable> {
     return r
 }
 
-private fun Element.extractEntities(): Registry<EmptyMergeable> {
+private fun Element.extractEntities(): Registry {
     val e = this
 
     val allCommands = e.query("commands/command")
@@ -49,14 +49,14 @@ private fun Element.extractEntities(): Registry<EmptyMergeable> {
 
             for (commandRequire in require.getElementSeq("command")) {
                 val name = commandRequire.getAttributeText("name")!!
-                val command = allCommands[name.intern()]!!
+                val command = allCommands[name.interned()]!!
                 command.setExt(GLCommandMetadata(isCompatibility, isExtension = false))
                 commands.putEntityIfAbsent(command)
             }
 
             for (enumRequire in require.getElementSeq("enum")) {
                 val name = enumRequire.getAttributeText("name")!!
-                val constant = allConstants[name.intern()]!!
+                val constant = allConstants[name.interned()]!!
                 constant.setExt(GLBaseMetadata(isExtension = false))
                 constants.putEntityIfAbsent(constant)
             }
@@ -70,7 +70,7 @@ private fun Element.extractEntities(): Registry<EmptyMergeable> {
 
             for (commandRemove in remove.getElementSeq("command")) {
                 val name = commandRemove.getAttributeText("name")!!
-                val command = allCommands[name.intern()]!!
+                val command = allCommands[name.interned()]!!
                 command.ext<GLCommandMetadata>().isCompatibility = true
             }
         }
@@ -95,7 +95,7 @@ private fun Element.extractEntities(): Registry<EmptyMergeable> {
 
             for (commandRequire in require.getElementSeq("command")) {
                 val name = commandRequire.getAttributeText("name")!!
-                val command = allCommands[name.intern()]!!
+                val command = allCommands[name.interned()]!!
                 if (command.hasExt()) {
                     val ext = command.ext<GLMetadata>()
                     if (ext.isExtension == null) {
@@ -109,7 +109,7 @@ private fun Element.extractEntities(): Registry<EmptyMergeable> {
 
             for (enumRequire in require.getElementSeq("enum")) {
                 val name = enumRequire.getAttributeText("name")!!
-                val constant = allConstants[name.intern()]!!
+                val constant = allConstants[name.interned()]!!
                 if (constant.hasExt()) {
                     val ext = constant.ext<GLMetadata>()
                     if (ext.isExtension == null) {

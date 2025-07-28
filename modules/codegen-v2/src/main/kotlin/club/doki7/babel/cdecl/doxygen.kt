@@ -1,6 +1,6 @@
 package club.doki7.babel.cdecl
 
-fun parseBlockDoxygen(lines: List<String>, startLine: Int): Pair<List<String>?, Int> {
+fun parseBlockDoxygen(lines: List<String>, startLine: Int): Pair<MutableList<String>, Int> {
     val doxygen = mutableListOf<String>()
 
     var line = startLine
@@ -43,13 +43,10 @@ fun parseBlockDoxygen(lines: List<String>, startLine: Int): Pair<List<String>?, 
         doxygen.removeLast()
     }
 
-    if (doxygen.isEmpty()) {
-        return Pair(null, line)
-    }
     return Pair(doxygen, line)
 }
 
-fun parseTriSlashDoxygen(lines: List<String>, startLine: Int): Pair<List<String>?, Int> {
+fun parseTriSlashDoxygen(lines: List<String>, startLine: Int): Pair<MutableList<String>, Int> {
     val doxygen = mutableListOf<String>()
 
     var line = startLine
@@ -73,8 +70,5 @@ fun parseTriSlashDoxygen(lines: List<String>, startLine: Int): Pair<List<String>
         doxygen.removeLast()
     }
 
-    if (doxygen.isEmpty()) {
-        return Pair(null, line)
-    }
     return Pair(doxygen, line)
 }

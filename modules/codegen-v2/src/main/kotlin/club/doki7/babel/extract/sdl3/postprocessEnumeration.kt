@@ -1,7 +1,7 @@
 package club.doki7.babel.extract.sdl3
 
-import club.doki7.babel.registry.EnumVariant
-import club.doki7.babel.registry.Enumeration
+import club.doki7.sennaar.registry.EnumVariant
+import club.doki7.sennaar.registry.Enumeration
 import club.doki7.babel.util.Either
 
 internal fun postprocessEnumeration(enumeration: Enumeration) {

@@ -1,8 +1,8 @@
 package club.doki7.babel.extract.openxr
 
-import club.doki7.babel.registry.Entity
-import club.doki7.babel.registry.IMergeable
-import club.doki7.babel.registry.Identifier
+import club.doki7.sennaar.registry.Entity
+import club.doki7.sennaar.registry.IMergeable
+import club.doki7.sennaar.Identifier
 
 sealed interface XrMetadata
 

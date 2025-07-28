@@ -9,14 +9,14 @@ import club.doki7.babel.codegen.generateStructure
 import club.doki7.babel.codegen.generateStructureInterface
 import club.doki7.babel.extract.opencl.OpenCLRegistryExt
 import club.doki7.babel.extract.opencl.extractOpenCLRegistry
-import club.doki7.babel.registry.Command
-import club.doki7.babel.registry.Constant
-import club.doki7.babel.registry.Entity
-import club.doki7.babel.registry.IMergeable
-import club.doki7.babel.registry.OpaqueHandleTypedef
-import club.doki7.babel.registry.OpaqueTypedef
-import club.doki7.babel.registry.Registry
-import club.doki7.babel.registry.Structure
+import club.doki7.sennaar.registry.Command
+import club.doki7.sennaar.registry.Constant
+import club.doki7.sennaar.registry.Entity
+import club.doki7.sennaar.registry.IMergeable
+import club.doki7.sennaar.registry.OpaqueHandleTypedef
+import club.doki7.sennaar.registry.OpaqueTypedef
+import club.doki7.sennaar.registry.Registry
+import club.doki7.sennaar.registry.Structure
 import club.doki7.babel.util.Doc
 import club.doki7.babel.util.render
 import java.io.File
@@ -106,7 +106,7 @@ private data class ClCodegenContext<T : IMergeable<T>>(
     }
 
     fun generateStructures() {
-        registry.structures.values.forEach { generateStructure(it, false) }
+        registry.structs.values.forEach { generateStructure(it, false) }
     }
 
     fun generateUnions() {

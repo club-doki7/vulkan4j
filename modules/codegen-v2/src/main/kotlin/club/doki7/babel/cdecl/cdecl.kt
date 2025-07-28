@@ -1,10 +1,11 @@
 package club.doki7.babel.cdecl
 
-import club.doki7.babel.registry.ArrayType
-import club.doki7.babel.registry.IdentifierType
-import club.doki7.babel.registry.PointerType
-import club.doki7.babel.registry.Type
-import club.doki7.babel.registry.intern
+import club.doki7.sennaar.cpl.CIdentifierExpr
+import club.doki7.sennaar.registry.ArrayType
+import club.doki7.sennaar.registry.IdentifierType
+import club.doki7.sennaar.registry.PointerType
+import club.doki7.sennaar.registry.Type
+import club.doki7.sennaar.interned
 
 sealed interface Decl { val trivia: List<String> }
 
@@ -112,21 +113,25 @@ fun parseType(s: String): RawType {
 
 /// Only call this function when you're sure that you DO NOT need to retain trivia
 fun RawType.toType(): Type = when (this) {
-    is RawIdentifierType -> IdentifierType(ident)
+    is RawIdentifierType -> IdentifierType(ident.interned())
     is RawArrayType -> if (size.isBlank()) {
         PointerType(
             pointee = element.toType(),
-            const = false
+            isConst = false,
+            pointerToOne = false,
+            nullable = true
         )
     } else {
         ArrayType(
             element = element.toType(),
-            length = size.intern()
+            length = CIdentifierExpr(size.interned())
         )
     }
     is RawPointerType -> PointerType(
         pointee = pointee.toType(),
-        const = const
+        isConst = const,
+        pointerToOne = false,
+        nullable = true
     )
     is RawFunctionType -> error("function type cannot be converted to Type")
 }

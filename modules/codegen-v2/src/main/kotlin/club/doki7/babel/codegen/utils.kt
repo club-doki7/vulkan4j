@@ -1,6 +1,6 @@
 package club.doki7.babel.codegen
 
-import club.doki7.babel.registry.RegistryBase
+import club.doki7.sennaar.registry.Registry
 import club.doki7.babel.util.DocList
 import org.intellij.lang.annotations.Language
 
@@ -15,31 +15,31 @@ private fun DocList.importSomething(codegenOptions: CodegenOptions, something: S
     imports("${codegenOptions.packageName}.$something.*")
 }
 
-internal fun DocList.importDatatypes(registry: RegistryBase, codegenOptions: CodegenOptions) {
-    if (registry.structures.isNotEmpty() || registry.unions.isNotEmpty()) {
+internal fun DocList.importDatatypes(registry: Registry, codegenOptions: CodegenOptions) {
+    if (registry.structs.isNotEmpty() || registry.unions.isNotEmpty()) {
         importSomething(codegenOptions, "datatype")
     }
 }
 
-internal fun DocList.importEnumtypes(registry: RegistryBase, codegenOptions: CodegenOptions) {
+internal fun DocList.importEnumtypes(registry: Registry, codegenOptions: CodegenOptions) {
     if (registry.enumerations.isNotEmpty()) {
         importSomething(codegenOptions, "enumtype")
     }
 }
 
-internal fun DocList.importBitmasks(registry: RegistryBase, codegenOptions: CodegenOptions) {
+internal fun DocList.importBitmasks(registry: Registry, codegenOptions: CodegenOptions) {
     if (registry.bitmasks.isNotEmpty()) {
         importSomething(codegenOptions, "bitmask")
     }
 }
 
-internal fun DocList.importHandles(registry: RegistryBase, codegenOptions: CodegenOptions) {
-    if (registry.opaqueHandleTypedefs.isNotEmpty() || registry.opaqueTypedefs.any { it.value.isHandle }) {
+internal fun DocList.importHandles(registry: Registry, codegenOptions: CodegenOptions) {
+    if (registry.opaqueHandleTypedefs.isNotEmpty() || registry.opaqueTypedefs.isNotEmpty()) {
         importSomething(codegenOptions, "handle")
     }
 }
 
-internal fun DocList.importFunctionTypedefs(registry: RegistryBase, codegenOptions: CodegenOptions) {
+internal fun DocList.importFunctionTypedefs(registry: Registry, codegenOptions: CodegenOptions) {
     if (registry.functionTypedefs.isNotEmpty()) {
         importSomething(codegenOptions, codegenOptions.functionTypeClassName)
     }

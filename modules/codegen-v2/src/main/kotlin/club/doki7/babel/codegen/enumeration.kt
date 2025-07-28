@@ -1,12 +1,12 @@
 package club.doki7.babel.codegen
 
-import club.doki7.babel.registry.Enumeration
-import club.doki7.babel.registry.RegistryBase
+import club.doki7.sennaar.registry.Enumeration
+import club.doki7.sennaar.registry.Registry
 import club.doki7.babel.util.Either
 import club.doki7.babel.util.buildDoc
 
 fun generateEnumeration(
-    registry: RegistryBase,
+    registry: Registry,
     enumeration: Enumeration,
     codegenOptions: CodegenOptions
 ) = buildDoc {
@@ -21,7 +21,7 @@ fun generateEnumeration(
         +""
     }
 
-    if (enumeration.doc != null) {
+    if (enumeration.doc.isNotEmpty()) {
         for (line in enumeration.doc) {
             +"/// $line"
         }
@@ -34,11 +34,11 @@ fun generateEnumeration(
     +"public final class ${enumeration.name} {"
     indent {
         for ((idx, variant) in enumeration.variants.withIndex()) {
-            if (variant.doc != null) {
+            if (variant.doc.isNotEmpty()) {
                 if (idx != 0) {
                     +""
                 }
-                variant.doc!!.forEach { +"/// $it" }
+                variant.doc.forEach { +"/// $it" }
             }
 
             val docLink = codegenOptions.seeLinkProvider(variant)

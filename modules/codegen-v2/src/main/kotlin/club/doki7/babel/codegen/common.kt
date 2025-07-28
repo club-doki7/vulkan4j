@@ -1,6 +1,6 @@
 package club.doki7.babel.codegen
 
-import club.doki7.babel.registry.Identifier
+import club.doki7.sennaar.Identifier
 import club.doki7.babel.util.buildDoc
 
 internal fun prohibitUserConstruct(className: String) = buildDoc {

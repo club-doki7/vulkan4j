@@ -4,8 +4,8 @@ import club.doki7.babel.codegen.CodegenOptions
 import club.doki7.babel.codegen.generateCommandFile
 import club.doki7.babel.codegen.generateConstants
 import club.doki7.babel.extract.gles2.extractGLES2Registry
-import club.doki7.babel.registry.Command
-import club.doki7.babel.registry.Entity
+import club.doki7.sennaar.registry.Command
+import club.doki7.sennaar.registry.Entity
 import club.doki7.babel.util.render
 import club.doki7.babel.util.setupLog
 import java.io.File

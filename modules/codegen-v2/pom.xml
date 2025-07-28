@@ -111,7 +111,7 @@
         <dependency>
             <groupId>com.github.club-doki7</groupId>
             <artifactId>sennaar</artifactId>
-            <version>e9c801eb2c</version>
+            <version>13289ccb9f</version>
         </dependency>
     </dependencies>
 </project>

@@ -1,8 +1,8 @@
 package club.doki7.babel.extract.opencl
 
 import club.doki7.babel.extract.ensureLowerCamelCase
-import club.doki7.babel.registry.Entity
-import club.doki7.babel.registry.Registry
+import club.doki7.sennaar.registry.Entity
+import club.doki7.sennaar.registry.Registry
 
 internal fun Registry<OpenCLRegistryExt>.renameEntities() {
     val renamed = mutableMapOf<String, String>()

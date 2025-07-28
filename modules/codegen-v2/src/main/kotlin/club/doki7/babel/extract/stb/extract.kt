@@ -4,7 +4,7 @@ package club.doki7.babel.extract.stb
 
 import club.doki7.babel.cdecl.*
 import club.doki7.babel.hparse.*
-import club.doki7.babel.registry.*
+import club.doki7.sennaar.registry.*
 import club.doki7.babel.util.parseDecOrHex
 import java.util.logging.Logger
 import kotlin.io.path.Path
@@ -53,7 +53,7 @@ fun extractSTBVorbisHeader() = extractSTBHeader(
     fndefMacro = "extern",
     hardStop = "#endif // STB_VORBIS_INCLUDE_STB_VORBIS_H"
 ).renameEntities("vorbis", "stb_vorbis_", true).let {
-    it.enumerations["STBVorbisError".intern()]!!.name.forceRename("STBVorbisError")
+    it.enumerations["STBVorbisError".interned()]!!.name.forceRename("STBVorbisError")
     it
 }
 
@@ -62,7 +62,7 @@ private fun extractSTBHeader(
     startDefn: String,
     fndefMacro: String,
     hardStop: String
-): Registry<EmptyMergeable> {
+): Registry {
     val header = inputDir.resolve(fileName)
         .useLines { it.map(String::trim).toList() }
 
@@ -82,7 +82,7 @@ private fun extractSTBHeader(
             ControlFlow.NEXT
         }
 
-    val headerParseConfig = ParseConfig<EmptyMergeable>().apply {
+    val headerParseConfig = ParseConfig().apply {
         addRule(0, ::detectHardStop, ::dummyAction)
 
         addRule(10, ::detectLineComment, ::nextLine)
@@ -124,8 +124,8 @@ private fun detectCallbackTypedef(line: String): ControlFlow =
         ControlFlow.NEXT
     }
 
-private fun <E : IMergeable<E>> parseAndSaveCallbackTypedef(
-    registry: Registry<E>,
+private fun parseAndSaveCallbackTypedef(
+    registry: Registry,
     @Suppress("unused") cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -146,7 +146,7 @@ private fun morphCallbackTypedef(typedef: TypedefDecl) = FunctionTypedef(
 
 // region struct
 private fun parseAndSaveStructure(
-    registry: Registry<EmptyMergeable>,
+    registry: Registry,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -170,7 +170,7 @@ private fun parseAndSaveStructure(
     val members = fieldVarDecls.map { morphStructFieldDecl(registry, structureName, it) }
         .toMutableList()
 
-    registry.structures.putEntityIfAbsent(Structure(
+    registry.structs.putEntityIfAbsent(Structure(
         name = structureName,
         members = members
     ))
@@ -186,13 +186,13 @@ private fun detectNonTypedefStruct(line: String): ControlFlow =
     }
 
 private fun parseAndSaveStructure2(
-    registry: Registry<EmptyMergeable>,
+    registry: Registry,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
 ): Int {
     val structureName = lines[index].removePrefix("struct").removeSuffix("{").trim()
-    registry.opaqueTypedefs.remove(structureName.intern())
+    registry.opaqueTypedefs.remove(structureName.interned())
 
     val next = hparse(
         structureParseConfig,
@@ -208,14 +208,14 @@ private fun parseAndSaveStructure2(
 
     val members = fieldVarDecls.map { morphStructFieldDecl(registry, structureName, it) }
         .toMutableList()
-    registry.structures.putEntityIfAbsent(Structure(
+    registry.structs.putEntityIfAbsent(Structure(
         name = structureName,
         members = members
     ))
     return next + 1
 }
 
-private val structureParseConfig = ParseConfig<EmptyMergeable>().apply {
+private val structureParseConfig = ParseConfig().apply {
     addInit {
         it["fields"] = mutableListOf<VarDecl>()
     }
@@ -235,7 +235,7 @@ private fun detectFunctionPointerMember(line: String): ControlFlow =
     }
 
 private fun parseFunctionPointerStructField(
-    @Suppress("unused") registry: Registry<EmptyMergeable>,
+    @Suppress("unused") registry: Registry,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -246,7 +246,7 @@ private fun parseFunctionPointerStructField(
 }
 
 private fun parseStructField(
-    @Suppress("unused") registry: Registry<EmptyMergeable>,
+    @Suppress("unused") registry: Registry,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -259,7 +259,7 @@ private fun parseStructField(
 }
 
 private fun morphStructFieldDecl(
-    registry: RegistryBase,
+    registry: Registry,
     structureName: String,
     decl: VarDecl
 ): Member =
@@ -306,7 +306,7 @@ private fun detectEnumDefWithoutTypedef(
 }
 
 private fun parseAndSaveEnumeration(
-    registry: Registry<EmptyMergeable>,
+    registry: Registry,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -344,7 +344,7 @@ private fun parseAndSaveEnumeration(
     return nextIndex + 1
 }
 
-private val enumParseConfig = ParseConfig<EmptyMergeable>().apply {
+private val enumParseConfig = ParseConfig().apply {
     addInit {
         it.put("enumValues", mutableSetOf<Long>())
         it.put("variants", mutableListOf<EnumVariant>())
@@ -359,7 +359,7 @@ private val enumParseConfig = ParseConfig<EmptyMergeable>().apply {
 }
 
 private fun parseEnumerator(
-    @Suppress("unused") registry: Registry<EmptyMergeable>,
+    @Suppress("unused") registry: Registry,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -392,7 +392,7 @@ private fun detectEnumDecl(line: String): ControlFlow =
     }
 
 private fun parseAndSaveEnumConstants(
-    registry: Registry<EmptyMergeable>,
+    registry: Registry,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -409,7 +409,7 @@ private fun parseAndSaveEnumConstants(
     return next + 1
 }
 
-private val enumConstantParseConfig = ParseConfig<EmptyMergeable>().apply {
+private val enumConstantParseConfig = ParseConfig().apply {
     addInit { it.put("nextEnumConstantValue", 0L) }
 
     addRule(0, { line -> if (line.startsWith("}")) ControlFlow.RETURN else ControlFlow.NEXT }, ::dummyAction)
@@ -420,7 +420,7 @@ private val enumConstantParseConfig = ParseConfig<EmptyMergeable>().apply {
 }
 
 private fun parseEnumeratorAsConstant(
-    @Suppress("unused") registry: Registry<EmptyMergeable>,
+    @Suppress("unused") registry: Registry,
     @Suppress("unused") cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -459,8 +459,8 @@ private fun detectOpaqueHandle(line: String): ControlFlow =
         ControlFlow.NEXT
     }
 
-private fun <E : IMergeable<E>> parseOpaqueHandle(
-    registry: Registry<E>,
+private fun parseOpaqueHandle(
+    registry: Registry,
     @Suppress("unused") cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int

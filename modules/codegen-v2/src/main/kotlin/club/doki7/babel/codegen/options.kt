@@ -1,7 +1,7 @@
 package club.doki7.babel.codegen
 
-import club.doki7.babel.registry.Entity
-import club.doki7.babel.registry.RegistryBase
+import club.doki7.sennaar.registry.Entity
+import club.doki7.sennaar.registry.Registry
 
 data class CodegenOptions(
     val packageName: String,
@@ -9,9 +9,9 @@ data class CodegenOptions(
     val constantClassName: String,
     val functionTypeClassName: String,
 
-    val refRegistries: List<RegistryBase>,
+    val refRegistries: List<Registry>,
 
     val seeLinkProvider: Function1<Entity, String?> = ::dummyLinkProvider
 )
 
-private fun dummyLinkProvider(entity: Entity): String? = null
+private fun dummyLinkProvider(@Suppress("unused") ignoredEntity: Entity): String? = null

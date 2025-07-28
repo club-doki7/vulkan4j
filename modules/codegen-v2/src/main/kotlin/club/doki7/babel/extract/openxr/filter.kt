@@ -1,9 +1,9 @@
 package club.doki7.babel.extract.openxr
 
-import club.doki7.babel.registry.Entity
-import club.doki7.babel.registry.Identifier
-import club.doki7.babel.registry.Registry
-import club.doki7.babel.registry.intern
+import club.doki7.sennaar.registry.Entity
+import club.doki7.sennaar.Identifier
+import club.doki7.sennaar.registry.Registry
+import club.doki7.sennaar.interned
 import java.io.File
 
 private const val unsupportedEntitiesFile = "codegen-v2/output/xr-unsupported-entities.txt"
@@ -61,7 +61,7 @@ private fun Registry<OpenXRRegistryExt>.getUnsupportedEntities() = mutableSetOf<
             add(extension.name)
             for (require in extension.requires) {
                 for (type in require.types) {
-                    add(type.intern())
+                    add(type.interned())
                 }
 
                 for (requireValue in require.values) {

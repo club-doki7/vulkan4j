@@ -1,6 +1,6 @@
 package club.doki7.babel.extract.vulkan
 
-import club.doki7.babel.registry.*
+import club.doki7.sennaar.registry.*
 import club.doki7.babel.util.Either
 import club.doki7.babel.util.parseDecOrHex
 import java.io.File
@@ -104,7 +104,7 @@ private fun extractConstant(
         return
     }
 
-    if (addedEntities.putIfAbsent(requireValue, "Constants".intern()) != null) {
+    if (addedEntities.putIfAbsent(requireValue, "Constants".interned()) != null) {
         return
     }
 

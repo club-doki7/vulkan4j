@@ -1,14 +1,14 @@
 package club.doki7.babel.ctype
 
-import club.doki7.babel.registry.ArrayType
-import club.doki7.babel.registry.FunctionTypedef
-import club.doki7.babel.registry.Identifier
-import club.doki7.babel.registry.IdentifierType
-import club.doki7.babel.registry.OpaqueTypedef
-import club.doki7.babel.registry.PointerType
-import club.doki7.babel.registry.RegistryBase
-import club.doki7.babel.registry.Structure
-import club.doki7.babel.registry.Type
+import club.doki7.sennaar.registry.ArrayType
+import club.doki7.sennaar.registry.FunctionTypedef
+import club.doki7.sennaar.Identifier
+import club.doki7.sennaar.registry.IdentifierType
+import club.doki7.sennaar.registry.OpaqueTypedef
+import club.doki7.sennaar.registry.PointerType
+import club.doki7.sennaar.registry.Registry
+import club.doki7.sennaar.registry.Structure
+import club.doki7.sennaar.registry.Type
 import kotlin.collections.contains
 
 sealed interface CType {
@@ -591,8 +591,8 @@ private val knownTypes = mapOf(
 )
 
 fun lowerType(
-    registry: RegistryBase,
-    refRegistries: List<RegistryBase>,
+    registry: Registry,
+    refRegistries: List<Registry>,
     type: Type,
     importEnumerations: MutableSet<Pair<Identifier, Identifier>>? = null
 ): CType {
@@ -660,8 +660,8 @@ fun lowerType(
 }
 
 fun lookupOpaqueTypedef(
-    registry: RegistryBase,
-    refRegistries: List<RegistryBase>,
+    registry: Registry,
+    refRegistries: List<Registry>,
     type: IdentifierType
 ): OpaqueTypedef? {
     if (registry.opaqueTypedefs.contains(type.ident)) {
@@ -678,8 +678,8 @@ fun lookupOpaqueTypedef(
 }
 
 fun lookupFunctionTypedef(
-    registry: RegistryBase,
-    refRegistries: List<RegistryBase>,
+    registry: Registry,
+    refRegistries: List<Registry>,
     type: IdentifierType
 ): FunctionTypedef? {
     if (registry.functionTypedefs.contains(type.ident)) {
@@ -696,8 +696,8 @@ fun lookupFunctionTypedef(
 }
 
 fun lowerIdentifierType(
-    registry: RegistryBase,
-    refRegistries: List<RegistryBase>,
+    registry: Registry,
+    refRegistries: List<Registry>,
     type: IdentifierType
 ): CType {
     val lookupResult = identifierTypeLookup(registry, refRegistries, type)
@@ -719,9 +719,9 @@ fun lowerIdentifierType(
     }
 }
 
-fun identifierTypeLookup(registry: RegistryBase, refRegistries: List<RegistryBase>, type: IdentifierType) =
-    if (registry.structures.contains(type.ident)) {
-        CStructType(type.ident.value, false, registry.structures[type.ident]!!)
+fun identifierTypeLookup(registry: Registry, refRegistries: List<Registry>, type: IdentifierType) =
+    if (registry.structs.contains(type.ident)) {
+        CStructType(type.ident.value, false, registry.structs[type.ident]!!)
     }
     else if (registry.unions.contains(type.ident)) {
         CStructType(type.ident.value, true, registry.unions[type.ident]!!)
