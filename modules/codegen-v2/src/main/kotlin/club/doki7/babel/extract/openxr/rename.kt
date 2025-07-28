@@ -2,10 +2,10 @@ package club.doki7.babel.extract.openxr
 
 import club.doki7.babel.extract.ensureLowerCamelCase
 import club.doki7.babel.extract.renameVariantOrBitflag
-import club.doki7.babel.registry.Entity
-import club.doki7.babel.registry.EnumVariant
-import club.doki7.babel.registry.Registry
-import club.doki7.babel.registry.intern
+import club.doki7.sennaar.registry.Entity
+import club.doki7.sennaar.registry.EnumVariant
+import club.doki7.sennaar.registry.Registry
+import club.doki7.sennaar.interned
 import club.doki7.babel.util.Either
 import java.io.File
 
@@ -37,11 +37,11 @@ internal fun Registry<OpenXRRegistryExt>.renameEntities() {
             putEntityIfNameReplaced(variant)
         }
     }
-    enumerations["XrStructureType".intern()]!!.variants.forEach { variant ->
+    enumerations["XrStructureType".interned()]!!.variants.forEach { variant ->
         variant.rename { removePrefix("XR_TYPE_") }
         putEntityIfNameReplaced(variant)
     }
-    enumerations["XrResult".intern()]!!.variants.forEach { variant ->
+    enumerations["XrResult".interned()]!!.variants.forEach { variant ->
         variant.rename { removePrefix("XR_") }
         putEntityIfNameReplaced(variant)
     }
@@ -54,7 +54,7 @@ internal fun Registry<OpenXRRegistryExt>.renameEntities() {
                 if (variantValue.size == 1) {
                     enum.variants[index] = EnumVariant(
                         name = variant.name,
-                        value = Either.Right(listOf(variantValue.first().intern().value))
+                        value = Either.Right(listOf(variantValue.first().interned().value))
                     )
                 }
             }

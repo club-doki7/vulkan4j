@@ -1,12 +1,13 @@
 package club.doki7.babel.codegen
 
 import club.doki7.babel.ctype.lowerType
-import club.doki7.babel.registry.IdentifierType
-import club.doki7.babel.registry.RegistryBase
+import club.doki7.sennaar.registry.IdentifierType
+import club.doki7.sennaar.registry.Registry
 import club.doki7.babel.util.buildDoc
+import club.doki7.babel.util.interfaceName
 
 fun generateFunctionTypedefs(
-    registry: RegistryBase,
+    registry: Registry,
     codegenOptions: CodegenOptions
 ) = buildDoc {
     val packageName = codegenOptions.packageName
@@ -36,14 +37,14 @@ fun generateFunctionTypedefs(
                 +"/// @see $seeLink"
             }
 
-            if (it.result is IdentifierType && it.result.ident.original == "void") {
+            if (it.result is IdentifierType && (it.result as IdentifierType).ident.original == "void") {
                 if (it.params.isEmpty()) {
                     +"public static final FunctionDescriptor ${it.name} = FunctionDescriptor.ofVoid();"
                 } else {
                     +"public static final FunctionDescriptor ${it.name} = FunctionDescriptor.ofVoid("
                     indent {
                         it.params.forEachIndexed { index, param ->
-                            val cType = lowerType(registry, codegenOptions.refRegistries, param)
+                            val cType = lowerType(registry, codegenOptions.refRegistries, param.ty)
                             +"${cType.jLayout}${if (index == it.params.size - 1) "" else ","}"
                         }
                     }
@@ -55,7 +56,7 @@ fun generateFunctionTypedefs(
                     val retCType = lowerType(registry, codegenOptions.refRegistries, it.result)
                     +"${retCType.jLayout}${if (it.params.isEmpty()) "" else ","}"
                     it.params.forEachIndexed { index, param ->
-                        val cType = lowerType(registry, codegenOptions.refRegistries, param)
+                        val cType = lowerType(registry, codegenOptions.refRegistries, param.ty)
                         +"${cType.jLayout}${if (index == it.params.size - 1) "" else ","}"
                     }
                 }
@@ -74,7 +75,7 @@ fun generateFunctionTypedefs(
                     def.params.forEachIndexed { idx, param ->
                         val last = idx == def.params.size - 1
                         val suffix = if (last) "" else ","
-                        val loweredType = lowerType(registry, codegenOptions.refRegistries, param)
+                        val loweredType = lowerType(registry, codegenOptions.refRegistries, param.ty)
                         +"${loweredType.jRawType} p$idx$suffix"
                     }
                 }

@@ -4,7 +4,7 @@ package club.doki7.babel.extract.vma
 
 import club.doki7.babel.cdecl.*
 import club.doki7.babel.hparse.*
-import club.doki7.babel.registry.*
+import club.doki7.sennaar.registry.*
 import club.doki7.babel.util.isDecOrHexNumber
 import club.doki7.babel.util.parseDecOrHex
 import java.util.logging.Logger
@@ -14,7 +14,7 @@ import kotlin.io.path.useLines
 internal val inputDir = Path("codegen-v2/input")
 internal val log = Logger.getLogger("c.d.b.extract.vma")
 
-fun extractVMAHeader(): Registry<EmptyMergeable> {
+fun extractVMAHeader(): Registry {
     val headerFile = inputDir.resolve("vk_mem_alloc.h")
         .useLines { it.map(String::trim).toList() }
 
@@ -34,7 +34,7 @@ fun extractVMAHeader(): Registry<EmptyMergeable> {
             element = PointerType(
                 pointee = IdentifierType("void")
             ),
-            length = "8".intern()
+            length = "8".interned()
         ),
         values = null,
         len = null,
@@ -43,10 +43,10 @@ fun extractVMAHeader(): Registry<EmptyMergeable> {
         bits = null
     )
 
-    val vmaVulkanFunctions = registry.structures["VmaVulkanFunctions".intern()]!!
+    val vmaVulkanFunctions = registry.structs["VmaVulkanFunctions".interned()]!!
     vmaVulkanFunctions.members.add(reservedMember)
 
-    val vmaAllocatorCreateInfo = registry.structures["VmaAllocatorCreateInfo".intern()]!!
+    val vmaAllocatorCreateInfo = registry.structs["VmaAllocatorCreateInfo".interned()]!!
     vmaAllocatorCreateInfo.members.add(reservedMember)
 
     postprocessDoc(registry)
@@ -54,7 +54,7 @@ fun extractVMAHeader(): Registry<EmptyMergeable> {
     return registry
 }
 
-private val headerParseConfig = ParseConfig<EmptyMergeable>().apply {
+private val headerParseConfig = ParseConfig().apply {
     addRule(0, ::detectBlockDoxygen, ::parseAndSaveBlockDoxygen)
     addRule(0, ::detectTriSlashDoxygen, ::parseAndSaveTriSlashDoxygen)
     addRule(0, {
@@ -95,7 +95,7 @@ private val headerParseConfig = ParseConfig<EmptyMergeable>().apply {
 }
 
 private fun parseOpaqueHandleTypedef(
-    @Suppress("unused") registry: Registry<EmptyMergeable>,
+    @Suppress("unused") registry: Registry,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -119,7 +119,7 @@ private fun parseOpaqueHandleTypedef(
 }
 
 private fun parsePFNTypedef(
-    registry: Registry<EmptyMergeable>,
+    registry: Registry,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -138,7 +138,7 @@ private fun parsePFNTypedef(
 }
 
 private fun parseAndSaveStructure(
-    registry: Registry<EmptyMergeable>,
+    registry: Registry,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -161,13 +161,13 @@ private fun parseAndSaveStructure(
         structure.doc = cx["structureDoc"] as List<String>
         cx.remove("structureDoc")
     }
-    registry.structures.putEntityIfAbsent(structure)
+    registry.structs.putEntityIfAbsent(structure)
 
     assert(lines[next].startsWith("}") && lines[next].endsWith(";"))
     return next + 1
 }
 
-private val structureParseConfig = ParseConfig<EmptyMergeable>().apply {
+private val structureParseConfig = ParseConfig().apply {
     addInit { it["fields"] = mutableListOf<Member>() }
 
     addRule(
@@ -185,7 +185,7 @@ private val structureParseConfig = ParseConfig<EmptyMergeable>().apply {
 }
 
 private fun parseStructField(
-    @Suppress("unused") registry: Registry<EmptyMergeable>,
+    @Suppress("unused") registry: Registry,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -213,7 +213,7 @@ private fun parseStructField(
 }
 
 private fun parseAndSaveEnumeration(
-    registry: Registry<EmptyMergeable>,
+    registry: Registry,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -283,7 +283,7 @@ private fun parseAndSaveEnumeration(
     return next + 1
 }
 
-val enumerationParseConfig = ParseConfig<EmptyMergeable>().apply {
+val enumerationParseConfig = ParseConfig().apply {
     addInit { it["enumerators"] = mutableListOf<Pair<EnumeratorDecl, List<String>?>>() }
 
     addRule(0, { line -> if (line.startsWith("}")) ControlFlow.RETURN else ControlFlow.NEXT }, ::dummyAction)
@@ -296,7 +296,7 @@ val enumerationParseConfig = ParseConfig<EmptyMergeable>().apply {
 }
 
 fun parseEnumerator(
-    @Suppress("unused") registry: Registry<EmptyMergeable>,
+    @Suppress("unused") registry: Registry,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -316,7 +316,7 @@ fun parseEnumerator(
 }
 
 private fun parseAndSaveFunctionDecl(
-    registry: Registry<EmptyMergeable>,
+    registry: Registry,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int

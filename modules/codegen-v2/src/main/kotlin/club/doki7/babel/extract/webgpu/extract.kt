@@ -1,34 +1,33 @@
 package club.doki7.babel.extract.webgpu
 
-import club.doki7.babel.registry.Bitflag
-import club.doki7.babel.registry.Bitmask
-import club.doki7.babel.registry.Command
-import club.doki7.babel.registry.Constant
-import club.doki7.babel.registry.EmptyMergeable
-import club.doki7.babel.registry.EnumVariant
-import club.doki7.babel.registry.Enumeration
-import club.doki7.babel.registry.FunctionTypedef
-import club.doki7.babel.registry.IdentifierType
-import club.doki7.babel.registry.Member
-import club.doki7.babel.registry.OpaqueHandleTypedef
-import club.doki7.babel.registry.Param
-import club.doki7.babel.registry.PointerType
-import club.doki7.babel.registry.Registry
-import club.doki7.babel.registry.RegistryBase
-import club.doki7.babel.registry.Structure
-import club.doki7.babel.registry.Typedef
-import club.doki7.babel.registry.putEntityIfAbsent
+import club.doki7.babel.util.putEntityIfAbsent
+import club.doki7.sennaar.cpl.CIntLiteralExpr
+import club.doki7.sennaar.registry.Bitflag
+import club.doki7.sennaar.registry.Bitmask
+import club.doki7.sennaar.registry.Command
+import club.doki7.sennaar.registry.Constant
+import club.doki7.sennaar.registry.EnumVariant
+import club.doki7.sennaar.registry.Enumeration
+import club.doki7.sennaar.registry.FunctionTypedef
+import club.doki7.sennaar.registry.IdentifierType
+import club.doki7.sennaar.registry.Member
+import club.doki7.sennaar.registry.OpaqueHandleTypedef
+import club.doki7.sennaar.registry.Param
+import club.doki7.sennaar.registry.PointerType
+import club.doki7.sennaar.registry.Registry
+import club.doki7.sennaar.registry.Structure
+import club.doki7.sennaar.registry.Typedef
 import kotlin.io.path.Path
 import kotlinx.serialization.json.*
 import java.math.BigInteger
 
 private val inputDir = Path("codegen-v2/input")
 
-fun extractWebGPURegistry(): Registry<EmptyMergeable> {
+fun extractWebGPURegistry(): Registry {
     val jsonString = inputDir.resolve("webgpu.json").toFile().readText()
     val idl = Json.decodeFromString<IDL>(jsonString)
 
-    val registry = Registry(ext = EmptyMergeable())
+    val registry = Registry("")
     extractObjects(registry, idl.objects)
     extractFunctionTypedefs(registry, idl.callbacks)
     extractStructures(registry, idl.structs)
@@ -38,19 +37,19 @@ fun extractWebGPURegistry(): Registry<EmptyMergeable> {
     extractConstants(registry, idl.constants)
 
     for (structure in coreStructures) {
-        registry.structures.putEntityIfAbsent(structure)
+        registry.structs.putEntityIfAbsent(structure)
     }
     registry.aliases.putEntityIfAbsent(Typedef(
         name = "WGPUBool",
-        type = IdentifierType("uint32_t")
+        target = IdentifierType("uint32_t")
     ))
 
-    registry += extractRustWGPURegistry()
+    registry.mergeBaseWith(extractRustWGPURegistry())
 
     return registry
 }
 
-private fun extractObjects(registry: RegistryBase, objects: List<IDLObject>) {
+private fun extractObjects(registry: Registry, objects: List<IDLObject>) {
     for (obj in objects) {
         val objectTypeName = renameWGPUType(obj.name)
         registry.opaqueHandleTypedefs.putEntityIfAbsent(OpaqueHandleTypedef(name = objectTypeName))
@@ -59,16 +58,15 @@ private fun extractObjects(registry: RegistryBase, objects: List<IDLObject>) {
         val idlReferenceCommandName = "${obj.name}_add_ref"
         val referenceCommand = Command(
             name = renameWGPUFunction(idlReferenceCommandName),
-            params = listOf(Param(
+            params = mutableListOf(Param(
                 name = renameWGPUVar(obj.name),
-                type = IdentifierType(objectTypeName),
+                ty = IdentifierType(objectTypeName),
                 len = null,
-                argLen = null,
                 optional = false
             )),
             result = IdentifierType("void"),
-            successCodes = emptyList(),
-            errorCodes = emptyList()
+            successCodes = mutableListOf(),
+            errorCodes = mutableListOf()
         )
         referenceCommand.rename(renameWGPUVar(idlReferenceCommandName))
         registry.commands.putEntityIfAbsent(referenceCommand)
@@ -76,16 +74,15 @@ private fun extractObjects(registry: RegistryBase, objects: List<IDLObject>) {
         val idlReleaseCommandName = "${obj.name}_release"
         val releaseCommand = Command(
             name = renameWGPUFunction(idlReleaseCommandName),
-            params = listOf(Param(
+            params = mutableListOf(Param(
                 name = renameWGPUVar(obj.name),
-                type = IdentifierType(objectTypeName),
+                ty = IdentifierType(objectTypeName),
                 len = null,
-                argLen = null,
                 optional = false
             )),
             result = IdentifierType("void"),
-            successCodes = emptyList(),
-            errorCodes = emptyList()
+            successCodes = mutableListOf(),
+            errorCodes = mutableListOf()
         )
         releaseCommand.rename(renameWGPUVar(idlReleaseCommandName))
         registry.commands.putEntityIfAbsent(releaseCommand)
@@ -93,7 +90,7 @@ private fun extractObjects(registry: RegistryBase, objects: List<IDLObject>) {
 }
 
 private fun extractObjectMethods(
-    registry: RegistryBase,
+    registry: Registry,
     objectType: String,
     objectTypeOriginalName: String,
     methods: List<IDLFunction>
@@ -103,27 +100,24 @@ private fun extractObjectMethods(
 
         val params = mutableListOf(Param(
             name = renameWGPUVar(objectTypeOriginalName),
-            type = IdentifierType(objectType),
+            ty = IdentifierType(objectType),
             len = null,
-            argLen = null,
             optional = false
         ))
         method.args?.forEach {
             arg -> if (isIDLTypeArray(arg.type)) {
                 params.add(Param(
                     name = renameWGPUVar(singularize(arg.name)) + "Count",
-                    type = IdentifierType("size_t"),
+                    ty = IdentifierType("size_t"),
                     len = null,
-                    argLen = null,
                     optional = arg.optional
                 ))
 
                 val type = classifyType(arg.type.removeSurrounding("array<", ">"), arg.pointer)
                 params.add(Param(
                     name = renameWGPUVar(arg.name),
-                    type = type,
+                    ty = type,
                     len = null,
-                    argLen = null,
                     optional = arg.optional
                 ))
             } else {
@@ -142,9 +136,8 @@ private fun extractObjectMethods(
         if (method.callback != null) {
             params.add(Param(
                 name = "callbackInfo",
-                type = classifyCallbackInfoType(method.callback),
+                ty = classifyCallbackInfoType(method.callback),
                 len = null,
-                argLen = null,
                 optional = false
             ))
         }
@@ -153,73 +146,85 @@ private fun extractObjectMethods(
             name = renameWGPUFunction(idlMethodName),
             params = params,
             result = result,
-            successCodes = emptyList(),
-            errorCodes = emptyList()
+            successCodes = mutableListOf(),
+            errorCodes = mutableListOf()
         )
         command.rename(renameWGPUVar(idlMethodName))
         registry.commands.putEntityIfAbsent(command)
     }
 }
 
-private fun extractFunctionTypedefs(registry: RegistryBase, callbacks: List<IDLCallback>) {
+private fun extractFunctionTypedefs(registry: Registry, callbacks: List<IDLCallback>) {
     for (callback in callbacks) {
         val callbackName = renameWGPUFunctionPointer(callback.name)
-        val params = callback.args.map { arg -> classifyType(arg.type, arg.pointer) }.toMutableList()
-        params.add(PointerType(IdentifierType("void"))) // userdata1
-        params.add(PointerType(IdentifierType("void"))) // userdata2
+        val params = callback.args.map { arg -> Param(
+            name = arg.name,
+            ty = classifyType(arg.type, arg.pointer),
+            optional = true,
+            len = null
+        ) }.toMutableList()
+        params.add(Param(
+            name = "userdata1",
+            ty = PointerType(IdentifierType("void"), isConst = false, pointerToOne = false, nullable = true),
+            optional = true,
+            len = null
+        ))
+        params.add(Param(
+            name = "userdata2",
+            ty = PointerType(IdentifierType("void"), isConst = false, pointerToOne = false, nullable = true),
+            optional = true,
+            len = null
+        ))
 
         registry.functionTypedefs.putEntityIfAbsent(FunctionTypedef(
             name = callbackName,
             params = params,
-            result = IdentifierType("void")
+            result = IdentifierType("void"),
+            isPointer = true,
+            isNativeAPI = false
         ))
 
         val callbackInfoName = "${callbackName}Info"
-        registry.structures.putEntityIfAbsent(Structure(
+        registry.structs.putEntityIfAbsent(Structure(
             name = callbackInfoName,
             members = mutableListOf(
                 Member(
                     name = "nextInChain",
-                    type = PointerType(IdentifierType("WGPUChainedStruct"), const = true),
-                    values = null,
+                    ty = PointerType(IdentifierType("WGPUChainedStruct"), isConst = true, pointerToOne = false, nullable = false),
+                    init = null,
                     len = null,
-                    altLen = null,
                     optional = true,
                     bits = null
                 ),
                 Member(
                     name = "mode",
-                    type = IdentifierType("WGPUCallbackMode"),
-                    values = null,
+                    ty = IdentifierType("WGPUCallbackMode"),
+                    init = null,
                     len = null,
-                    altLen = null,
                     optional = false,
                     bits = null
                 ),
                 Member(
                     name = "callback",
-                    type = IdentifierType(callbackName),
-                    values = null,
+                    ty = IdentifierType(callbackName),
+                    init = null,
                     len = null,
-                    altLen = null,
                     optional = true,
                     bits = null
                 ),
                 Member(
                     name = "userdata1",
-                    type = PointerType(IdentifierType("void"), const = false),
-                    values = null,
+                    ty = PointerType(IdentifierType("void"), isConst = false, pointerToOne = false, nullable = true),
+                    init = null,
                     len = null,
-                    altLen = null,
                     optional = true,
                     bits = null
                 ),
                 Member(
                     name = "userdata2",
-                    type = PointerType(IdentifierType("void"), const = false),
-                    values = null,
+                    ty = PointerType(IdentifierType("void"), isConst = false, pointerToOne = false, nullable = true),
+                    init = null,
                     len = null,
-                    altLen = null,
                     optional = true,
                     bits = null
                 )
@@ -228,7 +233,7 @@ private fun extractFunctionTypedefs(registry: RegistryBase, callbacks: List<IDLC
     }
 }
 
-private fun extractStructures(registry: RegistryBase, structs: List<IDLStructure>) {
+private fun extractStructures(registry: Registry, structs: List<IDLStructure>) {
     for (struct in structs) {
         val members = mutableListOf<Member>()
 
@@ -236,10 +241,9 @@ private fun extractStructures(registry: RegistryBase, structs: List<IDLStructure
             "base_in", "base_out", "base_in_or_out" -> {
                 members.add(Member(
                     name = "nextInChain",
-                    type = PointerType(IdentifierType("WGPUChainedStruct"), const = true),
-                    values = null,
+                    ty = PointerType(IdentifierType("WGPUChainedStruct"), isConst = true, pointerToOne = false, nullable = true),
+                    init = null,
                     len = null,
-                    altLen = null,
                     optional = true,
                     bits = null
                 ))
@@ -247,10 +251,9 @@ private fun extractStructures(registry: RegistryBase, structs: List<IDLStructure
             "extension_in", "extension_out", "extension_in_Or_out" -> {
                 members.add(Member(
                     name = "chain",
-                    type = IdentifierType("WGPUChainedStruct"),
-                    values = null,
+                    ty = IdentifierType("WGPUChainedStruct"),
+                    init = null,
                     len = null,
-                    altLen = null,
                     optional = false,
                     bits = null
                 ))
@@ -268,19 +271,17 @@ private fun extractStructures(registry: RegistryBase, structs: List<IDLStructure
                 val type = classifyType(member.type.removeSurrounding("array<", ">"), member.pointer)
                 members.add(Member(
                     name = renameWGPUVar(singularize(member.name)) + "Count",
-                    type = IdentifierType("size_t"),
-                    values = null,
+                    ty = IdentifierType("size_t"),
+                    init = null,
                     len = null,
-                    altLen = null,
                     optional = member.optional,
                     bits = null
                 ))
                 members.add(Member(
                     name = renameWGPUVar(member.name),
-                    type = type,
-                    values = null,
+                    ty = type,
+                    init = null,
                     len = null,
-                    altLen = null,
                     optional = member.optional,
                     bits = null
                 ))
@@ -288,34 +289,32 @@ private fun extractStructures(registry: RegistryBase, structs: List<IDLStructure
                 val typeName = renameWGPUFunctionPointer(member.type.removePrefix("callback.")) + "Info"
                 members.add(Member(
                     name = renameWGPUVar(member.name),
-                    type = IdentifierType(typeName),
-                    values = null,
+                    ty = IdentifierType(typeName),
+                    init = null,
                     len = null,
-                    altLen = null,
                     optional = member.optional,
                     bits = null
                 ))
             } else {
                 members.add(Member(
                     name = renameWGPUVar(member.name),
-                    type = classifyType(member.type, member.pointer),
-                    values = null,
+                    ty = classifyType(member.type, member.pointer),
+                    init = null,
                     len = null,
-                    altLen = null,
                     optional = member.optional,
                     bits = null
                 ))
             }
         }
 
-        registry.structures.putEntityIfAbsent(Structure(
+        registry.structs.putEntityIfAbsent(Structure(
             name = renameWGPUType(struct.name),
             members = members
         ))
     }
 }
 
-private fun extractEnumeration(registry: RegistryBase, enums: List<IDLEnumeration>) {
+private fun extractEnumeration(registry: Registry, enums: List<IDLEnumeration>) {
     for (enum in enums) {
         registry.enumerations.putEntityIfAbsent(Enumeration(
             name = renameWGPUType(enum.name),
@@ -329,7 +328,7 @@ private fun extractEnumeration(registry: RegistryBase, enums: List<IDLEnumeratio
                     }
                     EnumVariant(
                         name = variantName,
-                        value = idx.toLong(),
+                        value = CIntLiteralExpr("0x" + idx.toULong().toString(16)),
                     )
                 }
             }.filter { it -> it != null }.map { it as EnumVariant }.toMutableList()
@@ -337,7 +336,7 @@ private fun extractEnumeration(registry: RegistryBase, enums: List<IDLEnumeratio
     }
 }
 
-private fun extractBitmask(registry: RegistryBase, bitmasks: List<IDLBitmask>) {
+private fun extractBitmask(registry: Registry, bitmasks: List<IDLBitmask>) {
     for (bitmask in bitmasks) {
         registry.bitmasks.putEntityIfAbsent(Bitmask(
             name = renameWGPUType(bitmask.name),
@@ -364,46 +363,45 @@ private fun extractBitmask(registry: RegistryBase, bitmasks: List<IDLBitmask>) {
     }
 }
 
-private fun extractFunctions(registry: RegistryBase, functions: List<IDLFunction>) {
+private fun extractFunctions(registry: Registry, functions: List<IDLFunction>) {
     for (function in functions) {
         val command = Command(
             name = renameWGPUFunction(function.name),
             params = if (function.args != null) {
-                function.args.map(::extractFunctionParam).toList()
+                function.args.map(::extractFunctionParam).toMutableList()
             } else {
-                emptyList()
+                mutableListOf()
             },
             result = if (function.returns != null) {
                 classifyType(function.returns.type, function.returns.pointer)
             } else {
                 IdentifierType("void")
             },
-            successCodes = emptyList(),
-            errorCodes = emptyList()
+            successCodes = mutableListOf(),
+            errorCodes = mutableListOf()
         )
         command.rename(renameWGPUVar(function.name))
         registry.commands.putEntityIfAbsent(command)
     }
 }
 
-private fun extractConstants(registry: RegistryBase, constants: List<IDLConstant>) {
+private fun extractConstants(registry: Registry, constants: List<IDLConstant>) {
     for (constant in constants) {
         val mappedConstant = constantTypeMappings[constant.value]
             ?: error("Unknown constant value: ${constant.value}")
 
         registry.constants.putEntityIfAbsent(Constant(
             name = constant.name.uppercase(),
-            type = mappedConstant.identType,
-            expr = mappedConstant.javaExpression
+            ty = mappedConstant.identType,
+            expr = mappedConstant.expr
         ))
     }
 }
 
 private fun extractFunctionParam(arg: IDLFunctionArg): Param = Param(
     name = renameWGPUVar(arg.name),
-    type = classifyType(arg.type, arg.pointer),
+    ty = classifyType(arg.type, arg.pointer),
     len = null,
-    argLen = null,
     optional = arg.optional
 )
 
@@ -421,19 +419,17 @@ private val coreStructures = listOf(
         members = mutableListOf(
             Member(
                 name = "data",
-                type = PointerType(IdentifierType("char"), const = true),
-                values = null,
+                ty = PointerType(IdentifierType("char"), isConst = true, pointerToOne = false, nullable = true),
+                init = null,
                 len = null,
-                altLen = null,
                 optional = true,
                 bits = null
             ),
             Member(
                 name = "length",
-                type = IdentifierType("size_t"),
-                values = null,
+                ty = IdentifierType("size_t"),
+                init = null,
                 len = null,
-                altLen = null,
                 optional = false,
                 bits = null
             )
@@ -444,19 +440,17 @@ private val coreStructures = listOf(
         members = mutableListOf(
             Member(
                 name = "next",
-                type = PointerType(IdentifierType("WGPUChainedStruct")),
-                values = null,
+                ty = PointerType(IdentifierType("WGPUChainedStruct"), isConst = false, pointerToOne = false, nullable = true),
+                init = null,
                 len = null,
-                altLen = null,
                 optional = true,
                 bits = null
             ),
             Member(
                 name = "sType",
-                type = IdentifierType("WGPUSType"),
-                values = null,
+                ty = IdentifierType("WGPUSType"),
+                init = null,
                 len = null,
-                altLen = null,
                 optional = false,
                 bits = null
             )
@@ -467,19 +461,17 @@ private val coreStructures = listOf(
         members = mutableListOf(
             Member(
                 name = "next",
-                type = PointerType(IdentifierType("WGPUChainedStructOut")),
-                values = null,
+                ty = PointerType(IdentifierType("WGPUChainedStructOut"), isConst = false, pointerToOne = false, nullable = true),
+                init = null,
                 len = null,
-                altLen = null,
                 optional = true,
                 bits = null
             ),
             Member(
                 name = "sType",
-                type = IdentifierType("WGPUSType"),
-                values = null,
+                ty = IdentifierType("WGPUSType"),
+                init = null,
                 len = null,
-                altLen = null,
                 optional = false,
                 bits = null
             )

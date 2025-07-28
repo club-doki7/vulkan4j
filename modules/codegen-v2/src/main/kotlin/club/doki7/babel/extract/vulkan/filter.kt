@@ -1,6 +1,6 @@
 package club.doki7.babel.extract.vulkan
 
-import club.doki7.babel.registry.*
+import club.doki7.sennaar.registry.*
 import java.io.File
 
 private const val unsupportedEntitiesFile = "codegen-v2/output/vulkan-unsupported-entities.txt"
@@ -63,18 +63,18 @@ private fun Registry<VulkanRegistryExt>.getUnsupportedEntities() = mutableSetOf<
     addAll(
         registry.ext.extensions.values
             .filter { it.supported == "disabled" || !it.isVulkanAPI() }
-            .flatMap { it.require.commands + it.require.types.map { n -> n.intern() } }
+            .flatMap { it.require.commands + it.require.types.map { n -> n.interned() } }
     )
 
     val (vulkan, nonVulkan) = registry.ext.versions.values.partition { it.isVulkanAPI() }
 
     val vulkanEntities = vulkan
-        .flatMap { it.require.commands + it.require.types.map { n -> n.intern() } }
+        .flatMap { it.require.commands + it.require.types.map { n -> n.interned() } }
         .toSet()
 
     addAll(
         nonVulkan
-            .flatMap { it.require.commands + it.require.types.map { n -> n.intern() } }
+            .flatMap { it.require.commands + it.require.types.map { n -> n.interned() } }
             .filter { !vulkanEntities.contains(it) }
     )
 }

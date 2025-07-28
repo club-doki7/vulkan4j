@@ -4,6 +4,7 @@ import club.doki7.babel.codegen.LayoutField
 import club.doki7.babel.codegen.defun
 import club.doki7.babel.ctype.CFunctionPointerType
 import club.doki7.babel.util.buildDoc
+import club.doki7.babel.util.interfaceName
 
 fun generatePFNAccessor(
     className: String,
@@ -21,7 +22,7 @@ fun generatePFNAccessor(
     }
     +""
 
-    if (!type.functionTypedef.pfnNativeApi) {
+    if (!type.functionTypedef.isNativeAPI) {
         val interfaceName = type.functionTypedef.interfaceName
 
         defun("public", className, member.name, "@NotNull $interfaceName value") {

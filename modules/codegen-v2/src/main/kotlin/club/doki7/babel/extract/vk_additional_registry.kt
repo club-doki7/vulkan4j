@@ -1,22 +1,23 @@
 package club.doki7.babel.extract
 
-import club.doki7.babel.registry.EmptyMergeable
-import club.doki7.babel.registry.FunctionTypedef
-import club.doki7.babel.registry.Identifier
-import club.doki7.babel.registry.IdentifierType
-import club.doki7.babel.registry.Registry
-import club.doki7.babel.registry.intern
+import club.doki7.sennaar.registry.FunctionTypedef
+import club.doki7.sennaar.Identifier
+import club.doki7.sennaar.registry.IdentifierType
+import club.doki7.sennaar.registry.Registry
+import club.doki7.sennaar.interned
+import kotlinx.serialization.json.JsonNull
 
-fun vulkanAdditionalRegistry(): Registry<EmptyMergeable> {
+fun vulkanAdditionalRegistry(): Registry {
     val additionalFunctionTypedefs = mutableMapOf<Identifier, FunctionTypedef>()
 
     fun pfn(s: String) {
-        val name = s.intern()
+        val name = s.interned()
         additionalFunctionTypedefs[name] = FunctionTypedef(
             name,
-            emptyList(),
-            IdentifierType("void".intern()),
-            pfnNativeApi = true
+            params = mutableListOf(),
+            result = IdentifierType("void".interned()),
+            isPointer = true,
+            isNativeAPI = true
         )
     }
 
@@ -49,6 +50,8 @@ fun vulkanAdditionalRegistry(): Registry<EmptyMergeable> {
     pfn("PFN_vkGetMemoryWin32HandleKHR")
 
     return Registry(
+        name = "vulkan-additional",
+        imports = mutableSetOf(),
         aliases = mutableMapOf(),
         bitmasks = mutableMapOf(),
         constants = mutableMapOf(),
@@ -57,8 +60,8 @@ fun vulkanAdditionalRegistry(): Registry<EmptyMergeable> {
         functionTypedefs = additionalFunctionTypedefs,
         opaqueHandleTypedefs = mutableMapOf(),
         opaqueTypedefs = mutableMapOf(),
-        structures = mutableMapOf(),
+        structs = mutableMapOf(),
         unions = mutableMapOf(),
-        ext = EmptyMergeable()
+        ext = JsonNull
     )
 }

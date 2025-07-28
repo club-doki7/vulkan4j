@@ -21,7 +21,7 @@ import club.doki7.babel.hparse.parseAndSaveTriSlashDoxygen
 import club.doki7.babel.hparse.skipBlockComment
 import club.doki7.babel.hparse.skipIfdefCplusplusExternC
 import club.doki7.babel.hparse.skipPreprocessor
-import club.doki7.babel.registry.*
+import club.doki7.sennaar.registry.*
 import club.doki7.babel.util.parseDecOrHex
 import java.util.logging.Logger
 import kotlin.io.path.Path
@@ -29,7 +29,7 @@ import kotlin.io.path.Path
 private val inputDir = Path("codegen-v2/input")
 internal val log = Logger.getLogger("c.d.b.extract.sdl3")
 
-fun extractSDLRegistry(): Registry<EmptyMergeable> {
+fun extractSDLRegistry(): Registry {
     val indexFileContent = inputDir.resolve("SDL3-3.2.14/include/SDL3/SDL.h")
         .toFile()
         .readText()
@@ -65,7 +65,7 @@ fun extractSDLRegistry(): Registry<EmptyMergeable> {
     registry.constants.putEntityIfAbsent(Constant(
         name = "SDL_MESSAGEBOX_COLOR_COUNT",
         type = IdentifierType("uint32_t"),
-        expr = registry.enumerations["SDL_MessageBoxColorType".intern()]!!.variants.size.toString(),
+        expr = registry.enumerations["SDL_MessageBoxColorType".interned()]!!.variants.size.toString(),
     ))
 
     registry.renameEntities()
@@ -73,7 +73,7 @@ fun extractSDLRegistry(): Registry<EmptyMergeable> {
     return registry
 }
 
-private fun extractOneSDL3Header(fileName: String): Registry<EmptyMergeable> {
+private fun extractOneSDL3Header(fileName: String): Registry {
     val lines = inputDir.resolve("SDL3-3.2.14/include/SDL3/$fileName")
         .toFile()
         .readText()
@@ -93,7 +93,7 @@ private fun extractOneSDL3Header(fileName: String): Registry<EmptyMergeable> {
     return registry
 }
 
-private val headerParseConfig = ParseConfig<EmptyMergeable>().apply {
+private val headerParseConfig = ParseConfig().apply {
     addRule(0, ::detectBlockDoxygen, ::parseAndSaveBlockDoxygen)
     addRule(0, ::detectTriSlashDoxygen, ::parseAndSaveTriSlashDoxygen)
 
@@ -169,7 +169,7 @@ private val headerParseConfig = ParseConfig<EmptyMergeable>().apply {
 }
 
 private fun reportAndSkipPreprocessor(
-    registry: Registry<EmptyMergeable>,
+    registry: Registry,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -179,7 +179,7 @@ private fun reportAndSkipPreprocessor(
 }
 
 private fun parseConstDef(
-    registry: Registry<EmptyMergeable>,
+    registry: Registry,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -214,7 +214,7 @@ private fun parseConstDef(
 
     val enumTypeName = tryFindKnownEnumType(constantName)
     if (enumTypeName != null) {
-        val enumType = registry.enumerations[enumTypeName.intern()]!!
+        val enumType = registry.enumerations[enumTypeName.interned()]!!
         val variant = try {
             EnumVariant(
                 name = constantName,
@@ -233,7 +233,7 @@ private fun parseConstDef(
 
     val bitmaskTypeName = tryFindKnownBitmaskType(constantName)
     if (bitmaskTypeName != null) {
-        val bitmask = registry.bitmasks[bitmaskTypeName.intern()]!!
+        val bitmask = registry.bitmasks[bitmaskTypeName.interned()]!!
         val bitflag = try {
             Bitflag(
                 name = constantName,
@@ -247,7 +247,7 @@ private fun parseConstDef(
         }
         bitmask.doc = doc
         bitmask.bitflags.add(bitflag)
-        registry.bitmasks[bitmaskTypeName.intern()] = bitmask
+        registry.bitmasks[bitmaskTypeName.interned()] = bitmask
         return nextLine
     }
 
@@ -262,7 +262,7 @@ private fun parseConstDef(
 }
 
 private fun parseOpaqueTypedef(
-    registry: Registry<EmptyMergeable>,
+    registry: Registry,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -290,7 +290,7 @@ private fun parseOpaqueTypedef(
 }
 
 private fun skipInlineFunction(
-    @Suppress("unused") registry: Registry<EmptyMergeable>,
+    @Suppress("unused") registry: Registry,
     @Suppress("unused") cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -310,7 +310,7 @@ private fun skipInlineFunction(
 }
 
 private fun parseCallbackTypedef(
-    registry: Registry<EmptyMergeable>,
+    registry: Registry,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -329,7 +329,7 @@ private fun parseCallbackTypedef(
 }
 
 private fun parseAndSaveFunctionDecl(
-    registry: Registry<EmptyMergeable>,
+    registry: Registry,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -370,7 +370,7 @@ private fun morphFunctionTypedef(typedef: TypedefDecl) = FunctionTypedef(
     result = typedef.aliasedType.returnType.toType()
 )
 
-private val structureParseConfig = ParseConfig<EmptyMergeable>().apply {
+private val structureParseConfig = ParseConfig().apply {
     addInit { it["fields"] = mutableListOf<Member>() }
 
     addRule(
@@ -389,7 +389,7 @@ private val structureParseConfig = ParseConfig<EmptyMergeable>().apply {
 }
 
 private fun parseAndSaveStructure(
-    registry: Registry<EmptyMergeable>,
+    registry: Registry,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int,
@@ -432,7 +432,7 @@ private fun parseAndSaveStructure(
     if (isUnion) {
         registry.unions.putEntityIfAbsent(structure)
     } else {
-        registry.structures.putEntityIfAbsent(structure)
+        registry.structs.putEntityIfAbsent(structure)
     }
 
     assert(lines[next].startsWith("}") && lines[next].endsWith(";"))
@@ -441,7 +441,7 @@ private fun parseAndSaveStructure(
 }
 
 private fun parseFunctionPointerStructField(
-    registry: Registry<EmptyMergeable>,
+    registry: Registry,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -475,7 +475,7 @@ private fun parseFunctionPointerStructField(
 }
 
 private fun parseStructField(
-    @Suppress("unused") registry: Registry<EmptyMergeable>,
+    @Suppress("unused") registry: Registry,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -505,7 +505,7 @@ private fun parseStructField(
 }
 
 private fun parseAndSaveEnumeration(
-    registry: Registry<EmptyMergeable>,
+    registry: Registry,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -557,7 +557,7 @@ private fun parseAndSaveEnumeration(
     return next + 1
 }
 
-private val enumerationParseConfig = ParseConfig<EmptyMergeable>().apply {
+private val enumerationParseConfig = ParseConfig().apply {
     addInit { it["enumerators"] = mutableListOf<Pair<EnumeratorDecl, List<String>?>>() }
 
     addRule(10, {
@@ -573,7 +573,7 @@ private val enumerationParseConfig = ParseConfig<EmptyMergeable>().apply {
 }
 
 private fun parseEnumerator(
-    @Suppress("unused") registry: Registry<EmptyMergeable>,
+    @Suppress("unused") registry: Registry,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -593,7 +593,7 @@ private fun parseEnumerator(
 }
 
 private fun skipEndiannessSpecific(
-    @Suppress("unused") registry: Registry<EmptyMergeable>,
+    @Suppress("unused") registry: Registry,
     @Suppress("unused") cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -607,7 +607,7 @@ private fun skipEndiannessSpecific(
 }
 
 private fun parseAndSaveTypedef(
-    registry: Registry<EmptyMergeable>,
+    registry: Registry,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -659,7 +659,7 @@ private fun parseAndSaveTypedef(
 }
 
 private fun skipStructBody(
-    @Suppress("unused") registry: Registry<EmptyMergeable>,
+    @Suppress("unused") registry: Registry,
     @Suppress("unused") cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int

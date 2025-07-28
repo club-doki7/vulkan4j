@@ -1,15 +1,15 @@
 package club.doki7.babel.extract.vma
 
 import club.doki7.babel.cdecl.isIdentChar
-import club.doki7.babel.registry.Command
-import club.doki7.babel.registry.Entity
-import club.doki7.babel.registry.RegistryBase
+import club.doki7.sennaar.registry.Command
+import club.doki7.sennaar.registry.Entity
+import club.doki7.sennaar.registry.Registry
 
-internal fun postprocessDoc(registry: RegistryBase) {
+internal fun postprocessDoc(registry: Registry) {
     registry.constants.values.forEach(::postprocessEntityDoc)
     registry.opaqueHandleTypedefs.values.forEach(::postprocessStructOrHandleDoc)
     registry.functionTypedefs.values.forEach(::postprocessEntityDoc)
-    registry.structures.values.forEach {
+    registry.structs.values.forEach {
         postprocessStructOrHandleDoc(it)
         it.members.forEach(::postprocessEntityDoc)
     }
@@ -26,25 +26,25 @@ internal fun postprocessDoc(registry: RegistryBase) {
 }
 
 private fun postprocessStructOrHandleDoc(entity: Entity) {
-    if (entity.doc != null) {
-        entity.doc = postprocessDoxygen(entity.doc!!).filter { !it.startsWith("\\struct") }
+    if (entity.doc.isNotEmpty()) {
+        entity.doc = postprocessDoxygen(entity.doc).filter { !it.startsWith("\\struct") }.toMutableList()
     }
 }
 
 private fun postprocessEntityDoc(entity: Entity) {
-    if (entity.doc != null) {
-        entity.doc = postprocessDoxygen(entity.doc!!)
+    if (entity.doc.isNotEmpty()) {
+        entity.doc = postprocessDoxygen(entity.doc)
     }
 }
 
 private fun postprocessCommandDoc(entity: Command) {
-    if (entity.doc != null) {
-        entity.doc = postprocessCommandDoxygen(entity.doc!!)
+    if (entity.doc.isNotEmpty()) {
+        entity.doc = postprocessCommandDoxygen(entity.doc).toMutableList()
     }
 
     entity.params.forEach {
-        if (it.doc != null) {
-            it.doc = postprocessDoxygen(it.doc!!)
+        if (it.doc.isNotEmpty()) {
+            it.doc = postprocessDoxygen(it.doc)
         }
     }
 }

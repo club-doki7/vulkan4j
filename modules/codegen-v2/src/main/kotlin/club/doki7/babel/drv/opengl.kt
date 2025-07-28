@@ -4,9 +4,10 @@ import club.doki7.babel.codegen.CodegenOptions
 import club.doki7.babel.codegen.generateConstants
 import club.doki7.babel.codegen.generateFunctionTypedefs
 import club.doki7.babel.codegen.generateHandle
-import club.doki7.babel.extract.opengl.GLCommandMetadata
+import club.doki7.babel.extract.opengl.OPENGL_IS_COMPATIBILITY
 import club.doki7.babel.extract.opengl.extractOpenGLRegistry
 import club.doki7.babel.util.render
+import club.doki7.babel.util.setupLog
 import java.io.File
 
 private const val packageDir = "opengl/src/main/java/club/doki7/opengl"
@@ -41,7 +42,7 @@ fun openglMain() {
 
     val (compatibilityCommands, coreCommands) = openglRegistry.commands.values
         .sortedBy { it.name }
-        .partition { it.ext<GLCommandMetadata>().isCompatibility }
+        .partition { it.hasMetadata(OPENGL_IS_COMPATIBILITY) }
 
     val coreCommandsDoc = club.doki7.babel.codegen.generateCommandFile(
         openglRegistry,
@@ -75,4 +76,9 @@ fun openglMain() {
             """public GLCompatibility(RawFunctionLoader loader) {
     super(loader);""")
     File("$packageDir/GLCompatibility.java").writeText(compatibilityDocText)
+}
+
+fun main() {
+    setupLog()
+    openglMain()
 }

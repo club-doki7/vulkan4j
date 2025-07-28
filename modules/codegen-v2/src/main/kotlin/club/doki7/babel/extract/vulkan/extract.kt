@@ -1,6 +1,6 @@
 package club.doki7.babel.extract.vulkan
 
-import club.doki7.babel.registry.*
+import club.doki7.sennaar.registry.*
 import club.doki7.babel.util.*
 import org.w3c.dom.Element
 import org.w3c.dom.Node
@@ -86,8 +86,8 @@ private fun Element.extractEntities(): Registry<VulkanRegistryExt> {
 
     log.info(" - 抽取: 命令别名")
     val commandAliases = e.query("commands/command[@alias]").associate {
-        val name = it.getAttributeText("name")!!.intern()
-        val alias = it.getAttributeText("alias")!!.intern()
+        val name = it.getAttributeText("name")!!.interned()
+        val alias = it.getAttributeText("alias")!!.interned()
         val aliasedCommand = commands[alias] ?: error("Missing aliased command: $alias")
         commands.putEntityIfAbsent(Command(
             name = name,
@@ -184,11 +184,11 @@ private fun extractCommand(e: Element): Command {
         result = extractType(proto.getFirstElement("type")!!),
         successCodes = e.getAttributeText("successcodes")
             ?.split(",")
-            ?.map { it.trim().intern() }
+            ?.map { it.trim().interned() }
             ?: emptyList(),
         errorCodes = e.getAttributeText("errorcodes")
             ?.split(",")
-            ?.map { it.trim().intern() }
+            ?.map { it.trim().interned() }
             ?: emptyList()
     ).apply { setExt(VkCommonMetadata(e.getAttributeText("api"))) }
 }
@@ -204,8 +204,8 @@ private fun extractParam(e: Element): Param {
     return Param(
         name = e.getFirstElement("name")!!.textContent,
         type = type,
-        len = len?.intern(),
-        argLen = len?.split("->")?.map { it.intern() },
+        len = len?.interned(),
+        argLen = len?.split("->")?.map { it.interned() },
         optional = e.getAttributeText("optional")?.startsWith("true") ?: false,
     ).apply { setExt(VkCommonMetadata(api=e.getAttributeText("api"))) }
 }
@@ -213,7 +213,7 @@ private fun extractParam(e: Element): Param {
 private fun extractAlias(e: Element) =
     Typedef(
         name = e.getAttributeText("name")!!.sanitizeFlagBits(),
-        type = IdentifierType(e.getAttributeText("alias")!!.sanitizeFlagBits().intern()),
+        type = IdentifierType(e.getAttributeText("alias")!!.sanitizeFlagBits().interned()),
     ).apply { setExt(VkCommonMetadata(e.getAttributeText("api"))) }
 
 private fun extractConstant(e: Element): Constant {
@@ -259,10 +259,10 @@ private fun extractFunctionTypedef(e: Element) =
         params = e.getElementSeq("type").map(::extractType).toList(),
         result =
             when (val type = e.textContent.substring(8, e.textContent.indexOf("(VKAPI_PTR")).trim()) {
-                "void" -> IdentifierType("void".intern())
-                "void*" -> PointerType(IdentifierType("void".intern()), false)
-                "VkBool32" -> IdentifierType("VkBool32".intern())
-                "PFN_vkVoidFunction" -> IdentifierType("PFN_vkVoidFunction".intern())
+                "void" -> IdentifierType("void".interned())
+                "void*" -> PointerType(IdentifierType("void".interned()), false)
+                "VkBool32" -> IdentifierType("VkBool32".interned())
+                "PFN_vkVoidFunction" -> IdentifierType("PFN_vkVoidFunction".interned())
                 else -> error("Unsupported function pointer result type ($type).")
             },
     ).apply { setExt(VkCommonMetadata(api = e.getAttributeText("api"))) }
@@ -305,7 +305,7 @@ private fun extractStructure(e: Element) =
             api = e.getAttributeText("api"),
             structExtends = e.getAttributeText("structextends")
                 ?.split(",")
-                ?.map { it.trim().intern() }
+                ?.map { it.trim().interned() }
         ))
     }
 
@@ -324,8 +324,8 @@ private fun extractMember(e: Element): Member {
     val ret = Member(
         name = nameElement.textContent.trim(),
         type = extractType(e.getFirstElement("type")!!),
-        values = e.getAttributeText("values")?.intern(),
-        len = e.getAttributeText("len")?.split(",")?.map { it.intern() },
+        values = e.getAttributeText("values")?.interned(),
+        len = e.getAttributeText("len")?.split(",")?.map { it.interned() },
         altLen = e.getAttributeText("altlen"),
         optional = e.getAttributeText("optional") == "true",
         bits = bits
@@ -368,7 +368,7 @@ private fun extractRequire(es: Sequence<Element>): Require {
     val values = mutableListOf<RequireValue>()
 
     for (e in es) {
-        commands.addAll(e.getElementSeq("command").map { it.getAttributeText("name")!!.intern() })
+        commands.addAll(e.getElementSeq("command").map { it.getAttributeText("name")!!.interned() })
         types.addAll(e.getElementSeq("type").map { it.getAttributeText("name")!!.replace("FlagBits", "Flags") })
         values.addAll(
             e.getElementSeq("enum")
@@ -393,7 +393,7 @@ private fun extractRequireValue(e: Element): RequireValue? {
     return RequireValue(
         name = e.getAttributeText("name")!!,
         api = e.getAttributeText("api"),
-        extends = e.getAttributeText("extends")?.sanitizeFlagBits()?.intern(),
+        extends = e.getAttributeText("extends")?.sanitizeFlagBits()?.interned(),
         value = e.getAttributeText("value"),
         bitpos = e.getAttributeText("bitpos")?.parseDecOrHex(),
         extNumber = e.getAttributeText("extnumber")?.parseDecOrHex(),
@@ -403,7 +403,7 @@ private fun extractRequireValue(e: Element): RequireValue? {
 }
 
 private fun extractType(e: Element): Type {
-    val identifier = IdentifierType(e.textContent.trim().sanitizeFlagBits().intern())
+    val identifier = IdentifierType(e.textContent.trim().sanitizeFlagBits().interned())
 
     // Array types, e.g.:
     // `<type>float</type> <name>matrix</name>[3][4]`
@@ -421,7 +421,7 @@ private fun extractType(e: Element): Type {
                 .removePrefix("[")
                 .removeSuffix("]")
                 .split("][")
-                .map { it.trim().intern() }
+                .map { it.trim().interned() }
                 .reversed()
 
             var array = ArrayType(identifier, lengths[0])

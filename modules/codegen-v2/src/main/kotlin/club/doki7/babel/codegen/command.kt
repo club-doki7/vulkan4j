@@ -13,14 +13,15 @@ import club.doki7.babel.ctype.CType
 import club.doki7.babel.ctype.CVoidType
 import club.doki7.babel.ctype.CWCharType
 import club.doki7.babel.ctype.lowerType
-import club.doki7.babel.registry.Command
-import club.doki7.babel.registry.Param
-import club.doki7.babel.registry.RegistryBase
+import club.doki7.sennaar.registry.Command
+import club.doki7.sennaar.registry.Param
+import club.doki7.sennaar.registry.IRegistry
 import club.doki7.babel.util.Doc
 import club.doki7.babel.util.buildDoc
+import club.doki7.babel.util.interfaceName
 
 fun generateCommandFile(
-    registry: RegistryBase,
+    registry: IRegistry,
     className: String,
     commands: List<Command>,
     codegenOptions: CodegenOptions,
@@ -50,14 +51,13 @@ fun generateCommandFile(
     if (registry.bitmasks.isNotEmpty()) {
         imports("$packageName.bitmask.*")
     }
-    if (registry.structures.isNotEmpty()) {
+    if (registry.structs.isNotEmpty()) {
         imports("$packageName.datatype.*")
     }
     if (registry.enumerations.isNotEmpty()) {
         imports("$packageName.enumtype.*")
     }
-    if (registry.opaqueHandleTypedefs.isNotEmpty()
-        || registry.opaqueTypedefs.values.any { it.isHandle }) {
+    if (registry.opaqueHandleTypedefs.isNotEmpty() || registry.opaqueTypedefs.isNotEmpty()) {
         imports("$packageName.handle.*")
     }
     if (registry.functionTypedefs.isNotEmpty()) {
@@ -157,11 +157,11 @@ private fun arrayToPointerDecay(type: CType): CType {
 
 private fun lowerCommand(
     command: Command,
-    registry: RegistryBase,
+    registry: IRegistry,
     codegenOptions: CodegenOptions
 ) = LoweredCommand(
     paramCType = command.params.map {
-        arrayToPointerDecay(lowerType(registry, codegenOptions.refRegistries, it.type))
+        arrayToPointerDecay(lowerType(registry, codegenOptions.refRegistries, it.ty))
     }.toList(),
     result = lowerType(registry, codegenOptions.refRegistries, command.result),
     command = command
@@ -177,7 +177,7 @@ private fun generateCommandWrapper(
         it is CPlatformDependentIntType && it !is CSizeType
     }
     val hasFunctionPointerParam = loweredCommand.paramCType.any {
-        it is CFunctionPointerType && !it.functionTypedef.pfnNativeApi
+        it is CFunctionPointerType && !it.functionTypedef.isNativeAPI
     }
 
     val paramIOTypes = mutableListOf<String>()
@@ -197,7 +197,7 @@ private fun generateCommandWrapper(
         callArgs.forEachIndexed { idx, it -> +if (idx != callArgs.size - 1) "$it, " else it }
     }
 
-    loweredCommand.command.doc?.forEach { +"/// $it" }
+    loweredCommand.command.doc.forEach { +"/// $it" }
 
     val seeLink = codegenOptions.seeLinkProvider(loweredCommand.command)
     if (seeLink != null) {
@@ -277,7 +277,7 @@ private fun generateCommandWrapper(
             val paramIOType = paramIOTypes[index]
             val comma = if (index != paramIOTypes.size - 1) "," else ""
 
-            if (paramCType is CFunctionPointerType && !paramCType.functionTypedef.pfnNativeApi) {
+            if (paramCType is CFunctionPointerType && !paramCType.functionTypedef.isNativeAPI) {
                 +"${paramCType.functionTypedef.interfaceName} ${param.name}${comma}"
             } else {
                 +"$paramIOType ${param.name}${comma}"
@@ -306,7 +306,7 @@ private fun generateCommandWrapper(
             for ((index, param) in loweredCommand.command.params.withIndex()) {
                 val paramCType = loweredCommand.paramCType[index]
                 val comma = if (index != loweredCommand.command.params.size - 1) "," else ""
-                if (paramCType is CFunctionPointerType && !paramCType.functionTypedef.pfnNativeApi) {
+                if (paramCType is CFunctionPointerType && !paramCType.functionTypedef.isNativeAPI) {
                     +"${paramCType.functionTypedef.interfaceName}.ofNative(arena, ${param.name})${comma}"
                 } else {
                     +"${param.name}${comma}"

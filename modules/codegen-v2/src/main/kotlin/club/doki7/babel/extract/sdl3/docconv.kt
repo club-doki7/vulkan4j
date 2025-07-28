@@ -1,16 +1,16 @@
 package club.doki7.babel.extract.sdl3
 
 import club.doki7.babel.cdecl.isIdentChar
-import club.doki7.babel.registry.Command
-import club.doki7.babel.registry.Entity
-import club.doki7.babel.registry.RegistryBase
-import club.doki7.babel.registry.intern
+import club.doki7.sennaar.registry.Command
+import club.doki7.sennaar.registry.Entity
+import club.doki7.sennaar.registry.Registry
+import club.doki7.sennaar.interned
 
-internal fun postprocessDoc(registry: RegistryBase) {
+internal fun postprocessDoc(registry: Registry) {
     registry.constants.values.forEach(::postprocessEntityDoc)
     registry.opaqueHandleTypedefs.values.forEach(::postprocessStructOrHandleDoc)
     registry.functionTypedefs.values.forEach(::postprocessEntityDoc)
-    registry.structures.values.forEach {
+    registry.structs.values.forEach {
         postprocessStructOrHandleDoc(it)
         it.members.forEach(::postprocessEntityDoc)
     }
@@ -27,23 +27,23 @@ internal fun postprocessDoc(registry: RegistryBase) {
 }
 
 private fun postprocessStructOrHandleDoc(entity: Entity) {
-    if (entity.doc != null) {
+    if (entity.doc.isNotEmpty()) {
         entity.doc = postprocessDoxygen(entity.doc!!).filter { !it.startsWith("\\struct") }
     }
 }
 
 private fun postprocessEntityDoc(entity: Entity) {
-    if (entity.doc != null) {
+    if (entity.doc.isNotEmpty()) {
         entity.doc = postprocessDoxygen(entity.doc!!)
     }
 }
 
 private fun postprocessCommandDoc(entity: Command) {
-    if (entity.doc != null) {
+    if (entity.doc.isNotEmpty()) {
         val newDoc = mutableListOf<String>()
         for (line in entity.doc!!) {
             if (line.startsWith("\\sa ")) {
-                val content = line.substring(4).trim().intern()
+                val content = line.substring(4).trim().interned()
                 if (content.renamed) {
                     newDoc.add("@see #${content.value}")
                 } else {

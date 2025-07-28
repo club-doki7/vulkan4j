@@ -27,37 +27,37 @@ import club.doki7.babel.hparse.parseAndSaveSimpleTypeAlias
 import club.doki7.babel.hparse.skipBlockComment
 import club.doki7.babel.hparse.skipIfdefCplusplusExternC
 import club.doki7.babel.hparse.skipPreprocessor
-import club.doki7.babel.registry.Bitflag
-import club.doki7.babel.registry.Bitmask
-import club.doki7.babel.registry.Command
-import club.doki7.babel.registry.EmptyMergeable
-import club.doki7.babel.registry.EnumVariant
-import club.doki7.babel.registry.Enumeration
-import club.doki7.babel.registry.FunctionTypedef
-import club.doki7.babel.registry.Member
-import club.doki7.babel.registry.Param
-import club.doki7.babel.registry.Registry
-import club.doki7.babel.registry.Structure
-import club.doki7.babel.registry.intern
-import club.doki7.babel.registry.putEntityIfAbsent
+import club.doki7.sennaar.registry.Bitflag
+import club.doki7.sennaar.registry.Bitmask
+import club.doki7.sennaar.registry.EnumVariant
+import club.doki7.sennaar.registry.Enumeration
+import club.doki7.sennaar.registry.FunctionTypedef
+import club.doki7.sennaar.registry.Member
+import club.doki7.sennaar.registry.Registry
+import club.doki7.sennaar.registry.Structure
+import club.doki7.sennaar.interned
 import club.doki7.babel.util.parseDecOrHex
+import club.doki7.babel.util.putEntityIfAbsent
+import club.doki7.sennaar.cpl.CIntLiteralExpr
+import club.doki7.sennaar.registry.Bitwidth
+import club.doki7.sennaar.registry.Param
 import java.math.BigInteger
 import kotlin.io.path.useLines
 
-internal fun extractRustWGPURegistry(): Registry<EmptyMergeable> {
+internal fun extractRustWGPURegistry(): Registry {
     val headerFile = inputDir.resolve("wgpu.h").useLines { it.map(String::trim).toList() }
-    val registry = Registry(ext = EmptyMergeable())
+    val registry = Registry("wgpu-rs")
 
     hparse(parseConfig, registry, mutableMapOf(), headerFile, 0)
 
-    registry.commands.values.forEach { command -> command.rename2 {
-        name: String -> name.removePrefix("wgpu").ensureLowerCamelCase()
+    registry.commands.values.forEach { command -> command.rename {
+        name -> name.removePrefix("wgpu").ensureLowerCamelCase()
     } }
 
     return registry
 }
 
-private val parseConfig = ParseConfig<EmptyMergeable>().apply {
+private val parseConfig = ParseConfig().apply {
     addRule(0, ::detectIfdefCplusplus, ::skipIfdefCplusplusExternC)
 
     addRule(10, ::detectPreprocessor, ::skipPreprocessor)
@@ -78,7 +78,7 @@ private val parseConfig = ParseConfig<EmptyMergeable>().apply {
 
 // region enum
 private fun parseAndSaveEnumeration(
-    registry: Registry<EmptyMergeable>,
+    registry: Registry,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -105,7 +105,7 @@ private fun parseAndSaveEnumeration(
     return nextIndex + 1
 }
 
-private val enumParseConfig = ParseConfig<EmptyMergeable>().apply {
+private val enumParseConfig = ParseConfig().apply {
     addInit { it.put("variants", mutableListOf<EnumVariant>()) }
 
     addRule(0, { line -> if (line.startsWith("}")) ControlFlow.RETURN else ControlFlow.NEXT }, ::dummyAction)
@@ -116,7 +116,7 @@ private val enumParseConfig = ParseConfig<EmptyMergeable>().apply {
 }
 
 private fun parseEnumerator(
-    @Suppress("unused") registry: Registry<EmptyMergeable>,
+    @Suppress("unused") registry: Registry,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -126,7 +126,10 @@ private fun parseEnumerator(
     val variants = cx["variants"] as MutableList<EnumVariant>
 
     val value = enumDecl.value.parseDecOrHex()
-    variants.add(EnumVariant(name = enumDecl.name.removePrefix("${enumName}_"), value = value))
+    variants.add(EnumVariant(
+        name = enumDecl.name.removePrefix("${enumName}_"),
+        value = CIntLiteralExpr("0x" + value.toULong().toString(16))
+    ))
 
     return nextIndex
 }
@@ -138,7 +141,7 @@ private fun detectTypedefFlag(line: String) =
     else ControlFlow.NEXT
 
 private fun parseAndSaveTypedefFlag(
-    registry: Registry<EmptyMergeable>,
+    registry: Registry,
     @Suppress("unused") cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -146,7 +149,7 @@ private fun parseAndSaveTypedefFlag(
     val bitmaskTypeName = lines[index].removeSurrounding("typedef WGPUFlags", ";").trim()
     registry.bitmasks.putEntityIfAbsent(Bitmask(
         name = bitmaskTypeName,
-        bitwidth = 64,
+        bitwidth = Bitwidth.Bit64,
         bitflags = mutableListOf()
     ))
     return index + 1
@@ -159,14 +162,14 @@ private fun detectStaticConstFlag(line: String) =
     else ControlFlow.NEXT
 
 private fun parseAndSaveStaticConstFlag(
-    registry: Registry<EmptyMergeable>,
+    registry: Registry,
     @Suppress("unused") cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
 ): Int {
     val usefulContent = lines[index].removeSurrounding("static const", ";").trim()
     val (typeName, assignExpr) = usefulContent.split(' ', limit = 2).map(String::trim)
-    val bitmaskType = registry.bitmasks[typeName.intern()]
+    val bitmaskType = registry.bitmasks[typeName.interned()]
     if (bitmaskType == null) {
         error("cannot define bitflag for bitmask type '$typeName' because the bitmask type itself has not been defined")
     }
@@ -174,6 +177,7 @@ private fun parseAndSaveStaticConstFlag(
     val (bitflagName, valueExpr) = assignExpr.split('=', limit = 2).map(String::trim)
 
     val bitflag = if (valueExpr.contains("|")) {
+        // TODO really parse C expression, or continue with our current approach?
         val flagValues = valueExpr.split('|')
             .map { it.trim().replace("1 <<", "1L <<") }
             .toMutableList()
@@ -184,15 +188,16 @@ private fun parseAndSaveStaticConstFlag(
     } else if (valueExpr.contains("1 <<")) {
         val (_, shiftBits) = valueExpr.split("<<", limit = 2).map(String::trim)
         val shiftBitsNum = shiftBits.toInt()
+        val value = 1L.shl(shiftBitsNum)
         Bitflag(
             name = bitflagName.removePrefix("${typeName}_"),
-            value = BigInteger.ONE.shiftLeft(shiftBitsNum)
+            value = CIntLiteralExpr("0x" + value.toULong().toString(16))
         )
     } else {
         val value = valueExpr.parseDecOrHex()
         Bitflag(
             name = bitflagName.removePrefix("${typeName}_"),
-            value = BigInteger.valueOf(value)
+            value = CIntLiteralExpr("0x" + value.toULong().toString(16))
         )
     }
     bitmaskType.bitflags.add(bitflag)
@@ -202,7 +207,7 @@ private fun parseAndSaveStaticConstFlag(
 
 // region structure
 private fun parseAndSaveStructure(
-    registry: Registry<EmptyMergeable>,
+    registry: Registry,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -223,7 +228,7 @@ private fun parseAndSaveStructure(
     val members = fieldVarDecls.map(::morphStructFieldDecl)
         .toMutableList()
 
-    registry.structures.putEntityIfAbsent(Structure(
+    registry.structs.putEntityIfAbsent(Structure(
         name = structureName,
         members = members
     ))
@@ -231,7 +236,7 @@ private fun parseAndSaveStructure(
     return next + 1
 }
 
-private val structureParseConfig = ParseConfig<EmptyMergeable>().apply {
+private val structureParseConfig = ParseConfig().apply {
     addInit {
         it["fields"] = mutableListOf<VarDecl>()
     }
@@ -243,7 +248,7 @@ private val structureParseConfig = ParseConfig<EmptyMergeable>().apply {
 }
 
 private fun parseStructField(
-    @Suppress("unused") registry: Registry<EmptyMergeable>,
+    @Suppress("unused") registry: Registry,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -257,10 +262,9 @@ private fun parseStructField(
 
 private fun morphStructFieldDecl(decl: VarDecl) = Member(
     name = decl.name,
-    type = decl.type.toType(),
-    values = null,
+    ty = decl.type.toType(),
+    init = null,
     len = null,
-    altLen = null,
     optional = false,
     bits = null
 )
@@ -272,7 +276,7 @@ private fun detectCallbackTypedef(line: String) =
     else ControlFlow.NEXT
 
 private fun parseAndSaveCallbackTypedef(
-    registry: Registry<EmptyMergeable>,
+    registry: Registry,
     @Suppress("unused") cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -284,8 +288,17 @@ private fun parseAndSaveCallbackTypedef(
 
 private fun morphFunctionTypedef(typedef: TypedefDecl) = FunctionTypedef(
     name = typedef.name,
-    params = (typedef.aliasedType as RawFunctionType).params.map { it.second.toType() },
-    result = typedef.aliasedType.returnType.toType()
+    params = (typedef.aliasedType as RawFunctionType).params.map {
+        Param(
+            name = it.first,
+            ty = it.second.toType(),
+            optional = true,
+            len = null
+        )
+    }.toMutableList(),
+    result = typedef.aliasedType.returnType.toType(),
+    isPointer = true,
+    isNativeAPI = false
 )
 // endregion
 

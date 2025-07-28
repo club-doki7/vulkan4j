@@ -2,12 +2,12 @@
 
 package club.doki7.babel.extract.shaderc
 
-import club.doki7.babel.registry.EnumVariant
-import club.doki7.babel.registry.Enumeration
-import club.doki7.babel.registry.RegistryBase
-import club.doki7.babel.registry.putEntityIfAbsent
+import club.doki7.sennaar.registry.EnumVariant
+import club.doki7.sennaar.registry.Enumeration
+import club.doki7.sennaar.registry.Registry
+import club.doki7.sennaar.registry.putEntityIfAbsent
 
-internal fun addEnvHeaderItems(registry: RegistryBase) {
+internal fun addEnvHeaderItems(registry: Registry) {
     val shaderc_target_env = Enumeration(
         name = "shaderc_target_env",
         variants = mutableListOf(

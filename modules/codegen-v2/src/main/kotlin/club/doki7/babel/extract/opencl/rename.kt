@@ -1,10 +1,11 @@
 package club.doki7.babel.extract.opencl
 
 import club.doki7.babel.extract.ensureLowerCamelCase
-import club.doki7.babel.registry.Entity
-import club.doki7.babel.registry.Registry
+import club.doki7.sennaar.registry.Entity
+import club.doki7.sennaar.registry.Registry
+import club.doki7.sennaar.registry.RegistryTE
 
-internal fun Registry<OpenCLRegistryExt>.renameEntities() {
+internal fun RegistryTE<OpenCLRegistryExt>.renameEntities() {
     val renamed = mutableMapOf<String, String>()
 
     fun putEntityIfNameReplaced(entity: Entity) {
@@ -14,17 +15,17 @@ internal fun Registry<OpenCLRegistryExt>.renameEntities() {
     }
 
     commands.values.forEach {
-        it.rename { removePrefix("cl").ensureLowerCamelCase() }
+        it.rename { s -> s.removePrefix("cl").ensureLowerCamelCase() }
         putEntityIfNameReplaced(it)
     }
 
     constants.values.forEach {
-        it.rename { removePrefix("CL_") }
+        it.rename { s -> s.removePrefix("CL_") }
     }
 
     // Since OpenCL uses snake case, we have to rename structures
 
-    structures.values.forEach { struct ->
+    structs.values.forEach { struct ->
         struct.rename(String::renameType)
         putEntityIfNameReplaced(struct)
 

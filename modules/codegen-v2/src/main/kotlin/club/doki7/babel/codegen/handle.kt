@@ -1,6 +1,6 @@
 package club.doki7.babel.codegen
 
-import club.doki7.babel.registry.OpaqueHandleTypedef
+import club.doki7.sennaar.registry.OpaqueHandleTypedef
 import club.doki7.babel.util.Doc
 import club.doki7.babel.util.buildDoc
 
@@ -30,8 +30,8 @@ fun generateHandle(
 
     val seeLink = codegenOptions.seeLinkProvider(handle)
 
-    if (handle.doc != null) {
-        handle.doc!!.forEach { +"/// $it" }
+    if (handle.doc.isNotEmpty()) {
+        handle.doc.forEach { +"/// $it" }
     } else if (seeLink != null) {
         +"/// Represents an opaque handle type $seeLink."
     } else {

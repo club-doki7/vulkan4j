@@ -1,8 +1,9 @@
 package club.doki7.babel.codegen
 
-import club.doki7.babel.registry.Bitmask
+import club.doki7.sennaar.registry.Bitmask
 import club.doki7.babel.util.Either
 import club.doki7.babel.util.buildDoc
+import club.doki7.sennaar.registry.Bitwidth
 
 fun generateBitmask(
     bitmask: Bitmask,
@@ -11,11 +12,8 @@ fun generateBitmask(
     val docLink = codegenOptions.seeLinkProvider(bitmask)
 
     val (postfix, bitflagType, bitflagObjectType) = when (bitmask.bitwidth) {
-        null, 32 -> listOf("", "int", "Integer")
-        8 -> listOf("", "byte", "Byte")
-        16 -> listOf("", "short", "Short")
-        64 -> listOf("L", "long", "Long")
-        else -> error("unsupported bitwidth: ${bitmask.bitwidth}")
+        Bitwidth.Bit32 -> listOf("", "int", "Integer")
+        Bitwidth.Bit64 -> listOf("L", "long", "Long")
     }
 
     val bitflags = bitmask.bitflags.sortedBy { it.name }
@@ -38,7 +36,7 @@ fun generateBitmask(
         +""
     }
 
-    if (bitmask.doc != null) {
+    if (bitmask.doc.isNotEmpty()) {
         for (line in bitmask.doc) {
             +"/// $line"
         }
@@ -52,11 +50,11 @@ fun generateBitmask(
     +"public final class ${bitmask.name} {"
     indent {
         for ((idx, flag) in bitflags.sortedBy { if (it.value is Either.Right) it.value.value.size else 0 }.withIndex()) {
-            if (flag.doc != null) {
+            if (flag.doc.isNotEmpty()) {
                 if (idx != 0) {
                     +""
                 }
-                flag.doc!!.forEach { +"/// $it" }
+                flag.doc.forEach { +"/// $it" }
             }
 
             val docLink = codegenOptions.seeLinkProvider(flag)
@@ -101,11 +99,7 @@ fun generateBitmask(
                 +""
                 +"if (detectedFlagBits.isEmpty()) {"
                 indent {
-                    if (bitmask.bitwidth == null || bitmask.bitwidth <= 32) {
-                        +"return \"NONE(\" + Integer.toBinaryString(flags) + \")\";"
-                    } else {
-                        +"return \"NONE(\" + ${bitflagObjectType}.toBinaryString(flags) + \")\";"
-                    }
+                    +"return \"NONE(\" + ${bitflagObjectType}.toBinaryString(flags) + \")\";"
                 }
                 +"}"
                 +"return String.join(\" | \", detectedFlagBits);"

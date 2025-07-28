@@ -1,23 +1,23 @@
 package club.doki7.babel.extract.sdl3
 
-import club.doki7.babel.registry.IdentifierType
-import club.doki7.babel.registry.Member
-import club.doki7.babel.registry.RegistryBase
-import club.doki7.babel.registry.Structure
-import club.doki7.babel.registry.putEntityIfAbsent
+import club.doki7.sennaar.registry.IdentifierType
+import club.doki7.sennaar.registry.Member
+import club.doki7.sennaar.registry.Registry
+import club.doki7.sennaar.registry.Structure
+import club.doki7.sennaar.registry.putEntityIfAbsent
 
-internal fun addSDLGamepadBindings(registryBase: RegistryBase) {
-    registryBase.structures.putEntityIfAbsent(sdl_gamepad_binding)
-    registryBase.structures.putEntityIfAbsent(sdl_gamepad_binding_input_axis)
-    registryBase.structures.putEntityIfAbsent(sdl_gamepad_binding_input_hat)
-    registryBase.structures.putEntityIfAbsent(sdl_gamepad_binding_output_axis)
+internal fun addSDLGamepadBindings(Registry: Registry) {
+    Registry.structs.putEntityIfAbsent(sdl_gamepad_binding)
+    Registry.structs.putEntityIfAbsent(sdl_gamepad_binding_input_axis)
+    Registry.structs.putEntityIfAbsent(sdl_gamepad_binding_input_hat)
+    Registry.structs.putEntityIfAbsent(sdl_gamepad_binding_output_axis)
 
-    registryBase.unions.putEntityIfAbsent(sdl_gamepad_binding_input)
-    registryBase.unions.putEntityIfAbsent(sdl_gamepad_binding_output)
+    Registry.unions.putEntityIfAbsent(sdl_gamepad_binding_input)
+    Registry.unions.putEntityIfAbsent(sdl_gamepad_binding_output)
 
     // Fuck SDL, why would you do this?
-    registryBase.structures.putEntityIfAbsent(sdl_atomic_int)
-    registryBase.structures.putEntityIfAbsent(sdl_atomic_u32)
+    Registry.structs.putEntityIfAbsent(sdl_atomic_int)
+    Registry.structs.putEntityIfAbsent(sdl_atomic_u32)
 }
 
 // typedef struct SDL_GamepadBinding {

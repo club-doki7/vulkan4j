@@ -1,11 +1,11 @@
 package club.doki7.babel.extract.vulkan
 
-import club.doki7.babel.registry.ArrayType
-import club.doki7.babel.registry.IdentifierType
-import club.doki7.babel.registry.Member
-import club.doki7.babel.registry.Registry
-import club.doki7.babel.registry.Structure
-import club.doki7.babel.registry.intern
+import club.doki7.sennaar.registry.ArrayType
+import club.doki7.sennaar.registry.IdentifierType
+import club.doki7.sennaar.registry.Member
+import club.doki7.sennaar.registry.Registry
+import club.doki7.sennaar.registry.Structure
+import club.doki7.sennaar.interned
 import java.util.logging.Logger
 
 internal val log = Logger.getLogger("c.d.b.extract.vulkan")
@@ -24,15 +24,15 @@ fun extractVulkanRegistry(): Registry<VulkanRegistryExt> {
     filteredRegistry.renameEntities()
 
     log.info("手动添加类型 NvSciSyncFence")
-    val renamedNvSciSyncFence = "NvSciSyncFence".intern()
+    val renamedNvSciSyncFence = "NvSciSyncFence".interned()
     renamedNvSciSyncFence.rename("NvSciSyncFenceVKREF")
-    filteredRegistry.structures.put(
+    filteredRegistry.structs.put(
         renamedNvSciSyncFence,
         Structure(
             name = renamedNvSciSyncFence,
             members = mutableListOf(Member(
                 name = "payload",
-                type = ArrayType(IdentifierType("uint64_t"), "6".intern()),
+                type = ArrayType(IdentifierType("uint64_t"), "6".interned()),
                 values = null,
                 len = null,
                 altLen = null,

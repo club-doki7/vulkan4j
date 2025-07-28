@@ -1,7 +1,7 @@
 package club.doki7.babel.extract.openxr
 
 import club.doki7.babel.cdecl.*
-import club.doki7.babel.registry.*
+import club.doki7.sennaar.registry.*
 import club.doki7.babel.util.*
 import org.w3c.dom.Element
 import org.w3c.dom.Node
@@ -62,7 +62,7 @@ private fun Element.extractEntities(): Registry<OpenXRRegistryExt> {
     e.query("types/type[@category='struct' and @alias]")
         .map(::extractAlias)
         .forEach { (name, rawAlias) ->
-            val aliasTo = rawAlias.intern()
+            val aliasTo = rawAlias.interned()
             val origin = structs[aliasTo] ?: error("Missing aliased structure: $aliasTo")
             val alias = Structure(name, origin.members)
             structs.putEntityIfAbsent(alias)
@@ -92,9 +92,9 @@ private fun Element.extractEntities(): Registry<OpenXRRegistryExt> {
     e.query("commands/command[@alias]")
         .map(::extractAlias)
         .forEach { (name, rawAlias) ->
-            val aliasTo = rawAlias.intern()
+            val aliasTo = rawAlias.interned()
             val origin = commands[aliasTo] ?: error("Missing aliased command: $aliasTo")
-            val alias = origin.aliasBy(name.intern())
+            val alias = origin.aliasBy(name.interned())
             commands.putEntityIfAbsent(alias)
         }
 
@@ -260,7 +260,7 @@ private fun getName(e: Element): String {
 }
 
 private fun commaList(s: String?): List<Identifier>? {
-    return s?.split(',')?.map { it.intern() }
+    return s?.split(',')?.map { it.interned() }
 }
 
 /**
@@ -278,7 +278,7 @@ private fun extractMember(e: Element): Member {
     return Member(
         name,
         type,
-        values?.intern(),
+        values?.interned(),
         lenList,
         null,
         optional == "true",
@@ -288,7 +288,7 @@ private fun extractMember(e: Element): Member {
 
 // copy from vulkan
 private fun extractType(e: Element): Type {
-    val identifier = IdentifierType(e.textContent.trim().sanitizeFlagBits().intern())
+    val identifier = IdentifierType(e.textContent.trim().sanitizeFlagBits().interned())
 
     // Array types, e.g.:
     // `<type>float</type> <name>matrix</name>[3][4]`
@@ -306,7 +306,7 @@ private fun extractType(e: Element): Type {
                 .removePrefix("[")
                 .removeSuffix("]")
                 .split("][")
-                .map { it.trim().intern() }
+                .map { it.trim().interned() }
                 .reversed()
 
             var array = ArrayType(identifier, lengths[0])
@@ -416,7 +416,7 @@ private fun extractParam(e: Element): Param {
     val externsync by e.attrs
     val optional by e.attrs
 
-    return Param(name, type, len?.intern(), null, optional == "true").apply {
+    return Param(name, type, len?.interned(), null, optional == "true").apply {
         if (len == null && type is PointerType) {
             type.pointerToOne = true
         }
@@ -497,7 +497,7 @@ private fun extractRequire(e: Element): Require {
 
     val types = e.getElementSeq("type").map { it.getAttributeText("name")!! }.toList()
     val values = e.getElementSeq("enum").map(::extractRequireValue).toList()
-    val commands = e.getElementSeq("command").map { it.getAttributeText("name")!!.intern() }.toList()
+    val commands = e.getElementSeq("command").map { it.getAttributeText("name")!!.interned() }.toList()
     val interactionProfiles = e.getElementSeq("interaction_profile").map { it.getAttributeText("name")!! }.toList()
     val extends = e.getElementSeq("extend").map(::extractExtends).toList()
 
@@ -531,7 +531,7 @@ private fun extractExtends(e: Element): Extend {
 private fun extractComponent(e: Element): Extend.Component {
     val subpath by e.attrs
     val type by e.attrs
-    return Extend.Component(subpath!!, type!!.intern())
+    return Extend.Component(subpath!!, type!!.interned())
 }
 
 /**
@@ -596,7 +596,7 @@ private fun extractExtension(e: Element): OpenXRExtension {
         depends,
         provisional == "true",
         ratified,
-        promotedto?.intern(),
+        promotedto?.interned(),
         deprecatedBy,
         requires
     )

@@ -2,14 +2,16 @@ package club.doki7.babel.extract.glfw3
 
 import club.doki7.babel.cdecl.*
 import club.doki7.babel.extract.*
-import club.doki7.babel.registry.*
+import club.doki7.sennaar.Identifier
+import club.doki7.sennaar.registry.*
+import kotlinx.serialization.json.JsonNull
 import java.util.logging.Logger
 import kotlin.io.path.Path
 
 private val inputDir = Path("codegen-v2/input")
 internal val log = Logger.getLogger("c.d.b.extract.glfw3")
 
-fun extractGLFWHeader(): Registry<EmptyMergeable> {
+fun extractGLFWHeader(): Registry {
     val fileContent = inputDir.resolve("glfw3.h").toFile().readText() +
             "\n" +
             inputDir.resolve("glfw3native.h").toFile().readText()
@@ -18,9 +20,6 @@ fun extractGLFWHeader(): Registry<EmptyMergeable> {
         .toList()
     val registry = Glfw3HeaderParser(lines).parse().collect()
     registry.renameEntities()
-
-    // ensure `import handle` generation in GLFW.java
-    registry.opaqueHandleTypedefs.putEntityIfAbsent(OpaqueHandleTypedef("__Placeholder".intern()))
 
     return registry
 }
@@ -85,10 +84,10 @@ abstract class HeaderParser<T>(val lines: List<String>) {
  * After [parse]: [lineIndex] is the line below the last comment, or `lineIndex == 0` if no comment is met.
  */
 class Glfw3CommentParser<T, P : HeaderParser<T>>(delegate: P) :
-    HeaderParser<List<String>?>(delegate.lines.subList(delegate.lineIndex, delegate.lines.size)) {
-    private var savedDoc: List<String>? = null
+    HeaderParser<MutableList<String>>(delegate.lines.subList(delegate.lineIndex, delegate.lines.size)) {
+    private var savedDoc: MutableList<String> = mutableListOf()
 
-    override fun collect(): List<String>? {
+    override fun collect(): MutableList<String> {
         return savedDoc
     }
 
@@ -129,11 +128,11 @@ class Glfw3StructParser<P : HeaderParser<*>>(delegate: P) :
     HeaderParser<Glfw3StructParser.ParsedStruct>(delegate.lines.subList(delegate.lineIndex, delegate.lines.size)) {
     private var name: String? = null
     private val members: MutableList<Member> = mutableListOf()
-    private var savedDoc: List<String>? = null
+    private var savedDoc: MutableList<String> = mutableListOf()
 
-    fun getDocument(): List<String>? {
+    fun getDocument(): MutableList<String> {
         val savedDoc = savedDoc
-        this.savedDoc = null
+        this.savedDoc = mutableListOf()
         return savedDoc
     }
 
@@ -148,7 +147,7 @@ class Glfw3StructParser<P : HeaderParser<*>>(delegate: P) :
         val commentParser = Glfw3CommentParser(this)
             .parse()
         val savedDoc = commentParser.collect()
-        if (savedDoc != null) this.savedDoc = savedDoc
+        if (savedDoc.isNotEmpty()) this.savedDoc = savedDoc
         lineIndex = lineIndex + commentParser.lineIndex
 
         val currentLine = peekLine() ?: return false
@@ -170,8 +169,12 @@ class Glfw3StructParser<P : HeaderParser<*>>(delegate: P) :
                 val decl = declList[0]
 
                 val member = Member(
-                    decl.name, decl.type.toType(),
-                    null, null, null, false, null
+                    name = decl.name,
+                    ty = decl.type.toType(),
+                    bits = null,
+                    init = null,
+                    optional = false,
+                    len = null,
                 )
                 member.doc = getDocument()
                 members.add(member)
@@ -187,39 +190,40 @@ class Glfw3StructParser<P : HeaderParser<*>>(delegate: P) :
     }
 }
 
-class Glfw3HeaderParser(lines: List<String>) : HeaderParser<Registry<EmptyMergeable>>(lines) {
+class Glfw3HeaderParser(lines: List<String>) : HeaderParser<Registry>(lines) {
     companion object {
         // `typedef struct `
         const val OFFSET_TYPEDEF_STRUCT = 8 + 7
     }
 
     private val functionTypedefs: MutableMap<Identifier, FunctionTypedef> = mutableMapOf()
-    private val structures: MutableMap<Identifier, Structure> = mutableMapOf()
+    private val structs: MutableMap<Identifier, Structure> = mutableMapOf()
     private val opaqueTypedefs: MutableMap<Identifier, OpaqueTypedef> = mutableMapOf()
     private val constants: MutableMap<Identifier, Constant> = mutableMapOf()
     private val commands: MutableMap<Identifier, Command> = mutableMapOf()
-    private var savedDoc: List<String>? = null
+    private var savedDoc: MutableList<String> = mutableListOf()
 
-    fun getDocument(): List<String>? {
+    fun getDocument(): MutableList<String> {
         val savedDoc = savedDoc
-        this.savedDoc = null
+        this.savedDoc = mutableListOf()
         return savedDoc
     }
 
-    override fun collect(): Registry<EmptyMergeable> {
+    override fun collect(): Registry {
         return Registry(
-            mutableMapOf(),
-            mutableMapOf(),
-            constants,
-            commands,
-            mutableMapOf(),
-            functionTypedefs,
-            mutableMapOf(),
-            opaqueTypedefs,
-            structures,
-            mutableMapOf(),
-            mutableMapOf(),
-            EmptyMergeable()
+            "glfw3",
+            imports = mutableSetOf(),
+            aliases = mutableMapOf(),
+            bitmasks = mutableMapOf(),
+            commands = commands,
+            constants = constants,
+            enumerations = mutableMapOf(),
+            functionTypedefs = functionTypedefs,
+            opaqueTypedefs = opaqueTypedefs,
+            opaqueHandleTypedefs = mutableMapOf(),
+            structs = structs,
+            unions = mutableMapOf(),
+            ext = JsonNull
         )
     }
 
@@ -227,7 +231,7 @@ class Glfw3HeaderParser(lines: List<String>) : HeaderParser<Registry<EmptyMergea
         val commentParser = Glfw3CommentParser(this)
             .parse()
         val doc = commentParser.collect()
-        if (doc != null) savedDoc = doc
+        if (doc.isNotEmpty()) savedDoc = doc
         lineIndex = lineIndex + commentParser.lineIndex
 
         val currentLine = nextLine() ?: return false
@@ -240,8 +244,9 @@ class Glfw3HeaderParser(lines: List<String>) : HeaderParser<Registry<EmptyMergea
                 val name = parts[1].trim()
                 val value = parts[2].trim()
                 val constant = Constant(
-                    name,IdentifierType("int32_t"),
-                    value.replace("GLFW_", "")
+                    name = name,
+                    ty = IdentifierType("int32_t"),
+                    expr = TODO("need to implement general expression parsing")
                 )
                 constants[constant.name] = constant
             }
@@ -285,21 +290,27 @@ class Glfw3HeaderParser(lines: List<String>) : HeaderParser<Registry<EmptyMergea
         params = functionDecl.params.map {
             Param(
                 name = it.name,
-                type = it.type.toType(),
+                ty = it.type.toType(),
                 len = null,
-                argLen = null,
                 optional = true,
             )
-        },
+        }.toMutableList(),
         result = functionDecl.returnType.toType(),
-        successCodes = null,
-        errorCodes = null
+        successCodes = mutableListOf(),
+        errorCodes = mutableListOf()
     )
 
     private fun morphFunctionTypedef(typedef: TypedefDecl) = FunctionTypedef(
         name = typedef.name,
-        params = (typedef.aliasedType as RawFunctionType).params.map { it.second.toType() },
-        result = typedef.aliasedType.returnType.toType()
+        params = (typedef.aliasedType as RawFunctionType).params.map { Param(
+            name = it.first,
+            ty = it.second.toType(),
+            len = null,
+            optional = true
+        ) }.toMutableList(),
+        result = typedef.aliasedType.returnType.toType(),
+        isPointer = true,
+        isNativeAPI = false
     )
 
     /**
@@ -336,7 +347,6 @@ class Glfw3HeaderParser(lines: List<String>) : HeaderParser<Registry<EmptyMergea
 
             val name = names[1]
             val typedef = OpaqueTypedef(name)
-            typedef.isHandle = true
             typedef.doc = getDocument()
             opaqueTypedefs[typedef.name] = typedef
 
@@ -355,7 +365,7 @@ class Glfw3HeaderParser(lines: List<String>) : HeaderParser<Registry<EmptyMergea
         // now, [lineIndex] is the line below `} STRUCT_NAME;`
         val struct = Structure(parsedStruct.name, parsedStruct.members)
         struct.doc = getDocument()
-        structures[struct.name] = struct
+        structs[struct.name] = struct
         // after call holes
     }
 }

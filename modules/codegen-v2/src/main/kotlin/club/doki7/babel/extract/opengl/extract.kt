@@ -5,12 +5,16 @@ import club.doki7.babel.cdecl.TypedefDecl
 import club.doki7.babel.cdecl.parseType
 import club.doki7.babel.cdecl.parseTypedefDecl
 import club.doki7.babel.cdecl.toType
-import club.doki7.babel.registry.*
+import club.doki7.sennaar.registry.*
 import club.doki7.babel.util.asSequence
 import club.doki7.babel.util.getAttributeText
 import club.doki7.babel.util.getElementSeq
 import club.doki7.babel.util.parseXML
+import club.doki7.babel.util.putEntityIfAbsent
 import club.doki7.babel.util.query
+import club.doki7.sennaar.Identifier
+import club.doki7.sennaar.interned
+import kotlinx.serialization.json.JsonNull
 import org.w3c.dom.Element
 import java.util.logging.Logger
 import kotlin.io.path.Path
@@ -18,7 +22,7 @@ import kotlin.io.path.Path
 private val inputDir = Path("codegen-v2/input")
 internal val log = Logger.getLogger("c.d.b.extract.opengl")
 
-fun extractOpenGLRegistry(): Registry<EmptyMergeable> {
+fun extractOpenGLRegistry(): Registry {
     val r = inputDir.resolve("gl.xml")
         .toFile()
         .readText()
@@ -28,7 +32,7 @@ fun extractOpenGLRegistry(): Registry<EmptyMergeable> {
     return r
 }
 
-private fun Element.extractEntities(): Registry<EmptyMergeable> {
+private fun Element.extractEntities(): Registry {
     val e = this
 
     val allCommands = e.query("commands/command")
@@ -49,15 +53,16 @@ private fun Element.extractEntities(): Registry<EmptyMergeable> {
 
             for (commandRequire in require.getElementSeq("command")) {
                 val name = commandRequire.getAttributeText("name")!!
-                val command = allCommands[name.intern()]!!
-                command.setExt(GLCommandMetadata(isCompatibility, isExtension = false))
+                val command = allCommands[name.interned()]!!
+                if (isCompatibility) {
+                    command.putMetadata(OPENGL_IS_COMPATIBILITY)
+                }
                 commands.putEntityIfAbsent(command)
             }
 
             for (enumRequire in require.getElementSeq("enum")) {
                 val name = enumRequire.getAttributeText("name")!!
-                val constant = allConstants[name.intern()]!!
-                constant.setExt(GLBaseMetadata(isExtension = false))
+                val constant = allConstants[name.interned()]!!
                 constants.putEntityIfAbsent(constant)
             }
         }
@@ -70,8 +75,8 @@ private fun Element.extractEntities(): Registry<EmptyMergeable> {
 
             for (commandRemove in remove.getElementSeq("command")) {
                 val name = commandRemove.getAttributeText("name")!!
-                val command = allCommands[name.intern()]!!
-                command.ext<GLCommandMetadata>().isCompatibility = true
+                val command = allCommands[name.interned()]!!
+                command.putMetadata(OPENGL_IS_COMPATIBILITY)
             }
         }
     }
@@ -95,29 +100,18 @@ private fun Element.extractEntities(): Registry<EmptyMergeable> {
 
             for (commandRequire in require.getElementSeq("command")) {
                 val name = commandRequire.getAttributeText("name")!!
-                val command = allCommands[name.intern()]!!
-                if (command.hasExt()) {
-                    val ext = command.ext<GLMetadata>()
-                    if (ext.isExtension == null) {
-                        ext.isExtension = true
-                    }
-                } else {
-                    command.setExt(GLCommandMetadata(isCompatibility, isExtension = true))
+                val command = allCommands[name.interned()]!!
+                if (isCompatibility) {
+                    command.putMetadata(OPENGL_IS_COMPATIBILITY)
                 }
+                command.putMetadata(OPENGL_IS_EXTENSION)
                 commands.putEntityIfAbsent(command)
             }
 
             for (enumRequire in require.getElementSeq("enum")) {
                 val name = enumRequire.getAttributeText("name")!!
-                val constant = allConstants[name.intern()]!!
-                if (constant.hasExt()) {
-                    val ext = constant.ext<GLMetadata>()
-                    if (ext.isExtension == null) {
-                        ext.isExtension = true
-                    }
-                } else {
-                    constant.setExt(GLBaseMetadata(isExtension = true))
-                }
+                val constant = allConstants[name.interned()]!!
+                constant.putMetadata(OPENGL_IS_EXTENSION)
                 constants.putEntityIfAbsent(constant)
             }
         }
@@ -133,7 +127,7 @@ private fun Element.extractEntities(): Registry<EmptyMergeable> {
 
     val opaqueTypedefs = mutableMapOf<Identifier, OpaqueTypedef>()
     opaqueTypedefs.putEntityIfAbsent(OpaqueTypedef("_cl_context"))
-    opaqueTypedefs.putEntityIfAbsent(OpaqueTypedef("_cl_event"));
+    opaqueTypedefs.putEntityIfAbsent(OpaqueTypedef("_cl_event"))
 
     val handles = mutableMapOf<Identifier, OpaqueHandleTypedef>()
     handles.putEntityIfAbsent(OpaqueHandleTypedef("GLeglClientBufferEXT"))
@@ -141,22 +135,24 @@ private fun Element.extractEntities(): Registry<EmptyMergeable> {
     handles.putEntityIfAbsent(OpaqueHandleTypedef("GLsync"))
 
     val aliases = mutableMapOf<Identifier, Typedef>()
-    aliases.putEntityIfAbsent(Typedef("GLcharARB", "GLchar"))
-    aliases.putEntityIfAbsent(Typedef("GLhalfARB", "GLhalf"))
-    aliases.putEntityIfAbsent(Typedef("GLintptrARB", "GLintptr"))
-    aliases.putEntityIfAbsent(Typedef("GLsizeiptrARB", "GLsizeiptr"))
-    aliases.putEntityIfAbsent(Typedef("GLint64EXT", "GLint64"))
-    aliases.putEntityIfAbsent(Typedef("GLuint64EXT", "GLuint64"))
-    aliases.putEntityIfAbsent(Typedef("GLhalfNV", "GLushort"))
-    aliases.putEntityIfAbsent(Typedef("GLvdpauSurfaceNV", "GLintptr"))
+    aliases.putEntityIfAbsent(Typedef("GLcharARB", IdentifierType("GLchar")))
+    aliases.putEntityIfAbsent(Typedef("GLhalfARB", IdentifierType("GLhalf")))
+    aliases.putEntityIfAbsent(Typedef("GLintptrARB", IdentifierType("GLintptr")))
+    aliases.putEntityIfAbsent(Typedef("GLsizeiptrARB", IdentifierType("GLsizeiptr")))
+    aliases.putEntityIfAbsent(Typedef("GLint64EXT", IdentifierType("GLint64")))
+    aliases.putEntityIfAbsent(Typedef("GLuint64EXT", IdentifierType("GLuint64")))
+    aliases.putEntityIfAbsent(Typedef("GLhalfNV", IdentifierType("GLushort")))
+    aliases.putEntityIfAbsent(Typedef("GLvdpauSurfaceNV", IdentifierType("GLintptr")))
 
     // On most platforms, GLhandleARB is an alias for GLuint. However, on macOS, it is defined as
     // void*. LWJGL did this so we also do this. What's more, the ARB extensions requiring
     // GLhandleARB types already have modern OpenGL replacements, so users won't use them
     // so this should not cause issues under common circumstances.
-    aliases.putEntityIfAbsent(Typedef("GLhandleARB", "GLuint"))
+    aliases.putEntityIfAbsent(Typedef("GLhandleARB", IdentifierType("GLuint")))
 
     return Registry(
+        name = "opengl",
+        imports = mutableSetOf(),
         aliases = aliases,
         bitmasks = mutableMapOf(),
         constants = constants,
@@ -165,9 +161,9 @@ private fun Element.extractEntities(): Registry<EmptyMergeable> {
         functionTypedefs = functionTypedefs,
         opaqueHandleTypedefs = handles,
         opaqueTypedefs = opaqueTypedefs,
-        structures = mutableMapOf(),
+        structs = mutableMapOf(),
         unions = mutableMapOf(),
-        ext = EmptyMergeable()
+        ext = JsonNull
     )
 }
 
@@ -229,8 +225,8 @@ private fun extractCommand(e: Element): Command {
         name = name,
         params = params,
         result = type,
-        successCodes = null,
-        errorCodes = null,
+        successCodes = mutableListOf(),
+        errorCodes = mutableListOf(),
     )
 }
 
@@ -239,13 +235,20 @@ private fun extractCommand(e: Element): Command {
  */
 private fun extractParam(e: Element): Param {
     val (name, type) = extractTypeJudgement(e)
-    return Param(name, type, null, null, true)
+    return Param(
+        name = name,
+        ty = type,
+        optional = true,
+        len = null
+    )
 }
 
 /// endregion command
 
 private fun morphFunctionTypedef(typedef: TypedefDecl) = FunctionTypedef(
     name = typedef.name,
-    params = (typedef.aliasedType as RawFunctionType).params.map { it.second.toType() },
-    result = typedef.aliasedType.returnType.toType()
+    params = (typedef.aliasedType as RawFunctionType).convertParams(),
+    result = typedef.aliasedType.returnType.toType(),
+    isPointer = true,
+    isNativeAPI = false
 )

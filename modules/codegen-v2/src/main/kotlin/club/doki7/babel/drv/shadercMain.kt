@@ -45,7 +45,7 @@ fun main() {
         File("$packageDir/enumtype/${enum.name}.java").writeText(render(enumDoc))
     }
 
-    for (structure in registry.structures.values) {
+    for (structure in registry.structs.values) {
         val structureInterfaceDoc = generateStructureInterface(structure, codegenOptions)
         File("$packageDir/datatype/I${structure.name}.java").writeText(render(structureInterfaceDoc))
 

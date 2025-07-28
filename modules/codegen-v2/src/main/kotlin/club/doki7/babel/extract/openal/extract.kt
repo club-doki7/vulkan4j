@@ -9,14 +9,15 @@ import club.doki7.babel.cdecl.parseFunctionDecl
 import club.doki7.babel.cdecl.parseTypedefDecl
 import club.doki7.babel.cdecl.toType
 import club.doki7.babel.hparse.*
-import club.doki7.babel.registry.*
+import club.doki7.babel.util.putEntityIfAbsent
+import club.doki7.sennaar.registry.*
 import java.util.logging.Logger
 import kotlin.io.path.Path
 
 private val inputDir = Path("codegen-v2/input")
 internal val log = Logger.getLogger("c.d.b.extract.openal")
 
-fun extractOpenALHeader(): Registry<EmptyMergeable> {
+fun extractOpenALHeader(): Registry {
     val headerFileContent = buildString {
         for (headerFilename in listOf("al.h", "alc.h", "alext.h", "efx.h")) {
             append(inputDir.resolve(headerFilename).toFile().readText())
@@ -29,7 +30,7 @@ fun extractOpenALHeader(): Registry<EmptyMergeable> {
         .map(String::trim)
         .toList()
 
-    val registry = Registry(ext = EmptyMergeable())
+    val registry = Registry("openal")
 
     hparse(
         headerParseConfig,
@@ -45,7 +46,7 @@ fun extractOpenALHeader(): Registry<EmptyMergeable> {
     return registry
 }
 
-private val headerParseConfig = ParseConfig<EmptyMergeable>().apply {
+private val headerParseConfig = ParseConfig().apply {
     addRule(0, ::detectBlockDoxygen, ::parseAndSaveBlockDoxygen)
     addRule(0, ::detectTriSlashDoxygen, ::parseAndSaveTriSlashDoxygen)
     addRule(
@@ -91,8 +92,8 @@ private fun detectConstant(line: String): ControlFlow {
     ) ControlFlow.ACCEPT else ControlFlow.NEXT
 }
 
-private fun <E : IMergeable<E>> parseConstant(
-    registry: Registry<E>,
+private fun parseConstant(
+    registry: Registry,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -150,7 +151,7 @@ private fun <E : IMergeable<E>> parseConstant(
         value = "Float.MAX_VALUE"
     }
 
-    val constant = Constant(name, type, value)
+    val constant = Constant(name = name, ty = type, expr = TODO())
 
     // 合并 doc 注释
     val doc = mutableListOf<String>()
@@ -177,8 +178,8 @@ private fun detectTypeAlias(line: String): ControlFlow =
         ControlFlow.NEXT
     }
 
-private fun <E : IMergeable<E>> parseTypeAlias(
-    registry: Registry<E>,
+private fun parseTypeAlias(
+    registry: Registry,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -187,7 +188,7 @@ private fun <E : IMergeable<E>> parseTypeAlias(
     val (typedef, nextIndex) = parseResult
     val alias = morphTypedefAlias(typedef)
     if ("doxygen" in cx) {
-        alias.doc = cx["doxygen"] as List<String>
+        alias.doc = cx["doxygen"] as MutableList<String>
         cx.remove("doxygen")
     }
     registry.aliases.putEntityIfAbsent(alias)
@@ -206,8 +207,8 @@ private fun detectOpaqueTypedefStruct(line: String): ControlFlow =
         ControlFlow.NEXT
     }
 
-private fun <E : IMergeable<E>> parseOpaqueTypedefStruct(
-    registry: Registry<E>,
+private fun parseOpaqueTypedefStruct(
+    registry: Registry,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -233,11 +234,9 @@ private fun <E : IMergeable<E>> parseOpaqueTypedefStruct(
     } else error("should not reach here"))
 
     if ("doxygen" in cx) {
-        struct.doc = cx["doxygen"] as List<String>
+        struct.doc = cx["doxygen"] as MutableList<String>
         cx.remove("doxygen")
     }
-
-    struct.isHandle = true;
     registry.opaqueTypedefs.putEntityIfAbsent(struct)
 
     return index + 1
@@ -250,8 +249,8 @@ private fun detectFunctionTypeDecl(line: String): ControlFlow =
         ControlFlow.NEXT
     }
 
-private fun <E : IMergeable<E>> parseFunctionTypeDecl(
-    registry: Registry<E>,
+private fun parseFunctionTypeDecl(
+    registry: Registry,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -259,7 +258,7 @@ private fun <E : IMergeable<E>> parseFunctionTypeDecl(
     val (typedef, nextIndex) = parseTypedefDecl(lines, index)
     val functionTypedef = morphFunctionTypedef(typedef)
     if ("doxygen" in cx) {
-        functionTypedef.doc = cx["doxygen"] as List<String>
+        functionTypedef.doc = cx["doxygen"] as MutableList<String>
         cx.remove("doxygen")
     }
     registry.functionTypedefs.putEntityIfAbsent(functionTypedef)
@@ -291,7 +290,7 @@ private fun isTypedefApiNoexcept17(line: String): Boolean {
 }
 
 private fun parseFunctionDecl(
-    registry: Registry<EmptyMergeable>,
+    registry: Registry,
     cx: MutableMap<String, Any>,
     lines: List<String>,
     index: Int
@@ -300,7 +299,7 @@ private fun parseFunctionDecl(
     val (functionDecl, nextIndex) = parseResult
     val command = morphFunctionDecl(functionDecl)
     if ("doxygen" in cx) {
-        command.doc = cx["doxygen"] as List<String>
+        command.doc = cx["doxygen"] as MutableList<String>
         cx.remove("doxygen")
     }
     registry.commands.putEntityIfAbsent(command)
@@ -313,24 +312,32 @@ private fun morphFunctionDecl(functionDecl: FunctionDecl) = Command(
     params = functionDecl.params.map {
         Param(
             name = it.name,
-            type = it.type.toType(),
+            ty = it.type.toType(),
             len = null,
-            argLen = null,
             optional = true,
         )
-    },
+    }.toMutableList(),
     result = functionDecl.returnType.toType(),
-    successCodes = null,
-    errorCodes = null
+    successCodes = mutableListOf(),
+    errorCodes = mutableListOf()
 )
 
 private fun morphFunctionTypedef(typedef: TypedefDecl) = FunctionTypedef(
     name = typedef.name,
-    params = (typedef.aliasedType as RawFunctionType).params.map { it.second.toType() },
-    result = typedef.aliasedType.returnType.toType()
+    params = (typedef.aliasedType as RawFunctionType).params.map {
+        Param(
+            name = it.first,
+            ty = it.second.toType(),
+            len = null,
+            optional = true
+        )
+    }.toMutableList(),
+    result = typedef.aliasedType.returnType.toType(),
+    isPointer = true,
+    isNativeAPI = false
 )
 
 private fun morphTypedefAlias(typedef: TypedefDecl) = Typedef(
     name = typedef.name,
-    type =(typedef.aliasedType.toType() as IdentifierType),
+    target = typedef.aliasedType.toType()
 )

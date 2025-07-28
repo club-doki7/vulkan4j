@@ -9,15 +9,15 @@ import club.doki7.babel.codegen.generateHandle
 import club.doki7.babel.codegen.generateStructure
 import club.doki7.babel.codegen.generateStructureInterface
 import club.doki7.babel.extract.vma.extractVMAHeader
-import club.doki7.babel.registry.RegistryBase
-import club.doki7.babel.registry.intern
+import club.doki7.sennaar.registry.Registry
+import club.doki7.sennaar.interned
 import club.doki7.babel.util.Either
 import club.doki7.babel.util.render
 import java.io.File
 
 private const val packageDir = "vma/src/main/java/club/doki7/vma"
 
-fun vmaMain(vulkanRegistry: RegistryBase, vulkanAdditionalRegistry: RegistryBase) {
+fun vmaMain(vulkanRegistry: Registry, vulkanAdditionalRegistry: Registry) {
     val registry = extractVMAHeader()
 
     val codegenOptions = CodegenOptions(
@@ -49,7 +49,7 @@ fun vmaMain(vulkanRegistry: RegistryBase, vulkanAdditionalRegistry: RegistryBase
     }
 
     do {
-        val bitmask = registry.bitmasks["VmaVirtualAllocationCreateFlags".intern()]!!
+        val bitmask = registry.bitmasks["VmaVirtualAllocationCreateFlags".interned()]!!
         bitmask.bitflags.forEach {
             if (it.value is Either.Right) {
                 for ((idx, value) in it.value.value.withIndex()) {
@@ -78,7 +78,7 @@ fun vmaMain(vulkanRegistry: RegistryBase, vulkanAdditionalRegistry: RegistryBase
             "static club.doki7.vulkan.VkConstants.*"
         )
     )
-    for (structure in registry.structures.values) {
+    for (structure in registry.structs.values) {
         val structureInterfaceDoc = generateStructureInterface(structure, codegenOptions)
         File("$packageDir/datatype/I${structure.name}.java")
             .writeText(render(structureInterfaceDoc))

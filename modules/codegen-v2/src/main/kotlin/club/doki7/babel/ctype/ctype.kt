@@ -1,14 +1,16 @@
 package club.doki7.babel.ctype
 
-import club.doki7.babel.registry.ArrayType
-import club.doki7.babel.registry.FunctionTypedef
-import club.doki7.babel.registry.Identifier
-import club.doki7.babel.registry.IdentifierType
-import club.doki7.babel.registry.OpaqueTypedef
-import club.doki7.babel.registry.PointerType
-import club.doki7.babel.registry.RegistryBase
-import club.doki7.babel.registry.Structure
-import club.doki7.babel.registry.Type
+import club.doki7.sennaar.registry.ArrayType
+import club.doki7.sennaar.registry.FunctionTypedef
+import club.doki7.sennaar.Identifier
+import club.doki7.sennaar.registry.Bitwidth
+import club.doki7.sennaar.registry.IdentifierType
+import club.doki7.sennaar.registry.OpaqueTypedef
+import club.doki7.sennaar.registry.PointerType
+import club.doki7.sennaar.registry.Registry
+import club.doki7.sennaar.registry.IRegistry
+import club.doki7.sennaar.registry.Structure
+import club.doki7.sennaar.registry.Type
 import kotlin.collections.contains
 
 sealed interface CType {
@@ -336,60 +338,44 @@ data class CStructType(val name: String, val isUnion: Boolean, val structureRef:
 data class CEnumType(
     val name: String,
     val isBitmask: Boolean,
-    val bitwidth: Int? = null
+    val bitwidth: Bitwidth? = null
 ): CFixedSizeType {
     private val annotationClassName = if (isBitmask) "Bitmask" else "EnumType"
 
     override val jType: String get() = when (bitwidth) {
-        null, 32 -> "@$annotationClassName($name.class) int"
-        8 -> "@$annotationClassName($name.class) byte"
-        64 -> "@$annotationClassName($name.class) long"
-        else -> error("unsupported bitwidth: $bitwidth")
+        null, Bitwidth.Bit32 -> "@$annotationClassName($name.class) int"
+        Bitwidth.Bit64 -> "@$annotationClassName($name.class) long"
     }
 
     override val jRawType: String = jType
 
     override val byteSize: Int get() = when (bitwidth) {
-        null, 32 -> 4
-        64 -> 8
-        else -> error("unsupported bitwidth: $bitwidth")
+        null, Bitwidth.Bit32 -> 4
+        Bitwidth.Bit64 -> 8
     }
 
     override val jLayout: String get() = when (bitwidth) {
-        null, 32 -> "ValueLayout.JAVA_INT"
-        8 -> "ValueLayout.JAVA_BYTE"
-        64 -> "ValueLayout.JAVA_LONG"
-        else -> error("unsupported bitwidth: $bitwidth")
+        null, Bitwidth.Bit32 -> "ValueLayout.JAVA_INT"
+        Bitwidth.Bit64 -> "ValueLayout.JAVA_LONG"
     }
 
     override val jLayoutType: String = when (bitwidth) {
-        null, 32 -> "OfInt"
-        8 -> "OfByte"
-        64 -> "OfLong"
-        else -> error("unsupported bitwidth: $bitwidth")
+        null, Bitwidth.Bit32 -> "OfInt"
+        Bitwidth.Bit64 -> "OfLong"
     }
 
     override val cType: String = "enum $name"
 
     override val jTypeNoAnnotation: String get() = when (bitwidth) {
-        null, 32 -> "int"
-        8 -> "byte"
-        64 -> "long"
-        else -> error("unsupported bitwidth: $bitwidth")
+        null, Bitwidth.Bit32 -> "int"
+        Bitwidth.Bit64 -> "long"
     }
 
-    override val jPtrType: String = when (bitwidth) {
-        null, 32 -> "@$annotationClassName($name.class) IntPtr"
-        8 -> "@$annotationClassName($name.class) BytePtr"
-        64 -> "@$annotationClassName($name.class) LongPtr"
-        else -> error("unsupported bitwidth: $bitwidth")
-    }
+    override val jPtrType: String get() = "@$annotationClassName($name.class) LongPtr $jPtrTypeNoAnnotation"
 
     override val jPtrTypeNoAnnotation: String = when (bitwidth) {
-        null, 32 -> "IntPtr"
-        8 -> "BytePtr"
-        64 -> "LongPtr"
-        else -> error("unsupported bitwidth: $bitwidth")
+        null, Bitwidth.Bit32 -> "IntPtr"
+        Bitwidth.Bit64 -> "LongPtr"
     }
 }
 
@@ -591,8 +577,8 @@ private val knownTypes = mapOf(
 )
 
 fun lowerType(
-    registry: RegistryBase,
-    refRegistries: List<RegistryBase>,
+    registry: IRegistry,
+    refRegistries: List<IRegistry>,
     type: Type,
     importEnumerations: MutableSet<Pair<Identifier, Identifier>>? = null
 ): CType {
@@ -660,8 +646,8 @@ fun lowerType(
 }
 
 fun lookupOpaqueTypedef(
-    registry: RegistryBase,
-    refRegistries: List<RegistryBase>,
+    registry: IRegistry,
+    refRegistries: List<IRegistry>,
     type: IdentifierType
 ): OpaqueTypedef? {
     if (registry.opaqueTypedefs.contains(type.ident)) {
@@ -678,8 +664,8 @@ fun lookupOpaqueTypedef(
 }
 
 fun lookupFunctionTypedef(
-    registry: RegistryBase,
-    refRegistries: List<RegistryBase>,
+    registry: IRegistry,
+    refRegistries: List<IRegistry>,
     type: IdentifierType
 ): FunctionTypedef? {
     if (registry.functionTypedefs.contains(type.ident)) {
@@ -696,8 +682,8 @@ fun lookupFunctionTypedef(
 }
 
 fun lowerIdentifierType(
-    registry: RegistryBase,
-    refRegistries: List<RegistryBase>,
+    registry: IRegistry,
+    refRegistries: List<IRegistry>,
     type: IdentifierType
 ): CType {
     val lookupResult = identifierTypeLookup(registry, refRegistries, type)
@@ -719,9 +705,9 @@ fun lowerIdentifierType(
     }
 }
 
-fun identifierTypeLookup(registry: RegistryBase, refRegistries: List<RegistryBase>, type: IdentifierType) =
-    if (registry.structures.contains(type.ident)) {
-        CStructType(type.ident.value, false, registry.structures[type.ident]!!)
+fun identifierTypeLookup(registry: IRegistry, refRegistries: List<IRegistry>, type: IdentifierType) =
+    if (registry.structs.contains(type.ident)) {
+        CStructType(type.ident.value, false, registry.structs[type.ident]!!)
     }
     else if (registry.unions.contains(type.ident)) {
         CStructType(type.ident.value, true, registry.unions[type.ident]!!)
@@ -744,7 +730,7 @@ fun identifierTypeLookup(registry: RegistryBase, refRegistries: List<RegistryBas
     }
     else if (registry.aliases.contains(type.ident)) {
         val alias = registry.aliases[type.ident]!!
-        val ret = lowerType(registry, refRegistries, alias.type)
+        val ret = lowerType(registry, refRegistries, alias.target)
         if (ret is ICommentable<*>) {
             ret.copyWithComment(type.ident.original)
         } else {

@@ -1,14 +1,13 @@
 package club.doki7.babel.extract.gles2
 
 import club.doki7.babel.extract.ensureLowerCamelCase
-import club.doki7.babel.registry.EmptyMergeable
-import club.doki7.babel.registry.Entity
-import club.doki7.babel.registry.Registry
+import club.doki7.sennaar.registry.Entity
+import club.doki7.sennaar.registry.Registry
 import java.io.File
 
 private const val renamedEntitiesFile = "codegen-v2/output/gles2-renamed-entities.csv"
 
-internal fun Registry<EmptyMergeable>.renameEntities() {
+internal fun Registry.renameEntities() {
     val renamed = mutableMapOf<String, String>()
 
     fun putEntityIfNameReplaced(entity: Entity) {

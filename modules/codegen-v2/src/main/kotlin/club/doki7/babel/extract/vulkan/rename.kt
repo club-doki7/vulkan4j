@@ -2,14 +2,14 @@ package club.doki7.babel.extract.vulkan
 
 import club.doki7.babel.extract.ensureLowerCamelCase
 import club.doki7.babel.extract.renameVariantOrBitflag
-import club.doki7.babel.registry.Entity
-import club.doki7.babel.registry.Registry
-import club.doki7.babel.registry.intern
+import club.doki7.sennaar.registry.Entity
+import club.doki7.sennaar.registry.Registry
+import club.doki7.sennaar.interned
 import java.io.File
 
 private const val renamedEntitiesFile = "codegen-v2/output/vulkan-renamed-entities.csv"
 
-internal fun Registry<VulkanRegistryExt>.renameEntities() {
+internal fun Registry.renameEntities() {
     val renamed = mutableMapOf<String, String>()
 
     fun putEntityIfNameReplaced(entity: Entity) {
@@ -29,7 +29,7 @@ internal fun Registry<VulkanRegistryExt>.renameEntities() {
         }
     }
 
-    enumerations["VkResult".intern()]!!.variants.forEach {
+    enumerations["VkResult".interned()]!!.variants.forEach {
         it.rename(::renameConstant)
     }
 
