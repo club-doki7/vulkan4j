@@ -15,13 +15,13 @@ import club.doki7.babel.ctype.CWCharType
 import club.doki7.babel.ctype.lowerType
 import club.doki7.sennaar.registry.Command
 import club.doki7.sennaar.registry.Param
-import club.doki7.sennaar.registry.Registry
+import club.doki7.sennaar.registry.IRegistry
 import club.doki7.babel.util.Doc
 import club.doki7.babel.util.buildDoc
 import club.doki7.babel.util.interfaceName
 
 fun generateCommandFile(
-    registry: Registry,
+    registry: IRegistry,
     className: String,
     commands: List<Command>,
     codegenOptions: CodegenOptions,
@@ -157,7 +157,7 @@ private fun arrayToPointerDecay(type: CType): CType {
 
 private fun lowerCommand(
     command: Command,
-    registry: Registry,
+    registry: IRegistry,
     codegenOptions: CodegenOptions
 ) = LoweredCommand(
     paramCType = command.params.map {

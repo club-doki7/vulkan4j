@@ -1,11 +1,8 @@
 package club.doki7.babel.codegen
 
-import club.doki7.babel.ctype.lowerIdentifierType
 import club.doki7.babel.ctype.lowerType
 import club.doki7.sennaar.registry.Constant
-import club.doki7.sennaar.registry.Registry
 import club.doki7.babel.util.buildDoc
-import club.doki7.babel.util.isDecOrHexNumber
 import club.doki7.sennaar.cpl.CBinaryExpr
 import club.doki7.sennaar.cpl.CCallExpr
 import club.doki7.sennaar.cpl.CCastExpr
@@ -23,6 +20,7 @@ import club.doki7.sennaar.cpl.CStringLiteralExpr
 import club.doki7.sennaar.cpl.CUnaryExpr
 import club.doki7.sennaar.registry.IdentifierType
 import club.doki7.sennaar.registry.PointerType
+import club.doki7.sennaar.registry.IRegistry
 
 private fun isCStyleNullTerminatedString(constant: Constant): Boolean {
     return constant.ty is PointerType
@@ -41,7 +39,7 @@ private fun isAliasConstant(expr: CExpr): Boolean = when (expr) {
 }
 
 fun generateConstants(
-    registry: Registry,
+    registry: IRegistry,
     codegenOptions: CodegenOptions,
     constants: List<Constant> = registry.constants.values.toList()
 ) = buildDoc {

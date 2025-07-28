@@ -5,17 +5,17 @@ import club.doki7.babel.util.putEntityIfAbsent
 import club.doki7.sennaar.registry.ArrayType
 import club.doki7.sennaar.cpl.CIntLiteralExpr
 import club.doki7.sennaar.registry.Member
-import club.doki7.sennaar.registry.Registry
 import club.doki7.sennaar.registry.Structure
 import club.doki7.sennaar.interned
+import club.doki7.sennaar.registry.IRegistry
 
-internal fun Registry.addDependencies() {
+internal fun IRegistry.addDependencies() {
     log.info("手动添加类型 VAImageFormat")
-    val VAImageFormat = "VAImageFormat".interned()
-    VAImageFormat.rename("VAImageFormatCLREF")
+    val identVAImageFormat = "VAImageFormat".interned()
+    identVAImageFormat.rename("VAImageFormatCLREF")
     structs.putEntityIfAbsent(
         Structure(
-            VAImageFormat,
+            identVAImageFormat,
             mutableListOf(
                 Member(name = "fourcc", ty = IdentifierTypes.uint32_t, bits = null, init = null, optional = false, len = null),
                 Member(name = "byte_order", ty = IdentifierTypes.uint32_t, bits = null, init = null, optional = false, len = null),

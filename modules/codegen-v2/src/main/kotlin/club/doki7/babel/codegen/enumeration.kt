@@ -1,12 +1,12 @@
 package club.doki7.babel.codegen
 
 import club.doki7.sennaar.registry.Enumeration
-import club.doki7.sennaar.registry.Registry
 import club.doki7.babel.util.Either
 import club.doki7.babel.util.buildDoc
+import club.doki7.sennaar.registry.IRegistry
 
 fun generateEnumeration(
-    registry: Registry,
+    registry: IRegistry,
     enumeration: Enumeration,
     codegenOptions: CodegenOptions
 ) = buildDoc {

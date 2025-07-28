@@ -15,6 +15,7 @@ import club.doki7.babel.util.Doc
 import club.doki7.babel.util.buildDoc
 import club.doki7.babel.util.interfaceName
 import club.doki7.sennaar.registry.ArrayType
+import club.doki7.sennaar.registry.IRegistry
 
 private val Type.cDisplay: String get() = when(this) {
     is ArrayType -> "${element.cDisplay}[$length]"
@@ -98,7 +99,7 @@ fun generateStructureInterface(
 }
 
 fun generateStructure(
-    registry: Registry,
+    registry: IRegistry,
     structure: Structure,
     isUnion: Boolean,
     codegenOptions: CodegenOptions,
@@ -584,7 +585,7 @@ fun generateStructure(
 internal fun String.isUnusedReservedField() = this.startsWith("reserved") && this.removePrefix("reserved").all { it.isDigit() }
 
 private fun lowerMemberTypes(
-    registry: Registry,
+    registry: IRegistry,
     codegenOptions: CodegenOptions,
     structure: Structure,
     layouts: MutableList<LayoutField>,
@@ -747,7 +748,7 @@ private fun tryFindRootNonPlainType(cType: CType): String? = when (cType) {
 
 private fun getAutoInit(
     structure: Structure,
-    registry: Registry,
+    registry: IRegistry,
     codegenOptions: CodegenOptions,
     importEnumerations: MutableSet<Pair<Identifier, Identifier>>?
 ): Set<Member>? {

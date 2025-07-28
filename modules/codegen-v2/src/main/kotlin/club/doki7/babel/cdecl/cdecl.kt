@@ -6,6 +6,7 @@ import club.doki7.sennaar.registry.IdentifierType
 import club.doki7.sennaar.registry.PointerType
 import club.doki7.sennaar.registry.Type
 import club.doki7.sennaar.interned
+import club.doki7.sennaar.registry.Param
 
 sealed interface Decl { val trivia: List<String> }
 
@@ -104,7 +105,19 @@ data class RawFunctionType(
     var returnType: RawType,
     val params: List<Pair<String, RawType>>,
     override val trivia: MutableList<String>
-) : RawType
+) : RawType {
+    /// Only call this function when you're sure that you DO NOT need to retain trivia
+    fun convertParams(): MutableList<Param> {
+        return params.map { (name, type) ->
+            Param(
+                name = name.interned(),
+                ty = type.toType(),
+                optional = true,
+                len = null
+            )
+        }.toMutableList()
+    }
+}
 
 fun parseType(s: String): RawType {
     val tokenizer = Tokenizer(s.split("\n"), 0)

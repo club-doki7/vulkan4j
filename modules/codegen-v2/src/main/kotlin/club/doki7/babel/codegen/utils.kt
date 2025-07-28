@@ -2,6 +2,7 @@ package club.doki7.babel.codegen
 
 import club.doki7.sennaar.registry.Registry
 import club.doki7.babel.util.DocList
+import club.doki7.sennaar.registry.IRegistry
 import org.intellij.lang.annotations.Language
 
 internal fun DocList.imports(
@@ -39,7 +40,7 @@ internal fun DocList.importHandles(registry: Registry, codegenOptions: CodegenOp
     }
 }
 
-internal fun DocList.importFunctionTypedefs(registry: Registry, codegenOptions: CodegenOptions) {
+internal fun DocList.importFunctionTypedefs(registry: IRegistry, codegenOptions: CodegenOptions) {
     if (registry.functionTypedefs.isNotEmpty()) {
         importSomething(codegenOptions, codegenOptions.functionTypeClassName)
     }

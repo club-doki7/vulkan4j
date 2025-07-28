@@ -8,6 +8,7 @@ import club.doki7.babel.cdecl.toType
 import club.doki7.sennaar.registry.*
 import club.doki7.babel.util.*
 import club.doki7.sennaar.Identifier
+import club.doki7.sennaar.interned
 import org.w3c.dom.Element
 import org.w3c.dom.Node
 import java.math.BigInteger
@@ -17,7 +18,7 @@ import kotlin.io.path.Path
 internal val log = Logger.getLogger("c.d.b.extract.openxr")
 private val inputDir = Path("codegen-v2/input")
 
-fun extractOpenCLRegistry(): Registry {
+fun extractOpenCLRegistry(): RegistryTE<OpenCLRegistryExt> {
     val reg = inputDir.resolve("cl.xml")
         .toFile()
         .readText()
@@ -33,7 +34,7 @@ private fun <T : Entity> Sequence<T>.associate(): MutableMap<Identifier, T> {
     return associateByTo(mutableMapOf(), Entity::name)
 }
 
-private fun Element.extractEntities(): Registry {
+private fun Element.extractEntities(): RegistryTE<OpenCLRegistryExt> {
     val e = this
     val typedefs = e.query("types/type[@category='define']")
         .filter(::isTypedefDefine)
@@ -89,22 +90,24 @@ private fun Element.extractEntities(): Registry {
     val features = e.query("feature")
         .map(::extractFeatures)
         .associate()
+        .toMutableMap()
 
     val extensions = e.query("extensions/extension")
         .map(::extractExtensions)
         .associate()
 
-    return Registry(
+    return RegistryTE(
         name = "opencl",
         imports = mutableSetOf(),
         aliases = typedefs,
         bitmasks = mutableMapOf(),
-        constants = constants,
         commands = commands,
+        constants = constants,
+        enumerations = mutableMapOf(),
         functionTypedefs = funcTypedefs,
         opaqueHandleTypedefs = opaqueHandleTypedefs,
         opaqueTypedefs = opaqueTypedefs,
-        structures = structures,
+        structs = structures,
         unions = unions,
         ext = OpenCLRegistryExt(features, extensions)
     )
@@ -360,13 +363,15 @@ private fun extractCommand(e: Element, funcTypedefRegister: (String, List<Type>,
 
     val params = e.query("param")
         .map { extractParam(it, funcTypedefRegister) }
-        .toList()
+        .toMutableList()
 
     return Command(
-        name,
-        params,
-        retType,
-        null, null
+        name = name,
+        params = params,
+        result = retType,
+        successCodes = mutableListOf(),
+        errorCodes = mutableListOf(),
+        aliasTo = null
     )
 }
 

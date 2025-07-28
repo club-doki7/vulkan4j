@@ -44,7 +44,7 @@ fun extractWebGPURegistry(): Registry {
         target = IdentifierType("uint32_t")
     ))
 
-    registry.mergeWith(extractRustWGPURegistry())
+    registry.mergeBaseWith(extractRustWGPURegistry())
 
     return registry
 }

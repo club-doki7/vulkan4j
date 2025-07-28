@@ -1,7 +1,6 @@
 package club.doki7.babel.extract.opengl
 
 import club.doki7.babel.extract.ensureLowerCamelCase
-import club.doki7.sennaar.registry.EmptyMergeable
 import club.doki7.sennaar.registry.Entity
 import club.doki7.sennaar.registry.Registry
 import java.io.File
