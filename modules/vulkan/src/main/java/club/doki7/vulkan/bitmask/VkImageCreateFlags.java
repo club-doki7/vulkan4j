@@ -10,10 +10,11 @@ public final class VkImageCreateFlags {
     public static final int _2D_ARRAY_COMPATIBLE = 0x20;
     public static final int _2D_VIEW_COMPATIBLE_EXT = 0x20000;
     public static final int ALIAS = 0x400;
+    public static final int ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR = 0x400000;
     public static final int BLOCK_TEXEL_VIEW_COMPATIBLE = 0x80;
     public static final int CORNER_SAMPLED_NV = 0x2000;
     public static final int CUBE_COMPATIBLE = 0x10;
-    public static final int DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT = 0x10000;
+    public static final int DESCRIPTOR_HEAP_CAPTURE_REPLAY_EXT = 0x10000;
     public static final int DISJOINT = 0x200;
     public static final int EXTENDED_USAGE = 0x100;
     public static final int FRAGMENT_DENSITY_MAP_OFFSET_EXT = 0x8000;
@@ -39,6 +40,9 @@ public final class VkImageCreateFlags {
         if ((flags & ALIAS) != 0) {
             detectedFlagBits.add("VK_IMAGE_CREATE_ALIAS_BIT");
         }
+        if ((flags & ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR) != 0) {
+            detectedFlagBits.add("VK_IMAGE_CREATE_ALIAS_SINGLE_LAYER_DESCRIPTOR_BIT_KHR");
+        }
         if ((flags & BLOCK_TEXEL_VIEW_COMPATIBLE) != 0) {
             detectedFlagBits.add("VK_IMAGE_CREATE_BLOCK_TEXEL_VIEW_COMPATIBLE_BIT");
         }
@@ -48,8 +52,8 @@ public final class VkImageCreateFlags {
         if ((flags & CUBE_COMPATIBLE) != 0) {
             detectedFlagBits.add("VK_IMAGE_CREATE_CUBE_COMPATIBLE_BIT");
         }
-        if ((flags & DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT) != 0) {
-            detectedFlagBits.add("VK_IMAGE_CREATE_DESCRIPTOR_BUFFER_CAPTURE_REPLAY_BIT_EXT");
+        if ((flags & DESCRIPTOR_HEAP_CAPTURE_REPLAY_EXT) != 0) {
+            detectedFlagBits.add("VK_IMAGE_CREATE_DESCRIPTOR_HEAP_CAPTURE_REPLAY_BIT_EXT");
         }
         if ((flags & DISJOINT) != 0) {
             detectedFlagBits.add("VK_IMAGE_CREATE_DISJOINT_BIT");

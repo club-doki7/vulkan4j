@@ -59,8 +59,8 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 ///     uint16_t[STD_VIDEO_H265_CHROMA_QP_OFFSET_TILE_COLS_LIST_SIZE] column_width_minus1; // @link substring="column_width_minus1" target="#column_width_minus1"
 ///     uint16_t[STD_VIDEO_H265_CHROMA_QP_OFFSET_TILE_ROWS_LIST_SIZE] row_height_minus1; // @link substring="row_height_minus1" target="#row_height_minus1"
 ///     uint32_t reserved3;
-///     StdVideoH265ScalingLists const* pScalingLists; // @link substring="StdVideoH265ScalingLists" target="StdVideoH265ScalingLists" @link substring="pScalingLists" target="#pScalingLists"
-///     StdVideoH265PredictorPaletteEntries const* pPredictorPaletteEntries; // @link substring="StdVideoH265PredictorPaletteEntries" target="StdVideoH265PredictorPaletteEntries" @link substring="pPredictorPaletteEntries" target="#pPredictorPaletteEntries"
+///     StdVideoH265ScalingLists const* pScalingLists; // optional // @link substring="StdVideoH265ScalingLists" target="StdVideoH265ScalingLists" @link substring="pScalingLists" target="#pScalingLists"
+///     StdVideoH265PredictorPaletteEntries const* pPredictorPaletteEntries; // optional // @link substring="StdVideoH265PredictorPaletteEntries" target="StdVideoH265PredictorPaletteEntries" @link substring="pPredictorPaletteEntries" target="#pPredictorPaletteEntries"
 /// } StdVideoH265PictureParameterSet;
 /// }
 ///

@@ -11,7 +11,7 @@ public final class VkSubgroupFeatureFlags {
     public static final int BALLOT = 0x8;
     public static final int BASIC = 0x1;
     public static final int CLUSTERED = 0x40;
-    public static final int PARTITIONED_NV = 0x100;
+    public static final int PARTITIONED_EXT = 0x100;
     public static final int QUAD = 0x80;
     public static final int ROTATE = 0x200;
     public static final int ROTATE_CLUSTERED = 0x400;
@@ -33,8 +33,8 @@ public final class VkSubgroupFeatureFlags {
         if ((flags & CLUSTERED) != 0) {
             detectedFlagBits.add("VK_SUBGROUP_FEATURE_CLUSTERED_BIT");
         }
-        if ((flags & PARTITIONED_NV) != 0) {
-            detectedFlagBits.add("VK_SUBGROUP_FEATURE_PARTITIONED_BIT_NV");
+        if ((flags & PARTITIONED_EXT) != 0) {
+            detectedFlagBits.add("VK_SUBGROUP_FEATURE_PARTITIONED_BIT_EXT");
         }
         if ((flags & QUAD) != 0) {
             detectedFlagBits.add("VK_SUBGROUP_FEATURE_QUAD_BIT");

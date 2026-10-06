@@ -29,7 +29,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 ///     VkDeviceAddress dstAddress; // @link substring="dstAddress" target="#dstAddress"
 ///     VkDeviceSize compressedSize; // @link substring="compressedSize" target="#compressedSize"
 ///     VkDeviceSize decompressedSize; // @link substring="decompressedSize" target="#decompressedSize"
-///     VkMemoryDecompressionMethodFlagsNV decompressionMethod; // @link substring="VkMemoryDecompressionMethodFlagsNV" target="VkMemoryDecompressionMethodFlagsNV" @link substring="decompressionMethod" target="#decompressionMethod"
+///     VkMemoryDecompressionMethodFlagsEXT decompressionMethod; // @link substring="VkMemoryDecompressionMethodFlagsEXT" target="VkMemoryDecompressionMethodFlagsEXT" @link substring="decompressionMethod" target="#decompressionMethod"
 /// } VkDecompressMemoryRegionNV;
 /// }
 ///
@@ -215,11 +215,11 @@ public record VkDecompressMemoryRegionNV(@NotNull MemorySegment segment) impleme
         return this;
     }
 
-    public @Bitmask(VkMemoryDecompressionMethodFlagsNV.class) long decompressionMethod() {
+    public @Bitmask(VkMemoryDecompressionMethodFlagsEXT.class) long decompressionMethod() {
         return segment.get(LAYOUT$decompressionMethod, OFFSET$decompressionMethod);
     }
 
-    public VkDecompressMemoryRegionNV decompressionMethod(@Bitmask(VkMemoryDecompressionMethodFlagsNV.class) long value) {
+    public VkDecompressMemoryRegionNV decompressionMethod(@Bitmask(VkMemoryDecompressionMethodFlagsEXT.class) long value) {
         segment.set(LAYOUT$decompressionMethod, OFFSET$decompressionMethod, value);
         return this;
     }

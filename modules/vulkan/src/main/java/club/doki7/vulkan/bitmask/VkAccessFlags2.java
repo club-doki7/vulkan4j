@@ -15,6 +15,8 @@ public final class VkAccessFlags2 {
     public static final long COMMAND_PREPROCESS_READ_EXT = 0x20000L;
     public static final long COMMAND_PREPROCESS_WRITE_EXT = 0x40000L;
     public static final long CONDITIONAL_RENDERING_READ_EXT = 0x100000L;
+    public static final long DATA_GRAPH_READ_ARM = 0x800000000000L;
+    public static final long DATA_GRAPH_WRITE_ARM = 0x1000000000000L;
     public static final long DEPTH_STENCIL_ATTACHMENT_READ = 0x200L;
     public static final long DEPTH_STENCIL_ATTACHMENT_WRITE = 0x400L;
     public static final long DESCRIPTOR_BUFFER_READ_EXT = 0x20000000000L;
@@ -26,6 +28,8 @@ public final class VkAccessFlags2 {
     public static final long INDIRECT_COMMAND_READ = 0x1L;
     public static final long INPUT_ATTACHMENT_READ = 0x10L;
     public static final long INVOCATION_MASK_READ_HUAWEI = 0x8000000000L;
+    public static final long MEMORY_DECOMPRESSION_READ_EXT = 0x80000000000000L;
+    public static final long MEMORY_DECOMPRESSION_WRITE_EXT = 0x100000000000000L;
     public static final long MEMORY_READ = 0x8000L;
     public static final long MEMORY_WRITE = 0x10000L;
     public static final long MICROMAP_READ_EXT = 0x100000000000L;
@@ -33,6 +37,8 @@ public final class VkAccessFlags2 {
     public static final long NONE = 0x0L;
     public static final long OPTICAL_FLOW_READ_NV = 0x40000000000L;
     public static final long OPTICAL_FLOW_WRITE_NV = 0x80000000000L;
+    public static final long RESOURCE_HEAP_READ_EXT = 0x400000000000000L;
+    public static final long SAMPLER_HEAP_READ_EXT = 0x200000000000000L;
     public static final long SHADER_BINDING_TABLE_READ_KHR = 0x10000000000L;
     public static final long SHADER_READ = 0x20L;
     public static final long SHADER_SAMPLED_READ = 0x100000000L;
@@ -79,6 +85,12 @@ public final class VkAccessFlags2 {
         if ((flags & CONDITIONAL_RENDERING_READ_EXT) != 0) {
             detectedFlagBits.add("VK_ACCESS_2_CONDITIONAL_RENDERING_READ_BIT_EXT");
         }
+        if ((flags & DATA_GRAPH_READ_ARM) != 0) {
+            detectedFlagBits.add("VK_ACCESS_2_DATA_GRAPH_READ_BIT_ARM");
+        }
+        if ((flags & DATA_GRAPH_WRITE_ARM) != 0) {
+            detectedFlagBits.add("VK_ACCESS_2_DATA_GRAPH_WRITE_BIT_ARM");
+        }
         if ((flags & DEPTH_STENCIL_ATTACHMENT_READ) != 0) {
             detectedFlagBits.add("VK_ACCESS_2_DEPTH_STENCIL_ATTACHMENT_READ_BIT");
         }
@@ -112,6 +124,12 @@ public final class VkAccessFlags2 {
         if ((flags & INVOCATION_MASK_READ_HUAWEI) != 0) {
             detectedFlagBits.add("VK_ACCESS_2_INVOCATION_MASK_READ_BIT_HUAWEI");
         }
+        if ((flags & MEMORY_DECOMPRESSION_READ_EXT) != 0) {
+            detectedFlagBits.add("VK_ACCESS_2_MEMORY_DECOMPRESSION_READ_BIT_EXT");
+        }
+        if ((flags & MEMORY_DECOMPRESSION_WRITE_EXT) != 0) {
+            detectedFlagBits.add("VK_ACCESS_2_MEMORY_DECOMPRESSION_WRITE_BIT_EXT");
+        }
         if ((flags & MEMORY_READ) != 0) {
             detectedFlagBits.add("VK_ACCESS_2_MEMORY_READ_BIT");
         }
@@ -132,6 +150,12 @@ public final class VkAccessFlags2 {
         }
         if ((flags & OPTICAL_FLOW_WRITE_NV) != 0) {
             detectedFlagBits.add("VK_ACCESS_2_OPTICAL_FLOW_WRITE_BIT_NV");
+        }
+        if ((flags & RESOURCE_HEAP_READ_EXT) != 0) {
+            detectedFlagBits.add("VK_ACCESS_2_RESOURCE_HEAP_READ_BIT_EXT");
+        }
+        if ((flags & SAMPLER_HEAP_READ_EXT) != 0) {
+            detectedFlagBits.add("VK_ACCESS_2_SAMPLER_HEAP_READ_BIT_EXT");
         }
         if ((flags & SHADER_BINDING_TABLE_READ_KHR) != 0) {
             detectedFlagBits.add("VK_ACCESS_2_SHADER_BINDING_TABLE_READ_BIT_KHR");

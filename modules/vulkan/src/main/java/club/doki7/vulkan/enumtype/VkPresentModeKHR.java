@@ -10,12 +10,12 @@ public final class VkPresentModeKHR {
     public static final int FIFO_RELAXED = 0x3;
     public static final int SHARED_DEMAND_REFRESH = 0x3b9c7b98;
     public static final int SHARED_CONTINUOUS_REFRESH = 0x3b9c7b99;
-    public static final int FIFO_LATEST_READY_EXT = 0x3ba04c28;
+    public static final int FIFO_LATEST_READY = 0x3ba04c28;
 
     public static String explain(@EnumType(VkPresentModeKHR.class) int value) {
         return switch (value) {
             case VkPresentModeKHR.FIFO -> "VK_PRESENT_MODE_FIFO_KHR";
-            case VkPresentModeKHR.FIFO_LATEST_READY_EXT -> "VK_PRESENT_MODE_FIFO_LATEST_READY_EXT";
+            case VkPresentModeKHR.FIFO_LATEST_READY -> "VK_PRESENT_MODE_FIFO_LATEST_READY_KHR";
             case VkPresentModeKHR.FIFO_RELAXED -> "VK_PRESENT_MODE_FIFO_RELAXED_KHR";
             case VkPresentModeKHR.IMMEDIATE -> "VK_PRESENT_MODE_IMMEDIATE_KHR";
             case VkPresentModeKHR.MAILBOX -> "VK_PRESENT_MODE_MAILBOX_KHR";

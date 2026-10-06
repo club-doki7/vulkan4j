@@ -17,12 +17,12 @@ Create a Maven project and add the following dependencies to your `pom.xml` file
 <dependency>
     <groupId>club.doki7</groupId>
     <artifactId>vulkan</artifactId>
-    <version>0.4.4</version>
+    <version>0.4.5</version>
 </dependency>
 <dependency>
     <groupId>club.doki7</groupId>
     <artifactId>glfw</artifactId>
-    <version>0.4.4</version>
+    <version>0.4.5</version>
 </dependency>
 <dependency>
     <groupId>org.joml</groupId>

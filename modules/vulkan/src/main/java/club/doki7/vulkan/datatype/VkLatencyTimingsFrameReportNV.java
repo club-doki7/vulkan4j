@@ -26,7 +26,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 /// {@snippet lang=c :
 /// typedef struct VkLatencyTimingsFrameReportNV {
 ///     VkStructureType sType; // @link substring="VkStructureType" target="VkStructureType" @link substring="sType" target="#sType"
-///     void const* pNext; // optional // @link substring="pNext" target="#pNext"
+///     void* pNext; // optional // @link substring="pNext" target="#pNext"
 ///     uint64_t presentID; // @link substring="presentID" target="#presentID"
 ///     uint64_t inputSampleTimeUs; // @link substring="inputSampleTimeUs" target="#inputSampleTimeUs"
 ///     uint64_t simStartTimeUs; // @link substring="simStartTimeUs" target="#simStartTimeUs"

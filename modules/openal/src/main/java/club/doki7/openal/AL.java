@@ -25,8 +25,6 @@ public final class AL implements ALConstants {
         HANDLE$alDopplerFactor = RawFunctionLoader.link(SEGMENT$alDopplerFactor, Descriptors.DESCRIPTOR$alDopplerFactor);
         SEGMENT$alDopplerVelocity = loader.apply("alDopplerVelocity");
         HANDLE$alDopplerVelocity = RawFunctionLoader.link(SEGMENT$alDopplerVelocity, Descriptors.DESCRIPTOR$alDopplerVelocity);
-        SEGMENT$alSpeedOfSound = loader.apply("alSpeedOfSound");
-        HANDLE$alSpeedOfSound = RawFunctionLoader.link(SEGMENT$alSpeedOfSound, Descriptors.DESCRIPTOR$alSpeedOfSound);
         SEGMENT$alDistanceModel = loader.apply("alDistanceModel");
         HANDLE$alDistanceModel = RawFunctionLoader.link(SEGMENT$alDistanceModel, Descriptors.DESCRIPTOR$alDistanceModel);
         SEGMENT$alGetString = loader.apply("alGetString");
@@ -161,6 +159,8 @@ public final class AL implements ALConstants {
         HANDLE$alGetBuffer3i = RawFunctionLoader.link(SEGMENT$alGetBuffer3i, Descriptors.DESCRIPTOR$alGetBuffer3i);
         SEGMENT$alGetBufferiv = loader.apply("alGetBufferiv");
         HANDLE$alGetBufferiv = RawFunctionLoader.link(SEGMENT$alGetBufferiv, Descriptors.DESCRIPTOR$alGetBufferiv);
+        SEGMENT$alSpeedOfSound = loader.apply("alSpeedOfSound");
+        HANDLE$alSpeedOfSound = RawFunctionLoader.link(SEGMENT$alSpeedOfSound, Descriptors.DESCRIPTOR$alSpeedOfSound);
         SEGMENT$alBufferDataStatic = loader.apply("alBufferDataStatic");
         HANDLE$alBufferDataStatic = RawFunctionLoader.link(SEGMENT$alBufferDataStatic, Descriptors.DESCRIPTOR$alBufferDataStatic);
         SEGMENT$alBufferSubDataSOFT = loader.apply("alBufferSubDataSOFT");
@@ -678,19 +678,6 @@ public final class AL implements ALConstants {
         }
     }
 
-    public void speedOfSound(
-        @NativeType("ALfloat") float value
-    ) {
-        MethodHandle hFunction = Objects.requireNonNull(HANDLE$alSpeedOfSound);
-        try {
-            hFunction.invokeExact(
-                value
-            );
-        } catch (Throwable e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public void distanceModel(
         @NativeType("ALenum") int distanceModel
     ) {
@@ -871,7 +858,7 @@ public final class AL implements ALConstants {
         }
     }
 
-    /// Retrieve the value of an enum. The returned value may be context-specific.
+    ///  Retrieve the value of an enum. The returned value may be context-specific.
     public @NativeType("ALenum") int getEnumValue(
         @Nullable @Pointer(comment="ALchar") BytePtr ename
     ) {
@@ -1786,6 +1773,19 @@ public final class AL implements ALConstants {
                 buffer,
                 param,
                 (MemorySegment) (values != null ? values.segment() : MemorySegment.NULL)
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void speedOfSound(
+        @NativeType("ALfloat") float value
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$alSpeedOfSound);
+        try {
+            hFunction.invokeExact(
+                value
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -5648,14 +5648,14 @@ public final class AL implements ALConstants {
     public void getEffecti(
         @NativeType("ALuint") int effect,
         @NativeType("ALenum") int param,
-        @Nullable @Pointer(comment="ALint") IntPtr piValue
+        @Nullable @Pointer(comment="ALint") IntPtr iValue
     ) {
         MethodHandle hFunction = Objects.requireNonNull(HANDLE$alGetEffecti);
         try {
             hFunction.invokeExact(
                 effect,
                 param,
-                (MemorySegment) (piValue != null ? piValue.segment() : MemorySegment.NULL)
+                (MemorySegment) (iValue != null ? iValue.segment() : MemorySegment.NULL)
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -5682,14 +5682,14 @@ public final class AL implements ALConstants {
     public void getEffectf(
         @NativeType("ALuint") int effect,
         @NativeType("ALenum") int param,
-        @Nullable @Pointer(comment="ALfloat") FloatPtr pflValue
+        @Nullable @Pointer(comment="ALfloat") FloatPtr flValue
     ) {
         MethodHandle hFunction = Objects.requireNonNull(HANDLE$alGetEffectf);
         try {
             hFunction.invokeExact(
                 effect,
                 param,
-                (MemorySegment) (pflValue != null ? pflValue.segment() : MemorySegment.NULL)
+                (MemorySegment) (flValue != null ? flValue.segment() : MemorySegment.NULL)
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -5827,14 +5827,14 @@ public final class AL implements ALConstants {
     public void getFilteri(
         @NativeType("ALuint") int filter,
         @NativeType("ALenum") int param,
-        @Nullable @Pointer(comment="ALint") IntPtr piValue
+        @Nullable @Pointer(comment="ALint") IntPtr iValue
     ) {
         MethodHandle hFunction = Objects.requireNonNull(HANDLE$alGetFilteri);
         try {
             hFunction.invokeExact(
                 filter,
                 param,
-                (MemorySegment) (piValue != null ? piValue.segment() : MemorySegment.NULL)
+                (MemorySegment) (iValue != null ? iValue.segment() : MemorySegment.NULL)
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -5861,14 +5861,14 @@ public final class AL implements ALConstants {
     public void getFilterf(
         @NativeType("ALuint") int filter,
         @NativeType("ALenum") int param,
-        @Nullable @Pointer(comment="ALfloat") FloatPtr pflValue
+        @Nullable @Pointer(comment="ALfloat") FloatPtr flValue
     ) {
         MethodHandle hFunction = Objects.requireNonNull(HANDLE$alGetFilterf);
         try {
             hFunction.invokeExact(
                 filter,
                 param,
-                (MemorySegment) (pflValue != null ? pflValue.segment() : MemorySegment.NULL)
+                (MemorySegment) (flValue != null ? flValue.segment() : MemorySegment.NULL)
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -6006,14 +6006,14 @@ public final class AL implements ALConstants {
     public void getAuxiliaryEffectSloti(
         @NativeType("ALuint") int effectslot,
         @NativeType("ALenum") int param,
-        @Nullable @Pointer(comment="ALint") IntPtr piValue
+        @Nullable @Pointer(comment="ALint") IntPtr iValue
     ) {
         MethodHandle hFunction = Objects.requireNonNull(HANDLE$alGetAuxiliaryEffectSloti);
         try {
             hFunction.invokeExact(
                 effectslot,
                 param,
-                (MemorySegment) (piValue != null ? piValue.segment() : MemorySegment.NULL)
+                (MemorySegment) (iValue != null ? iValue.segment() : MemorySegment.NULL)
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -6040,14 +6040,14 @@ public final class AL implements ALConstants {
     public void getAuxiliaryEffectSlotf(
         @NativeType("ALuint") int effectslot,
         @NativeType("ALenum") int param,
-        @Nullable @Pointer(comment="ALfloat") FloatPtr pflValue
+        @Nullable @Pointer(comment="ALfloat") FloatPtr flValue
     ) {
         MethodHandle hFunction = Objects.requireNonNull(HANDLE$alGetAuxiliaryEffectSlotf);
         try {
             hFunction.invokeExact(
                 effectslot,
                 param,
-                (MemorySegment) (pflValue != null ? pflValue.segment() : MemorySegment.NULL)
+                (MemorySegment) (flValue != null ? flValue.segment() : MemorySegment.NULL)
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -6078,7 +6078,6 @@ public final class AL implements ALConstants {
     public final @Nullable MemorySegment SEGMENT$alIsEnabled;
     public final @Nullable MemorySegment SEGMENT$alDopplerFactor;
     public final @Nullable MemorySegment SEGMENT$alDopplerVelocity;
-    public final @Nullable MemorySegment SEGMENT$alSpeedOfSound;
     public final @Nullable MemorySegment SEGMENT$alDistanceModel;
     public final @Nullable MemorySegment SEGMENT$alGetString;
     public final @Nullable MemorySegment SEGMENT$alGetBooleanv;
@@ -6146,6 +6145,7 @@ public final class AL implements ALConstants {
     public final @Nullable MemorySegment SEGMENT$alGetBufferi;
     public final @Nullable MemorySegment SEGMENT$alGetBuffer3i;
     public final @Nullable MemorySegment SEGMENT$alGetBufferiv;
+    public final @Nullable MemorySegment SEGMENT$alSpeedOfSound;
     public final @Nullable MemorySegment SEGMENT$alBufferDataStatic;
     public final @Nullable MemorySegment SEGMENT$alBufferSubDataSOFT;
     public final @Nullable MemorySegment SEGMENT$alRequestFoldbackStart;
@@ -6375,7 +6375,6 @@ public final class AL implements ALConstants {
     public final @Nullable MethodHandle HANDLE$alIsEnabled;
     public final @Nullable MethodHandle HANDLE$alDopplerFactor;
     public final @Nullable MethodHandle HANDLE$alDopplerVelocity;
-    public final @Nullable MethodHandle HANDLE$alSpeedOfSound;
     public final @Nullable MethodHandle HANDLE$alDistanceModel;
     public final @Nullable MethodHandle HANDLE$alGetString;
     public final @Nullable MethodHandle HANDLE$alGetBooleanv;
@@ -6443,6 +6442,7 @@ public final class AL implements ALConstants {
     public final @Nullable MethodHandle HANDLE$alGetBufferi;
     public final @Nullable MethodHandle HANDLE$alGetBuffer3i;
     public final @Nullable MethodHandle HANDLE$alGetBufferiv;
+    public final @Nullable MethodHandle HANDLE$alSpeedOfSound;
     public final @Nullable MethodHandle HANDLE$alBufferDataStatic;
     public final @Nullable MethodHandle HANDLE$alBufferSubDataSOFT;
     public final @Nullable MethodHandle HANDLE$alRequestFoldbackStart;
@@ -6688,10 +6688,6 @@ public final class AL implements ALConstants {
         );
 
         public static final FunctionDescriptor DESCRIPTOR$alDopplerVelocity = FunctionDescriptor.ofVoid(
-            ValueLayout.JAVA_FLOAT
-        );
-
-        public static final FunctionDescriptor DESCRIPTOR$alSpeedOfSound = FunctionDescriptor.ofVoid(
             ValueLayout.JAVA_FLOAT
         );
 
@@ -7075,6 +7071,10 @@ public final class AL implements ALConstants {
             ValueLayout.JAVA_INT,
             ValueLayout.JAVA_INT,
             ValueLayout.ADDRESS.withTargetLayout(ValueLayout.JAVA_INT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$alSpeedOfSound = FunctionDescriptor.ofVoid(
+            ValueLayout.JAVA_FLOAT
         );
 
         public static final FunctionDescriptor DESCRIPTOR$alBufferDataStatic = FunctionDescriptor.ofVoid(

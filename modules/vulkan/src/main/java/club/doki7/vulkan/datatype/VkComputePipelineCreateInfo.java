@@ -29,7 +29,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 ///     void const* pNext; // optional // @link substring="pNext" target="#pNext"
 ///     VkPipelineCreateFlags flags; // optional // @link substring="VkPipelineCreateFlags" target="VkPipelineCreateFlags" @link substring="flags" target="#flags"
 ///     VkPipelineShaderStageCreateInfo stage; // @link substring="VkPipelineShaderStageCreateInfo" target="VkPipelineShaderStageCreateInfo" @link substring="stage" target="#stage"
-///     VkPipelineLayout layout; // @link substring="VkPipelineLayout" target="VkPipelineLayout" @link substring="layout" target="#layout"
+///     VkPipelineLayout layout; // optional // @link substring="VkPipelineLayout" target="VkPipelineLayout" @link substring="layout" target="#layout"
 ///     VkPipeline basePipelineHandle; // optional // @link substring="VkPipeline" target="VkPipeline" @link substring="basePipelineHandle" target="#basePipelineHandle"
 ///     int32_t basePipelineIndex; // @link substring="basePipelineIndex" target="#basePipelineIndex"
 /// } VkComputePipelineCreateInfo;

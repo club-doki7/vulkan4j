@@ -27,7 +27,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 /// typedef struct VkPhysicalDeviceRayTracingInvocationReorderPropertiesNV {
 ///     VkStructureType sType; // @link substring="VkStructureType" target="VkStructureType" @link substring="sType" target="#sType"
 ///     void* pNext; // optional // @link substring="pNext" target="#pNext"
-///     VkRayTracingInvocationReorderModeNV rayTracingInvocationReorderReorderingHint; // @link substring="VkRayTracingInvocationReorderModeNV" target="VkRayTracingInvocationReorderModeNV" @link substring="rayTracingInvocationReorderReorderingHint" target="#rayTracingInvocationReorderReorderingHint"
+///     VkRayTracingInvocationReorderModeEXT rayTracingInvocationReorderReorderingHint; // @link substring="VkRayTracingInvocationReorderModeEXT" target="VkRayTracingInvocationReorderModeEXT" @link substring="rayTracingInvocationReorderReorderingHint" target="#rayTracingInvocationReorderReorderingHint"
 /// } VkPhysicalDeviceRayTracingInvocationReorderPropertiesNV;
 /// }
 ///
@@ -219,11 +219,11 @@ public record VkPhysicalDeviceRayTracingInvocationReorderPropertiesNV(@NotNull M
         return this;
     }
 
-    public @EnumType(VkRayTracingInvocationReorderModeNV.class) int rayTracingInvocationReorderReorderingHint() {
+    public @EnumType(VkRayTracingInvocationReorderModeEXT.class) int rayTracingInvocationReorderReorderingHint() {
         return segment.get(LAYOUT$rayTracingInvocationReorderReorderingHint, OFFSET$rayTracingInvocationReorderReorderingHint);
     }
 
-    public VkPhysicalDeviceRayTracingInvocationReorderPropertiesNV rayTracingInvocationReorderReorderingHint(@EnumType(VkRayTracingInvocationReorderModeNV.class) int value) {
+    public VkPhysicalDeviceRayTracingInvocationReorderPropertiesNV rayTracingInvocationReorderReorderingHint(@EnumType(VkRayTracingInvocationReorderModeEXT.class) int value) {
         segment.set(LAYOUT$rayTracingInvocationReorderReorderingHint, OFFSET$rayTracingInvocationReorderReorderingHint, value);
         return this;
     }

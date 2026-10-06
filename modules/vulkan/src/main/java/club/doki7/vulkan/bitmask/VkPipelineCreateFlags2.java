@@ -7,6 +7,7 @@ import java.util.List;
 
 /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkPipelineCreateFlags2.html"><code>VkPipelineCreateFlags2</code></a>
 public final class VkPipelineCreateFlags2 {
+    public static final long _64_BIT_INDEXING_EXT = 0x80000000000L;
     public static final long ALLOW_DERIVATIVES = 0x2L;
     public static final long CAPTURE_DATA_KHR = 0x80000000L;
     public static final long CAPTURE_INTERNAL_REPRESENTATIONS_KHR = 0x80L;
@@ -16,6 +17,7 @@ public final class VkPipelineCreateFlags2 {
     public static final long DEPTH_STENCIL_ATTACHMENT_FEEDBACK_LOOP_EXT = 0x4000000L;
     public static final long DERIVATIVE = 0x4L;
     public static final long DESCRIPTOR_BUFFER_EXT = 0x20000000L;
+    public static final long DESCRIPTOR_HEAP_EXT = 0x1000000000L;
     public static final long DISABLE_OPTIMIZATION = 0x1L;
     public static final long DISALLOW_OPACITY_MICROMAP_ARM = 0x2000000000L;
     public static final long DISPATCH_BASE = 0x10L;
@@ -25,9 +27,12 @@ public final class VkPipelineCreateFlags2 {
     public static final long FAIL_ON_PIPELINE_COMPILE_REQUIRED = 0x100L;
     public static final long INDIRECT_BINDABLE_EXT = 0x4000000000L;
     public static final long INDIRECT_BINDABLE_NV = 0x40000L;
+    public static final long INSTRUMENT_SHADERS_ARM = 0x8000000000L;
     public static final long LIBRARY_KHR = 0x800L;
     public static final long LINK_TIME_OPTIMIZATION_EXT = 0x400L;
     public static final long NO_PROTECTED_ACCESS = 0x8000000L;
+    public static final long OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX_KHR = 0x20000000000L;
+    public static final long PER_LAYER_FRAGMENT_DENSITY_VALVE = 0x10000000000L;
     public static final long PROTECTED_ACCESS_ONLY = 0x40000000L;
     public static final long RAY_TRACING_ALLOW_MOTION_NV = 0x100000L;
     public static final long RAY_TRACING_ALLOW_SPHERES_AND_LINEAR_SWEPT_SPHERES_NV = 0x200000000L;
@@ -36,7 +41,7 @@ public final class VkPipelineCreateFlags2 {
     public static final long RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_KHR = 0x8000L;
     public static final long RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_KHR = 0x20000L;
     public static final long RAY_TRACING_NO_NULL_MISS_SHADERS_KHR = 0x10000L;
-    public static final long RAY_TRACING_OPACITY_MICROMAP_EXT = 0x1000000L;
+    public static final long RAY_TRACING_OPACITY_MICROMAP_KHR = 0x1000000L;
     public static final long RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_KHR = 0x80000L;
     public static final long RAY_TRACING_SKIP_AABBS_KHR = 0x2000L;
     public static final long RAY_TRACING_SKIP_TRIANGLES_KHR = 0x1000L;
@@ -47,6 +52,9 @@ public final class VkPipelineCreateFlags2 {
 
     public static String explain(@Bitmask(VkPipelineCreateFlags2.class) long flags) {
         List<String> detectedFlagBits = new ArrayList<>();
+        if ((flags & _64_BIT_INDEXING_EXT) != 0) {
+            detectedFlagBits.add("VK_PIPELINE_CREATE_2_64_BIT_INDEXING_BIT_EXT");
+        }
         if ((flags & ALLOW_DERIVATIVES) != 0) {
             detectedFlagBits.add("VK_PIPELINE_CREATE_2_ALLOW_DERIVATIVES_BIT");
         }
@@ -73,6 +81,9 @@ public final class VkPipelineCreateFlags2 {
         }
         if ((flags & DESCRIPTOR_BUFFER_EXT) != 0) {
             detectedFlagBits.add("VK_PIPELINE_CREATE_2_DESCRIPTOR_BUFFER_BIT_EXT");
+        }
+        if ((flags & DESCRIPTOR_HEAP_EXT) != 0) {
+            detectedFlagBits.add("VK_PIPELINE_CREATE_2_DESCRIPTOR_HEAP_BIT_EXT");
         }
         if ((flags & DISABLE_OPTIMIZATION) != 0) {
             detectedFlagBits.add("VK_PIPELINE_CREATE_2_DISABLE_OPTIMIZATION_BIT");
@@ -101,6 +112,9 @@ public final class VkPipelineCreateFlags2 {
         if ((flags & INDIRECT_BINDABLE_NV) != 0) {
             detectedFlagBits.add("VK_PIPELINE_CREATE_2_INDIRECT_BINDABLE_BIT_NV");
         }
+        if ((flags & INSTRUMENT_SHADERS_ARM) != 0) {
+            detectedFlagBits.add("VK_PIPELINE_CREATE_2_INSTRUMENT_SHADERS_BIT_ARM");
+        }
         if ((flags & LIBRARY_KHR) != 0) {
             detectedFlagBits.add("VK_PIPELINE_CREATE_2_LIBRARY_BIT_KHR");
         }
@@ -109,6 +123,12 @@ public final class VkPipelineCreateFlags2 {
         }
         if ((flags & NO_PROTECTED_ACCESS) != 0) {
             detectedFlagBits.add("VK_PIPELINE_CREATE_2_NO_PROTECTED_ACCESS_BIT");
+        }
+        if ((flags & OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX_KHR) != 0) {
+            detectedFlagBits.add("VK_PIPELINE_CREATE_2_OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX_BIT_KHR");
+        }
+        if ((flags & PER_LAYER_FRAGMENT_DENSITY_VALVE) != 0) {
+            detectedFlagBits.add("VK_PIPELINE_CREATE_2_PER_LAYER_FRAGMENT_DENSITY_BIT_VALVE");
         }
         if ((flags & PROTECTED_ACCESS_ONLY) != 0) {
             detectedFlagBits.add("VK_PIPELINE_CREATE_2_PROTECTED_ACCESS_ONLY_BIT");
@@ -134,8 +154,8 @@ public final class VkPipelineCreateFlags2 {
         if ((flags & RAY_TRACING_NO_NULL_MISS_SHADERS_KHR) != 0) {
             detectedFlagBits.add("VK_PIPELINE_CREATE_2_RAY_TRACING_NO_NULL_MISS_SHADERS_BIT_KHR");
         }
-        if ((flags & RAY_TRACING_OPACITY_MICROMAP_EXT) != 0) {
-            detectedFlagBits.add("VK_PIPELINE_CREATE_2_RAY_TRACING_OPACITY_MICROMAP_BIT_EXT");
+        if ((flags & RAY_TRACING_OPACITY_MICROMAP_KHR) != 0) {
+            detectedFlagBits.add("VK_PIPELINE_CREATE_2_RAY_TRACING_OPACITY_MICROMAP_BIT_KHR");
         }
         if ((flags & RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_KHR) != 0) {
             detectedFlagBits.add("VK_PIPELINE_CREATE_2_RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_BIT_KHR");

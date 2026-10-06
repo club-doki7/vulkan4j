@@ -1,8 +1,7 @@
-## Unreleased v0.4.5
-
-### Bugfixes
+## v0.4.5
 
 - Mitigated a JDK FFM implementation issue (#163, [BUG Filed on JDK BUG System](https://bugs.openjdk.org/browse/JDK-8362169)) via manually resetting the memory session of `MemorySegment`s accepted in callback functions.
+- Updated Vulkan to 1.4.365, GLFW to 3.5.1, OpenXR to 1.1.49, VMA to 3.4.0, OpenAL soft to 1.25.2, OpenCL to 3.1.2, shaderc to 2026.4, and stb to up-to-date versions (with a fix from imgui).
 
 ## v0.4.4
 

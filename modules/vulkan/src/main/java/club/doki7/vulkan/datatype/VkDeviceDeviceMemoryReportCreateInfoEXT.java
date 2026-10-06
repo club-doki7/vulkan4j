@@ -29,7 +29,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 ///     void const* pNext; // optional // @link substring="pNext" target="#pNext"
 ///     VkDeviceMemoryReportFlagsEXT flags; // @link substring="VkDeviceMemoryReportFlagsEXT" target="VkDeviceMemoryReportFlagsEXT" @link substring="flags" target="#flags"
 ///     PFN_vkDeviceMemoryReportCallbackEXT pfnUserCallback; // @link substring="PFN_vkDeviceMemoryReportCallbackEXT" target="IPFN_vkDeviceMemoryReportCallbackEXT" @link substring="pfnUserCallback" target="#pfnUserCallback"
-///     void* pUserData; // @link substring="pUserData" target="#pUserData"
+///     void* pUserData; // optional // @link substring="pUserData" target="#pUserData"
 /// } VkDeviceDeviceMemoryReportCreateInfoEXT;
 /// }
 ///

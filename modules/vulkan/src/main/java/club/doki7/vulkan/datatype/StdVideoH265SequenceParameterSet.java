@@ -57,13 +57,13 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 ///     uint32_t conf_win_right_offset; // @link substring="conf_win_right_offset" target="#conf_win_right_offset"
 ///     uint32_t conf_win_top_offset; // @link substring="conf_win_top_offset" target="#conf_win_top_offset"
 ///     uint32_t conf_win_bottom_offset; // @link substring="conf_win_bottom_offset" target="#conf_win_bottom_offset"
-///     StdVideoH265ProfileTierLevel const* pProfileTierLevel; // @link substring="StdVideoH265ProfileTierLevel" target="StdVideoH265ProfileTierLevel" @link substring="pProfileTierLevel" target="#pProfileTierLevel"
-///     StdVideoH265DecPicBufMgr const* pDecPicBufMgr; // @link substring="StdVideoH265DecPicBufMgr" target="StdVideoH265DecPicBufMgr" @link substring="pDecPicBufMgr" target="#pDecPicBufMgr"
-///     StdVideoH265ScalingLists const* pScalingLists; // @link substring="StdVideoH265ScalingLists" target="StdVideoH265ScalingLists" @link substring="pScalingLists" target="#pScalingLists"
+///     StdVideoH265ProfileTierLevel const* pProfileTierLevel; // optional // @link substring="StdVideoH265ProfileTierLevel" target="StdVideoH265ProfileTierLevel" @link substring="pProfileTierLevel" target="#pProfileTierLevel"
+///     StdVideoH265DecPicBufMgr const* pDecPicBufMgr; // optional // @link substring="StdVideoH265DecPicBufMgr" target="StdVideoH265DecPicBufMgr" @link substring="pDecPicBufMgr" target="#pDecPicBufMgr"
+///     StdVideoH265ScalingLists const* pScalingLists; // optional // @link substring="StdVideoH265ScalingLists" target="StdVideoH265ScalingLists" @link substring="pScalingLists" target="#pScalingLists"
 ///     StdVideoH265ShortTermRefPicSet const* pShortTermRefPicSet; // @link substring="StdVideoH265ShortTermRefPicSet" target="StdVideoH265ShortTermRefPicSet" @link substring="pShortTermRefPicSet" target="#pShortTermRefPicSet"
-///     StdVideoH265LongTermRefPicsSps const* pLongTermRefPicsSps; // @link substring="StdVideoH265LongTermRefPicsSps" target="StdVideoH265LongTermRefPicsSps" @link substring="pLongTermRefPicsSps" target="#pLongTermRefPicsSps"
-///     StdVideoH265SequenceParameterSetVui const* pSequenceParameterSetVui; // @link substring="StdVideoH265SequenceParameterSetVui" target="StdVideoH265SequenceParameterSetVui" @link substring="pSequenceParameterSetVui" target="#pSequenceParameterSetVui"
-///     StdVideoH265PredictorPaletteEntries const* pPredictorPaletteEntries; // @link substring="StdVideoH265PredictorPaletteEntries" target="StdVideoH265PredictorPaletteEntries" @link substring="pPredictorPaletteEntries" target="#pPredictorPaletteEntries"
+///     StdVideoH265LongTermRefPicsSps const* pLongTermRefPicsSps; // optional // @link substring="StdVideoH265LongTermRefPicsSps" target="StdVideoH265LongTermRefPicsSps" @link substring="pLongTermRefPicsSps" target="#pLongTermRefPicsSps"
+///     StdVideoH265SequenceParameterSetVui const* pSequenceParameterSetVui; // optional // @link substring="StdVideoH265SequenceParameterSetVui" target="StdVideoH265SequenceParameterSetVui" @link substring="pSequenceParameterSetVui" target="#pSequenceParameterSetVui"
+///     StdVideoH265PredictorPaletteEntries const* pPredictorPaletteEntries; // optional // @link substring="StdVideoH265PredictorPaletteEntries" target="StdVideoH265PredictorPaletteEntries" @link substring="pPredictorPaletteEntries" target="#pPredictorPaletteEntries"
 /// } StdVideoH265SequenceParameterSet;
 /// }
 ///

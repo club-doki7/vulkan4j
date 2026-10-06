@@ -11,6 +11,7 @@ private const val extendingAddedEntitiesFile = "codegen-v2/output/vulkan-extendi
 internal fun Registry<VulkanRegistryExt>.extendEntities() {
     val addedEntities = HashMap<Entity, Identifier>()
 
+
     for (version in ext.versions.values) {
         for (requireValue in version.require.values) {
             if (requireValue.extends != null) {

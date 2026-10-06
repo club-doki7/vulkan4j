@@ -65,6 +65,8 @@ public final class Shaderc {
         HANDLE$shaderc_compile_options_set_invert_y = RawFunctionLoader.link(SEGMENT$shaderc_compile_options_set_invert_y, Descriptors.DESCRIPTOR$shaderc_compile_options_set_invert_y);
         SEGMENT$shaderc_compile_options_set_limit = loader.apply("shaderc_compile_options_set_limit");
         HANDLE$shaderc_compile_options_set_limit = RawFunctionLoader.link(SEGMENT$shaderc_compile_options_set_limit, Descriptors.DESCRIPTOR$shaderc_compile_options_set_limit);
+        SEGMENT$shaderc_compile_options_set_max_id_bound = loader.apply("shaderc_compile_options_set_max_id_bound");
+        HANDLE$shaderc_compile_options_set_max_id_bound = RawFunctionLoader.link(SEGMENT$shaderc_compile_options_set_max_id_bound, Descriptors.DESCRIPTOR$shaderc_compile_options_set_max_id_bound);
         SEGMENT$shaderc_compile_options_set_nan_clamp = loader.apply("shaderc_compile_options_set_nan_clamp");
         HANDLE$shaderc_compile_options_set_nan_clamp = RawFunctionLoader.link(SEGMENT$shaderc_compile_options_set_nan_clamp, Descriptors.DESCRIPTOR$shaderc_compile_options_set_nan_clamp);
         SEGMENT$shaderc_compile_options_set_optimization_level = loader.apply("shaderc_compile_options_set_optimization_level");
@@ -558,6 +560,21 @@ public final class Shaderc {
         }
     }
 
+    public void compileOptionsSetMaxIdBound(
+        @Nullable ShadercCompileOptions options,
+        @Unsigned int maxIdBound
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$shaderc_compile_options_set_max_id_bound);
+        try {
+            hFunction.invokeExact(
+                (MemorySegment) (options != null ? options.segment() : MemorySegment.NULL),
+                maxIdBound
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void compileOptionsSetNANClamp(
         @Nullable ShadercCompileOptions options,
         @NativeType("boolean") boolean enable
@@ -869,6 +886,7 @@ public final class Shaderc {
     public final @Nullable MemorySegment SEGMENT$shaderc_compile_options_set_include_callbacks;
     public final @Nullable MemorySegment SEGMENT$shaderc_compile_options_set_invert_y;
     public final @Nullable MemorySegment SEGMENT$shaderc_compile_options_set_limit;
+    public final @Nullable MemorySegment SEGMENT$shaderc_compile_options_set_max_id_bound;
     public final @Nullable MemorySegment SEGMENT$shaderc_compile_options_set_nan_clamp;
     public final @Nullable MemorySegment SEGMENT$shaderc_compile_options_set_optimization_level;
     public final @Nullable MemorySegment SEGMENT$shaderc_compile_options_set_preserve_bindings;
@@ -913,6 +931,7 @@ public final class Shaderc {
     public final @Nullable MethodHandle HANDLE$shaderc_compile_options_set_include_callbacks;
     public final @Nullable MethodHandle HANDLE$shaderc_compile_options_set_invert_y;
     public final @Nullable MethodHandle HANDLE$shaderc_compile_options_set_limit;
+    public final @Nullable MethodHandle HANDLE$shaderc_compile_options_set_max_id_bound;
     public final @Nullable MethodHandle HANDLE$shaderc_compile_options_set_nan_clamp;
     public final @Nullable MethodHandle HANDLE$shaderc_compile_options_set_optimization_level;
     public final @Nullable MethodHandle HANDLE$shaderc_compile_options_set_preserve_bindings;
@@ -1086,6 +1105,11 @@ public final class Shaderc {
         public static final FunctionDescriptor DESCRIPTOR$shaderc_compile_options_set_limit = FunctionDescriptor.ofVoid(
             ValueLayout.ADDRESS,
             ValueLayout.JAVA_INT,
+            ValueLayout.JAVA_INT
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$shaderc_compile_options_set_max_id_bound = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
             ValueLayout.JAVA_INT
         );
 

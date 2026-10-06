@@ -10,6 +10,7 @@ public final class VkMemoryAllocateFlags {
     public static final int DEVICE_ADDRESS = 0x2;
     public static final int DEVICE_ADDRESS_CAPTURE_REPLAY = 0x4;
     public static final int DEVICE_MASK = 0x1;
+    public static final int ZERO_INITIALIZE_EXT = 0x8;
 
     public static String explain(@Bitmask(VkMemoryAllocateFlags.class) int flags) {
         List<String> detectedFlagBits = new ArrayList<>();
@@ -21,6 +22,9 @@ public final class VkMemoryAllocateFlags {
         }
         if ((flags & DEVICE_MASK) != 0) {
             detectedFlagBits.add("VK_MEMORY_ALLOCATE_DEVICE_MASK_BIT");
+        }
+        if ((flags & ZERO_INITIALIZE_EXT) != 0) {
+            detectedFlagBits.add("VK_MEMORY_ALLOCATE_ZERO_INITIALIZE_BIT_EXT");
         }
 
         if (detectedFlagBits.isEmpty()) {

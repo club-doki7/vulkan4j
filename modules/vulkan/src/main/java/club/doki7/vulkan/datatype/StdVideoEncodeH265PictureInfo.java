@@ -34,9 +34,9 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 ///     int32_t PicOrderCntVal; // @link substring="PicOrderCntVal" target="#PicOrderCntVal"
 ///     uint8_t TemporalId; // @link substring="TemporalId" target="#TemporalId"
 ///     uint8_t[7] reserved1;
-///     StdVideoEncodeH265ReferenceListsInfo const* pRefLists; // @link substring="StdVideoEncodeH265ReferenceListsInfo" target="StdVideoEncodeH265ReferenceListsInfo" @link substring="pRefLists" target="#pRefLists"
-///     StdVideoH265ShortTermRefPicSet const* pShortTermRefPicSet; // @link substring="StdVideoH265ShortTermRefPicSet" target="StdVideoH265ShortTermRefPicSet" @link substring="pShortTermRefPicSet" target="#pShortTermRefPicSet"
-///     StdVideoEncodeH265LongTermRefPics const* pLongTermRefPics; // @link substring="StdVideoEncodeH265LongTermRefPics" target="StdVideoEncodeH265LongTermRefPics" @link substring="pLongTermRefPics" target="#pLongTermRefPics"
+///     StdVideoEncodeH265ReferenceListsInfo const* pRefLists; // optional // @link substring="StdVideoEncodeH265ReferenceListsInfo" target="StdVideoEncodeH265ReferenceListsInfo" @link substring="pRefLists" target="#pRefLists"
+///     StdVideoH265ShortTermRefPicSet const* pShortTermRefPicSet; // optional // @link substring="StdVideoH265ShortTermRefPicSet" target="StdVideoH265ShortTermRefPicSet" @link substring="pShortTermRefPicSet" target="#pShortTermRefPicSet"
+///     StdVideoEncodeH265LongTermRefPics const* pLongTermRefPics; // optional // @link substring="StdVideoEncodeH265LongTermRefPics" target="StdVideoEncodeH265LongTermRefPics" @link substring="pLongTermRefPics" target="#pLongTermRefPics"
 /// } StdVideoEncodeH265PictureInfo;
 /// }
 ///

@@ -43,12 +43,12 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 ///     uint32_t[STD_VIDEO_AV1_NUM_REF_FRAMES] expectedFrameId; // @link substring="expectedFrameId" target="#expectedFrameId"
 ///     StdVideoAV1TileInfo const* pTileInfo; // @link substring="StdVideoAV1TileInfo" target="StdVideoAV1TileInfo" @link substring="pTileInfo" target="#pTileInfo"
 ///     StdVideoAV1Quantization const* pQuantization; // @link substring="StdVideoAV1Quantization" target="StdVideoAV1Quantization" @link substring="pQuantization" target="#pQuantization"
-///     StdVideoAV1Segmentation const* pSegmentation; // @link substring="StdVideoAV1Segmentation" target="StdVideoAV1Segmentation" @link substring="pSegmentation" target="#pSegmentation"
+///     StdVideoAV1Segmentation const* pSegmentation; // optional // @link substring="StdVideoAV1Segmentation" target="StdVideoAV1Segmentation" @link substring="pSegmentation" target="#pSegmentation"
 ///     StdVideoAV1LoopFilter const* pLoopFilter; // @link substring="StdVideoAV1LoopFilter" target="StdVideoAV1LoopFilter" @link substring="pLoopFilter" target="#pLoopFilter"
-///     StdVideoAV1CDEF const* pCDEF; // @link substring="StdVideoAV1CDEF" target="StdVideoAV1CDEF" @link substring="pCDEF" target="#pCDEF"
-///     StdVideoAV1LoopRestoration const* pLoopRestoration; // @link substring="StdVideoAV1LoopRestoration" target="StdVideoAV1LoopRestoration" @link substring="pLoopRestoration" target="#pLoopRestoration"
+///     StdVideoAV1CDEF const* pCDEF; // optional // @link substring="StdVideoAV1CDEF" target="StdVideoAV1CDEF" @link substring="pCDEF" target="#pCDEF"
+///     StdVideoAV1LoopRestoration const* pLoopRestoration; // optional // @link substring="StdVideoAV1LoopRestoration" target="StdVideoAV1LoopRestoration" @link substring="pLoopRestoration" target="#pLoopRestoration"
 ///     StdVideoAV1GlobalMotion const* pGlobalMotion; // @link substring="StdVideoAV1GlobalMotion" target="StdVideoAV1GlobalMotion" @link substring="pGlobalMotion" target="#pGlobalMotion"
-///     StdVideoAV1FilmGrain const* pFilmGrain; // @link substring="StdVideoAV1FilmGrain" target="StdVideoAV1FilmGrain" @link substring="pFilmGrain" target="#pFilmGrain"
+///     StdVideoAV1FilmGrain const* pFilmGrain; // optional // @link substring="StdVideoAV1FilmGrain" target="StdVideoAV1FilmGrain" @link substring="pFilmGrain" target="#pFilmGrain"
 /// } StdVideoDecodeAV1PictureInfo;
 /// }
 ///

@@ -34,7 +34,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 ///     uint8_t reserved1;
 ///     StdVideoH264CabacInitIdc cabac_init_idc; // @link substring="StdVideoH264CabacInitIdc" target="StdVideoH264CabacInitIdc" @link substring="cabac_init_idc" target="#cabac_init_idc"
 ///     StdVideoH264DisableDeblockingFilterIdc disable_deblocking_filter_idc; // @link substring="StdVideoH264DisableDeblockingFilterIdc" target="StdVideoH264DisableDeblockingFilterIdc" @link substring="disable_deblocking_filter_idc" target="#disable_deblocking_filter_idc"
-///     StdVideoEncodeH264WeightTable const* pWeightTable; // @link substring="StdVideoEncodeH264WeightTable" target="StdVideoEncodeH264WeightTable" @link substring="pWeightTable" target="#pWeightTable"
+///     StdVideoEncodeH264WeightTable const* pWeightTable; // optional // @link substring="StdVideoEncodeH264WeightTable" target="StdVideoEncodeH264WeightTable" @link substring="pWeightTable" target="#pWeightTable"
 /// } StdVideoEncodeH264SliceHeader;
 /// }
 ///

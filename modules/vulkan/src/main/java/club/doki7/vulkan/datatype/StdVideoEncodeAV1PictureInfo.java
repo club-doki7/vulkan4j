@@ -43,15 +43,15 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 ///     int8_t[STD_VIDEO_AV1_REFS_PER_FRAME] ref_frame_idx; // @link substring="ref_frame_idx" target="#ref_frame_idx"
 ///     uint8_t[3] reserved1;
 ///     uint32_t[STD_VIDEO_AV1_REFS_PER_FRAME] delta_frame_id_minus_1; // @link substring="delta_frame_id_minus_1" target="#delta_frame_id_minus_1"
-///     StdVideoAV1TileInfo const* pTileInfo; // @link substring="StdVideoAV1TileInfo" target="StdVideoAV1TileInfo" @link substring="pTileInfo" target="#pTileInfo"
+///     StdVideoAV1TileInfo const* pTileInfo; // optional // @link substring="StdVideoAV1TileInfo" target="StdVideoAV1TileInfo" @link substring="pTileInfo" target="#pTileInfo"
 ///     StdVideoAV1Quantization const* pQuantization; // @link substring="StdVideoAV1Quantization" target="StdVideoAV1Quantization" @link substring="pQuantization" target="#pQuantization"
-///     StdVideoAV1Segmentation const* pSegmentation; // @link substring="StdVideoAV1Segmentation" target="StdVideoAV1Segmentation" @link substring="pSegmentation" target="#pSegmentation"
+///     StdVideoAV1Segmentation const* pSegmentation; // optional // @link substring="StdVideoAV1Segmentation" target="StdVideoAV1Segmentation" @link substring="pSegmentation" target="#pSegmentation"
 ///     StdVideoAV1LoopFilter const* pLoopFilter; // @link substring="StdVideoAV1LoopFilter" target="StdVideoAV1LoopFilter" @link substring="pLoopFilter" target="#pLoopFilter"
-///     StdVideoAV1CDEF const* pCDEF; // @link substring="StdVideoAV1CDEF" target="StdVideoAV1CDEF" @link substring="pCDEF" target="#pCDEF"
-///     StdVideoAV1LoopRestoration const* pLoopRestoration; // @link substring="StdVideoAV1LoopRestoration" target="StdVideoAV1LoopRestoration" @link substring="pLoopRestoration" target="#pLoopRestoration"
+///     StdVideoAV1CDEF const* pCDEF; // optional // @link substring="StdVideoAV1CDEF" target="StdVideoAV1CDEF" @link substring="pCDEF" target="#pCDEF"
+///     StdVideoAV1LoopRestoration const* pLoopRestoration; // optional // @link substring="StdVideoAV1LoopRestoration" target="StdVideoAV1LoopRestoration" @link substring="pLoopRestoration" target="#pLoopRestoration"
 ///     StdVideoAV1GlobalMotion const* pGlobalMotion; // @link substring="StdVideoAV1GlobalMotion" target="StdVideoAV1GlobalMotion" @link substring="pGlobalMotion" target="#pGlobalMotion"
-///     StdVideoEncodeAV1ExtensionHeader const* pExtensionHeader; // @link substring="StdVideoEncodeAV1ExtensionHeader" target="StdVideoEncodeAV1ExtensionHeader" @link substring="pExtensionHeader" target="#pExtensionHeader"
-///     uint32_t const* pBufferRemovalTimes; // @link substring="pBufferRemovalTimes" target="#pBufferRemovalTimes"
+///     StdVideoEncodeAV1ExtensionHeader const* pExtensionHeader; // optional // @link substring="StdVideoEncodeAV1ExtensionHeader" target="StdVideoEncodeAV1ExtensionHeader" @link substring="pExtensionHeader" target="#pExtensionHeader"
+///     uint32_t const* pBufferRemovalTimes; // optional // @link substring="pBufferRemovalTimes" target="#pBufferRemovalTimes"
 /// } StdVideoEncodeAV1PictureInfo;
 /// }
 ///

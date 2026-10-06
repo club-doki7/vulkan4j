@@ -34,7 +34,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 ///     int32_t PicOrderCnt; // @link substring="PicOrderCnt" target="#PicOrderCnt"
 ///     uint8_t temporal_id; // @link substring="temporal_id" target="#temporal_id"
 ///     uint8_t[3] reserved1;
-///     StdVideoEncodeH264ReferenceListsInfo const* pRefLists; // @link substring="StdVideoEncodeH264ReferenceListsInfo" target="StdVideoEncodeH264ReferenceListsInfo" @link substring="pRefLists" target="#pRefLists"
+///     StdVideoEncodeH264ReferenceListsInfo const* pRefLists; // optional // @link substring="StdVideoEncodeH264ReferenceListsInfo" target="StdVideoEncodeH264ReferenceListsInfo" @link substring="pRefLists" target="#pRefLists"
 /// } StdVideoEncodeH264PictureInfo;
 /// }
 ///

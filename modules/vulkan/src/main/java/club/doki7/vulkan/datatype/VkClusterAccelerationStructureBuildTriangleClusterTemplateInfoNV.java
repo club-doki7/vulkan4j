@@ -39,11 +39,11 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 ///     uint16_t geometryIndexAndFlagsBufferStride; // @link substring="geometryIndexAndFlagsBufferStride" target="#geometryIndexAndFlagsBufferStride"
 ///     uint16_t opacityMicromapIndexBufferStride; // @link substring="opacityMicromapIndexBufferStride" target="#opacityMicromapIndexBufferStride"
 ///     VkDeviceAddress indexBuffer; // @link substring="indexBuffer" target="#indexBuffer"
-///     VkDeviceAddress vertexBuffer; // @link substring="vertexBuffer" target="#vertexBuffer"
-///     VkDeviceAddress geometryIndexAndFlagsBuffer; // @link substring="geometryIndexAndFlagsBuffer" target="#geometryIndexAndFlagsBuffer"
-///     VkDeviceAddress opacityMicromapArray; // @link substring="opacityMicromapArray" target="#opacityMicromapArray"
-///     VkDeviceAddress opacityMicromapIndexBuffer; // @link substring="opacityMicromapIndexBuffer" target="#opacityMicromapIndexBuffer"
-///     VkDeviceAddress instantiationBoundingBoxLimit; // @link substring="instantiationBoundingBoxLimit" target="#instantiationBoundingBoxLimit"
+///     VkDeviceAddress vertexBuffer; // optional // @link substring="vertexBuffer" target="#vertexBuffer"
+///     VkDeviceAddress geometryIndexAndFlagsBuffer; // optional // @link substring="geometryIndexAndFlagsBuffer" target="#geometryIndexAndFlagsBuffer"
+///     VkDeviceAddress opacityMicromapArray; // optional // @link substring="opacityMicromapArray" target="#opacityMicromapArray"
+///     VkDeviceAddress opacityMicromapIndexBuffer; // optional // @link substring="opacityMicromapIndexBuffer" target="#opacityMicromapIndexBuffer"
+///     VkDeviceAddress instantiationBoundingBoxLimit; // optional // @link substring="instantiationBoundingBoxLimit" target="#instantiationBoundingBoxLimit"
 /// } VkClusterAccelerationStructureBuildTriangleClusterTemplateInfoNV;
 /// }
 ///

@@ -39,7 +39,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 ///     int8_t slice_act_cr_qp_offset; // @link substring="slice_act_cr_qp_offset" target="#slice_act_cr_qp_offset"
 ///     int8_t slice_qp_delta; // @link substring="slice_qp_delta" target="#slice_qp_delta"
 ///     uint16_t reserved1;
-///     StdVideoEncodeH265WeightTable const* pWeightTable; // @link substring="StdVideoEncodeH265WeightTable" target="StdVideoEncodeH265WeightTable" @link substring="pWeightTable" target="#pWeightTable"
+///     StdVideoEncodeH265WeightTable const* pWeightTable; // optional // @link substring="StdVideoEncodeH265WeightTable" target="StdVideoEncodeH265WeightTable" @link substring="pWeightTable" target="#pWeightTable"
 /// } StdVideoEncodeH265SliceSegmentHeader;
 /// }
 ///

@@ -8,6 +8,7 @@ import java.util.List;
 /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkResolveModeFlags.html"><code>VkResolveModeFlags</code></a>
 public final class VkResolveModeFlags {
     public static final int AVERAGE = 0x2;
+    public static final int CUSTOM_EXT = 0x20;
     public static final int EXTERNAL_FORMAT_DOWNSAMPLE_ANDROID = 0x10;
     public static final int MAX = 0x8;
     public static final int MIN = 0x4;
@@ -19,8 +20,11 @@ public final class VkResolveModeFlags {
         if ((flags & AVERAGE) != 0) {
             detectedFlagBits.add("VK_RESOLVE_MODE_AVERAGE_BIT");
         }
+        if ((flags & CUSTOM_EXT) != 0) {
+            detectedFlagBits.add("VK_RESOLVE_MODE_CUSTOM_BIT_EXT");
+        }
         if ((flags & EXTERNAL_FORMAT_DOWNSAMPLE_ANDROID) != 0) {
-            detectedFlagBits.add("VK_RESOLVE_MODE_EXTERNAL_FORMAT_DOWNSAMPLE_ANDROID");
+            detectedFlagBits.add("VK_RESOLVE_MODE_EXTERNAL_FORMAT_DOWNSAMPLE_BIT_ANDROID");
         }
         if ((flags & MAX) != 0) {
             detectedFlagBits.add("VK_RESOLVE_MODE_MAX_BIT");

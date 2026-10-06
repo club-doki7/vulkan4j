@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-STB_URL_PREFIX="https://raw.githubusercontent.com/nothings/stb/f58f558c120e9b32c217290b80bad1a0729fbb2c/"
+STB_URL_PREFIX="https://raw.githubusercontent.com/nothings/stb/2c980bb59875b0d32144a71867fbdebb2f77cd20/"
 
 COMPONENTS=("image" "image_resize2" "image_write")
 
@@ -19,5 +19,5 @@ for c_component in "${C_COMPONENTS[@]}"; do
   fi;
 done
 
-curl -o "stb/stb_truetype.h" "https://raw.githubusercontent.com/ocornut/imgui/895bff6524549ccb3fb1136aa23ad130b68d0a3e/imstb_truetype.h";
+curl -o "stb/stb_truetype.h" "https://raw.githubusercontent.com/ocornut/imgui/6f8bdb7bf71055efdfed8b88d45899df3e834ef4/imstb_truetype.h";
 cat "stb/stb_truetype.h" | clang-format --style=file:.clang-format > "stb_formatted/stb_truetype.h";

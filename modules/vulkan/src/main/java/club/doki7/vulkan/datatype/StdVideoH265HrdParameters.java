@@ -38,8 +38,8 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 ///     uint8_t[STD_VIDEO_H265_SUBLAYERS_LIST_SIZE] cpb_cnt_minus1; // @link substring="cpb_cnt_minus1" target="#cpb_cnt_minus1"
 ///     uint16_t[STD_VIDEO_H265_SUBLAYERS_LIST_SIZE] elemental_duration_in_tc_minus1; // @link substring="elemental_duration_in_tc_minus1" target="#elemental_duration_in_tc_minus1"
 ///     uint16_t[3] reserved;
-///     StdVideoH265SubLayerHrdParameters const* pSubLayerHrdParametersNal; // @link substring="StdVideoH265SubLayerHrdParameters" target="StdVideoH265SubLayerHrdParameters" @link substring="pSubLayerHrdParametersNal" target="#pSubLayerHrdParametersNal"
-///     StdVideoH265SubLayerHrdParameters const* pSubLayerHrdParametersVcl; // @link substring="StdVideoH265SubLayerHrdParameters" target="StdVideoH265SubLayerHrdParameters" @link substring="pSubLayerHrdParametersVcl" target="#pSubLayerHrdParametersVcl"
+///     StdVideoH265SubLayerHrdParameters const* pSubLayerHrdParametersNal; // optional // @link substring="StdVideoH265SubLayerHrdParameters" target="StdVideoH265SubLayerHrdParameters" @link substring="pSubLayerHrdParametersNal" target="#pSubLayerHrdParametersNal"
+///     StdVideoH265SubLayerHrdParameters const* pSubLayerHrdParametersVcl; // optional // @link substring="StdVideoH265SubLayerHrdParameters" target="StdVideoH265SubLayerHrdParameters" @link substring="pSubLayerHrdParametersVcl" target="#pSubLayerHrdParametersVcl"
 /// } StdVideoH265HrdParameters;
 /// }
 ///

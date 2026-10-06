@@ -27,7 +27,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 /// typedef struct VkPipelineCreateFlags2CreateInfo {
 ///     VkStructureType sType; // @link substring="VkStructureType" target="VkStructureType" @link substring="sType" target="#sType"
 ///     void const* pNext; // optional // @link substring="pNext" target="#pNext"
-///     VkPipelineCreateFlags2 flags; // @link substring="VkPipelineCreateFlags2" target="VkPipelineCreateFlags2" @link substring="flags" target="#flags"
+///     VkPipelineCreateFlags2 flags; // optional // @link substring="VkPipelineCreateFlags2" target="VkPipelineCreateFlags2" @link substring="flags" target="#flags"
 /// } VkPipelineCreateFlags2CreateInfo;
 /// }
 ///

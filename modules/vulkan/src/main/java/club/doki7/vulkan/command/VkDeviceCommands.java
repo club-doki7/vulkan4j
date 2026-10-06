@@ -46,6 +46,8 @@ public final class VkDeviceCommands {
         HANDLE$vkBindBufferMemory2 = RawFunctionLoader.link(SEGMENT$vkBindBufferMemory2, Descriptors.DESCRIPTOR$vkBindBufferMemory2);
         SEGMENT$vkBindBufferMemory2KHR = loader.apply("vkBindBufferMemory2KHR");
         HANDLE$vkBindBufferMemory2KHR = RawFunctionLoader.link(SEGMENT$vkBindBufferMemory2KHR, Descriptors.DESCRIPTOR$vkBindBufferMemory2);
+        SEGMENT$vkBindDataGraphPipelineSessionMemoryARM = loader.apply("vkBindDataGraphPipelineSessionMemoryARM");
+        HANDLE$vkBindDataGraphPipelineSessionMemoryARM = RawFunctionLoader.link(SEGMENT$vkBindDataGraphPipelineSessionMemoryARM, Descriptors.DESCRIPTOR$vkBindDataGraphPipelineSessionMemoryARM);
         SEGMENT$vkBindImageMemory = loader.apply("vkBindImageMemory");
         HANDLE$vkBindImageMemory = RawFunctionLoader.link(SEGMENT$vkBindImageMemory, Descriptors.DESCRIPTOR$vkBindImageMemory);
         SEGMENT$vkBindImageMemory2 = loader.apply("vkBindImageMemory2");
@@ -54,14 +56,26 @@ public final class VkDeviceCommands {
         HANDLE$vkBindImageMemory2KHR = RawFunctionLoader.link(SEGMENT$vkBindImageMemory2KHR, Descriptors.DESCRIPTOR$vkBindImageMemory2);
         SEGMENT$vkBindOpticalFlowSessionImageNV = loader.apply("vkBindOpticalFlowSessionImageNV");
         HANDLE$vkBindOpticalFlowSessionImageNV = RawFunctionLoader.link(SEGMENT$vkBindOpticalFlowSessionImageNV, Descriptors.DESCRIPTOR$vkBindOpticalFlowSessionImageNV);
+        SEGMENT$vkBindTensorMemoryARM = loader.apply("vkBindTensorMemoryARM");
+        HANDLE$vkBindTensorMemoryARM = RawFunctionLoader.link(SEGMENT$vkBindTensorMemoryARM, Descriptors.DESCRIPTOR$vkBindTensorMemoryARM);
         SEGMENT$vkBindVideoSessionMemoryKHR = loader.apply("vkBindVideoSessionMemoryKHR");
         HANDLE$vkBindVideoSessionMemoryKHR = RawFunctionLoader.link(SEGMENT$vkBindVideoSessionMemoryKHR, Descriptors.DESCRIPTOR$vkBindVideoSessionMemoryKHR);
         SEGMENT$vkBuildAccelerationStructuresKHR = loader.apply("vkBuildAccelerationStructuresKHR");
         HANDLE$vkBuildAccelerationStructuresKHR = RawFunctionLoader.link(SEGMENT$vkBuildAccelerationStructuresKHR, Descriptors.DESCRIPTOR$vkBuildAccelerationStructuresKHR);
         SEGMENT$vkBuildMicromapsEXT = loader.apply("vkBuildMicromapsEXT");
         HANDLE$vkBuildMicromapsEXT = RawFunctionLoader.link(SEGMENT$vkBuildMicromapsEXT, Descriptors.DESCRIPTOR$vkBuildMicromapsEXT);
+        SEGMENT$vkClearShaderInstrumentationMetricsARM = loader.apply("vkClearShaderInstrumentationMetricsARM");
+        HANDLE$vkClearShaderInstrumentationMetricsARM = RawFunctionLoader.link(SEGMENT$vkClearShaderInstrumentationMetricsARM, Descriptors.DESCRIPTOR$vkClearShaderInstrumentationMetricsARM);
+        SEGMENT$vkCmdBeginConditionalRendering2EXT = loader.apply("vkCmdBeginConditionalRendering2EXT");
+        HANDLE$vkCmdBeginConditionalRendering2EXT = RawFunctionLoader.link(SEGMENT$vkCmdBeginConditionalRendering2EXT, Descriptors.DESCRIPTOR$vkCmdBeginConditionalRendering2EXT);
         SEGMENT$vkCmdBeginConditionalRenderingEXT = loader.apply("vkCmdBeginConditionalRenderingEXT");
         HANDLE$vkCmdBeginConditionalRenderingEXT = RawFunctionLoader.link(SEGMENT$vkCmdBeginConditionalRenderingEXT, Descriptors.DESCRIPTOR$vkCmdBeginConditionalRenderingEXT);
+        SEGMENT$vkCmdBeginCustomResolveEXT = loader.apply("vkCmdBeginCustomResolveEXT");
+        HANDLE$vkCmdBeginCustomResolveEXT = RawFunctionLoader.link(SEGMENT$vkCmdBeginCustomResolveEXT, Descriptors.DESCRIPTOR$vkCmdBeginCustomResolveEXT);
+        SEGMENT$vkCmdBeginGpaSampleAMD = loader.apply("vkCmdBeginGpaSampleAMD");
+        HANDLE$vkCmdBeginGpaSampleAMD = RawFunctionLoader.link(SEGMENT$vkCmdBeginGpaSampleAMD, Descriptors.DESCRIPTOR$vkCmdBeginGpaSampleAMD);
+        SEGMENT$vkCmdBeginGpaSessionAMD = loader.apply("vkCmdBeginGpaSessionAMD");
+        HANDLE$vkCmdBeginGpaSessionAMD = RawFunctionLoader.link(SEGMENT$vkCmdBeginGpaSessionAMD, Descriptors.DESCRIPTOR$vkCmdBeginGpaSessionAMD);
         SEGMENT$vkCmdBeginPerTileExecutionQCOM = loader.apply("vkCmdBeginPerTileExecutionQCOM");
         HANDLE$vkCmdBeginPerTileExecutionQCOM = RawFunctionLoader.link(SEGMENT$vkCmdBeginPerTileExecutionQCOM, Descriptors.DESCRIPTOR$vkCmdBeginPerTileExecutionQCOM);
         SEGMENT$vkCmdBeginQuery = loader.apply("vkCmdBeginQuery");
@@ -78,6 +92,10 @@ public final class VkDeviceCommands {
         HANDLE$vkCmdBeginRendering = RawFunctionLoader.link(SEGMENT$vkCmdBeginRendering, Descriptors.DESCRIPTOR$vkCmdBeginRendering);
         SEGMENT$vkCmdBeginRenderingKHR = loader.apply("vkCmdBeginRenderingKHR");
         HANDLE$vkCmdBeginRenderingKHR = RawFunctionLoader.link(SEGMENT$vkCmdBeginRenderingKHR, Descriptors.DESCRIPTOR$vkCmdBeginRendering);
+        SEGMENT$vkCmdBeginShaderInstrumentationARM = loader.apply("vkCmdBeginShaderInstrumentationARM");
+        HANDLE$vkCmdBeginShaderInstrumentationARM = RawFunctionLoader.link(SEGMENT$vkCmdBeginShaderInstrumentationARM, Descriptors.DESCRIPTOR$vkCmdBeginShaderInstrumentationARM);
+        SEGMENT$vkCmdBeginTransformFeedback2EXT = loader.apply("vkCmdBeginTransformFeedback2EXT");
+        HANDLE$vkCmdBeginTransformFeedback2EXT = RawFunctionLoader.link(SEGMENT$vkCmdBeginTransformFeedback2EXT, Descriptors.DESCRIPTOR$vkCmdBeginTransformFeedback2EXT);
         SEGMENT$vkCmdBeginTransformFeedbackEXT = loader.apply("vkCmdBeginTransformFeedbackEXT");
         HANDLE$vkCmdBeginTransformFeedbackEXT = RawFunctionLoader.link(SEGMENT$vkCmdBeginTransformFeedbackEXT, Descriptors.DESCRIPTOR$vkCmdBeginTransformFeedbackEXT);
         SEGMENT$vkCmdBeginVideoCodingKHR = loader.apply("vkCmdBeginVideoCodingKHR");
@@ -100,18 +118,26 @@ public final class VkDeviceCommands {
         HANDLE$vkCmdBindIndexBuffer2 = RawFunctionLoader.link(SEGMENT$vkCmdBindIndexBuffer2, Descriptors.DESCRIPTOR$vkCmdBindIndexBuffer2);
         SEGMENT$vkCmdBindIndexBuffer2KHR = loader.apply("vkCmdBindIndexBuffer2KHR");
         HANDLE$vkCmdBindIndexBuffer2KHR = RawFunctionLoader.link(SEGMENT$vkCmdBindIndexBuffer2KHR, Descriptors.DESCRIPTOR$vkCmdBindIndexBuffer2);
+        SEGMENT$vkCmdBindIndexBuffer3KHR = loader.apply("vkCmdBindIndexBuffer3KHR");
+        HANDLE$vkCmdBindIndexBuffer3KHR = RawFunctionLoader.link(SEGMENT$vkCmdBindIndexBuffer3KHR, Descriptors.DESCRIPTOR$vkCmdBindIndexBuffer3KHR);
         SEGMENT$vkCmdBindInvocationMaskHUAWEI = loader.apply("vkCmdBindInvocationMaskHUAWEI");
         HANDLE$vkCmdBindInvocationMaskHUAWEI = RawFunctionLoader.link(SEGMENT$vkCmdBindInvocationMaskHUAWEI, Descriptors.DESCRIPTOR$vkCmdBindInvocationMaskHUAWEI);
         SEGMENT$vkCmdBindPipeline = loader.apply("vkCmdBindPipeline");
         HANDLE$vkCmdBindPipeline = RawFunctionLoader.link(SEGMENT$vkCmdBindPipeline, Descriptors.DESCRIPTOR$vkCmdBindPipeline);
         SEGMENT$vkCmdBindPipelineShaderGroupNV = loader.apply("vkCmdBindPipelineShaderGroupNV");
         HANDLE$vkCmdBindPipelineShaderGroupNV = RawFunctionLoader.link(SEGMENT$vkCmdBindPipelineShaderGroupNV, Descriptors.DESCRIPTOR$vkCmdBindPipelineShaderGroupNV);
+        SEGMENT$vkCmdBindResourceHeapEXT = loader.apply("vkCmdBindResourceHeapEXT");
+        HANDLE$vkCmdBindResourceHeapEXT = RawFunctionLoader.link(SEGMENT$vkCmdBindResourceHeapEXT, Descriptors.DESCRIPTOR$vkCmdBindResourceHeapEXT);
+        SEGMENT$vkCmdBindSamplerHeapEXT = loader.apply("vkCmdBindSamplerHeapEXT");
+        HANDLE$vkCmdBindSamplerHeapEXT = RawFunctionLoader.link(SEGMENT$vkCmdBindSamplerHeapEXT, Descriptors.DESCRIPTOR$vkCmdBindSamplerHeapEXT);
         SEGMENT$vkCmdBindShadersEXT = loader.apply("vkCmdBindShadersEXT");
         HANDLE$vkCmdBindShadersEXT = RawFunctionLoader.link(SEGMENT$vkCmdBindShadersEXT, Descriptors.DESCRIPTOR$vkCmdBindShadersEXT);
         SEGMENT$vkCmdBindShadingRateImageNV = loader.apply("vkCmdBindShadingRateImageNV");
         HANDLE$vkCmdBindShadingRateImageNV = RawFunctionLoader.link(SEGMENT$vkCmdBindShadingRateImageNV, Descriptors.DESCRIPTOR$vkCmdBindShadingRateImageNV);
         SEGMENT$vkCmdBindTileMemoryQCOM = loader.apply("vkCmdBindTileMemoryQCOM");
         HANDLE$vkCmdBindTileMemoryQCOM = RawFunctionLoader.link(SEGMENT$vkCmdBindTileMemoryQCOM, Descriptors.DESCRIPTOR$vkCmdBindTileMemoryQCOM);
+        SEGMENT$vkCmdBindTransformFeedbackBuffers2EXT = loader.apply("vkCmdBindTransformFeedbackBuffers2EXT");
+        HANDLE$vkCmdBindTransformFeedbackBuffers2EXT = RawFunctionLoader.link(SEGMENT$vkCmdBindTransformFeedbackBuffers2EXT, Descriptors.DESCRIPTOR$vkCmdBindTransformFeedbackBuffers2EXT);
         SEGMENT$vkCmdBindTransformFeedbackBuffersEXT = loader.apply("vkCmdBindTransformFeedbackBuffersEXT");
         HANDLE$vkCmdBindTransformFeedbackBuffersEXT = RawFunctionLoader.link(SEGMENT$vkCmdBindTransformFeedbackBuffersEXT, Descriptors.DESCRIPTOR$vkCmdBindTransformFeedbackBuffersEXT);
         SEGMENT$vkCmdBindVertexBuffers = loader.apply("vkCmdBindVertexBuffers");
@@ -120,6 +146,8 @@ public final class VkDeviceCommands {
         HANDLE$vkCmdBindVertexBuffers2 = RawFunctionLoader.link(SEGMENT$vkCmdBindVertexBuffers2, Descriptors.DESCRIPTOR$vkCmdBindVertexBuffers2);
         SEGMENT$vkCmdBindVertexBuffers2EXT = loader.apply("vkCmdBindVertexBuffers2EXT");
         HANDLE$vkCmdBindVertexBuffers2EXT = RawFunctionLoader.link(SEGMENT$vkCmdBindVertexBuffers2EXT, Descriptors.DESCRIPTOR$vkCmdBindVertexBuffers2);
+        SEGMENT$vkCmdBindVertexBuffers3KHR = loader.apply("vkCmdBindVertexBuffers3KHR");
+        HANDLE$vkCmdBindVertexBuffers3KHR = RawFunctionLoader.link(SEGMENT$vkCmdBindVertexBuffers3KHR, Descriptors.DESCRIPTOR$vkCmdBindVertexBuffers3KHR);
         SEGMENT$vkCmdBlitImage = loader.apply("vkCmdBlitImage");
         HANDLE$vkCmdBlitImage = RawFunctionLoader.link(SEGMENT$vkCmdBlitImage, Descriptors.DESCRIPTOR$vkCmdBlitImage);
         SEGMENT$vkCmdBlitImage2 = loader.apply("vkCmdBlitImage2");
@@ -166,6 +194,8 @@ public final class VkDeviceCommands {
         HANDLE$vkCmdCopyBufferToImage2 = RawFunctionLoader.link(SEGMENT$vkCmdCopyBufferToImage2, Descriptors.DESCRIPTOR$vkCmdCopyBufferToImage2);
         SEGMENT$vkCmdCopyBufferToImage2KHR = loader.apply("vkCmdCopyBufferToImage2KHR");
         HANDLE$vkCmdCopyBufferToImage2KHR = RawFunctionLoader.link(SEGMENT$vkCmdCopyBufferToImage2KHR, Descriptors.DESCRIPTOR$vkCmdCopyBufferToImage2);
+        SEGMENT$vkCmdCopyGpaSessionResultsAMD = loader.apply("vkCmdCopyGpaSessionResultsAMD");
+        HANDLE$vkCmdCopyGpaSessionResultsAMD = RawFunctionLoader.link(SEGMENT$vkCmdCopyGpaSessionResultsAMD, Descriptors.DESCRIPTOR$vkCmdCopyGpaSessionResultsAMD);
         SEGMENT$vkCmdCopyImage = loader.apply("vkCmdCopyImage");
         HANDLE$vkCmdCopyImage = RawFunctionLoader.link(SEGMENT$vkCmdCopyImage, Descriptors.DESCRIPTOR$vkCmdCopyImage);
         SEGMENT$vkCmdCopyImage2 = loader.apply("vkCmdCopyImage2");
@@ -178,12 +208,22 @@ public final class VkDeviceCommands {
         HANDLE$vkCmdCopyImageToBuffer2 = RawFunctionLoader.link(SEGMENT$vkCmdCopyImageToBuffer2, Descriptors.DESCRIPTOR$vkCmdCopyImageToBuffer2);
         SEGMENT$vkCmdCopyImageToBuffer2KHR = loader.apply("vkCmdCopyImageToBuffer2KHR");
         HANDLE$vkCmdCopyImageToBuffer2KHR = RawFunctionLoader.link(SEGMENT$vkCmdCopyImageToBuffer2KHR, Descriptors.DESCRIPTOR$vkCmdCopyImageToBuffer2);
+        SEGMENT$vkCmdCopyImageToMemoryKHR = loader.apply("vkCmdCopyImageToMemoryKHR");
+        HANDLE$vkCmdCopyImageToMemoryKHR = RawFunctionLoader.link(SEGMENT$vkCmdCopyImageToMemoryKHR, Descriptors.DESCRIPTOR$vkCmdCopyImageToMemoryKHR);
+        SEGMENT$vkCmdCopyMemoryIndirectKHR = loader.apply("vkCmdCopyMemoryIndirectKHR");
+        HANDLE$vkCmdCopyMemoryIndirectKHR = RawFunctionLoader.link(SEGMENT$vkCmdCopyMemoryIndirectKHR, Descriptors.DESCRIPTOR$vkCmdCopyMemoryIndirectKHR);
         SEGMENT$vkCmdCopyMemoryIndirectNV = loader.apply("vkCmdCopyMemoryIndirectNV");
         HANDLE$vkCmdCopyMemoryIndirectNV = RawFunctionLoader.link(SEGMENT$vkCmdCopyMemoryIndirectNV, Descriptors.DESCRIPTOR$vkCmdCopyMemoryIndirectNV);
+        SEGMENT$vkCmdCopyMemoryKHR = loader.apply("vkCmdCopyMemoryKHR");
+        HANDLE$vkCmdCopyMemoryKHR = RawFunctionLoader.link(SEGMENT$vkCmdCopyMemoryKHR, Descriptors.DESCRIPTOR$vkCmdCopyMemoryKHR);
         SEGMENT$vkCmdCopyMemoryToAccelerationStructureKHR = loader.apply("vkCmdCopyMemoryToAccelerationStructureKHR");
         HANDLE$vkCmdCopyMemoryToAccelerationStructureKHR = RawFunctionLoader.link(SEGMENT$vkCmdCopyMemoryToAccelerationStructureKHR, Descriptors.DESCRIPTOR$vkCmdCopyMemoryToAccelerationStructureKHR);
+        SEGMENT$vkCmdCopyMemoryToImageIndirectKHR = loader.apply("vkCmdCopyMemoryToImageIndirectKHR");
+        HANDLE$vkCmdCopyMemoryToImageIndirectKHR = RawFunctionLoader.link(SEGMENT$vkCmdCopyMemoryToImageIndirectKHR, Descriptors.DESCRIPTOR$vkCmdCopyMemoryToImageIndirectKHR);
         SEGMENT$vkCmdCopyMemoryToImageIndirectNV = loader.apply("vkCmdCopyMemoryToImageIndirectNV");
         HANDLE$vkCmdCopyMemoryToImageIndirectNV = RawFunctionLoader.link(SEGMENT$vkCmdCopyMemoryToImageIndirectNV, Descriptors.DESCRIPTOR$vkCmdCopyMemoryToImageIndirectNV);
+        SEGMENT$vkCmdCopyMemoryToImageKHR = loader.apply("vkCmdCopyMemoryToImageKHR");
+        HANDLE$vkCmdCopyMemoryToImageKHR = RawFunctionLoader.link(SEGMENT$vkCmdCopyMemoryToImageKHR, Descriptors.DESCRIPTOR$vkCmdCopyMemoryToImageKHR);
         SEGMENT$vkCmdCopyMemoryToMicromapEXT = loader.apply("vkCmdCopyMemoryToMicromapEXT");
         HANDLE$vkCmdCopyMemoryToMicromapEXT = RawFunctionLoader.link(SEGMENT$vkCmdCopyMemoryToMicromapEXT, Descriptors.DESCRIPTOR$vkCmdCopyMemoryToMicromapEXT);
         SEGMENT$vkCmdCopyMicromapEXT = loader.apply("vkCmdCopyMicromapEXT");
@@ -192,6 +232,10 @@ public final class VkDeviceCommands {
         HANDLE$vkCmdCopyMicromapToMemoryEXT = RawFunctionLoader.link(SEGMENT$vkCmdCopyMicromapToMemoryEXT, Descriptors.DESCRIPTOR$vkCmdCopyMicromapToMemoryEXT);
         SEGMENT$vkCmdCopyQueryPoolResults = loader.apply("vkCmdCopyQueryPoolResults");
         HANDLE$vkCmdCopyQueryPoolResults = RawFunctionLoader.link(SEGMENT$vkCmdCopyQueryPoolResults, Descriptors.DESCRIPTOR$vkCmdCopyQueryPoolResults);
+        SEGMENT$vkCmdCopyQueryPoolResultsToMemoryKHR = loader.apply("vkCmdCopyQueryPoolResultsToMemoryKHR");
+        HANDLE$vkCmdCopyQueryPoolResultsToMemoryKHR = RawFunctionLoader.link(SEGMENT$vkCmdCopyQueryPoolResultsToMemoryKHR, Descriptors.DESCRIPTOR$vkCmdCopyQueryPoolResultsToMemoryKHR);
+        SEGMENT$vkCmdCopyTensorARM = loader.apply("vkCmdCopyTensorARM");
+        HANDLE$vkCmdCopyTensorARM = RawFunctionLoader.link(SEGMENT$vkCmdCopyTensorARM, Descriptors.DESCRIPTOR$vkCmdCopyTensorARM);
         SEGMENT$vkCmdCuLaunchKernelNVX = loader.apply("vkCmdCuLaunchKernelNVX");
         HANDLE$vkCmdCuLaunchKernelNVX = RawFunctionLoader.link(SEGMENT$vkCmdCuLaunchKernelNVX, Descriptors.DESCRIPTOR$vkCmdCuLaunchKernelNVX);
         SEGMENT$vkCmdCudaLaunchKernelNV = loader.apply("vkCmdCudaLaunchKernelNV");
@@ -204,6 +248,10 @@ public final class VkDeviceCommands {
         HANDLE$vkCmdDebugMarkerInsertEXT = RawFunctionLoader.link(SEGMENT$vkCmdDebugMarkerInsertEXT, Descriptors.DESCRIPTOR$vkCmdDebugMarkerInsertEXT);
         SEGMENT$vkCmdDecodeVideoKHR = loader.apply("vkCmdDecodeVideoKHR");
         HANDLE$vkCmdDecodeVideoKHR = RawFunctionLoader.link(SEGMENT$vkCmdDecodeVideoKHR, Descriptors.DESCRIPTOR$vkCmdDecodeVideoKHR);
+        SEGMENT$vkCmdDecompressMemoryEXT = loader.apply("vkCmdDecompressMemoryEXT");
+        HANDLE$vkCmdDecompressMemoryEXT = RawFunctionLoader.link(SEGMENT$vkCmdDecompressMemoryEXT, Descriptors.DESCRIPTOR$vkCmdDecompressMemoryEXT);
+        SEGMENT$vkCmdDecompressMemoryIndirectCountEXT = loader.apply("vkCmdDecompressMemoryIndirectCountEXT");
+        HANDLE$vkCmdDecompressMemoryIndirectCountEXT = RawFunctionLoader.link(SEGMENT$vkCmdDecompressMemoryIndirectCountEXT, Descriptors.DESCRIPTOR$vkCmdDecompressMemoryIndirectCountEXT);
         SEGMENT$vkCmdDecompressMemoryIndirectCountNV = loader.apply("vkCmdDecompressMemoryIndirectCountNV");
         HANDLE$vkCmdDecompressMemoryIndirectCountNV = RawFunctionLoader.link(SEGMENT$vkCmdDecompressMemoryIndirectCountNV, Descriptors.DESCRIPTOR$vkCmdDecompressMemoryIndirectCountNV);
         SEGMENT$vkCmdDecompressMemoryNV = loader.apply("vkCmdDecompressMemoryNV");
@@ -214,6 +262,8 @@ public final class VkDeviceCommands {
         HANDLE$vkCmdDispatchBase = RawFunctionLoader.link(SEGMENT$vkCmdDispatchBase, Descriptors.DESCRIPTOR$vkCmdDispatchBase);
         SEGMENT$vkCmdDispatchBaseKHR = loader.apply("vkCmdDispatchBaseKHR");
         HANDLE$vkCmdDispatchBaseKHR = RawFunctionLoader.link(SEGMENT$vkCmdDispatchBaseKHR, Descriptors.DESCRIPTOR$vkCmdDispatchBase);
+        SEGMENT$vkCmdDispatchDataGraphARM = loader.apply("vkCmdDispatchDataGraphARM");
+        HANDLE$vkCmdDispatchDataGraphARM = RawFunctionLoader.link(SEGMENT$vkCmdDispatchDataGraphARM, Descriptors.DESCRIPTOR$vkCmdDispatchDataGraphARM);
         SEGMENT$vkCmdDispatchGraphAMDX = loader.apply("vkCmdDispatchGraphAMDX");
         HANDLE$vkCmdDispatchGraphAMDX = RawFunctionLoader.link(SEGMENT$vkCmdDispatchGraphAMDX, Descriptors.DESCRIPTOR$vkCmdDispatchGraphAMDX);
         SEGMENT$vkCmdDispatchGraphIndirectAMDX = loader.apply("vkCmdDispatchGraphIndirectAMDX");
@@ -222,6 +272,8 @@ public final class VkDeviceCommands {
         HANDLE$vkCmdDispatchGraphIndirectCountAMDX = RawFunctionLoader.link(SEGMENT$vkCmdDispatchGraphIndirectCountAMDX, Descriptors.DESCRIPTOR$vkCmdDispatchGraphIndirectCountAMDX);
         SEGMENT$vkCmdDispatchIndirect = loader.apply("vkCmdDispatchIndirect");
         HANDLE$vkCmdDispatchIndirect = RawFunctionLoader.link(SEGMENT$vkCmdDispatchIndirect, Descriptors.DESCRIPTOR$vkCmdDispatchIndirect);
+        SEGMENT$vkCmdDispatchIndirect2KHR = loader.apply("vkCmdDispatchIndirect2KHR");
+        HANDLE$vkCmdDispatchIndirect2KHR = RawFunctionLoader.link(SEGMENT$vkCmdDispatchIndirect2KHR, Descriptors.DESCRIPTOR$vkCmdDispatchIndirect2KHR);
         SEGMENT$vkCmdDispatchTileQCOM = loader.apply("vkCmdDispatchTileQCOM");
         HANDLE$vkCmdDispatchTileQCOM = RawFunctionLoader.link(SEGMENT$vkCmdDispatchTileQCOM, Descriptors.DESCRIPTOR$vkCmdDispatchTileQCOM);
         SEGMENT$vkCmdDraw = loader.apply("vkCmdDraw");
@@ -234,24 +286,38 @@ public final class VkDeviceCommands {
         HANDLE$vkCmdDrawIndexed = RawFunctionLoader.link(SEGMENT$vkCmdDrawIndexed, Descriptors.DESCRIPTOR$vkCmdDrawIndexed);
         SEGMENT$vkCmdDrawIndexedIndirect = loader.apply("vkCmdDrawIndexedIndirect");
         HANDLE$vkCmdDrawIndexedIndirect = RawFunctionLoader.link(SEGMENT$vkCmdDrawIndexedIndirect, Descriptors.DESCRIPTOR$vkCmdDrawIndexedIndirect);
+        SEGMENT$vkCmdDrawIndexedIndirect2KHR = loader.apply("vkCmdDrawIndexedIndirect2KHR");
+        HANDLE$vkCmdDrawIndexedIndirect2KHR = RawFunctionLoader.link(SEGMENT$vkCmdDrawIndexedIndirect2KHR, Descriptors.DESCRIPTOR$vkCmdDrawIndexedIndirect2KHR);
         SEGMENT$vkCmdDrawIndexedIndirectCount = loader.apply("vkCmdDrawIndexedIndirectCount");
         HANDLE$vkCmdDrawIndexedIndirectCount = RawFunctionLoader.link(SEGMENT$vkCmdDrawIndexedIndirectCount, Descriptors.DESCRIPTOR$vkCmdDrawIndexedIndirectCount);
+        SEGMENT$vkCmdDrawIndexedIndirectCount2KHR = loader.apply("vkCmdDrawIndexedIndirectCount2KHR");
+        HANDLE$vkCmdDrawIndexedIndirectCount2KHR = RawFunctionLoader.link(SEGMENT$vkCmdDrawIndexedIndirectCount2KHR, Descriptors.DESCRIPTOR$vkCmdDrawIndexedIndirectCount2KHR);
         SEGMENT$vkCmdDrawIndexedIndirectCountAMD = loader.apply("vkCmdDrawIndexedIndirectCountAMD");
         HANDLE$vkCmdDrawIndexedIndirectCountAMD = RawFunctionLoader.link(SEGMENT$vkCmdDrawIndexedIndirectCountAMD, Descriptors.DESCRIPTOR$vkCmdDrawIndexedIndirectCount);
         SEGMENT$vkCmdDrawIndexedIndirectCountKHR = loader.apply("vkCmdDrawIndexedIndirectCountKHR");
         HANDLE$vkCmdDrawIndexedIndirectCountKHR = RawFunctionLoader.link(SEGMENT$vkCmdDrawIndexedIndirectCountKHR, Descriptors.DESCRIPTOR$vkCmdDrawIndexedIndirectCount);
         SEGMENT$vkCmdDrawIndirect = loader.apply("vkCmdDrawIndirect");
         HANDLE$vkCmdDrawIndirect = RawFunctionLoader.link(SEGMENT$vkCmdDrawIndirect, Descriptors.DESCRIPTOR$vkCmdDrawIndirect);
+        SEGMENT$vkCmdDrawIndirect2KHR = loader.apply("vkCmdDrawIndirect2KHR");
+        HANDLE$vkCmdDrawIndirect2KHR = RawFunctionLoader.link(SEGMENT$vkCmdDrawIndirect2KHR, Descriptors.DESCRIPTOR$vkCmdDrawIndirect2KHR);
+        SEGMENT$vkCmdDrawIndirectByteCount2EXT = loader.apply("vkCmdDrawIndirectByteCount2EXT");
+        HANDLE$vkCmdDrawIndirectByteCount2EXT = RawFunctionLoader.link(SEGMENT$vkCmdDrawIndirectByteCount2EXT, Descriptors.DESCRIPTOR$vkCmdDrawIndirectByteCount2EXT);
         SEGMENT$vkCmdDrawIndirectByteCountEXT = loader.apply("vkCmdDrawIndirectByteCountEXT");
         HANDLE$vkCmdDrawIndirectByteCountEXT = RawFunctionLoader.link(SEGMENT$vkCmdDrawIndirectByteCountEXT, Descriptors.DESCRIPTOR$vkCmdDrawIndirectByteCountEXT);
         SEGMENT$vkCmdDrawIndirectCount = loader.apply("vkCmdDrawIndirectCount");
         HANDLE$vkCmdDrawIndirectCount = RawFunctionLoader.link(SEGMENT$vkCmdDrawIndirectCount, Descriptors.DESCRIPTOR$vkCmdDrawIndirectCount);
+        SEGMENT$vkCmdDrawIndirectCount2KHR = loader.apply("vkCmdDrawIndirectCount2KHR");
+        HANDLE$vkCmdDrawIndirectCount2KHR = RawFunctionLoader.link(SEGMENT$vkCmdDrawIndirectCount2KHR, Descriptors.DESCRIPTOR$vkCmdDrawIndirectCount2KHR);
         SEGMENT$vkCmdDrawIndirectCountAMD = loader.apply("vkCmdDrawIndirectCountAMD");
         HANDLE$vkCmdDrawIndirectCountAMD = RawFunctionLoader.link(SEGMENT$vkCmdDrawIndirectCountAMD, Descriptors.DESCRIPTOR$vkCmdDrawIndirectCount);
         SEGMENT$vkCmdDrawIndirectCountKHR = loader.apply("vkCmdDrawIndirectCountKHR");
         HANDLE$vkCmdDrawIndirectCountKHR = RawFunctionLoader.link(SEGMENT$vkCmdDrawIndirectCountKHR, Descriptors.DESCRIPTOR$vkCmdDrawIndirectCount);
         SEGMENT$vkCmdDrawMeshTasksEXT = loader.apply("vkCmdDrawMeshTasksEXT");
         HANDLE$vkCmdDrawMeshTasksEXT = RawFunctionLoader.link(SEGMENT$vkCmdDrawMeshTasksEXT, Descriptors.DESCRIPTOR$vkCmdDrawMeshTasksEXT);
+        SEGMENT$vkCmdDrawMeshTasksIndirect2EXT = loader.apply("vkCmdDrawMeshTasksIndirect2EXT");
+        HANDLE$vkCmdDrawMeshTasksIndirect2EXT = RawFunctionLoader.link(SEGMENT$vkCmdDrawMeshTasksIndirect2EXT, Descriptors.DESCRIPTOR$vkCmdDrawMeshTasksIndirect2EXT);
+        SEGMENT$vkCmdDrawMeshTasksIndirectCount2EXT = loader.apply("vkCmdDrawMeshTasksIndirectCount2EXT");
+        HANDLE$vkCmdDrawMeshTasksIndirectCount2EXT = RawFunctionLoader.link(SEGMENT$vkCmdDrawMeshTasksIndirectCount2EXT, Descriptors.DESCRIPTOR$vkCmdDrawMeshTasksIndirectCount2EXT);
         SEGMENT$vkCmdDrawMeshTasksIndirectCountEXT = loader.apply("vkCmdDrawMeshTasksIndirectCountEXT");
         HANDLE$vkCmdDrawMeshTasksIndirectCountEXT = RawFunctionLoader.link(SEGMENT$vkCmdDrawMeshTasksIndirectCountEXT, Descriptors.DESCRIPTOR$vkCmdDrawMeshTasksIndirectCountEXT);
         SEGMENT$vkCmdDrawMeshTasksIndirectCountNV = loader.apply("vkCmdDrawMeshTasksIndirectCountNV");
@@ -270,6 +336,10 @@ public final class VkDeviceCommands {
         HANDLE$vkCmdEncodeVideoKHR = RawFunctionLoader.link(SEGMENT$vkCmdEncodeVideoKHR, Descriptors.DESCRIPTOR$vkCmdEncodeVideoKHR);
         SEGMENT$vkCmdEndConditionalRenderingEXT = loader.apply("vkCmdEndConditionalRenderingEXT");
         HANDLE$vkCmdEndConditionalRenderingEXT = RawFunctionLoader.link(SEGMENT$vkCmdEndConditionalRenderingEXT, Descriptors.DESCRIPTOR$vkCmdEndConditionalRenderingEXT);
+        SEGMENT$vkCmdEndGpaSampleAMD = loader.apply("vkCmdEndGpaSampleAMD");
+        HANDLE$vkCmdEndGpaSampleAMD = RawFunctionLoader.link(SEGMENT$vkCmdEndGpaSampleAMD, Descriptors.DESCRIPTOR$vkCmdEndGpaSampleAMD);
+        SEGMENT$vkCmdEndGpaSessionAMD = loader.apply("vkCmdEndGpaSessionAMD");
+        HANDLE$vkCmdEndGpaSessionAMD = RawFunctionLoader.link(SEGMENT$vkCmdEndGpaSessionAMD, Descriptors.DESCRIPTOR$vkCmdEndGpaSessionAMD);
         SEGMENT$vkCmdEndPerTileExecutionQCOM = loader.apply("vkCmdEndPerTileExecutionQCOM");
         HANDLE$vkCmdEndPerTileExecutionQCOM = RawFunctionLoader.link(SEGMENT$vkCmdEndPerTileExecutionQCOM, Descriptors.DESCRIPTOR$vkCmdEndPerTileExecutionQCOM);
         SEGMENT$vkCmdEndQuery = loader.apply("vkCmdEndQuery");
@@ -285,9 +355,15 @@ public final class VkDeviceCommands {
         SEGMENT$vkCmdEndRendering = loader.apply("vkCmdEndRendering");
         HANDLE$vkCmdEndRendering = RawFunctionLoader.link(SEGMENT$vkCmdEndRendering, Descriptors.DESCRIPTOR$vkCmdEndRendering);
         SEGMENT$vkCmdEndRendering2EXT = loader.apply("vkCmdEndRendering2EXT");
-        HANDLE$vkCmdEndRendering2EXT = RawFunctionLoader.link(SEGMENT$vkCmdEndRendering2EXT, Descriptors.DESCRIPTOR$vkCmdEndRendering2EXT);
+        HANDLE$vkCmdEndRendering2EXT = RawFunctionLoader.link(SEGMENT$vkCmdEndRendering2EXT, Descriptors.DESCRIPTOR$vkCmdEndRendering2KHR);
+        SEGMENT$vkCmdEndRendering2KHR = loader.apply("vkCmdEndRendering2KHR");
+        HANDLE$vkCmdEndRendering2KHR = RawFunctionLoader.link(SEGMENT$vkCmdEndRendering2KHR, Descriptors.DESCRIPTOR$vkCmdEndRendering2KHR);
         SEGMENT$vkCmdEndRenderingKHR = loader.apply("vkCmdEndRenderingKHR");
         HANDLE$vkCmdEndRenderingKHR = RawFunctionLoader.link(SEGMENT$vkCmdEndRenderingKHR, Descriptors.DESCRIPTOR$vkCmdEndRendering);
+        SEGMENT$vkCmdEndShaderInstrumentationARM = loader.apply("vkCmdEndShaderInstrumentationARM");
+        HANDLE$vkCmdEndShaderInstrumentationARM = RawFunctionLoader.link(SEGMENT$vkCmdEndShaderInstrumentationARM, Descriptors.DESCRIPTOR$vkCmdEndShaderInstrumentationARM);
+        SEGMENT$vkCmdEndTransformFeedback2EXT = loader.apply("vkCmdEndTransformFeedback2EXT");
+        HANDLE$vkCmdEndTransformFeedback2EXT = RawFunctionLoader.link(SEGMENT$vkCmdEndTransformFeedback2EXT, Descriptors.DESCRIPTOR$vkCmdEndTransformFeedback2EXT);
         SEGMENT$vkCmdEndTransformFeedbackEXT = loader.apply("vkCmdEndTransformFeedbackEXT");
         HANDLE$vkCmdEndTransformFeedbackEXT = RawFunctionLoader.link(SEGMENT$vkCmdEndTransformFeedbackEXT, Descriptors.DESCRIPTOR$vkCmdEndTransformFeedbackEXT);
         SEGMENT$vkCmdEndVideoCodingKHR = loader.apply("vkCmdEndVideoCodingKHR");
@@ -300,6 +376,8 @@ public final class VkDeviceCommands {
         HANDLE$vkCmdExecuteGeneratedCommandsNV = RawFunctionLoader.link(SEGMENT$vkCmdExecuteGeneratedCommandsNV, Descriptors.DESCRIPTOR$vkCmdExecuteGeneratedCommandsNV);
         SEGMENT$vkCmdFillBuffer = loader.apply("vkCmdFillBuffer");
         HANDLE$vkCmdFillBuffer = RawFunctionLoader.link(SEGMENT$vkCmdFillBuffer, Descriptors.DESCRIPTOR$vkCmdFillBuffer);
+        SEGMENT$vkCmdFillMemoryKHR = loader.apply("vkCmdFillMemoryKHR");
+        HANDLE$vkCmdFillMemoryKHR = RawFunctionLoader.link(SEGMENT$vkCmdFillMemoryKHR, Descriptors.DESCRIPTOR$vkCmdFillMemoryKHR);
         SEGMENT$vkCmdInitializeGraphScratchMemoryAMDX = loader.apply("vkCmdInitializeGraphScratchMemoryAMDX");
         HANDLE$vkCmdInitializeGraphScratchMemoryAMDX = RawFunctionLoader.link(SEGMENT$vkCmdInitializeGraphScratchMemoryAMDX, Descriptors.DESCRIPTOR$vkCmdInitializeGraphScratchMemoryAMDX);
         SEGMENT$vkCmdNextSubpass = loader.apply("vkCmdNextSubpass");
@@ -326,6 +404,8 @@ public final class VkDeviceCommands {
         HANDLE$vkCmdPushConstants2 = RawFunctionLoader.link(SEGMENT$vkCmdPushConstants2, Descriptors.DESCRIPTOR$vkCmdPushConstants2);
         SEGMENT$vkCmdPushConstants2KHR = loader.apply("vkCmdPushConstants2KHR");
         HANDLE$vkCmdPushConstants2KHR = RawFunctionLoader.link(SEGMENT$vkCmdPushConstants2KHR, Descriptors.DESCRIPTOR$vkCmdPushConstants2);
+        SEGMENT$vkCmdPushDataEXT = loader.apply("vkCmdPushDataEXT");
+        HANDLE$vkCmdPushDataEXT = RawFunctionLoader.link(SEGMENT$vkCmdPushDataEXT, Descriptors.DESCRIPTOR$vkCmdPushDataEXT);
         SEGMENT$vkCmdPushDescriptorSet = loader.apply("vkCmdPushDescriptorSet");
         HANDLE$vkCmdPushDescriptorSet = RawFunctionLoader.link(SEGMENT$vkCmdPushDescriptorSet, Descriptors.DESCRIPTOR$vkCmdPushDescriptorSet);
         SEGMENT$vkCmdPushDescriptorSet2 = loader.apply("vkCmdPushDescriptorSet2");
@@ -380,6 +460,8 @@ public final class VkDeviceCommands {
         HANDLE$vkCmdSetColorWriteEnableEXT = RawFunctionLoader.link(SEGMENT$vkCmdSetColorWriteEnableEXT, Descriptors.DESCRIPTOR$vkCmdSetColorWriteEnableEXT);
         SEGMENT$vkCmdSetColorWriteMaskEXT = loader.apply("vkCmdSetColorWriteMaskEXT");
         HANDLE$vkCmdSetColorWriteMaskEXT = RawFunctionLoader.link(SEGMENT$vkCmdSetColorWriteMaskEXT, Descriptors.DESCRIPTOR$vkCmdSetColorWriteMaskEXT);
+        SEGMENT$vkCmdSetComputeOccupancyPriorityNV = loader.apply("vkCmdSetComputeOccupancyPriorityNV");
+        HANDLE$vkCmdSetComputeOccupancyPriorityNV = RawFunctionLoader.link(SEGMENT$vkCmdSetComputeOccupancyPriorityNV, Descriptors.DESCRIPTOR$vkCmdSetComputeOccupancyPriorityNV);
         SEGMENT$vkCmdSetConservativeRasterizationModeEXT = loader.apply("vkCmdSetConservativeRasterizationModeEXT");
         HANDLE$vkCmdSetConservativeRasterizationModeEXT = RawFunctionLoader.link(SEGMENT$vkCmdSetConservativeRasterizationModeEXT, Descriptors.DESCRIPTOR$vkCmdSetConservativeRasterizationModeEXT);
         SEGMENT$vkCmdSetCoverageModulationModeNV = loader.apply("vkCmdSetCoverageModulationModeNV");
@@ -446,6 +528,8 @@ public final class VkDeviceCommands {
         HANDLE$vkCmdSetDiscardRectangleEnableEXT = RawFunctionLoader.link(SEGMENT$vkCmdSetDiscardRectangleEnableEXT, Descriptors.DESCRIPTOR$vkCmdSetDiscardRectangleEnableEXT);
         SEGMENT$vkCmdSetDiscardRectangleModeEXT = loader.apply("vkCmdSetDiscardRectangleModeEXT");
         HANDLE$vkCmdSetDiscardRectangleModeEXT = RawFunctionLoader.link(SEGMENT$vkCmdSetDiscardRectangleModeEXT, Descriptors.DESCRIPTOR$vkCmdSetDiscardRectangleModeEXT);
+        SEGMENT$vkCmdSetDispatchParametersARM = loader.apply("vkCmdSetDispatchParametersARM");
+        HANDLE$vkCmdSetDispatchParametersARM = RawFunctionLoader.link(SEGMENT$vkCmdSetDispatchParametersARM, Descriptors.DESCRIPTOR$vkCmdSetDispatchParametersARM);
         SEGMENT$vkCmdSetEvent = loader.apply("vkCmdSetEvent");
         HANDLE$vkCmdSetEvent = RawFunctionLoader.link(SEGMENT$vkCmdSetEvent, Descriptors.DESCRIPTOR$vkCmdSetEvent);
         SEGMENT$vkCmdSetEvent2 = loader.apply("vkCmdSetEvent2");
@@ -496,6 +580,8 @@ public final class VkDeviceCommands {
         HANDLE$vkCmdSetPrimitiveRestartEnable = RawFunctionLoader.link(SEGMENT$vkCmdSetPrimitiveRestartEnable, Descriptors.DESCRIPTOR$vkCmdSetPrimitiveRestartEnable);
         SEGMENT$vkCmdSetPrimitiveRestartEnableEXT = loader.apply("vkCmdSetPrimitiveRestartEnableEXT");
         HANDLE$vkCmdSetPrimitiveRestartEnableEXT = RawFunctionLoader.link(SEGMENT$vkCmdSetPrimitiveRestartEnableEXT, Descriptors.DESCRIPTOR$vkCmdSetPrimitiveRestartEnable);
+        SEGMENT$vkCmdSetPrimitiveRestartIndexEXT = loader.apply("vkCmdSetPrimitiveRestartIndexEXT");
+        HANDLE$vkCmdSetPrimitiveRestartIndexEXT = RawFunctionLoader.link(SEGMENT$vkCmdSetPrimitiveRestartIndexEXT, Descriptors.DESCRIPTOR$vkCmdSetPrimitiveRestartIndexEXT);
         SEGMENT$vkCmdSetPrimitiveTopology = loader.apply("vkCmdSetPrimitiveTopology");
         HANDLE$vkCmdSetPrimitiveTopology = RawFunctionLoader.link(SEGMENT$vkCmdSetPrimitiveTopology, Descriptors.DESCRIPTOR$vkCmdSetPrimitiveTopology);
         SEGMENT$vkCmdSetPrimitiveTopologyEXT = loader.apply("vkCmdSetPrimitiveTopologyEXT");
@@ -580,6 +666,8 @@ public final class VkDeviceCommands {
         HANDLE$vkCmdTraceRaysNV = RawFunctionLoader.link(SEGMENT$vkCmdTraceRaysNV, Descriptors.DESCRIPTOR$vkCmdTraceRaysNV);
         SEGMENT$vkCmdUpdateBuffer = loader.apply("vkCmdUpdateBuffer");
         HANDLE$vkCmdUpdateBuffer = RawFunctionLoader.link(SEGMENT$vkCmdUpdateBuffer, Descriptors.DESCRIPTOR$vkCmdUpdateBuffer);
+        SEGMENT$vkCmdUpdateMemoryKHR = loader.apply("vkCmdUpdateMemoryKHR");
+        HANDLE$vkCmdUpdateMemoryKHR = RawFunctionLoader.link(SEGMENT$vkCmdUpdateMemoryKHR, Descriptors.DESCRIPTOR$vkCmdUpdateMemoryKHR);
         SEGMENT$vkCmdUpdatePipelineIndirectBufferNV = loader.apply("vkCmdUpdatePipelineIndirectBufferNV");
         HANDLE$vkCmdUpdatePipelineIndirectBufferNV = RawFunctionLoader.link(SEGMENT$vkCmdUpdatePipelineIndirectBufferNV, Descriptors.DESCRIPTOR$vkCmdUpdatePipelineIndirectBufferNV);
         SEGMENT$vkCmdWaitEvents = loader.apply("vkCmdWaitEvents");
@@ -596,6 +684,8 @@ public final class VkDeviceCommands {
         HANDLE$vkCmdWriteBufferMarker2AMD = RawFunctionLoader.link(SEGMENT$vkCmdWriteBufferMarker2AMD, Descriptors.DESCRIPTOR$vkCmdWriteBufferMarker2AMD);
         SEGMENT$vkCmdWriteBufferMarkerAMD = loader.apply("vkCmdWriteBufferMarkerAMD");
         HANDLE$vkCmdWriteBufferMarkerAMD = RawFunctionLoader.link(SEGMENT$vkCmdWriteBufferMarkerAMD, Descriptors.DESCRIPTOR$vkCmdWriteBufferMarkerAMD);
+        SEGMENT$vkCmdWriteMarkerToMemoryAMD = loader.apply("vkCmdWriteMarkerToMemoryAMD");
+        HANDLE$vkCmdWriteMarkerToMemoryAMD = RawFunctionLoader.link(SEGMENT$vkCmdWriteMarkerToMemoryAMD, Descriptors.DESCRIPTOR$vkCmdWriteMarkerToMemoryAMD);
         SEGMENT$vkCmdWriteMicromapsPropertiesEXT = loader.apply("vkCmdWriteMicromapsPropertiesEXT");
         HANDLE$vkCmdWriteMicromapsPropertiesEXT = RawFunctionLoader.link(SEGMENT$vkCmdWriteMicromapsPropertiesEXT, Descriptors.DESCRIPTOR$vkCmdWriteMicromapsPropertiesEXT);
         SEGMENT$vkCmdWriteTimestamp = loader.apply("vkCmdWriteTimestamp");
@@ -632,6 +722,8 @@ public final class VkDeviceCommands {
         HANDLE$vkCopyMicromapEXT = RawFunctionLoader.link(SEGMENT$vkCopyMicromapEXT, Descriptors.DESCRIPTOR$vkCopyMicromapEXT);
         SEGMENT$vkCopyMicromapToMemoryEXT = loader.apply("vkCopyMicromapToMemoryEXT");
         HANDLE$vkCopyMicromapToMemoryEXT = RawFunctionLoader.link(SEGMENT$vkCopyMicromapToMemoryEXT, Descriptors.DESCRIPTOR$vkCopyMicromapToMemoryEXT);
+        SEGMENT$vkCreateAccelerationStructure2KHR = loader.apply("vkCreateAccelerationStructure2KHR");
+        HANDLE$vkCreateAccelerationStructure2KHR = RawFunctionLoader.link(SEGMENT$vkCreateAccelerationStructure2KHR, Descriptors.DESCRIPTOR$vkCreateAccelerationStructure2KHR);
         SEGMENT$vkCreateAccelerationStructureKHR = loader.apply("vkCreateAccelerationStructureKHR");
         HANDLE$vkCreateAccelerationStructureKHR = RawFunctionLoader.link(SEGMENT$vkCreateAccelerationStructureKHR, Descriptors.DESCRIPTOR$vkCreateAccelerationStructureKHR);
         SEGMENT$vkCreateAccelerationStructureNV = loader.apply("vkCreateAccelerationStructureNV");
@@ -654,6 +746,10 @@ public final class VkDeviceCommands {
         HANDLE$vkCreateCudaFunctionNV = RawFunctionLoader.link(SEGMENT$vkCreateCudaFunctionNV, Descriptors.DESCRIPTOR$vkCreateCudaFunctionNV);
         SEGMENT$vkCreateCudaModuleNV = loader.apply("vkCreateCudaModuleNV");
         HANDLE$vkCreateCudaModuleNV = RawFunctionLoader.link(SEGMENT$vkCreateCudaModuleNV, Descriptors.DESCRIPTOR$vkCreateCudaModuleNV);
+        SEGMENT$vkCreateDataGraphPipelineSessionARM = loader.apply("vkCreateDataGraphPipelineSessionARM");
+        HANDLE$vkCreateDataGraphPipelineSessionARM = RawFunctionLoader.link(SEGMENT$vkCreateDataGraphPipelineSessionARM, Descriptors.DESCRIPTOR$vkCreateDataGraphPipelineSessionARM);
+        SEGMENT$vkCreateDataGraphPipelinesARM = loader.apply("vkCreateDataGraphPipelinesARM");
+        HANDLE$vkCreateDataGraphPipelinesARM = RawFunctionLoader.link(SEGMENT$vkCreateDataGraphPipelinesARM, Descriptors.DESCRIPTOR$vkCreateDataGraphPipelinesARM);
         SEGMENT$vkCreateDeferredOperationKHR = loader.apply("vkCreateDeferredOperationKHR");
         HANDLE$vkCreateDeferredOperationKHR = RawFunctionLoader.link(SEGMENT$vkCreateDeferredOperationKHR, Descriptors.DESCRIPTOR$vkCreateDeferredOperationKHR);
         SEGMENT$vkCreateDescriptorPool = loader.apply("vkCreateDescriptorPool");
@@ -674,6 +770,8 @@ public final class VkDeviceCommands {
         HANDLE$vkCreateFence = RawFunctionLoader.link(SEGMENT$vkCreateFence, Descriptors.DESCRIPTOR$vkCreateFence);
         SEGMENT$vkCreateFramebuffer = loader.apply("vkCreateFramebuffer");
         HANDLE$vkCreateFramebuffer = RawFunctionLoader.link(SEGMENT$vkCreateFramebuffer, Descriptors.DESCRIPTOR$vkCreateFramebuffer);
+        SEGMENT$vkCreateGpaSessionAMD = loader.apply("vkCreateGpaSessionAMD");
+        HANDLE$vkCreateGpaSessionAMD = RawFunctionLoader.link(SEGMENT$vkCreateGpaSessionAMD, Descriptors.DESCRIPTOR$vkCreateGpaSessionAMD);
         SEGMENT$vkCreateGraphicsPipelines = loader.apply("vkCreateGraphicsPipelines");
         HANDLE$vkCreateGraphicsPipelines = RawFunctionLoader.link(SEGMENT$vkCreateGraphicsPipelines, Descriptors.DESCRIPTOR$vkCreateGraphicsPipelines);
         SEGMENT$vkCreateImage = loader.apply("vkCreateImage");
@@ -722,6 +820,8 @@ public final class VkDeviceCommands {
         HANDLE$vkCreateSemaphore = RawFunctionLoader.link(SEGMENT$vkCreateSemaphore, Descriptors.DESCRIPTOR$vkCreateSemaphore);
         SEGMENT$vkCreateSemaphoreSciSyncPoolNV = loader.apply("vkCreateSemaphoreSciSyncPoolNV");
         HANDLE$vkCreateSemaphoreSciSyncPoolNV = RawFunctionLoader.link(SEGMENT$vkCreateSemaphoreSciSyncPoolNV, Descriptors.DESCRIPTOR$vkCreateSemaphoreSciSyncPoolNV);
+        SEGMENT$vkCreateShaderInstrumentationARM = loader.apply("vkCreateShaderInstrumentationARM");
+        HANDLE$vkCreateShaderInstrumentationARM = RawFunctionLoader.link(SEGMENT$vkCreateShaderInstrumentationARM, Descriptors.DESCRIPTOR$vkCreateShaderInstrumentationARM);
         SEGMENT$vkCreateShaderModule = loader.apply("vkCreateShaderModule");
         HANDLE$vkCreateShaderModule = RawFunctionLoader.link(SEGMENT$vkCreateShaderModule, Descriptors.DESCRIPTOR$vkCreateShaderModule);
         SEGMENT$vkCreateShadersEXT = loader.apply("vkCreateShadersEXT");
@@ -730,6 +830,10 @@ public final class VkDeviceCommands {
         HANDLE$vkCreateSharedSwapchainsKHR = RawFunctionLoader.link(SEGMENT$vkCreateSharedSwapchainsKHR, Descriptors.DESCRIPTOR$vkCreateSharedSwapchainsKHR);
         SEGMENT$vkCreateSwapchainKHR = loader.apply("vkCreateSwapchainKHR");
         HANDLE$vkCreateSwapchainKHR = RawFunctionLoader.link(SEGMENT$vkCreateSwapchainKHR, Descriptors.DESCRIPTOR$vkCreateSwapchainKHR);
+        SEGMENT$vkCreateTensorARM = loader.apply("vkCreateTensorARM");
+        HANDLE$vkCreateTensorARM = RawFunctionLoader.link(SEGMENT$vkCreateTensorARM, Descriptors.DESCRIPTOR$vkCreateTensorARM);
+        SEGMENT$vkCreateTensorViewARM = loader.apply("vkCreateTensorViewARM");
+        HANDLE$vkCreateTensorViewARM = RawFunctionLoader.link(SEGMENT$vkCreateTensorViewARM, Descriptors.DESCRIPTOR$vkCreateTensorViewARM);
         SEGMENT$vkCreateValidationCacheEXT = loader.apply("vkCreateValidationCacheEXT");
         HANDLE$vkCreateValidationCacheEXT = RawFunctionLoader.link(SEGMENT$vkCreateValidationCacheEXT, Descriptors.DESCRIPTOR$vkCreateValidationCacheEXT);
         SEGMENT$vkCreateVideoSessionKHR = loader.apply("vkCreateVideoSessionKHR");
@@ -762,6 +866,8 @@ public final class VkDeviceCommands {
         HANDLE$vkDestroyCudaFunctionNV = RawFunctionLoader.link(SEGMENT$vkDestroyCudaFunctionNV, Descriptors.DESCRIPTOR$vkDestroyCudaFunctionNV);
         SEGMENT$vkDestroyCudaModuleNV = loader.apply("vkDestroyCudaModuleNV");
         HANDLE$vkDestroyCudaModuleNV = RawFunctionLoader.link(SEGMENT$vkDestroyCudaModuleNV, Descriptors.DESCRIPTOR$vkDestroyCudaModuleNV);
+        SEGMENT$vkDestroyDataGraphPipelineSessionARM = loader.apply("vkDestroyDataGraphPipelineSessionARM");
+        HANDLE$vkDestroyDataGraphPipelineSessionARM = RawFunctionLoader.link(SEGMENT$vkDestroyDataGraphPipelineSessionARM, Descriptors.DESCRIPTOR$vkDestroyDataGraphPipelineSessionARM);
         SEGMENT$vkDestroyDeferredOperationKHR = loader.apply("vkDestroyDeferredOperationKHR");
         HANDLE$vkDestroyDeferredOperationKHR = RawFunctionLoader.link(SEGMENT$vkDestroyDeferredOperationKHR, Descriptors.DESCRIPTOR$vkDestroyDeferredOperationKHR);
         SEGMENT$vkDestroyDescriptorPool = loader.apply("vkDestroyDescriptorPool");
@@ -782,6 +888,8 @@ public final class VkDeviceCommands {
         HANDLE$vkDestroyFence = RawFunctionLoader.link(SEGMENT$vkDestroyFence, Descriptors.DESCRIPTOR$vkDestroyFence);
         SEGMENT$vkDestroyFramebuffer = loader.apply("vkDestroyFramebuffer");
         HANDLE$vkDestroyFramebuffer = RawFunctionLoader.link(SEGMENT$vkDestroyFramebuffer, Descriptors.DESCRIPTOR$vkDestroyFramebuffer);
+        SEGMENT$vkDestroyGpaSessionAMD = loader.apply("vkDestroyGpaSessionAMD");
+        HANDLE$vkDestroyGpaSessionAMD = RawFunctionLoader.link(SEGMENT$vkDestroyGpaSessionAMD, Descriptors.DESCRIPTOR$vkDestroyGpaSessionAMD);
         SEGMENT$vkDestroyImage = loader.apply("vkDestroyImage");
         HANDLE$vkDestroyImage = RawFunctionLoader.link(SEGMENT$vkDestroyImage, Descriptors.DESCRIPTOR$vkDestroyImage);
         SEGMENT$vkDestroyImageView = loader.apply("vkDestroyImageView");
@@ -824,10 +932,16 @@ public final class VkDeviceCommands {
         HANDLE$vkDestroySemaphoreSciSyncPoolNV = RawFunctionLoader.link(SEGMENT$vkDestroySemaphoreSciSyncPoolNV, Descriptors.DESCRIPTOR$vkDestroySemaphoreSciSyncPoolNV);
         SEGMENT$vkDestroyShaderEXT = loader.apply("vkDestroyShaderEXT");
         HANDLE$vkDestroyShaderEXT = RawFunctionLoader.link(SEGMENT$vkDestroyShaderEXT, Descriptors.DESCRIPTOR$vkDestroyShaderEXT);
+        SEGMENT$vkDestroyShaderInstrumentationARM = loader.apply("vkDestroyShaderInstrumentationARM");
+        HANDLE$vkDestroyShaderInstrumentationARM = RawFunctionLoader.link(SEGMENT$vkDestroyShaderInstrumentationARM, Descriptors.DESCRIPTOR$vkDestroyShaderInstrumentationARM);
         SEGMENT$vkDestroyShaderModule = loader.apply("vkDestroyShaderModule");
         HANDLE$vkDestroyShaderModule = RawFunctionLoader.link(SEGMENT$vkDestroyShaderModule, Descriptors.DESCRIPTOR$vkDestroyShaderModule);
         SEGMENT$vkDestroySwapchainKHR = loader.apply("vkDestroySwapchainKHR");
         HANDLE$vkDestroySwapchainKHR = RawFunctionLoader.link(SEGMENT$vkDestroySwapchainKHR, Descriptors.DESCRIPTOR$vkDestroySwapchainKHR);
+        SEGMENT$vkDestroyTensorARM = loader.apply("vkDestroyTensorARM");
+        HANDLE$vkDestroyTensorARM = RawFunctionLoader.link(SEGMENT$vkDestroyTensorARM, Descriptors.DESCRIPTOR$vkDestroyTensorARM);
+        SEGMENT$vkDestroyTensorViewARM = loader.apply("vkDestroyTensorViewARM");
+        HANDLE$vkDestroyTensorViewARM = RawFunctionLoader.link(SEGMENT$vkDestroyTensorViewARM, Descriptors.DESCRIPTOR$vkDestroyTensorViewARM);
         SEGMENT$vkDestroyValidationCacheEXT = loader.apply("vkDestroyValidationCacheEXT");
         HANDLE$vkDestroyValidationCacheEXT = RawFunctionLoader.link(SEGMENT$vkDestroyValidationCacheEXT, Descriptors.DESCRIPTOR$vkDestroyValidationCacheEXT);
         SEGMENT$vkDestroyVideoSessionKHR = loader.apply("vkDestroyVideoSessionKHR");
@@ -890,6 +1004,14 @@ public final class VkDeviceCommands {
         HANDLE$vkGetClusterAccelerationStructureBuildSizesNV = RawFunctionLoader.link(SEGMENT$vkGetClusterAccelerationStructureBuildSizesNV, Descriptors.DESCRIPTOR$vkGetClusterAccelerationStructureBuildSizesNV);
         SEGMENT$vkGetCudaModuleCacheNV = loader.apply("vkGetCudaModuleCacheNV");
         HANDLE$vkGetCudaModuleCacheNV = RawFunctionLoader.link(SEGMENT$vkGetCudaModuleCacheNV, Descriptors.DESCRIPTOR$vkGetCudaModuleCacheNV);
+        SEGMENT$vkGetDataGraphPipelineAvailablePropertiesARM = loader.apply("vkGetDataGraphPipelineAvailablePropertiesARM");
+        HANDLE$vkGetDataGraphPipelineAvailablePropertiesARM = RawFunctionLoader.link(SEGMENT$vkGetDataGraphPipelineAvailablePropertiesARM, Descriptors.DESCRIPTOR$vkGetDataGraphPipelineAvailablePropertiesARM);
+        SEGMENT$vkGetDataGraphPipelinePropertiesARM = loader.apply("vkGetDataGraphPipelinePropertiesARM");
+        HANDLE$vkGetDataGraphPipelinePropertiesARM = RawFunctionLoader.link(SEGMENT$vkGetDataGraphPipelinePropertiesARM, Descriptors.DESCRIPTOR$vkGetDataGraphPipelinePropertiesARM);
+        SEGMENT$vkGetDataGraphPipelineSessionBindPointRequirementsARM = loader.apply("vkGetDataGraphPipelineSessionBindPointRequirementsARM");
+        HANDLE$vkGetDataGraphPipelineSessionBindPointRequirementsARM = RawFunctionLoader.link(SEGMENT$vkGetDataGraphPipelineSessionBindPointRequirementsARM, Descriptors.DESCRIPTOR$vkGetDataGraphPipelineSessionBindPointRequirementsARM);
+        SEGMENT$vkGetDataGraphPipelineSessionMemoryRequirementsARM = loader.apply("vkGetDataGraphPipelineSessionMemoryRequirementsARM");
+        HANDLE$vkGetDataGraphPipelineSessionMemoryRequirementsARM = RawFunctionLoader.link(SEGMENT$vkGetDataGraphPipelineSessionMemoryRequirementsARM, Descriptors.DESCRIPTOR$vkGetDataGraphPipelineSessionMemoryRequirementsARM);
         SEGMENT$vkGetDeferredOperationMaxConcurrencyKHR = loader.apply("vkGetDeferredOperationMaxConcurrencyKHR");
         HANDLE$vkGetDeferredOperationMaxConcurrencyKHR = RawFunctionLoader.link(SEGMENT$vkGetDeferredOperationMaxConcurrencyKHR, Descriptors.DESCRIPTOR$vkGetDeferredOperationMaxConcurrencyKHR);
         SEGMENT$vkGetDeferredOperationResultKHR = loader.apply("vkGetDeferredOperationResultKHR");
@@ -914,8 +1036,14 @@ public final class VkDeviceCommands {
         HANDLE$vkGetDeviceBufferMemoryRequirements = RawFunctionLoader.link(SEGMENT$vkGetDeviceBufferMemoryRequirements, Descriptors.DESCRIPTOR$vkGetDeviceBufferMemoryRequirements);
         SEGMENT$vkGetDeviceBufferMemoryRequirementsKHR = loader.apply("vkGetDeviceBufferMemoryRequirementsKHR");
         HANDLE$vkGetDeviceBufferMemoryRequirementsKHR = RawFunctionLoader.link(SEGMENT$vkGetDeviceBufferMemoryRequirementsKHR, Descriptors.DESCRIPTOR$vkGetDeviceBufferMemoryRequirements);
+        SEGMENT$vkGetDeviceCombinedImageSamplerIndexNVX = loader.apply("vkGetDeviceCombinedImageSamplerIndexNVX");
+        HANDLE$vkGetDeviceCombinedImageSamplerIndexNVX = RawFunctionLoader.link(SEGMENT$vkGetDeviceCombinedImageSamplerIndexNVX, Descriptors.DESCRIPTOR$vkGetDeviceCombinedImageSamplerIndexNVX);
+        SEGMENT$vkGetDeviceFaultDebugInfoKHR = loader.apply("vkGetDeviceFaultDebugInfoKHR");
+        HANDLE$vkGetDeviceFaultDebugInfoKHR = RawFunctionLoader.link(SEGMENT$vkGetDeviceFaultDebugInfoKHR, Descriptors.DESCRIPTOR$vkGetDeviceFaultDebugInfoKHR);
         SEGMENT$vkGetDeviceFaultInfoEXT = loader.apply("vkGetDeviceFaultInfoEXT");
         HANDLE$vkGetDeviceFaultInfoEXT = RawFunctionLoader.link(SEGMENT$vkGetDeviceFaultInfoEXT, Descriptors.DESCRIPTOR$vkGetDeviceFaultInfoEXT);
+        SEGMENT$vkGetDeviceFaultReportsKHR = loader.apply("vkGetDeviceFaultReportsKHR");
+        HANDLE$vkGetDeviceFaultReportsKHR = RawFunctionLoader.link(SEGMENT$vkGetDeviceFaultReportsKHR, Descriptors.DESCRIPTOR$vkGetDeviceFaultReportsKHR);
         SEGMENT$vkGetDeviceGroupPeerMemoryFeatures = loader.apply("vkGetDeviceGroupPeerMemoryFeatures");
         HANDLE$vkGetDeviceGroupPeerMemoryFeatures = RawFunctionLoader.link(SEGMENT$vkGetDeviceGroupPeerMemoryFeatures, Descriptors.DESCRIPTOR$vkGetDeviceGroupPeerMemoryFeatures);
         SEGMENT$vkGetDeviceGroupPeerMemoryFeaturesKHR = loader.apply("vkGetDeviceGroupPeerMemoryFeaturesKHR");
@@ -952,6 +1080,8 @@ public final class VkDeviceCommands {
         HANDLE$vkGetDeviceQueue2 = RawFunctionLoader.link(SEGMENT$vkGetDeviceQueue2, Descriptors.DESCRIPTOR$vkGetDeviceQueue2);
         SEGMENT$vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI = loader.apply("vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI");
         HANDLE$vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI = RawFunctionLoader.link(SEGMENT$vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI, Descriptors.DESCRIPTOR$vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI);
+        SEGMENT$vkGetDeviceTensorMemoryRequirementsARM = loader.apply("vkGetDeviceTensorMemoryRequirementsARM");
+        HANDLE$vkGetDeviceTensorMemoryRequirementsARM = RawFunctionLoader.link(SEGMENT$vkGetDeviceTensorMemoryRequirementsARM, Descriptors.DESCRIPTOR$vkGetDeviceTensorMemoryRequirementsARM);
         SEGMENT$vkGetDynamicRenderingTilePropertiesQCOM = loader.apply("vkGetDynamicRenderingTilePropertiesQCOM");
         HANDLE$vkGetDynamicRenderingTilePropertiesQCOM = RawFunctionLoader.link(SEGMENT$vkGetDynamicRenderingTilePropertiesQCOM, Descriptors.DESCRIPTOR$vkGetDynamicRenderingTilePropertiesQCOM);
         SEGMENT$vkGetEncodedVideoSessionParametersKHR = loader.apply("vkGetEncodedVideoSessionParametersKHR");
@@ -980,6 +1110,12 @@ public final class VkDeviceCommands {
         HANDLE$vkGetGeneratedCommandsMemoryRequirementsEXT = RawFunctionLoader.link(SEGMENT$vkGetGeneratedCommandsMemoryRequirementsEXT, Descriptors.DESCRIPTOR$vkGetGeneratedCommandsMemoryRequirementsEXT);
         SEGMENT$vkGetGeneratedCommandsMemoryRequirementsNV = loader.apply("vkGetGeneratedCommandsMemoryRequirementsNV");
         HANDLE$vkGetGeneratedCommandsMemoryRequirementsNV = RawFunctionLoader.link(SEGMENT$vkGetGeneratedCommandsMemoryRequirementsNV, Descriptors.DESCRIPTOR$vkGetGeneratedCommandsMemoryRequirementsNV);
+        SEGMENT$vkGetGpaDeviceClockInfoAMD = loader.apply("vkGetGpaDeviceClockInfoAMD");
+        HANDLE$vkGetGpaDeviceClockInfoAMD = RawFunctionLoader.link(SEGMENT$vkGetGpaDeviceClockInfoAMD, Descriptors.DESCRIPTOR$vkGetGpaDeviceClockInfoAMD);
+        SEGMENT$vkGetGpaSessionResultsAMD = loader.apply("vkGetGpaSessionResultsAMD");
+        HANDLE$vkGetGpaSessionResultsAMD = RawFunctionLoader.link(SEGMENT$vkGetGpaSessionResultsAMD, Descriptors.DESCRIPTOR$vkGetGpaSessionResultsAMD);
+        SEGMENT$vkGetGpaSessionStatusAMD = loader.apply("vkGetGpaSessionStatusAMD");
+        HANDLE$vkGetGpaSessionStatusAMD = RawFunctionLoader.link(SEGMENT$vkGetGpaSessionStatusAMD, Descriptors.DESCRIPTOR$vkGetGpaSessionStatusAMD);
         SEGMENT$vkGetImageDrmFormatModifierPropertiesEXT = loader.apply("vkGetImageDrmFormatModifierPropertiesEXT");
         HANDLE$vkGetImageDrmFormatModifierPropertiesEXT = RawFunctionLoader.link(SEGMENT$vkGetImageDrmFormatModifierPropertiesEXT, Descriptors.DESCRIPTOR$vkGetImageDrmFormatModifierPropertiesEXT);
         SEGMENT$vkGetImageMemoryRequirements = loader.apply("vkGetImageMemoryRequirements");
@@ -988,6 +1124,8 @@ public final class VkDeviceCommands {
         HANDLE$vkGetImageMemoryRequirements2 = RawFunctionLoader.link(SEGMENT$vkGetImageMemoryRequirements2, Descriptors.DESCRIPTOR$vkGetImageMemoryRequirements2);
         SEGMENT$vkGetImageMemoryRequirements2KHR = loader.apply("vkGetImageMemoryRequirements2KHR");
         HANDLE$vkGetImageMemoryRequirements2KHR = RawFunctionLoader.link(SEGMENT$vkGetImageMemoryRequirements2KHR, Descriptors.DESCRIPTOR$vkGetImageMemoryRequirements2);
+        SEGMENT$vkGetImageOpaqueCaptureDataEXT = loader.apply("vkGetImageOpaqueCaptureDataEXT");
+        HANDLE$vkGetImageOpaqueCaptureDataEXT = RawFunctionLoader.link(SEGMENT$vkGetImageOpaqueCaptureDataEXT, Descriptors.DESCRIPTOR$vkGetImageOpaqueCaptureDataEXT);
         SEGMENT$vkGetImageOpaqueCaptureDescriptorDataEXT = loader.apply("vkGetImageOpaqueCaptureDescriptorDataEXT");
         HANDLE$vkGetImageOpaqueCaptureDescriptorDataEXT = RawFunctionLoader.link(SEGMENT$vkGetImageOpaqueCaptureDescriptorDataEXT, Descriptors.DESCRIPTOR$vkGetImageOpaqueCaptureDescriptorDataEXT);
         SEGMENT$vkGetImageSparseMemoryRequirements = loader.apply("vkGetImageSparseMemoryRequirements");
@@ -1012,6 +1150,8 @@ public final class VkDeviceCommands {
         HANDLE$vkGetImageViewHandleNVX = RawFunctionLoader.link(SEGMENT$vkGetImageViewHandleNVX, Descriptors.DESCRIPTOR$vkGetImageViewHandleNVX);
         SEGMENT$vkGetImageViewOpaqueCaptureDescriptorDataEXT = loader.apply("vkGetImageViewOpaqueCaptureDescriptorDataEXT");
         HANDLE$vkGetImageViewOpaqueCaptureDescriptorDataEXT = RawFunctionLoader.link(SEGMENT$vkGetImageViewOpaqueCaptureDescriptorDataEXT, Descriptors.DESCRIPTOR$vkGetImageViewOpaqueCaptureDescriptorDataEXT);
+        SEGMENT$vkGetLatencyTimingsLegacyNV = loader.apply("vkGetLatencyTimingsLegacyNV");
+        HANDLE$vkGetLatencyTimingsLegacyNV = RawFunctionLoader.link(SEGMENT$vkGetLatencyTimingsLegacyNV, Descriptors.DESCRIPTOR$vkGetLatencyTimingsLegacyNV);
         SEGMENT$vkGetLatencyTimingsNV = loader.apply("vkGetLatencyTimingsNV");
         HANDLE$vkGetLatencyTimingsNV = RawFunctionLoader.link(SEGMENT$vkGetLatencyTimingsNV, Descriptors.DESCRIPTOR$vkGetLatencyTimingsNV);
         SEGMENT$vkGetMemoryAndroidHardwareBufferANDROID = loader.apply("vkGetMemoryAndroidHardwareBufferANDROID");
@@ -1026,6 +1166,8 @@ public final class VkDeviceCommands {
         HANDLE$vkGetMemoryMetalHandleEXT = RawFunctionLoader.link(SEGMENT$vkGetMemoryMetalHandleEXT, Descriptors.DESCRIPTOR$vkGetMemoryMetalHandleEXT);
         SEGMENT$vkGetMemoryMetalHandlePropertiesEXT = loader.apply("vkGetMemoryMetalHandlePropertiesEXT");
         HANDLE$vkGetMemoryMetalHandlePropertiesEXT = RawFunctionLoader.link(SEGMENT$vkGetMemoryMetalHandlePropertiesEXT, Descriptors.DESCRIPTOR$vkGetMemoryMetalHandlePropertiesEXT);
+        SEGMENT$vkGetMemoryNativeBufferOHOS = loader.apply("vkGetMemoryNativeBufferOHOS");
+        HANDLE$vkGetMemoryNativeBufferOHOS = RawFunctionLoader.link(SEGMENT$vkGetMemoryNativeBufferOHOS, Descriptors.DESCRIPTOR$vkGetMemoryNativeBufferOHOS);
         SEGMENT$vkGetMemoryRemoteAddressNV = loader.apply("vkGetMemoryRemoteAddressNV");
         HANDLE$vkGetMemoryRemoteAddressNV = RawFunctionLoader.link(SEGMENT$vkGetMemoryRemoteAddressNV, Descriptors.DESCRIPTOR$vkGetMemoryRemoteAddressNV);
         SEGMENT$vkGetMemorySciBufNV = loader.apply("vkGetMemorySciBufNV");
@@ -1042,8 +1184,12 @@ public final class VkDeviceCommands {
         HANDLE$vkGetMemoryZirconHandlePropertiesFUCHSIA = RawFunctionLoader.link(SEGMENT$vkGetMemoryZirconHandlePropertiesFUCHSIA, Descriptors.DESCRIPTOR$vkGetMemoryZirconHandlePropertiesFUCHSIA);
         SEGMENT$vkGetMicromapBuildSizesEXT = loader.apply("vkGetMicromapBuildSizesEXT");
         HANDLE$vkGetMicromapBuildSizesEXT = RawFunctionLoader.link(SEGMENT$vkGetMicromapBuildSizesEXT, Descriptors.DESCRIPTOR$vkGetMicromapBuildSizesEXT);
+        SEGMENT$vkGetNativeBufferPropertiesOHOS = loader.apply("vkGetNativeBufferPropertiesOHOS");
+        HANDLE$vkGetNativeBufferPropertiesOHOS = RawFunctionLoader.link(SEGMENT$vkGetNativeBufferPropertiesOHOS, Descriptors.DESCRIPTOR$vkGetNativeBufferPropertiesOHOS);
         SEGMENT$vkGetPartitionedAccelerationStructuresBuildSizesNV = loader.apply("vkGetPartitionedAccelerationStructuresBuildSizesNV");
         HANDLE$vkGetPartitionedAccelerationStructuresBuildSizesNV = RawFunctionLoader.link(SEGMENT$vkGetPartitionedAccelerationStructuresBuildSizesNV, Descriptors.DESCRIPTOR$vkGetPartitionedAccelerationStructuresBuildSizesNV);
+        SEGMENT$vkGetPastPresentationTimingEXT = loader.apply("vkGetPastPresentationTimingEXT");
+        HANDLE$vkGetPastPresentationTimingEXT = RawFunctionLoader.link(SEGMENT$vkGetPastPresentationTimingEXT, Descriptors.DESCRIPTOR$vkGetPastPresentationTimingEXT);
         SEGMENT$vkGetPastPresentationTimingGOOGLE = loader.apply("vkGetPastPresentationTimingGOOGLE");
         HANDLE$vkGetPastPresentationTimingGOOGLE = RawFunctionLoader.link(SEGMENT$vkGetPastPresentationTimingGOOGLE, Descriptors.DESCRIPTOR$vkGetPastPresentationTimingGOOGLE);
         SEGMENT$vkGetPerformanceParameterINTEL = loader.apply("vkGetPerformanceParameterINTEL");
@@ -1112,16 +1258,32 @@ public final class VkDeviceCommands {
         HANDLE$vkGetShaderBinaryDataEXT = RawFunctionLoader.link(SEGMENT$vkGetShaderBinaryDataEXT, Descriptors.DESCRIPTOR$vkGetShaderBinaryDataEXT);
         SEGMENT$vkGetShaderInfoAMD = loader.apply("vkGetShaderInfoAMD");
         HANDLE$vkGetShaderInfoAMD = RawFunctionLoader.link(SEGMENT$vkGetShaderInfoAMD, Descriptors.DESCRIPTOR$vkGetShaderInfoAMD);
+        SEGMENT$vkGetShaderInstrumentationValuesARM = loader.apply("vkGetShaderInstrumentationValuesARM");
+        HANDLE$vkGetShaderInstrumentationValuesARM = RawFunctionLoader.link(SEGMENT$vkGetShaderInstrumentationValuesARM, Descriptors.DESCRIPTOR$vkGetShaderInstrumentationValuesARM);
         SEGMENT$vkGetShaderModuleCreateInfoIdentifierEXT = loader.apply("vkGetShaderModuleCreateInfoIdentifierEXT");
         HANDLE$vkGetShaderModuleCreateInfoIdentifierEXT = RawFunctionLoader.link(SEGMENT$vkGetShaderModuleCreateInfoIdentifierEXT, Descriptors.DESCRIPTOR$vkGetShaderModuleCreateInfoIdentifierEXT);
         SEGMENT$vkGetShaderModuleIdentifierEXT = loader.apply("vkGetShaderModuleIdentifierEXT");
         HANDLE$vkGetShaderModuleIdentifierEXT = RawFunctionLoader.link(SEGMENT$vkGetShaderModuleIdentifierEXT, Descriptors.DESCRIPTOR$vkGetShaderModuleIdentifierEXT);
+        SEGMENT$vkGetSleepStatusLegacyNV = loader.apply("vkGetSleepStatusLegacyNV");
+        HANDLE$vkGetSleepStatusLegacyNV = RawFunctionLoader.link(SEGMENT$vkGetSleepStatusLegacyNV, Descriptors.DESCRIPTOR$vkGetSleepStatusLegacyNV);
         SEGMENT$vkGetSwapchainCounterEXT = loader.apply("vkGetSwapchainCounterEXT");
         HANDLE$vkGetSwapchainCounterEXT = RawFunctionLoader.link(SEGMENT$vkGetSwapchainCounterEXT, Descriptors.DESCRIPTOR$vkGetSwapchainCounterEXT);
         SEGMENT$vkGetSwapchainImagesKHR = loader.apply("vkGetSwapchainImagesKHR");
         HANDLE$vkGetSwapchainImagesKHR = RawFunctionLoader.link(SEGMENT$vkGetSwapchainImagesKHR, Descriptors.DESCRIPTOR$vkGetSwapchainImagesKHR);
         SEGMENT$vkGetSwapchainStatusKHR = loader.apply("vkGetSwapchainStatusKHR");
         HANDLE$vkGetSwapchainStatusKHR = RawFunctionLoader.link(SEGMENT$vkGetSwapchainStatusKHR, Descriptors.DESCRIPTOR$vkGetSwapchainStatusKHR);
+        SEGMENT$vkGetSwapchainTimeDomainPropertiesEXT = loader.apply("vkGetSwapchainTimeDomainPropertiesEXT");
+        HANDLE$vkGetSwapchainTimeDomainPropertiesEXT = RawFunctionLoader.link(SEGMENT$vkGetSwapchainTimeDomainPropertiesEXT, Descriptors.DESCRIPTOR$vkGetSwapchainTimeDomainPropertiesEXT);
+        SEGMENT$vkGetSwapchainTimingPropertiesEXT = loader.apply("vkGetSwapchainTimingPropertiesEXT");
+        HANDLE$vkGetSwapchainTimingPropertiesEXT = RawFunctionLoader.link(SEGMENT$vkGetSwapchainTimingPropertiesEXT, Descriptors.DESCRIPTOR$vkGetSwapchainTimingPropertiesEXT);
+        SEGMENT$vkGetTensorMemoryRequirementsARM = loader.apply("vkGetTensorMemoryRequirementsARM");
+        HANDLE$vkGetTensorMemoryRequirementsARM = RawFunctionLoader.link(SEGMENT$vkGetTensorMemoryRequirementsARM, Descriptors.DESCRIPTOR$vkGetTensorMemoryRequirementsARM);
+        SEGMENT$vkGetTensorOpaqueCaptureDataARM = loader.apply("vkGetTensorOpaqueCaptureDataARM");
+        HANDLE$vkGetTensorOpaqueCaptureDataARM = RawFunctionLoader.link(SEGMENT$vkGetTensorOpaqueCaptureDataARM, Descriptors.DESCRIPTOR$vkGetTensorOpaqueCaptureDataARM);
+        SEGMENT$vkGetTensorOpaqueCaptureDescriptorDataARM = loader.apply("vkGetTensorOpaqueCaptureDescriptorDataARM");
+        HANDLE$vkGetTensorOpaqueCaptureDescriptorDataARM = RawFunctionLoader.link(SEGMENT$vkGetTensorOpaqueCaptureDescriptorDataARM, Descriptors.DESCRIPTOR$vkGetTensorOpaqueCaptureDescriptorDataARM);
+        SEGMENT$vkGetTensorViewOpaqueCaptureDescriptorDataARM = loader.apply("vkGetTensorViewOpaqueCaptureDescriptorDataARM");
+        HANDLE$vkGetTensorViewOpaqueCaptureDescriptorDataARM = RawFunctionLoader.link(SEGMENT$vkGetTensorViewOpaqueCaptureDescriptorDataARM, Descriptors.DESCRIPTOR$vkGetTensorViewOpaqueCaptureDescriptorDataARM);
         SEGMENT$vkGetValidationCacheDataEXT = loader.apply("vkGetValidationCacheDataEXT");
         HANDLE$vkGetValidationCacheDataEXT = RawFunctionLoader.link(SEGMENT$vkGetValidationCacheDataEXT, Descriptors.DESCRIPTOR$vkGetValidationCacheDataEXT);
         SEGMENT$vkGetVideoSessionMemoryRequirementsKHR = loader.apply("vkGetVideoSessionMemoryRequirementsKHR");
@@ -1146,6 +1308,8 @@ public final class VkDeviceCommands {
         HANDLE$vkInitializePerformanceApiINTEL = RawFunctionLoader.link(SEGMENT$vkInitializePerformanceApiINTEL, Descriptors.DESCRIPTOR$vkInitializePerformanceApiINTEL);
         SEGMENT$vkInvalidateMappedMemoryRanges = loader.apply("vkInvalidateMappedMemoryRanges");
         HANDLE$vkInvalidateMappedMemoryRanges = RawFunctionLoader.link(SEGMENT$vkInvalidateMappedMemoryRanges, Descriptors.DESCRIPTOR$vkInvalidateMappedMemoryRanges);
+        SEGMENT$vkLatencySleepLegacyNV = loader.apply("vkLatencySleepLegacyNV");
+        HANDLE$vkLatencySleepLegacyNV = RawFunctionLoader.link(SEGMENT$vkLatencySleepLegacyNV, Descriptors.DESCRIPTOR$vkLatencySleepLegacyNV);
         SEGMENT$vkLatencySleepNV = loader.apply("vkLatencySleepNV");
         HANDLE$vkLatencySleepNV = RawFunctionLoader.link(SEGMENT$vkLatencySleepNV, Descriptors.DESCRIPTOR$vkLatencySleepNV);
         SEGMENT$vkMapMemory = loader.apply("vkMapMemory");
@@ -1160,10 +1324,14 @@ public final class VkDeviceCommands {
         HANDLE$vkMergeValidationCachesEXT = RawFunctionLoader.link(SEGMENT$vkMergeValidationCachesEXT, Descriptors.DESCRIPTOR$vkMergeValidationCachesEXT);
         SEGMENT$vkQueueBindSparse = loader.apply("vkQueueBindSparse");
         HANDLE$vkQueueBindSparse = RawFunctionLoader.link(SEGMENT$vkQueueBindSparse, Descriptors.DESCRIPTOR$vkQueueBindSparse);
+        SEGMENT$vkQueueNotifyOutOfBandLegacyNV = loader.apply("vkQueueNotifyOutOfBandLegacyNV");
+        HANDLE$vkQueueNotifyOutOfBandLegacyNV = RawFunctionLoader.link(SEGMENT$vkQueueNotifyOutOfBandLegacyNV, Descriptors.DESCRIPTOR$vkQueueNotifyOutOfBandLegacyNV);
         SEGMENT$vkQueueNotifyOutOfBandNV = loader.apply("vkQueueNotifyOutOfBandNV");
         HANDLE$vkQueueNotifyOutOfBandNV = RawFunctionLoader.link(SEGMENT$vkQueueNotifyOutOfBandNV, Descriptors.DESCRIPTOR$vkQueueNotifyOutOfBandNV);
         SEGMENT$vkQueuePresentKHR = loader.apply("vkQueuePresentKHR");
         HANDLE$vkQueuePresentKHR = RawFunctionLoader.link(SEGMENT$vkQueuePresentKHR, Descriptors.DESCRIPTOR$vkQueuePresentKHR);
+        SEGMENT$vkQueueSetPerfHintQCOM = loader.apply("vkQueueSetPerfHintQCOM");
+        HANDLE$vkQueueSetPerfHintQCOM = RawFunctionLoader.link(SEGMENT$vkQueueSetPerfHintQCOM, Descriptors.DESCRIPTOR$vkQueueSetPerfHintQCOM);
         SEGMENT$vkQueueSetPerformanceConfigurationINTEL = loader.apply("vkQueueSetPerformanceConfigurationINTEL");
         HANDLE$vkQueueSetPerformanceConfigurationINTEL = RawFunctionLoader.link(SEGMENT$vkQueueSetPerformanceConfigurationINTEL, Descriptors.DESCRIPTOR$vkQueueSetPerformanceConfigurationINTEL);
         SEGMENT$vkQueueSubmit = loader.apply("vkQueueSubmit");
@@ -1174,6 +1342,8 @@ public final class VkDeviceCommands {
         HANDLE$vkQueueSubmit2KHR = RawFunctionLoader.link(SEGMENT$vkQueueSubmit2KHR, Descriptors.DESCRIPTOR$vkQueueSubmit2);
         SEGMENT$vkQueueWaitIdle = loader.apply("vkQueueWaitIdle");
         HANDLE$vkQueueWaitIdle = RawFunctionLoader.link(SEGMENT$vkQueueWaitIdle, Descriptors.DESCRIPTOR$vkQueueWaitIdle);
+        SEGMENT$vkRegisterCustomBorderColorEXT = loader.apply("vkRegisterCustomBorderColorEXT");
+        HANDLE$vkRegisterCustomBorderColorEXT = RawFunctionLoader.link(SEGMENT$vkRegisterCustomBorderColorEXT, Descriptors.DESCRIPTOR$vkRegisterCustomBorderColorEXT);
         SEGMENT$vkRegisterDeviceEventEXT = loader.apply("vkRegisterDeviceEventEXT");
         HANDLE$vkRegisterDeviceEventEXT = RawFunctionLoader.link(SEGMENT$vkRegisterDeviceEventEXT, Descriptors.DESCRIPTOR$vkRegisterDeviceEventEXT);
         SEGMENT$vkRegisterDisplayEventEXT = loader.apply("vkRegisterDisplayEventEXT");
@@ -1187,7 +1357,9 @@ public final class VkDeviceCommands {
         SEGMENT$vkReleaseProfilingLockKHR = loader.apply("vkReleaseProfilingLockKHR");
         HANDLE$vkReleaseProfilingLockKHR = RawFunctionLoader.link(SEGMENT$vkReleaseProfilingLockKHR, Descriptors.DESCRIPTOR$vkReleaseProfilingLockKHR);
         SEGMENT$vkReleaseSwapchainImagesEXT = loader.apply("vkReleaseSwapchainImagesEXT");
-        HANDLE$vkReleaseSwapchainImagesEXT = RawFunctionLoader.link(SEGMENT$vkReleaseSwapchainImagesEXT, Descriptors.DESCRIPTOR$vkReleaseSwapchainImagesEXT);
+        HANDLE$vkReleaseSwapchainImagesEXT = RawFunctionLoader.link(SEGMENT$vkReleaseSwapchainImagesEXT, Descriptors.DESCRIPTOR$vkReleaseSwapchainImagesKHR);
+        SEGMENT$vkReleaseSwapchainImagesKHR = loader.apply("vkReleaseSwapchainImagesKHR");
+        HANDLE$vkReleaseSwapchainImagesKHR = RawFunctionLoader.link(SEGMENT$vkReleaseSwapchainImagesKHR, Descriptors.DESCRIPTOR$vkReleaseSwapchainImagesKHR);
         SEGMENT$vkResetCommandBuffer = loader.apply("vkResetCommandBuffer");
         HANDLE$vkResetCommandBuffer = RawFunctionLoader.link(SEGMENT$vkResetCommandBuffer, Descriptors.DESCRIPTOR$vkResetCommandBuffer);
         SEGMENT$vkResetCommandPool = loader.apply("vkResetCommandPool");
@@ -1198,6 +1370,8 @@ public final class VkDeviceCommands {
         HANDLE$vkResetEvent = RawFunctionLoader.link(SEGMENT$vkResetEvent, Descriptors.DESCRIPTOR$vkResetEvent);
         SEGMENT$vkResetFences = loader.apply("vkResetFences");
         HANDLE$vkResetFences = RawFunctionLoader.link(SEGMENT$vkResetFences, Descriptors.DESCRIPTOR$vkResetFences);
+        SEGMENT$vkResetGpaSessionAMD = loader.apply("vkResetGpaSessionAMD");
+        HANDLE$vkResetGpaSessionAMD = RawFunctionLoader.link(SEGMENT$vkResetGpaSessionAMD, Descriptors.DESCRIPTOR$vkResetGpaSessionAMD);
         SEGMENT$vkResetQueryPool = loader.apply("vkResetQueryPool");
         HANDLE$vkResetQueryPool = RawFunctionLoader.link(SEGMENT$vkResetQueryPool, Descriptors.DESCRIPTOR$vkResetQueryPool);
         SEGMENT$vkResetQueryPoolEXT = loader.apply("vkResetQueryPoolEXT");
@@ -1210,10 +1384,16 @@ public final class VkDeviceCommands {
         HANDLE$vkSetDeviceMemoryPriorityEXT = RawFunctionLoader.link(SEGMENT$vkSetDeviceMemoryPriorityEXT, Descriptors.DESCRIPTOR$vkSetDeviceMemoryPriorityEXT);
         SEGMENT$vkSetEvent = loader.apply("vkSetEvent");
         HANDLE$vkSetEvent = RawFunctionLoader.link(SEGMENT$vkSetEvent, Descriptors.DESCRIPTOR$vkSetEvent);
+        SEGMENT$vkSetGpaDeviceClockModeAMD = loader.apply("vkSetGpaDeviceClockModeAMD");
+        HANDLE$vkSetGpaDeviceClockModeAMD = RawFunctionLoader.link(SEGMENT$vkSetGpaDeviceClockModeAMD, Descriptors.DESCRIPTOR$vkSetGpaDeviceClockModeAMD);
         SEGMENT$vkSetHdrMetadataEXT = loader.apply("vkSetHdrMetadataEXT");
         HANDLE$vkSetHdrMetadataEXT = RawFunctionLoader.link(SEGMENT$vkSetHdrMetadataEXT, Descriptors.DESCRIPTOR$vkSetHdrMetadataEXT);
+        SEGMENT$vkSetLatencyMarkerLegacyNV = loader.apply("vkSetLatencyMarkerLegacyNV");
+        HANDLE$vkSetLatencyMarkerLegacyNV = RawFunctionLoader.link(SEGMENT$vkSetLatencyMarkerLegacyNV, Descriptors.DESCRIPTOR$vkSetLatencyMarkerLegacyNV);
         SEGMENT$vkSetLatencyMarkerNV = loader.apply("vkSetLatencyMarkerNV");
         HANDLE$vkSetLatencyMarkerNV = RawFunctionLoader.link(SEGMENT$vkSetLatencyMarkerNV, Descriptors.DESCRIPTOR$vkSetLatencyMarkerNV);
+        SEGMENT$vkSetLatencySleepModeLegacyNV = loader.apply("vkSetLatencySleepModeLegacyNV");
+        HANDLE$vkSetLatencySleepModeLegacyNV = RawFunctionLoader.link(SEGMENT$vkSetLatencySleepModeLegacyNV, Descriptors.DESCRIPTOR$vkSetLatencySleepModeLegacyNV);
         SEGMENT$vkSetLatencySleepModeNV = loader.apply("vkSetLatencySleepModeNV");
         HANDLE$vkSetLatencySleepModeNV = RawFunctionLoader.link(SEGMENT$vkSetLatencySleepModeNV, Descriptors.DESCRIPTOR$vkSetLatencySleepModeNV);
         SEGMENT$vkSetLocalDimmingAMD = loader.apply("vkSetLocalDimmingAMD");
@@ -1222,6 +1402,10 @@ public final class VkDeviceCommands {
         HANDLE$vkSetPrivateData = RawFunctionLoader.link(SEGMENT$vkSetPrivateData, Descriptors.DESCRIPTOR$vkSetPrivateData);
         SEGMENT$vkSetPrivateDataEXT = loader.apply("vkSetPrivateDataEXT");
         HANDLE$vkSetPrivateDataEXT = RawFunctionLoader.link(SEGMENT$vkSetPrivateDataEXT, Descriptors.DESCRIPTOR$vkSetPrivateData);
+        SEGMENT$vkSetSwapchainPresentTimingQueueSizeEXT = loader.apply("vkSetSwapchainPresentTimingQueueSizeEXT");
+        HANDLE$vkSetSwapchainPresentTimingQueueSizeEXT = RawFunctionLoader.link(SEGMENT$vkSetSwapchainPresentTimingQueueSizeEXT, Descriptors.DESCRIPTOR$vkSetSwapchainPresentTimingQueueSizeEXT);
+        SEGMENT$vkShutdownLatencyDeviceLegacyNV = loader.apply("vkShutdownLatencyDeviceLegacyNV");
+        HANDLE$vkShutdownLatencyDeviceLegacyNV = RawFunctionLoader.link(SEGMENT$vkShutdownLatencyDeviceLegacyNV, Descriptors.DESCRIPTOR$vkShutdownLatencyDeviceLegacyNV);
         SEGMENT$vkSignalSemaphore = loader.apply("vkSignalSemaphore");
         HANDLE$vkSignalSemaphore = RawFunctionLoader.link(SEGMENT$vkSignalSemaphore, Descriptors.DESCRIPTOR$vkSignalSemaphore);
         SEGMENT$vkSignalSemaphoreKHR = loader.apply("vkSignalSemaphoreKHR");
@@ -1242,6 +1426,8 @@ public final class VkDeviceCommands {
         HANDLE$vkUnmapMemory2 = RawFunctionLoader.link(SEGMENT$vkUnmapMemory2, Descriptors.DESCRIPTOR$vkUnmapMemory2);
         SEGMENT$vkUnmapMemory2KHR = loader.apply("vkUnmapMemory2KHR");
         HANDLE$vkUnmapMemory2KHR = RawFunctionLoader.link(SEGMENT$vkUnmapMemory2KHR, Descriptors.DESCRIPTOR$vkUnmapMemory2);
+        SEGMENT$vkUnregisterCustomBorderColorEXT = loader.apply("vkUnregisterCustomBorderColorEXT");
+        HANDLE$vkUnregisterCustomBorderColorEXT = RawFunctionLoader.link(SEGMENT$vkUnregisterCustomBorderColorEXT, Descriptors.DESCRIPTOR$vkUnregisterCustomBorderColorEXT);
         SEGMENT$vkUpdateDescriptorSetWithTemplate = loader.apply("vkUpdateDescriptorSetWithTemplate");
         HANDLE$vkUpdateDescriptorSetWithTemplate = RawFunctionLoader.link(SEGMENT$vkUpdateDescriptorSetWithTemplate, Descriptors.DESCRIPTOR$vkUpdateDescriptorSetWithTemplate);
         SEGMENT$vkUpdateDescriptorSetWithTemplateKHR = loader.apply("vkUpdateDescriptorSetWithTemplateKHR");
@@ -1256,6 +1442,8 @@ public final class VkDeviceCommands {
         HANDLE$vkUpdateVideoSessionParametersKHR = RawFunctionLoader.link(SEGMENT$vkUpdateVideoSessionParametersKHR, Descriptors.DESCRIPTOR$vkUpdateVideoSessionParametersKHR);
         SEGMENT$vkWaitForFences = loader.apply("vkWaitForFences");
         HANDLE$vkWaitForFences = RawFunctionLoader.link(SEGMENT$vkWaitForFences, Descriptors.DESCRIPTOR$vkWaitForFences);
+        SEGMENT$vkWaitForPresent2KHR = loader.apply("vkWaitForPresent2KHR");
+        HANDLE$vkWaitForPresent2KHR = RawFunctionLoader.link(SEGMENT$vkWaitForPresent2KHR, Descriptors.DESCRIPTOR$vkWaitForPresent2KHR);
         SEGMENT$vkWaitForPresentKHR = loader.apply("vkWaitForPresentKHR");
         HANDLE$vkWaitForPresentKHR = RawFunctionLoader.link(SEGMENT$vkWaitForPresentKHR, Descriptors.DESCRIPTOR$vkWaitForPresentKHR);
         SEGMENT$vkWaitSemaphores = loader.apply("vkWaitSemaphores");
@@ -1266,6 +1454,10 @@ public final class VkDeviceCommands {
         HANDLE$vkWriteAccelerationStructuresPropertiesKHR = RawFunctionLoader.link(SEGMENT$vkWriteAccelerationStructuresPropertiesKHR, Descriptors.DESCRIPTOR$vkWriteAccelerationStructuresPropertiesKHR);
         SEGMENT$vkWriteMicromapsPropertiesEXT = loader.apply("vkWriteMicromapsPropertiesEXT");
         HANDLE$vkWriteMicromapsPropertiesEXT = RawFunctionLoader.link(SEGMENT$vkWriteMicromapsPropertiesEXT, Descriptors.DESCRIPTOR$vkWriteMicromapsPropertiesEXT);
+        SEGMENT$vkWriteResourceDescriptorsEXT = loader.apply("vkWriteResourceDescriptorsEXT");
+        HANDLE$vkWriteResourceDescriptorsEXT = RawFunctionLoader.link(SEGMENT$vkWriteResourceDescriptorsEXT, Descriptors.DESCRIPTOR$vkWriteResourceDescriptorsEXT);
+        SEGMENT$vkWriteSamplerDescriptorsEXT = loader.apply("vkWriteSamplerDescriptorsEXT");
+        HANDLE$vkWriteSamplerDescriptorsEXT = RawFunctionLoader.link(SEGMENT$vkWriteSamplerDescriptorsEXT, Descriptors.DESCRIPTOR$vkWriteSamplerDescriptorsEXT);
     }
 
     // region command wrappers
@@ -1524,6 +1716,24 @@ public final class VkDeviceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkBindDataGraphPipelineSessionMemoryARM.html"><code>vkBindDataGraphPipelineSessionMemoryARM</code></a>
+    public @EnumType(VkResult.class) int bindDataGraphPipelineSessionMemoryARM(
+        VkDevice device,
+        @Unsigned int bindInfoCount,
+        @Pointer IVkBindDataGraphPipelineSessionMemoryInfoARM pBindInfos
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkBindDataGraphPipelineSessionMemoryARM);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                bindInfoCount,
+                pBindInfos.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkBindImageMemory.html"><code>vkBindImageMemory</code></a>
     public @EnumType(VkResult.class) int bindImageMemory(
         VkDevice device,
@@ -1602,6 +1812,24 @@ public final class VkDeviceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkBindTensorMemoryARM.html"><code>vkBindTensorMemoryARM</code></a>
+    public @EnumType(VkResult.class) int bindTensorMemoryARM(
+        VkDevice device,
+        @Unsigned int bindInfoCount,
+        @Pointer IVkBindTensorMemoryInfoARM pBindInfos
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkBindTensorMemoryARM);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                bindInfoCount,
+                pBindInfos.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkBindVideoSessionMemoryKHR.html"><code>vkBindVideoSessionMemoryKHR</code></a>
     public @EnumType(VkResult.class) int bindVideoSessionMemoryKHR(
         VkDevice device,
@@ -1664,6 +1892,38 @@ public final class VkDeviceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkClearShaderInstrumentationMetricsARM.html"><code>vkClearShaderInstrumentationMetricsARM</code></a>
+    public void clearShaderInstrumentationMetricsARM(
+        VkDevice device,
+        VkShaderInstrumentationARM instrumentation
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkClearShaderInstrumentationMetricsARM);
+        try {
+            hFunction.invokeExact(
+                device.segment(),
+                instrumentation.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBeginConditionalRendering2EXT.html"><code>vkCmdBeginConditionalRendering2EXT</code></a>
+    public void cmdBeginConditionalRendering2EXT(
+        VkCommandBuffer commandBuffer,
+        @Pointer VkConditionalRenderingBeginInfo2EXT pConditionalRenderingBegin
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdBeginConditionalRendering2EXT);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                pConditionalRenderingBegin.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBeginConditionalRenderingEXT.html"><code>vkCmdBeginConditionalRenderingEXT</code></a>
     public void cmdBeginConditionalRenderingEXT(
         VkCommandBuffer commandBuffer,
@@ -1674,6 +1934,58 @@ public final class VkDeviceCommands {
             hFunction.invokeExact(
                 commandBuffer.segment(),
                 pConditionalRenderingBegin.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBeginCustomResolveEXT.html"><code>vkCmdBeginCustomResolveEXT</code></a>
+    public void cmdBeginCustomResolveEXT(
+        VkCommandBuffer commandBuffer,
+        @Nullable @Pointer VkBeginCustomResolveInfoEXT pBeginCustomResolveInfo
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdBeginCustomResolveEXT);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                (MemorySegment) (pBeginCustomResolveInfo != null ? pBeginCustomResolveInfo.segment() : MemorySegment.NULL)
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBeginGpaSampleAMD.html"><code>vkCmdBeginGpaSampleAMD</code></a>
+    public @EnumType(VkResult.class) int cmdBeginGpaSampleAMD(
+        VkCommandBuffer commandBuffer,
+        VkGpaSessionAMD gpaSession,
+        @Pointer VkGpaSampleBeginInfoAMD pGpaSampleBeginInfo,
+        @Unsigned IntPtr pSampleID
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdBeginGpaSampleAMD);
+        try {
+            return (int) hFunction.invokeExact(
+                commandBuffer.segment(),
+                gpaSession.segment(),
+                pGpaSampleBeginInfo.segment(),
+                pSampleID.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBeginGpaSessionAMD.html"><code>vkCmdBeginGpaSessionAMD</code></a>
+    public @EnumType(VkResult.class) int cmdBeginGpaSessionAMD(
+        VkCommandBuffer commandBuffer,
+        VkGpaSessionAMD gpaSession
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdBeginGpaSessionAMD);
+        try {
+            return (int) hFunction.invokeExact(
+                commandBuffer.segment(),
+                gpaSession.segment()
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -1818,6 +2130,42 @@ public final class VkDeviceCommands {
             hFunction.invokeExact(
                 commandBuffer.segment(),
                 pRenderingInfo.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBeginShaderInstrumentationARM.html"><code>vkCmdBeginShaderInstrumentationARM</code></a>
+    public void cmdBeginShaderInstrumentationARM(
+        VkCommandBuffer commandBuffer,
+        VkShaderInstrumentationARM instrumentation
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdBeginShaderInstrumentationARM);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                instrumentation.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBeginTransformFeedback2EXT.html"><code>vkCmdBeginTransformFeedback2EXT</code></a>
+    public void cmdBeginTransformFeedback2EXT(
+        VkCommandBuffer commandBuffer,
+        @Unsigned int firstCounterRange,
+        @Unsigned int counterRangeCount,
+        @Nullable @Pointer IVkBindTransformFeedbackBuffer2InfoEXT pCounterInfos
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdBeginTransformFeedback2EXT);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                firstCounterRange,
+                counterRangeCount,
+                (MemorySegment) (pCounterInfos != null ? pCounterInfos.segment() : MemorySegment.NULL)
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -2040,6 +2388,22 @@ public final class VkDeviceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBindIndexBuffer3KHR.html"><code>vkCmdBindIndexBuffer3KHR</code></a>
+    public void cmdBindIndexBuffer3KHR(
+        VkCommandBuffer commandBuffer,
+        @Pointer VkBindIndexBuffer3InfoKHR pInfo
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdBindIndexBuffer3KHR);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                pInfo.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBindInvocationMaskHUAWEI.html"><code>vkCmdBindInvocationMaskHUAWEI</code></a>
     public void cmdBindInvocationMaskHUAWEI(
         VkCommandBuffer commandBuffer,
@@ -2096,6 +2460,38 @@ public final class VkDeviceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBindResourceHeapEXT.html"><code>vkCmdBindResourceHeapEXT</code></a>
+    public void cmdBindResourceHeapEXT(
+        VkCommandBuffer commandBuffer,
+        @Pointer VkBindHeapInfoEXT pBindInfo
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdBindResourceHeapEXT);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                pBindInfo.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBindSamplerHeapEXT.html"><code>vkCmdBindSamplerHeapEXT</code></a>
+    public void cmdBindSamplerHeapEXT(
+        VkCommandBuffer commandBuffer,
+        @Pointer VkBindHeapInfoEXT pBindInfo
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdBindSamplerHeapEXT);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                pBindInfo.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBindShadersEXT.html"><code>vkCmdBindShadersEXT</code></a>
     public void cmdBindShadersEXT(
         VkCommandBuffer commandBuffer,
@@ -2144,6 +2540,26 @@ public final class VkDeviceCommands {
             hFunction.invokeExact(
                 commandBuffer.segment(),
                 (MemorySegment) (pTileMemoryBindInfo != null ? pTileMemoryBindInfo.segment() : MemorySegment.NULL)
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBindTransformFeedbackBuffers2EXT.html"><code>vkCmdBindTransformFeedbackBuffers2EXT</code></a>
+    public void cmdBindTransformFeedbackBuffers2EXT(
+        VkCommandBuffer commandBuffer,
+        @Unsigned int firstBinding,
+        @Unsigned int bindingCount,
+        @Nullable @Pointer IVkBindTransformFeedbackBuffer2InfoEXT pBindingInfos
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdBindTransformFeedbackBuffers2EXT);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                firstBinding,
+                bindingCount,
+                (MemorySegment) (pBindingInfos != null ? pBindingInfos.segment() : MemorySegment.NULL)
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -2242,6 +2658,26 @@ public final class VkDeviceCommands {
                 pOffsets.segment(),
                 (MemorySegment) (pSizes != null ? pSizes.segment() : MemorySegment.NULL),
                 (MemorySegment) (pStrides != null ? pStrides.segment() : MemorySegment.NULL)
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBindVertexBuffers3KHR.html"><code>vkCmdBindVertexBuffers3KHR</code></a>
+    public void cmdBindVertexBuffers3KHR(
+        VkCommandBuffer commandBuffer,
+        @Unsigned int firstBinding,
+        @Unsigned int bindingCount,
+        @Pointer IVkBindVertexBuffer3InfoKHR pBindingInfos
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdBindVertexBuffers3KHR);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                firstBinding,
+                bindingCount,
+                pBindingInfos.segment()
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -2698,6 +3134,22 @@ public final class VkDeviceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdCopyGpaSessionResultsAMD.html"><code>vkCmdCopyGpaSessionResultsAMD</code></a>
+    public void cmdCopyGpaSessionResultsAMD(
+        VkCommandBuffer commandBuffer,
+        VkGpaSessionAMD gpaSession
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdCopyGpaSessionResultsAMD);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                gpaSession.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdCopyImage.html"><code>vkCmdCopyImage</code></a>
     public void cmdCopyImage(
         VkCommandBuffer commandBuffer,
@@ -2812,6 +3264,38 @@ public final class VkDeviceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdCopyImageToMemoryKHR.html"><code>vkCmdCopyImageToMemoryKHR</code></a>
+    public void cmdCopyImageToMemoryKHR(
+        VkCommandBuffer commandBuffer,
+        @Nullable @Pointer VkCopyDeviceMemoryImageInfoKHR pCopyMemoryInfo
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdCopyImageToMemoryKHR);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                (MemorySegment) (pCopyMemoryInfo != null ? pCopyMemoryInfo.segment() : MemorySegment.NULL)
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdCopyMemoryIndirectKHR.html"><code>vkCmdCopyMemoryIndirectKHR</code></a>
+    public void cmdCopyMemoryIndirectKHR(
+        VkCommandBuffer commandBuffer,
+        @Pointer VkCopyMemoryIndirectInfoKHR pCopyMemoryIndirectInfo
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdCopyMemoryIndirectKHR);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                pCopyMemoryIndirectInfo.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdCopyMemoryIndirectNV.html"><code>vkCmdCopyMemoryIndirectNV</code></a>
     public void cmdCopyMemoryIndirectNV(
         VkCommandBuffer commandBuffer,
@@ -2832,6 +3316,22 @@ public final class VkDeviceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdCopyMemoryKHR.html"><code>vkCmdCopyMemoryKHR</code></a>
+    public void cmdCopyMemoryKHR(
+        VkCommandBuffer commandBuffer,
+        @Nullable @Pointer VkCopyDeviceMemoryInfoKHR pCopyMemoryInfo
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdCopyMemoryKHR);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                (MemorySegment) (pCopyMemoryInfo != null ? pCopyMemoryInfo.segment() : MemorySegment.NULL)
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdCopyMemoryToAccelerationStructureKHR.html"><code>vkCmdCopyMemoryToAccelerationStructureKHR</code></a>
     public void cmdCopyMemoryToAccelerationStructureKHR(
         VkCommandBuffer commandBuffer,
@@ -2842,6 +3342,22 @@ public final class VkDeviceCommands {
             hFunction.invokeExact(
                 commandBuffer.segment(),
                 pInfo.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdCopyMemoryToImageIndirectKHR.html"><code>vkCmdCopyMemoryToImageIndirectKHR</code></a>
+    public void cmdCopyMemoryToImageIndirectKHR(
+        VkCommandBuffer commandBuffer,
+        @Pointer VkCopyMemoryToImageIndirectInfoKHR pCopyMemoryToImageIndirectInfo
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdCopyMemoryToImageIndirectKHR);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                pCopyMemoryToImageIndirectInfo.segment()
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -2868,6 +3384,22 @@ public final class VkDeviceCommands {
                 dstImage.segment(),
                 dstImageLayout,
                 pImageSubresources.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdCopyMemoryToImageKHR.html"><code>vkCmdCopyMemoryToImageKHR</code></a>
+    public void cmdCopyMemoryToImageKHR(
+        VkCommandBuffer commandBuffer,
+        @Nullable @Pointer VkCopyDeviceMemoryImageInfoKHR pCopyMemoryInfo
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdCopyMemoryToImageKHR);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                (MemorySegment) (pCopyMemoryInfo != null ? pCopyMemoryInfo.segment() : MemorySegment.NULL)
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -2944,6 +3476,48 @@ public final class VkDeviceCommands {
                 dstOffset,
                 stride,
                 flags
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdCopyQueryPoolResultsToMemoryKHR.html"><code>vkCmdCopyQueryPoolResultsToMemoryKHR</code></a>
+    public void cmdCopyQueryPoolResultsToMemoryKHR(
+        VkCommandBuffer commandBuffer,
+        VkQueryPool queryPool,
+        @Unsigned int firstQuery,
+        @Unsigned int queryCount,
+        @Pointer VkStridedDeviceAddressRangeKHR pDstRange,
+        @Bitmask(VkAddressCommandFlagsKHR.class) int dstFlags,
+        @Bitmask(VkQueryResultFlags.class) int queryResultFlags
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdCopyQueryPoolResultsToMemoryKHR);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                queryPool.segment(),
+                firstQuery,
+                queryCount,
+                pDstRange.segment(),
+                dstFlags,
+                queryResultFlags
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdCopyTensorARM.html"><code>vkCmdCopyTensorARM</code></a>
+    public void cmdCopyTensorARM(
+        VkCommandBuffer commandBuffer,
+        @Pointer VkCopyTensorInfoARM pCopyTensorInfo
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdCopyTensorARM);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                pCopyTensorInfo.segment()
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -3038,6 +3612,46 @@ public final class VkDeviceCommands {
             hFunction.invokeExact(
                 commandBuffer.segment(),
                 pDecodeInfo.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdDecompressMemoryEXT.html"><code>vkCmdDecompressMemoryEXT</code></a>
+    public void cmdDecompressMemoryEXT(
+        VkCommandBuffer commandBuffer,
+        @Pointer VkDecompressMemoryInfoEXT pDecompressMemoryInfoEXT
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdDecompressMemoryEXT);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                pDecompressMemoryInfoEXT.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdDecompressMemoryIndirectCountEXT.html"><code>vkCmdDecompressMemoryIndirectCountEXT</code></a>
+    public void cmdDecompressMemoryIndirectCountEXT(
+        VkCommandBuffer commandBuffer,
+        @Bitmask(VkMemoryDecompressionMethodFlagsEXT.class) long decompressionMethod,
+        @NativeType("VkDeviceAddress") @Unsigned long indirectCommandsAddress,
+        @NativeType("VkDeviceAddress") @Unsigned long indirectCommandsCountAddress,
+        @Unsigned int maxDecompressionCount,
+        @Unsigned int stride
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdDecompressMemoryIndirectCountEXT);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                decompressionMethod,
+                indirectCommandsAddress,
+                indirectCommandsCountAddress,
+                maxDecompressionCount,
+                stride
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -3154,6 +3768,24 @@ public final class VkDeviceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdDispatchDataGraphARM.html"><code>vkCmdDispatchDataGraphARM</code></a>
+    public void cmdDispatchDataGraphARM(
+        VkCommandBuffer commandBuffer,
+        VkDataGraphPipelineSessionARM session,
+        @Nullable @Pointer VkDataGraphPipelineDispatchInfoARM pInfo
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdDispatchDataGraphARM);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                session.segment(),
+                (MemorySegment) (pInfo != null ? pInfo.segment() : MemorySegment.NULL)
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdDispatchGraphAMDX.html"><code>vkCmdDispatchGraphAMDX</code></a>
     public void cmdDispatchGraphAMDX(
         VkCommandBuffer commandBuffer,
@@ -3232,14 +3864,32 @@ public final class VkDeviceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdDispatchIndirect2KHR.html"><code>vkCmdDispatchIndirect2KHR</code></a>
+    public void cmdDispatchIndirect2KHR(
+        VkCommandBuffer commandBuffer,
+        @Pointer VkDispatchIndirect2InfoKHR pInfo
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdDispatchIndirect2KHR);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                pInfo.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdDispatchTileQCOM.html"><code>vkCmdDispatchTileQCOM</code></a>
     public void cmdDispatchTileQCOM(
-        VkCommandBuffer commandBuffer
+        VkCommandBuffer commandBuffer,
+        @Pointer VkDispatchTileInfoQCOM pDispatchTileInfo
     ) {
         MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdDispatchTileQCOM);
         try {
             hFunction.invokeExact(
-                commandBuffer.segment()
+                commandBuffer.segment(),
+                pDispatchTileInfo.segment()
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -3352,6 +4002,22 @@ public final class VkDeviceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdDrawIndexedIndirect2KHR.html"><code>vkCmdDrawIndexedIndirect2KHR</code></a>
+    public void cmdDrawIndexedIndirect2KHR(
+        VkCommandBuffer commandBuffer,
+        @Pointer VkDrawIndirect2InfoKHR pInfo
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdDrawIndexedIndirect2KHR);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                pInfo.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdDrawIndexedIndirectCount.html"><code>vkCmdDrawIndexedIndirectCount</code></a>
     public void cmdDrawIndexedIndirectCount(
         VkCommandBuffer commandBuffer,
@@ -3372,6 +4038,22 @@ public final class VkDeviceCommands {
                 countBufferOffset,
                 maxDrawCount,
                 stride
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdDrawIndexedIndirectCount2KHR.html"><code>vkCmdDrawIndexedIndirectCount2KHR</code></a>
+    public void cmdDrawIndexedIndirectCount2KHR(
+        VkCommandBuffer commandBuffer,
+        @Pointer VkDrawIndirectCount2InfoKHR pInfo
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdDrawIndexedIndirectCount2KHR);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                pInfo.segment()
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -3452,6 +4134,46 @@ public final class VkDeviceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdDrawIndirect2KHR.html"><code>vkCmdDrawIndirect2KHR</code></a>
+    public void cmdDrawIndirect2KHR(
+        VkCommandBuffer commandBuffer,
+        @Pointer VkDrawIndirect2InfoKHR pInfo
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdDrawIndirect2KHR);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                pInfo.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdDrawIndirectByteCount2EXT.html"><code>vkCmdDrawIndirectByteCount2EXT</code></a>
+    public void cmdDrawIndirectByteCount2EXT(
+        VkCommandBuffer commandBuffer,
+        @Unsigned int instanceCount,
+        @Unsigned int firstInstance,
+        @Pointer VkBindTransformFeedbackBuffer2InfoEXT pCounterInfo,
+        @Unsigned int counterOffset,
+        @Unsigned int vertexStride
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdDrawIndirectByteCount2EXT);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                instanceCount,
+                firstInstance,
+                pCounterInfo.segment(),
+                counterOffset,
+                vertexStride
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdDrawIndirectByteCountEXT.html"><code>vkCmdDrawIndirectByteCountEXT</code></a>
     public void cmdDrawIndirectByteCountEXT(
         VkCommandBuffer commandBuffer,
@@ -3498,6 +4220,22 @@ public final class VkDeviceCommands {
                 countBufferOffset,
                 maxDrawCount,
                 stride
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdDrawIndirectCount2KHR.html"><code>vkCmdDrawIndirectCount2KHR</code></a>
+    public void cmdDrawIndirectCount2KHR(
+        VkCommandBuffer commandBuffer,
+        @Pointer VkDrawIndirectCount2InfoKHR pInfo
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdDrawIndirectCount2KHR);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                pInfo.segment()
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -3570,6 +4308,38 @@ public final class VkDeviceCommands {
                 groupCountX,
                 groupCountY,
                 groupCountZ
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdDrawMeshTasksIndirect2EXT.html"><code>vkCmdDrawMeshTasksIndirect2EXT</code></a>
+    public void cmdDrawMeshTasksIndirect2EXT(
+        VkCommandBuffer commandBuffer,
+        @Pointer VkDrawIndirect2InfoKHR pInfo
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdDrawMeshTasksIndirect2EXT);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                pInfo.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdDrawMeshTasksIndirectCount2EXT.html"><code>vkCmdDrawMeshTasksIndirectCount2EXT</code></a>
+    public void cmdDrawMeshTasksIndirectCount2EXT(
+        VkCommandBuffer commandBuffer,
+        @Pointer VkDrawIndirectCount2InfoKHR pInfo
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdDrawMeshTasksIndirectCount2EXT);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                pInfo.segment()
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -3770,6 +4540,40 @@ public final class VkDeviceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdEndGpaSampleAMD.html"><code>vkCmdEndGpaSampleAMD</code></a>
+    public void cmdEndGpaSampleAMD(
+        VkCommandBuffer commandBuffer,
+        VkGpaSessionAMD gpaSession,
+        @Unsigned int sampleID
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdEndGpaSampleAMD);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                gpaSession.segment(),
+                sampleID
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdEndGpaSessionAMD.html"><code>vkCmdEndGpaSessionAMD</code></a>
+    public @EnumType(VkResult.class) int cmdEndGpaSessionAMD(
+        VkCommandBuffer commandBuffer,
+        VkGpaSessionAMD gpaSession
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdEndGpaSessionAMD);
+        try {
+            return (int) hFunction.invokeExact(
+                commandBuffer.segment(),
+                gpaSession.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdEndPerTileExecutionQCOM.html"><code>vkCmdEndPerTileExecutionQCOM</code></a>
     public void cmdEndPerTileExecutionQCOM(
         VkCommandBuffer commandBuffer,
@@ -3887,9 +4691,25 @@ public final class VkDeviceCommands {
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdEndRendering2EXT.html"><code>vkCmdEndRendering2EXT</code></a>
     public void cmdEndRendering2EXT(
         VkCommandBuffer commandBuffer,
-        @Nullable @Pointer VkRenderingEndInfoEXT pRenderingEndInfo
+        @Nullable @Pointer VkRenderingEndInfoKHR pRenderingEndInfo
     ) {
         MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdEndRendering2EXT);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                (MemorySegment) (pRenderingEndInfo != null ? pRenderingEndInfo.segment() : MemorySegment.NULL)
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdEndRendering2KHR.html"><code>vkCmdEndRendering2KHR</code></a>
+    public void cmdEndRendering2KHR(
+        VkCommandBuffer commandBuffer,
+        @Nullable @Pointer VkRenderingEndInfoKHR pRenderingEndInfo
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdEndRendering2KHR);
         try {
             hFunction.invokeExact(
                 commandBuffer.segment(),
@@ -3908,6 +4728,40 @@ public final class VkDeviceCommands {
         try {
             hFunction.invokeExact(
                 commandBuffer.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdEndShaderInstrumentationARM.html"><code>vkCmdEndShaderInstrumentationARM</code></a>
+    public void cmdEndShaderInstrumentationARM(
+        VkCommandBuffer commandBuffer
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdEndShaderInstrumentationARM);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdEndTransformFeedback2EXT.html"><code>vkCmdEndTransformFeedback2EXT</code></a>
+    public void cmdEndTransformFeedback2EXT(
+        VkCommandBuffer commandBuffer,
+        @Unsigned int firstCounterRange,
+        @Unsigned int counterRangeCount,
+        @Nullable @Pointer IVkBindTransformFeedbackBuffer2InfoEXT pCounterInfos
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdEndTransformFeedback2EXT);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                firstCounterRange,
+                counterRangeCount,
+                (MemorySegment) (pCounterInfos != null ? pCounterInfos.segment() : MemorySegment.NULL)
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -4021,6 +4875,26 @@ public final class VkDeviceCommands {
                 dstBuffer.segment(),
                 dstOffset,
                 size,
+                data
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdFillMemoryKHR.html"><code>vkCmdFillMemoryKHR</code></a>
+    public void cmdFillMemoryKHR(
+        VkCommandBuffer commandBuffer,
+        @Pointer VkDeviceAddressRangeKHR pDstRange,
+        @Bitmask(VkAddressCommandFlagsKHR.class) int dstFlags,
+        @Unsigned int data
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdFillMemoryKHR);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                pDstRange.segment(),
+                dstFlags,
                 data
             );
         } catch (Throwable e) {
@@ -4266,6 +5140,22 @@ public final class VkDeviceCommands {
             hFunction.invokeExact(
                 commandBuffer.segment(),
                 pPushConstantsInfo.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdPushDataEXT.html"><code>vkCmdPushDataEXT</code></a>
+    public void cmdPushDataEXT(
+        VkCommandBuffer commandBuffer,
+        @Pointer VkPushDataInfoEXT pPushDataInfo
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdPushDataEXT);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                pPushDataInfo.segment()
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -4768,6 +5658,22 @@ public final class VkDeviceCommands {
                 firstAttachment,
                 attachmentCount,
                 pColorWriteMasks.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetComputeOccupancyPriorityNV.html"><code>vkCmdSetComputeOccupancyPriorityNV</code></a>
+    public void cmdSetComputeOccupancyPriorityNV(
+        VkCommandBuffer commandBuffer,
+        @Pointer VkComputeOccupancyPriorityParametersNV pParameters
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdSetComputeOccupancyPriorityNV);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                pParameters.segment()
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -5326,6 +6232,22 @@ public final class VkDeviceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetDispatchParametersARM.html"><code>vkCmdSetDispatchParametersARM</code></a>
+    public void cmdSetDispatchParametersARM(
+        VkCommandBuffer commandBuffer,
+        @Pointer VkDispatchParametersARM pDispatchParameters
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdSetDispatchParametersARM);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                pDispatchParameters.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetEvent.html"><code>vkCmdSetEvent</code></a>
     public void cmdSetEvent(
         VkCommandBuffer commandBuffer,
@@ -5750,6 +6672,22 @@ public final class VkDeviceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetPrimitiveRestartIndexEXT.html"><code>vkCmdSetPrimitiveRestartIndexEXT</code></a>
+    public void cmdSetPrimitiveRestartIndexEXT(
+        VkCommandBuffer commandBuffer,
+        @Unsigned int primitiveRestartIndex
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdSetPrimitiveRestartIndexEXT);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                primitiveRestartIndex
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetPrimitiveTopology.html"><code>vkCmdSetPrimitiveTopology</code></a>
     public void cmdSetPrimitiveTopology(
         VkCommandBuffer commandBuffer,
@@ -5994,14 +6932,14 @@ public final class VkDeviceCommands {
     public void cmdSetSampleMaskEXT(
         VkCommandBuffer commandBuffer,
         @Bitmask(VkSampleCountFlags.class) int samples,
-        @Pointer(comment="VkSampleMask") @Unsigned IntPtr pSampleMask
+        @Nullable @Pointer(comment="VkSampleMask") @Unsigned IntPtr pSampleMask
     ) {
         MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdSetSampleMaskEXT);
         try {
             hFunction.invokeExact(
                 commandBuffer.segment(),
                 samples,
-                pSampleMask.segment()
+                (MemorySegment) (pSampleMask != null ? pSampleMask.segment() : MemorySegment.NULL)
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -6530,6 +7468,28 @@ public final class VkDeviceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdUpdateMemoryKHR.html"><code>vkCmdUpdateMemoryKHR</code></a>
+    public void cmdUpdateMemoryKHR(
+        VkCommandBuffer commandBuffer,
+        @Pointer VkDeviceAddressRangeKHR pDstRange,
+        @Bitmask(VkAddressCommandFlagsKHR.class) int dstFlags,
+        @NativeType("VkDeviceSize") @Unsigned long dataSize,
+        @Pointer(comment="void*") @NotNull MemorySegment pData
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdUpdateMemoryKHR);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                pDstRange.segment(),
+                dstFlags,
+                dataSize,
+                pData
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdUpdatePipelineIndirectBufferNV.html"><code>vkCmdUpdatePipelineIndirectBufferNV</code></a>
     public void cmdUpdatePipelineIndirectBufferNV(
         VkCommandBuffer commandBuffer,
@@ -6708,6 +7668,22 @@ public final class VkDeviceCommands {
                 dstBuffer.segment(),
                 dstOffset,
                 marker
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdWriteMarkerToMemoryAMD.html"><code>vkCmdWriteMarkerToMemoryAMD</code></a>
+    public void cmdWriteMarkerToMemoryAMD(
+        VkCommandBuffer commandBuffer,
+        @Pointer VkMemoryMarkerInfoAMD pInfo
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCmdWriteMarkerToMemoryAMD);
+        try {
+            hFunction.invokeExact(
+                commandBuffer.segment(),
+                pInfo.segment()
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -7036,6 +8012,26 @@ public final class VkDeviceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateAccelerationStructure2KHR.html"><code>vkCreateAccelerationStructure2KHR</code></a>
+    public @EnumType(VkResult.class) int createAccelerationStructure2KHR(
+        VkDevice device,
+        @Pointer VkAccelerationStructureCreateInfo2KHR pCreateInfo,
+        @Nullable @Pointer VkAllocationCallbacks pAllocator,
+        @Pointer VkAccelerationStructureKHR.Ptr pAccelerationStructure
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCreateAccelerationStructure2KHR);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                pCreateInfo.segment(),
+                (MemorySegment) (pAllocator != null ? pAllocator.segment() : MemorySegment.NULL),
+                pAccelerationStructure.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateAccelerationStructureKHR.html"><code>vkCreateAccelerationStructureKHR</code></a>
     public @EnumType(VkResult.class) int createAccelerationStructureKHR(
         VkDevice device,
@@ -7260,6 +8256,52 @@ public final class VkDeviceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateDataGraphPipelineSessionARM.html"><code>vkCreateDataGraphPipelineSessionARM</code></a>
+    public @EnumType(VkResult.class) int createDataGraphPipelineSessionARM(
+        VkDevice device,
+        @Pointer VkDataGraphPipelineSessionCreateInfoARM pCreateInfo,
+        @Nullable @Pointer VkAllocationCallbacks pAllocator,
+        @Pointer VkDataGraphPipelineSessionARM.Ptr pSession
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCreateDataGraphPipelineSessionARM);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                pCreateInfo.segment(),
+                (MemorySegment) (pAllocator != null ? pAllocator.segment() : MemorySegment.NULL),
+                pSession.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateDataGraphPipelinesARM.html"><code>vkCreateDataGraphPipelinesARM</code></a>
+    public @EnumType(VkResult.class) int createDataGraphPipelinesARM(
+        VkDevice device,
+        @Nullable VkDeferredOperationKHR deferredOperation,
+        @Nullable VkPipelineCache pipelineCache,
+        @Unsigned int createInfoCount,
+        @Pointer IVkDataGraphPipelineCreateInfoARM pCreateInfos,
+        @Nullable @Pointer VkAllocationCallbacks pAllocator,
+        @Pointer VkPipeline.Ptr pPipelines
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCreateDataGraphPipelinesARM);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                (MemorySegment) (deferredOperation != null ? deferredOperation.segment() : MemorySegment.NULL),
+                (MemorySegment) (pipelineCache != null ? pipelineCache.segment() : MemorySegment.NULL),
+                createInfoCount,
+                pCreateInfos.segment(),
+                (MemorySegment) (pAllocator != null ? pAllocator.segment() : MemorySegment.NULL),
+                pPipelines.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateDeferredOperationKHR.html"><code>vkCreateDeferredOperationKHR</code></a>
     public @EnumType(VkResult.class) int createDeferredOperationKHR(
         VkDevice device,
@@ -7456,6 +8498,26 @@ public final class VkDeviceCommands {
                 pCreateInfo.segment(),
                 (MemorySegment) (pAllocator != null ? pAllocator.segment() : MemorySegment.NULL),
                 pFramebuffer.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateGpaSessionAMD.html"><code>vkCreateGpaSessionAMD</code></a>
+    public @EnumType(VkResult.class) int createGpaSessionAMD(
+        VkDevice device,
+        @Pointer VkGpaSessionCreateInfoAMD pCreateInfo,
+        @Nullable @Pointer VkAllocationCallbacks pAllocator,
+        @Pointer VkGpaSessionAMD.Ptr pGpaSession
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCreateGpaSessionAMD);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                pCreateInfo.segment(),
+                (MemorySegment) (pAllocator != null ? pAllocator.segment() : MemorySegment.NULL),
+                pGpaSession.segment()
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -7956,6 +9018,26 @@ public final class VkDeviceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateShaderInstrumentationARM.html"><code>vkCreateShaderInstrumentationARM</code></a>
+    public @EnumType(VkResult.class) int createShaderInstrumentationARM(
+        VkDevice device,
+        @Pointer VkShaderInstrumentationCreateInfoARM pCreateInfo,
+        @Nullable @Pointer VkAllocationCallbacks pAllocator,
+        @Pointer VkShaderInstrumentationARM.Ptr pInstrumentation
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCreateShaderInstrumentationARM);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                pCreateInfo.segment(),
+                (MemorySegment) (pAllocator != null ? pAllocator.segment() : MemorySegment.NULL),
+                pInstrumentation.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateShaderModule.html"><code>vkCreateShaderModule</code></a>
     public @EnumType(VkResult.class) int createShaderModule(
         VkDevice device,
@@ -8034,6 +9116,46 @@ public final class VkDeviceCommands {
                 pCreateInfo.segment(),
                 (MemorySegment) (pAllocator != null ? pAllocator.segment() : MemorySegment.NULL),
                 pSwapchain.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateTensorARM.html"><code>vkCreateTensorARM</code></a>
+    public @EnumType(VkResult.class) int createTensorARM(
+        VkDevice device,
+        @Pointer VkTensorCreateInfoARM pCreateInfo,
+        @Nullable @Pointer VkAllocationCallbacks pAllocator,
+        @Pointer VkTensorARM.Ptr pTensor
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCreateTensorARM);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                pCreateInfo.segment(),
+                (MemorySegment) (pAllocator != null ? pAllocator.segment() : MemorySegment.NULL),
+                pTensor.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateTensorViewARM.html"><code>vkCreateTensorViewARM</code></a>
+    public @EnumType(VkResult.class) int createTensorViewARM(
+        VkDevice device,
+        @Pointer VkTensorViewCreateInfoARM pCreateInfo,
+        @Nullable @Pointer VkAllocationCallbacks pAllocator,
+        @Pointer VkTensorViewARM.Ptr pView
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCreateTensorViewARM);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                pCreateInfo.segment(),
+                (MemorySegment) (pAllocator != null ? pAllocator.segment() : MemorySegment.NULL),
+                pView.segment()
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -8328,6 +9450,24 @@ public final class VkDeviceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroyDataGraphPipelineSessionARM.html"><code>vkDestroyDataGraphPipelineSessionARM</code></a>
+    public void destroyDataGraphPipelineSessionARM(
+        VkDevice device,
+        VkDataGraphPipelineSessionARM session,
+        @Nullable @Pointer VkAllocationCallbacks pAllocator
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkDestroyDataGraphPipelineSessionARM);
+        try {
+            hFunction.invokeExact(
+                device.segment(),
+                session.segment(),
+                (MemorySegment) (pAllocator != null ? pAllocator.segment() : MemorySegment.NULL)
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroyDeferredOperationKHR.html"><code>vkDestroyDeferredOperationKHR</code></a>
     public void destroyDeferredOperationKHR(
         VkDevice device,
@@ -8499,6 +9639,24 @@ public final class VkDeviceCommands {
             hFunction.invokeExact(
                 device.segment(),
                 (MemorySegment) (framebuffer != null ? framebuffer.segment() : MemorySegment.NULL),
+                (MemorySegment) (pAllocator != null ? pAllocator.segment() : MemorySegment.NULL)
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroyGpaSessionAMD.html"><code>vkDestroyGpaSessionAMD</code></a>
+    public void destroyGpaSessionAMD(
+        VkDevice device,
+        @Nullable VkGpaSessionAMD gpaSession,
+        @Nullable @Pointer VkAllocationCallbacks pAllocator
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkDestroyGpaSessionAMD);
+        try {
+            hFunction.invokeExact(
+                device.segment(),
+                (MemorySegment) (gpaSession != null ? gpaSession.segment() : MemorySegment.NULL),
                 (MemorySegment) (pAllocator != null ? pAllocator.segment() : MemorySegment.NULL)
             );
         } catch (Throwable e) {
@@ -8884,6 +10042,24 @@ public final class VkDeviceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroyShaderInstrumentationARM.html"><code>vkDestroyShaderInstrumentationARM</code></a>
+    public void destroyShaderInstrumentationARM(
+        VkDevice device,
+        @Nullable VkShaderInstrumentationARM instrumentation,
+        @Nullable @Pointer VkAllocationCallbacks pAllocator
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkDestroyShaderInstrumentationARM);
+        try {
+            hFunction.invokeExact(
+                device.segment(),
+                (MemorySegment) (instrumentation != null ? instrumentation.segment() : MemorySegment.NULL),
+                (MemorySegment) (pAllocator != null ? pAllocator.segment() : MemorySegment.NULL)
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroyShaderModule.html"><code>vkDestroyShaderModule</code></a>
     public void destroyShaderModule(
         VkDevice device,
@@ -8913,6 +10089,42 @@ public final class VkDeviceCommands {
             hFunction.invokeExact(
                 device.segment(),
                 (MemorySegment) (swapchain != null ? swapchain.segment() : MemorySegment.NULL),
+                (MemorySegment) (pAllocator != null ? pAllocator.segment() : MemorySegment.NULL)
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroyTensorARM.html"><code>vkDestroyTensorARM</code></a>
+    public void destroyTensorARM(
+        VkDevice device,
+        @Nullable VkTensorARM tensor,
+        @Nullable @Pointer VkAllocationCallbacks pAllocator
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkDestroyTensorARM);
+        try {
+            hFunction.invokeExact(
+                device.segment(),
+                (MemorySegment) (tensor != null ? tensor.segment() : MemorySegment.NULL),
+                (MemorySegment) (pAllocator != null ? pAllocator.segment() : MemorySegment.NULL)
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroyTensorViewARM.html"><code>vkDestroyTensorViewARM</code></a>
+    public void destroyTensorViewARM(
+        VkDevice device,
+        @Nullable VkTensorViewARM tensorView,
+        @Nullable @Pointer VkAllocationCallbacks pAllocator
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkDestroyTensorViewARM);
+        try {
+            hFunction.invokeExact(
+                device.segment(),
+                (MemorySegment) (tensorView != null ? tensorView.segment() : MemorySegment.NULL),
                 (MemorySegment) (pAllocator != null ? pAllocator.segment() : MemorySegment.NULL)
             );
         } catch (Throwable e) {
@@ -9476,6 +10688,84 @@ public final class VkDeviceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetDataGraphPipelineAvailablePropertiesARM.html"><code>vkGetDataGraphPipelineAvailablePropertiesARM</code></a>
+    public @EnumType(VkResult.class) int getDataGraphPipelineAvailablePropertiesARM(
+        VkDevice device,
+        @Pointer VkDataGraphPipelineInfoARM pPipelineInfo,
+        @Unsigned IntPtr pPropertiesCount,
+        @Nullable @EnumType(VkDataGraphPipelinePropertyARM.class) IntPtr pProperties
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkGetDataGraphPipelineAvailablePropertiesARM);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                pPipelineInfo.segment(),
+                pPropertiesCount.segment(),
+                (MemorySegment) (pProperties != null ? pProperties.segment() : MemorySegment.NULL)
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetDataGraphPipelinePropertiesARM.html"><code>vkGetDataGraphPipelinePropertiesARM</code></a>
+    public @EnumType(VkResult.class) int getDataGraphPipelinePropertiesARM(
+        VkDevice device,
+        @Pointer VkDataGraphPipelineInfoARM pPipelineInfo,
+        @Unsigned int propertiesCount,
+        @Pointer IVkDataGraphPipelinePropertyQueryResultARM pProperties
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkGetDataGraphPipelinePropertiesARM);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                pPipelineInfo.segment(),
+                propertiesCount,
+                pProperties.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetDataGraphPipelineSessionBindPointRequirementsARM.html"><code>vkGetDataGraphPipelineSessionBindPointRequirementsARM</code></a>
+    public @EnumType(VkResult.class) int getDataGraphPipelineSessionBindPointRequirementsARM(
+        VkDevice device,
+        @Pointer VkDataGraphPipelineSessionBindPointRequirementsInfoARM pInfo,
+        @Unsigned IntPtr pBindPointRequirementCount,
+        @Nullable @Pointer IVkDataGraphPipelineSessionBindPointRequirementARM pBindPointRequirements
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkGetDataGraphPipelineSessionBindPointRequirementsARM);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                pInfo.segment(),
+                pBindPointRequirementCount.segment(),
+                (MemorySegment) (pBindPointRequirements != null ? pBindPointRequirements.segment() : MemorySegment.NULL)
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetDataGraphPipelineSessionMemoryRequirementsARM.html"><code>vkGetDataGraphPipelineSessionMemoryRequirementsARM</code></a>
+    public void getDataGraphPipelineSessionMemoryRequirementsARM(
+        VkDevice device,
+        @Pointer VkDataGraphPipelineSessionMemoryRequirementsInfoARM pInfo,
+        @Pointer VkMemoryRequirements2 pMemoryRequirements
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkGetDataGraphPipelineSessionMemoryRequirementsARM);
+        try {
+            hFunction.invokeExact(
+                device.segment(),
+                pInfo.segment(),
+                pMemoryRequirements.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetDeferredOperationMaxConcurrencyKHR.html"><code>vkGetDeferredOperationMaxConcurrencyKHR</code></a>
     public @Unsigned int getDeferredOperationMaxConcurrencyKHR(
         VkDevice device,
@@ -9692,6 +10982,40 @@ public final class VkDeviceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetDeviceCombinedImageSamplerIndexNVX.html"><code>vkGetDeviceCombinedImageSamplerIndexNVX</code></a>
+    public @Unsigned long getDeviceCombinedImageSamplerIndexNVX(
+        VkDevice device,
+        @Unsigned long imageViewIndex,
+        @Unsigned long samplerIndex
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkGetDeviceCombinedImageSamplerIndexNVX);
+        try {
+            return (long) hFunction.invokeExact(
+                device.segment(),
+                imageViewIndex,
+                samplerIndex
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetDeviceFaultDebugInfoKHR.html"><code>vkGetDeviceFaultDebugInfoKHR</code></a>
+    public @EnumType(VkResult.class) int getDeviceFaultDebugInfoKHR(
+        VkDevice device,
+        @Pointer VkDeviceFaultDebugInfoKHR pDebugInfo
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkGetDeviceFaultDebugInfoKHR);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                pDebugInfo.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetDeviceFaultInfoEXT.html"><code>vkGetDeviceFaultInfoEXT</code></a>
     public @EnumType(VkResult.class) int getDeviceFaultInfoEXT(
         VkDevice device,
@@ -9702,6 +11026,26 @@ public final class VkDeviceCommands {
         try {
             return (int) hFunction.invokeExact(
                 device.segment(),
+                pFaultCounts.segment(),
+                (MemorySegment) (pFaultInfo != null ? pFaultInfo.segment() : MemorySegment.NULL)
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetDeviceFaultReportsKHR.html"><code>vkGetDeviceFaultReportsKHR</code></a>
+    public @EnumType(VkResult.class) int getDeviceFaultReportsKHR(
+        VkDevice device,
+        @Unsigned long timeout,
+        @Unsigned IntPtr pFaultCounts,
+        @Nullable @Pointer IVkDeviceFaultInfoKHR pFaultInfo
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkGetDeviceFaultReportsKHR);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                timeout,
                 pFaultCounts.segment(),
                 (MemorySegment) (pFaultInfo != null ? pFaultInfo.segment() : MemorySegment.NULL)
             );
@@ -10028,7 +11372,7 @@ public final class VkDeviceCommands {
     public @EnumType(VkResult.class) int getDeviceSubpassShadingMaxWorkgroupSizeHUAWEI(
         VkDevice device,
         VkRenderPass renderpass,
-        @Pointer IVkExtent2D pMaxWorkgroupSize
+        @Pointer VkExtent2D pMaxWorkgroupSize
     ) {
         MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI);
         try {
@@ -10036,6 +11380,24 @@ public final class VkDeviceCommands {
                 device.segment(),
                 renderpass.segment(),
                 pMaxWorkgroupSize.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetDeviceTensorMemoryRequirementsARM.html"><code>vkGetDeviceTensorMemoryRequirementsARM</code></a>
+    public void getDeviceTensorMemoryRequirementsARM(
+        VkDevice device,
+        @Pointer VkDeviceTensorMemoryRequirementsARM pInfo,
+        @Pointer VkMemoryRequirements2 pMemoryRequirements
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkGetDeviceTensorMemoryRequirementsARM);
+        try {
+            hFunction.invokeExact(
+                device.segment(),
+                pInfo.segment(),
+                pMemoryRequirements.segment()
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -10298,6 +11660,60 @@ public final class VkDeviceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetGpaDeviceClockInfoAMD.html"><code>vkGetGpaDeviceClockInfoAMD</code></a>
+    public @EnumType(VkResult.class) int getGpaDeviceClockInfoAMD(
+        VkDevice device,
+        @Pointer VkGpaDeviceGetClockInfoAMD pInfo
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkGetGpaDeviceClockInfoAMD);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                pInfo.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetGpaSessionResultsAMD.html"><code>vkGetGpaSessionResultsAMD</code></a>
+    public @EnumType(VkResult.class) int getGpaSessionResultsAMD(
+        VkDevice device,
+        VkGpaSessionAMD gpaSession,
+        @Unsigned int sampleID,
+        PointerPtr pSizeInBytes,
+        @Pointer(comment="void*") @NotNull MemorySegment pData
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkGetGpaSessionResultsAMD);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                gpaSession.segment(),
+                sampleID,
+                pSizeInBytes.segment(),
+                pData
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetGpaSessionStatusAMD.html"><code>vkGetGpaSessionStatusAMD</code></a>
+    public @EnumType(VkResult.class) int getGpaSessionStatusAMD(
+        VkDevice device,
+        VkGpaSessionAMD gpaSession
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkGetGpaSessionStatusAMD);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                gpaSession.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetImageDrmFormatModifierPropertiesEXT.html"><code>vkGetImageDrmFormatModifierPropertiesEXT</code></a>
     public @EnumType(VkResult.class) int getImageDrmFormatModifierPropertiesEXT(
         VkDevice device,
@@ -10364,6 +11780,26 @@ public final class VkDeviceCommands {
                 device.segment(),
                 pInfo.segment(),
                 pMemoryRequirements.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetImageOpaqueCaptureDataEXT.html"><code>vkGetImageOpaqueCaptureDataEXT</code></a>
+    public @EnumType(VkResult.class) int getImageOpaqueCaptureDataEXT(
+        VkDevice device,
+        @Unsigned int imageCount,
+        @Pointer VkImage.Ptr pImages,
+        @Pointer IVkHostAddressRangeEXT pDatas
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkGetImageOpaqueCaptureDataEXT);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                imageCount,
+                pImages.segment(),
+                pDatas.segment()
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -10596,6 +12032,22 @@ public final class VkDeviceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetLatencyTimingsLegacyNV.html"><code>vkGetLatencyTimingsLegacyNV</code></a>
+    public void getLatencyTimingsLegacyNV(
+        VkDevice device,
+        @Pointer(comment="void*") @NotNull MemorySegment pTimings
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkGetLatencyTimingsLegacyNV);
+        try {
+            hFunction.invokeExact(
+                device.segment(),
+                pTimings
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetLatencyTimingsNV.html"><code>vkGetLatencyTimingsNV</code></a>
     public void getLatencyTimingsNV(
         VkDevice device,
@@ -10722,6 +12174,24 @@ public final class VkDeviceCommands {
                 handleType,
                 pHandle,
                 pMemoryMetalHandleProperties.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetMemoryNativeBufferOHOS.html"><code>vkGetMemoryNativeBufferOHOS</code></a>
+    public @EnumType(VkResult.class) int getMemoryNativeBufferOHOS(
+        VkDevice device,
+        @Pointer VkMemoryGetNativeBufferInfoOHOS pInfo,
+        PointerPtr pBuffer
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkGetMemoryNativeBufferOHOS);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                pInfo.segment(),
+                pBuffer.segment()
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -10880,6 +12350,24 @@ public final class VkDeviceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetNativeBufferPropertiesOHOS.html"><code>vkGetNativeBufferPropertiesOHOS</code></a>
+    public @EnumType(VkResult.class) int getNativeBufferPropertiesOHOS(
+        VkDevice device,
+        @Pointer(comment="void*") @NotNull MemorySegment buffer,
+        @Pointer VkNativeBufferPropertiesOHOS pProperties
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkGetNativeBufferPropertiesOHOS);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                buffer,
+                pProperties.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPartitionedAccelerationStructuresBuildSizesNV.html"><code>vkGetPartitionedAccelerationStructuresBuildSizesNV</code></a>
     public void getPartitionedAccelerationStructuresBuildSizesNV(
         VkDevice device,
@@ -10892,6 +12380,24 @@ public final class VkDeviceCommands {
                 device.segment(),
                 pInfo.segment(),
                 pSizeInfo.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPastPresentationTimingEXT.html"><code>vkGetPastPresentationTimingEXT</code></a>
+    public @EnumType(VkResult.class) int getPastPresentationTimingEXT(
+        VkDevice device,
+        @Pointer VkPastPresentationTimingInfoEXT pPastPresentationTimingInfo,
+        @Pointer VkPastPresentationTimingPropertiesEXT pPastPresentationTimingProperties
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkGetPastPresentationTimingEXT);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                pPastPresentationTimingInfo.segment(),
+                pPastPresentationTimingProperties.segment()
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -11568,6 +13074,28 @@ public final class VkDeviceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetShaderInstrumentationValuesARM.html"><code>vkGetShaderInstrumentationValuesARM</code></a>
+    public @EnumType(VkResult.class) int getShaderInstrumentationValuesARM(
+        VkDevice device,
+        VkShaderInstrumentationARM instrumentation,
+        @Unsigned IntPtr pMetricBlockCount,
+        @Pointer(comment="void*") @NotNull MemorySegment pMetricValues,
+        @Bitmask(VkShaderInstrumentationValuesFlagsARM.class) int flags
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkGetShaderInstrumentationValuesARM);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                instrumentation.segment(),
+                pMetricBlockCount.segment(),
+                pMetricValues,
+                flags
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetShaderModuleCreateInfoIdentifierEXT.html"><code>vkGetShaderModuleCreateInfoIdentifierEXT</code></a>
     public void getShaderModuleCreateInfoIdentifierEXT(
         VkDevice device,
@@ -11598,6 +13126,22 @@ public final class VkDeviceCommands {
                 device.segment(),
                 shaderModule.segment(),
                 pIdentifier.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetSleepStatusLegacyNV.html"><code>vkGetSleepStatusLegacyNV</code></a>
+    public void getSleepStatusLegacyNV(
+        VkDevice device,
+        @Pointer(comment="VkBool32") @Unsigned IntPtr pLowLatencyMode
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkGetSleepStatusLegacyNV);
+        try {
+            hFunction.invokeExact(
+                device.segment(),
+                pLowLatencyMode.segment()
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -11654,6 +13198,120 @@ public final class VkDeviceCommands {
             return (int) hFunction.invokeExact(
                 device.segment(),
                 swapchain.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetSwapchainTimeDomainPropertiesEXT.html"><code>vkGetSwapchainTimeDomainPropertiesEXT</code></a>
+    public @EnumType(VkResult.class) int getSwapchainTimeDomainPropertiesEXT(
+        VkDevice device,
+        VkSwapchainKHR swapchain,
+        @Pointer VkSwapchainTimeDomainPropertiesEXT pSwapchainTimeDomainProperties,
+        @Nullable @Unsigned LongPtr pTimeDomainsCounter
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkGetSwapchainTimeDomainPropertiesEXT);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                swapchain.segment(),
+                pSwapchainTimeDomainProperties.segment(),
+                (MemorySegment) (pTimeDomainsCounter != null ? pTimeDomainsCounter.segment() : MemorySegment.NULL)
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetSwapchainTimingPropertiesEXT.html"><code>vkGetSwapchainTimingPropertiesEXT</code></a>
+    public @EnumType(VkResult.class) int getSwapchainTimingPropertiesEXT(
+        VkDevice device,
+        VkSwapchainKHR swapchain,
+        @Pointer VkSwapchainTimingPropertiesEXT pSwapchainTimingProperties,
+        @Nullable @Unsigned LongPtr pSwapchainTimingPropertiesCounter
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkGetSwapchainTimingPropertiesEXT);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                swapchain.segment(),
+                pSwapchainTimingProperties.segment(),
+                (MemorySegment) (pSwapchainTimingPropertiesCounter != null ? pSwapchainTimingPropertiesCounter.segment() : MemorySegment.NULL)
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetTensorMemoryRequirementsARM.html"><code>vkGetTensorMemoryRequirementsARM</code></a>
+    public void getTensorMemoryRequirementsARM(
+        VkDevice device,
+        @Pointer VkTensorMemoryRequirementsInfoARM pInfo,
+        @Pointer VkMemoryRequirements2 pMemoryRequirements
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkGetTensorMemoryRequirementsARM);
+        try {
+            hFunction.invokeExact(
+                device.segment(),
+                pInfo.segment(),
+                pMemoryRequirements.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetTensorOpaqueCaptureDataARM.html"><code>vkGetTensorOpaqueCaptureDataARM</code></a>
+    public @EnumType(VkResult.class) int getTensorOpaqueCaptureDataARM(
+        VkDevice device,
+        @Unsigned int tensorCount,
+        @Pointer VkTensorARM.Ptr pTensors,
+        @Pointer IVkHostAddressRangeEXT pDatas
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkGetTensorOpaqueCaptureDataARM);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                tensorCount,
+                pTensors.segment(),
+                pDatas.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetTensorOpaqueCaptureDescriptorDataARM.html"><code>vkGetTensorOpaqueCaptureDescriptorDataARM</code></a>
+    public @EnumType(VkResult.class) int getTensorOpaqueCaptureDescriptorDataARM(
+        VkDevice device,
+        @Pointer VkTensorCaptureDescriptorDataInfoARM pInfo,
+        @Pointer(comment="void*") @NotNull MemorySegment pData
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkGetTensorOpaqueCaptureDescriptorDataARM);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                pInfo.segment(),
+                pData
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetTensorViewOpaqueCaptureDescriptorDataARM.html"><code>vkGetTensorViewOpaqueCaptureDescriptorDataARM</code></a>
+    public @EnumType(VkResult.class) int getTensorViewOpaqueCaptureDescriptorDataARM(
+        VkDevice device,
+        @Pointer VkTensorViewCaptureDescriptorDataInfoARM pInfo,
+        @Pointer(comment="void*") @NotNull MemorySegment pData
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkGetTensorViewOpaqueCaptureDescriptorDataARM);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                pInfo.segment(),
+                pData
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -11862,6 +13520,24 @@ public final class VkDeviceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkLatencySleepLegacyNV.html"><code>vkLatencySleepLegacyNV</code></a>
+    public void latencySleepLegacyNV(
+        VkDevice device,
+        VkSemaphore signalSemaphore,
+        @Unsigned long value
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkLatencySleepLegacyNV);
+        try {
+            hFunction.invokeExact(
+                device.segment(),
+                signalSemaphore.segment(),
+                value
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkLatencySleepNV.html"><code>vkLatencySleepNV</code></a>
     public @EnumType(VkResult.class) int latencySleepNV(
         VkDevice device,
@@ -12000,6 +13676,22 @@ public final class VkDeviceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkQueueNotifyOutOfBandLegacyNV.html"><code>vkQueueNotifyOutOfBandLegacyNV</code></a>
+    public void queueNotifyOutOfBandLegacyNV(
+        VkQueue queue,
+        @Unsigned int queueType
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkQueueNotifyOutOfBandLegacyNV);
+        try {
+            hFunction.invokeExact(
+                queue.segment(),
+                queueType
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkQueueNotifyOutOfBandNV.html"><code>vkQueueNotifyOutOfBandNV</code></a>
     public void queueNotifyOutOfBandNV(
         VkQueue queue,
@@ -12026,6 +13718,22 @@ public final class VkDeviceCommands {
             return (int) hFunction.invokeExact(
                 queue.segment(),
                 pPresentInfo.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkQueueSetPerfHintQCOM.html"><code>vkQueueSetPerfHintQCOM</code></a>
+    public @EnumType(VkResult.class) int queueSetPerfHintQCOM(
+        VkQueue queue,
+        @Pointer VkPerfHintInfoQCOM pPerfHintInfo
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkQueueSetPerfHintQCOM);
+        try {
+            return (int) hFunction.invokeExact(
+                queue.segment(),
+                pPerfHintInfo.segment()
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -12116,6 +13824,26 @@ public final class VkDeviceCommands {
         try {
             return (int) hFunction.invokeExact(
                 queue.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkRegisterCustomBorderColorEXT.html"><code>vkRegisterCustomBorderColorEXT</code></a>
+    public @EnumType(VkResult.class) int registerCustomBorderColorEXT(
+        VkDevice device,
+        @Pointer VkSamplerCustomBorderColorCreateInfoEXT pBorderColor,
+        @NativeType("VkBool32") @Unsigned int requestIndex,
+        @Unsigned IntPtr pIndex
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkRegisterCustomBorderColorEXT);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                pBorderColor.segment(),
+                requestIndex,
+                pIndex.segment()
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -12231,9 +13959,25 @@ public final class VkDeviceCommands {
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkReleaseSwapchainImagesEXT.html"><code>vkReleaseSwapchainImagesEXT</code></a>
     public @EnumType(VkResult.class) int releaseSwapchainImagesEXT(
         VkDevice device,
-        @Pointer VkReleaseSwapchainImagesInfoEXT pReleaseInfo
+        @Pointer VkReleaseSwapchainImagesInfoKHR pReleaseInfo
     ) {
         MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkReleaseSwapchainImagesEXT);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                pReleaseInfo.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkReleaseSwapchainImagesKHR.html"><code>vkReleaseSwapchainImagesKHR</code></a>
+    public @EnumType(VkResult.class) int releaseSwapchainImagesKHR(
+        VkDevice device,
+        @Pointer VkReleaseSwapchainImagesInfoKHR pReleaseInfo
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkReleaseSwapchainImagesKHR);
         try {
             return (int) hFunction.invokeExact(
                 device.segment(),
@@ -12324,6 +14068,22 @@ public final class VkDeviceCommands {
                 device.segment(),
                 fenceCount,
                 pFences.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkResetGpaSessionAMD.html"><code>vkResetGpaSessionAMD</code></a>
+    public @EnumType(VkResult.class) int resetGpaSessionAMD(
+        VkDevice device,
+        VkGpaSessionAMD gpaSession
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkResetGpaSessionAMD);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                gpaSession.segment()
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -12440,6 +14200,22 @@ public final class VkDeviceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkSetGpaDeviceClockModeAMD.html"><code>vkSetGpaDeviceClockModeAMD</code></a>
+    public @EnumType(VkResult.class) int setGpaDeviceClockModeAMD(
+        VkDevice device,
+        @Pointer VkGpaDeviceClockModeInfoAMD pInfo
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkSetGpaDeviceClockModeAMD);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                pInfo.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkSetHdrMetadataEXT.html"><code>vkSetHdrMetadataEXT</code></a>
     public void setHdrMetadataEXT(
         VkDevice device,
@@ -12460,6 +14236,24 @@ public final class VkDeviceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkSetLatencyMarkerLegacyNV.html"><code>vkSetLatencyMarkerLegacyNV</code></a>
+    public void setLatencyMarkerLegacyNV(
+        VkDevice device,
+        @Unsigned long frameID,
+        @Unsigned int marker
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkSetLatencyMarkerLegacyNV);
+        try {
+            hFunction.invokeExact(
+                device.segment(),
+                frameID,
+                marker
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkSetLatencyMarkerNV.html"><code>vkSetLatencyMarkerNV</code></a>
     public void setLatencyMarkerNV(
         VkDevice device,
@@ -12472,6 +14266,26 @@ public final class VkDeviceCommands {
                 device.segment(),
                 swapchain.segment(),
                 pLatencyMarkerInfo.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkSetLatencySleepModeLegacyNV.html"><code>vkSetLatencySleepModeLegacyNV</code></a>
+    public void setLatencySleepModeLegacyNV(
+        VkDevice device,
+        @NativeType("VkBool32") @Unsigned int lowLatencyMode,
+        @NativeType("VkBool32") @Unsigned int lowLatencyBoost,
+        @Unsigned int minimumIntervalUs
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkSetLatencySleepModeLegacyNV);
+        try {
+            hFunction.invokeExact(
+                device.segment(),
+                lowLatencyMode,
+                lowLatencyBoost,
+                minimumIntervalUs
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -12552,6 +14366,38 @@ public final class VkDeviceCommands {
                 objectHandle,
                 privateDataSlot.segment(),
                 data
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkSetSwapchainPresentTimingQueueSizeEXT.html"><code>vkSetSwapchainPresentTimingQueueSizeEXT</code></a>
+    public @EnumType(VkResult.class) int setSwapchainPresentTimingQueueSizeEXT(
+        VkDevice device,
+        VkSwapchainKHR swapchain,
+        @Unsigned int size
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkSetSwapchainPresentTimingQueueSizeEXT);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                swapchain.segment(),
+                size
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkShutdownLatencyDeviceLegacyNV.html"><code>vkShutdownLatencyDeviceLegacyNV</code></a>
+    public void shutdownLatencyDeviceLegacyNV(
+        VkDevice device
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkShutdownLatencyDeviceLegacyNV);
+        try {
+            hFunction.invokeExact(
+                device.segment()
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -12724,6 +14570,22 @@ public final class VkDeviceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkUnregisterCustomBorderColorEXT.html"><code>vkUnregisterCustomBorderColorEXT</code></a>
+    public void unregisterCustomBorderColorEXT(
+        VkDevice device,
+        @Unsigned int index
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkUnregisterCustomBorderColorEXT);
+        try {
+            hFunction.invokeExact(
+                device.segment(),
+                index
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkUpdateDescriptorSetWithTemplate.html"><code>vkUpdateDescriptorSetWithTemplate</code></a>
     public void updateDescriptorSetWithTemplate(
         VkDevice device,
@@ -12866,6 +14728,24 @@ public final class VkDeviceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkWaitForPresent2KHR.html"><code>vkWaitForPresent2KHR</code></a>
+    public @EnumType(VkResult.class) int waitForPresent2KHR(
+        VkDevice device,
+        VkSwapchainKHR swapchain,
+        @Pointer VkPresentWait2InfoKHR pPresentWait2Info
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkWaitForPresent2KHR);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                swapchain.segment(),
+                pPresentWait2Info.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkWaitForPresentKHR.html"><code>vkWaitForPresentKHR</code></a>
     public @EnumType(VkResult.class) int waitForPresentKHR(
         VkDevice device,
@@ -12973,6 +14853,46 @@ public final class VkDeviceCommands {
             throw new RuntimeException(e);
         }
     }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkWriteResourceDescriptorsEXT.html"><code>vkWriteResourceDescriptorsEXT</code></a>
+    public @EnumType(VkResult.class) int writeResourceDescriptorsEXT(
+        VkDevice device,
+        @Unsigned int resourceCount,
+        @Pointer IVkResourceDescriptorInfoEXT pResources,
+        @Pointer IVkHostAddressRangeEXT pDescriptors
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkWriteResourceDescriptorsEXT);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                resourceCount,
+                pResources.segment(),
+                pDescriptors.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkWriteSamplerDescriptorsEXT.html"><code>vkWriteSamplerDescriptorsEXT</code></a>
+    public @EnumType(VkResult.class) int writeSamplerDescriptorsEXT(
+        VkDevice device,
+        @Unsigned int samplerCount,
+        @Pointer IVkSamplerCreateInfo pSamplers,
+        @Pointer IVkHostAddressRangeEXT pDescriptors
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkWriteSamplerDescriptorsEXT);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                samplerCount,
+                pSamplers.segment(),
+                pDescriptors.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
     // endregion
 
     // region segments and handles
@@ -12990,14 +14910,21 @@ public final class VkDeviceCommands {
     public final @Nullable MemorySegment SEGMENT$vkBindBufferMemory;
     public final @Nullable MemorySegment SEGMENT$vkBindBufferMemory2;
     public final @Nullable MemorySegment SEGMENT$vkBindBufferMemory2KHR;
+    public final @Nullable MemorySegment SEGMENT$vkBindDataGraphPipelineSessionMemoryARM;
     public final @Nullable MemorySegment SEGMENT$vkBindImageMemory;
     public final @Nullable MemorySegment SEGMENT$vkBindImageMemory2;
     public final @Nullable MemorySegment SEGMENT$vkBindImageMemory2KHR;
     public final @Nullable MemorySegment SEGMENT$vkBindOpticalFlowSessionImageNV;
+    public final @Nullable MemorySegment SEGMENT$vkBindTensorMemoryARM;
     public final @Nullable MemorySegment SEGMENT$vkBindVideoSessionMemoryKHR;
     public final @Nullable MemorySegment SEGMENT$vkBuildAccelerationStructuresKHR;
     public final @Nullable MemorySegment SEGMENT$vkBuildMicromapsEXT;
+    public final @Nullable MemorySegment SEGMENT$vkClearShaderInstrumentationMetricsARM;
+    public final @Nullable MemorySegment SEGMENT$vkCmdBeginConditionalRendering2EXT;
     public final @Nullable MemorySegment SEGMENT$vkCmdBeginConditionalRenderingEXT;
+    public final @Nullable MemorySegment SEGMENT$vkCmdBeginCustomResolveEXT;
+    public final @Nullable MemorySegment SEGMENT$vkCmdBeginGpaSampleAMD;
+    public final @Nullable MemorySegment SEGMENT$vkCmdBeginGpaSessionAMD;
     public final @Nullable MemorySegment SEGMENT$vkCmdBeginPerTileExecutionQCOM;
     public final @Nullable MemorySegment SEGMENT$vkCmdBeginQuery;
     public final @Nullable MemorySegment SEGMENT$vkCmdBeginQueryIndexedEXT;
@@ -13006,6 +14933,8 @@ public final class VkDeviceCommands {
     public final @Nullable MemorySegment SEGMENT$vkCmdBeginRenderPass2KHR;
     public final @Nullable MemorySegment SEGMENT$vkCmdBeginRendering;
     public final @Nullable MemorySegment SEGMENT$vkCmdBeginRenderingKHR;
+    public final @Nullable MemorySegment SEGMENT$vkCmdBeginShaderInstrumentationARM;
+    public final @Nullable MemorySegment SEGMENT$vkCmdBeginTransformFeedback2EXT;
     public final @Nullable MemorySegment SEGMENT$vkCmdBeginTransformFeedbackEXT;
     public final @Nullable MemorySegment SEGMENT$vkCmdBeginVideoCodingKHR;
     public final @Nullable MemorySegment SEGMENT$vkCmdBindDescriptorBufferEmbeddedSamplers2EXT;
@@ -13017,16 +14946,21 @@ public final class VkDeviceCommands {
     public final @Nullable MemorySegment SEGMENT$vkCmdBindIndexBuffer;
     public final @Nullable MemorySegment SEGMENT$vkCmdBindIndexBuffer2;
     public final @Nullable MemorySegment SEGMENT$vkCmdBindIndexBuffer2KHR;
+    public final @Nullable MemorySegment SEGMENT$vkCmdBindIndexBuffer3KHR;
     public final @Nullable MemorySegment SEGMENT$vkCmdBindInvocationMaskHUAWEI;
     public final @Nullable MemorySegment SEGMENT$vkCmdBindPipeline;
     public final @Nullable MemorySegment SEGMENT$vkCmdBindPipelineShaderGroupNV;
+    public final @Nullable MemorySegment SEGMENT$vkCmdBindResourceHeapEXT;
+    public final @Nullable MemorySegment SEGMENT$vkCmdBindSamplerHeapEXT;
     public final @Nullable MemorySegment SEGMENT$vkCmdBindShadersEXT;
     public final @Nullable MemorySegment SEGMENT$vkCmdBindShadingRateImageNV;
     public final @Nullable MemorySegment SEGMENT$vkCmdBindTileMemoryQCOM;
+    public final @Nullable MemorySegment SEGMENT$vkCmdBindTransformFeedbackBuffers2EXT;
     public final @Nullable MemorySegment SEGMENT$vkCmdBindTransformFeedbackBuffersEXT;
     public final @Nullable MemorySegment SEGMENT$vkCmdBindVertexBuffers;
     public final @Nullable MemorySegment SEGMENT$vkCmdBindVertexBuffers2;
     public final @Nullable MemorySegment SEGMENT$vkCmdBindVertexBuffers2EXT;
+    public final @Nullable MemorySegment SEGMENT$vkCmdBindVertexBuffers3KHR;
     public final @Nullable MemorySegment SEGMENT$vkCmdBlitImage;
     public final @Nullable MemorySegment SEGMENT$vkCmdBlitImage2;
     public final @Nullable MemorySegment SEGMENT$vkCmdBlitImage2KHR;
@@ -13050,49 +14984,68 @@ public final class VkDeviceCommands {
     public final @Nullable MemorySegment SEGMENT$vkCmdCopyBufferToImage;
     public final @Nullable MemorySegment SEGMENT$vkCmdCopyBufferToImage2;
     public final @Nullable MemorySegment SEGMENT$vkCmdCopyBufferToImage2KHR;
+    public final @Nullable MemorySegment SEGMENT$vkCmdCopyGpaSessionResultsAMD;
     public final @Nullable MemorySegment SEGMENT$vkCmdCopyImage;
     public final @Nullable MemorySegment SEGMENT$vkCmdCopyImage2;
     public final @Nullable MemorySegment SEGMENT$vkCmdCopyImage2KHR;
     public final @Nullable MemorySegment SEGMENT$vkCmdCopyImageToBuffer;
     public final @Nullable MemorySegment SEGMENT$vkCmdCopyImageToBuffer2;
     public final @Nullable MemorySegment SEGMENT$vkCmdCopyImageToBuffer2KHR;
+    public final @Nullable MemorySegment SEGMENT$vkCmdCopyImageToMemoryKHR;
+    public final @Nullable MemorySegment SEGMENT$vkCmdCopyMemoryIndirectKHR;
     public final @Nullable MemorySegment SEGMENT$vkCmdCopyMemoryIndirectNV;
+    public final @Nullable MemorySegment SEGMENT$vkCmdCopyMemoryKHR;
     public final @Nullable MemorySegment SEGMENT$vkCmdCopyMemoryToAccelerationStructureKHR;
+    public final @Nullable MemorySegment SEGMENT$vkCmdCopyMemoryToImageIndirectKHR;
     public final @Nullable MemorySegment SEGMENT$vkCmdCopyMemoryToImageIndirectNV;
+    public final @Nullable MemorySegment SEGMENT$vkCmdCopyMemoryToImageKHR;
     public final @Nullable MemorySegment SEGMENT$vkCmdCopyMemoryToMicromapEXT;
     public final @Nullable MemorySegment SEGMENT$vkCmdCopyMicromapEXT;
     public final @Nullable MemorySegment SEGMENT$vkCmdCopyMicromapToMemoryEXT;
     public final @Nullable MemorySegment SEGMENT$vkCmdCopyQueryPoolResults;
+    public final @Nullable MemorySegment SEGMENT$vkCmdCopyQueryPoolResultsToMemoryKHR;
+    public final @Nullable MemorySegment SEGMENT$vkCmdCopyTensorARM;
     public final @Nullable MemorySegment SEGMENT$vkCmdCuLaunchKernelNVX;
     public final @Nullable MemorySegment SEGMENT$vkCmdCudaLaunchKernelNV;
     public final @Nullable MemorySegment SEGMENT$vkCmdDebugMarkerBeginEXT;
     public final @Nullable MemorySegment SEGMENT$vkCmdDebugMarkerEndEXT;
     public final @Nullable MemorySegment SEGMENT$vkCmdDebugMarkerInsertEXT;
     public final @Nullable MemorySegment SEGMENT$vkCmdDecodeVideoKHR;
+    public final @Nullable MemorySegment SEGMENT$vkCmdDecompressMemoryEXT;
+    public final @Nullable MemorySegment SEGMENT$vkCmdDecompressMemoryIndirectCountEXT;
     public final @Nullable MemorySegment SEGMENT$vkCmdDecompressMemoryIndirectCountNV;
     public final @Nullable MemorySegment SEGMENT$vkCmdDecompressMemoryNV;
     public final @Nullable MemorySegment SEGMENT$vkCmdDispatch;
     public final @Nullable MemorySegment SEGMENT$vkCmdDispatchBase;
     public final @Nullable MemorySegment SEGMENT$vkCmdDispatchBaseKHR;
+    public final @Nullable MemorySegment SEGMENT$vkCmdDispatchDataGraphARM;
     public final @Nullable MemorySegment SEGMENT$vkCmdDispatchGraphAMDX;
     public final @Nullable MemorySegment SEGMENT$vkCmdDispatchGraphIndirectAMDX;
     public final @Nullable MemorySegment SEGMENT$vkCmdDispatchGraphIndirectCountAMDX;
     public final @Nullable MemorySegment SEGMENT$vkCmdDispatchIndirect;
+    public final @Nullable MemorySegment SEGMENT$vkCmdDispatchIndirect2KHR;
     public final @Nullable MemorySegment SEGMENT$vkCmdDispatchTileQCOM;
     public final @Nullable MemorySegment SEGMENT$vkCmdDraw;
     public final @Nullable MemorySegment SEGMENT$vkCmdDrawClusterHUAWEI;
     public final @Nullable MemorySegment SEGMENT$vkCmdDrawClusterIndirectHUAWEI;
     public final @Nullable MemorySegment SEGMENT$vkCmdDrawIndexed;
     public final @Nullable MemorySegment SEGMENT$vkCmdDrawIndexedIndirect;
+    public final @Nullable MemorySegment SEGMENT$vkCmdDrawIndexedIndirect2KHR;
     public final @Nullable MemorySegment SEGMENT$vkCmdDrawIndexedIndirectCount;
+    public final @Nullable MemorySegment SEGMENT$vkCmdDrawIndexedIndirectCount2KHR;
     public final @Nullable MemorySegment SEGMENT$vkCmdDrawIndexedIndirectCountAMD;
     public final @Nullable MemorySegment SEGMENT$vkCmdDrawIndexedIndirectCountKHR;
     public final @Nullable MemorySegment SEGMENT$vkCmdDrawIndirect;
+    public final @Nullable MemorySegment SEGMENT$vkCmdDrawIndirect2KHR;
+    public final @Nullable MemorySegment SEGMENT$vkCmdDrawIndirectByteCount2EXT;
     public final @Nullable MemorySegment SEGMENT$vkCmdDrawIndirectByteCountEXT;
     public final @Nullable MemorySegment SEGMENT$vkCmdDrawIndirectCount;
+    public final @Nullable MemorySegment SEGMENT$vkCmdDrawIndirectCount2KHR;
     public final @Nullable MemorySegment SEGMENT$vkCmdDrawIndirectCountAMD;
     public final @Nullable MemorySegment SEGMENT$vkCmdDrawIndirectCountKHR;
     public final @Nullable MemorySegment SEGMENT$vkCmdDrawMeshTasksEXT;
+    public final @Nullable MemorySegment SEGMENT$vkCmdDrawMeshTasksIndirect2EXT;
+    public final @Nullable MemorySegment SEGMENT$vkCmdDrawMeshTasksIndirectCount2EXT;
     public final @Nullable MemorySegment SEGMENT$vkCmdDrawMeshTasksIndirectCountEXT;
     public final @Nullable MemorySegment SEGMENT$vkCmdDrawMeshTasksIndirectCountNV;
     public final @Nullable MemorySegment SEGMENT$vkCmdDrawMeshTasksIndirectEXT;
@@ -13102,6 +15055,8 @@ public final class VkDeviceCommands {
     public final @Nullable MemorySegment SEGMENT$vkCmdDrawMultiIndexedEXT;
     public final @Nullable MemorySegment SEGMENT$vkCmdEncodeVideoKHR;
     public final @Nullable MemorySegment SEGMENT$vkCmdEndConditionalRenderingEXT;
+    public final @Nullable MemorySegment SEGMENT$vkCmdEndGpaSampleAMD;
+    public final @Nullable MemorySegment SEGMENT$vkCmdEndGpaSessionAMD;
     public final @Nullable MemorySegment SEGMENT$vkCmdEndPerTileExecutionQCOM;
     public final @Nullable MemorySegment SEGMENT$vkCmdEndQuery;
     public final @Nullable MemorySegment SEGMENT$vkCmdEndQueryIndexedEXT;
@@ -13110,13 +15065,17 @@ public final class VkDeviceCommands {
     public final @Nullable MemorySegment SEGMENT$vkCmdEndRenderPass2KHR;
     public final @Nullable MemorySegment SEGMENT$vkCmdEndRendering;
     public final @Nullable MemorySegment SEGMENT$vkCmdEndRendering2EXT;
+    public final @Nullable MemorySegment SEGMENT$vkCmdEndRendering2KHR;
     public final @Nullable MemorySegment SEGMENT$vkCmdEndRenderingKHR;
+    public final @Nullable MemorySegment SEGMENT$vkCmdEndShaderInstrumentationARM;
+    public final @Nullable MemorySegment SEGMENT$vkCmdEndTransformFeedback2EXT;
     public final @Nullable MemorySegment SEGMENT$vkCmdEndTransformFeedbackEXT;
     public final @Nullable MemorySegment SEGMENT$vkCmdEndVideoCodingKHR;
     public final @Nullable MemorySegment SEGMENT$vkCmdExecuteCommands;
     public final @Nullable MemorySegment SEGMENT$vkCmdExecuteGeneratedCommandsEXT;
     public final @Nullable MemorySegment SEGMENT$vkCmdExecuteGeneratedCommandsNV;
     public final @Nullable MemorySegment SEGMENT$vkCmdFillBuffer;
+    public final @Nullable MemorySegment SEGMENT$vkCmdFillMemoryKHR;
     public final @Nullable MemorySegment SEGMENT$vkCmdInitializeGraphScratchMemoryAMDX;
     public final @Nullable MemorySegment SEGMENT$vkCmdNextSubpass;
     public final @Nullable MemorySegment SEGMENT$vkCmdNextSubpass2;
@@ -13130,6 +15089,7 @@ public final class VkDeviceCommands {
     public final @Nullable MemorySegment SEGMENT$vkCmdPushConstants;
     public final @Nullable MemorySegment SEGMENT$vkCmdPushConstants2;
     public final @Nullable MemorySegment SEGMENT$vkCmdPushConstants2KHR;
+    public final @Nullable MemorySegment SEGMENT$vkCmdPushDataEXT;
     public final @Nullable MemorySegment SEGMENT$vkCmdPushDescriptorSet;
     public final @Nullable MemorySegment SEGMENT$vkCmdPushDescriptorSet2;
     public final @Nullable MemorySegment SEGMENT$vkCmdPushDescriptorSet2KHR;
@@ -13157,6 +15117,7 @@ public final class VkDeviceCommands {
     public final @Nullable MemorySegment SEGMENT$vkCmdSetColorBlendEquationEXT;
     public final @Nullable MemorySegment SEGMENT$vkCmdSetColorWriteEnableEXT;
     public final @Nullable MemorySegment SEGMENT$vkCmdSetColorWriteMaskEXT;
+    public final @Nullable MemorySegment SEGMENT$vkCmdSetComputeOccupancyPriorityNV;
     public final @Nullable MemorySegment SEGMENT$vkCmdSetConservativeRasterizationModeEXT;
     public final @Nullable MemorySegment SEGMENT$vkCmdSetCoverageModulationModeNV;
     public final @Nullable MemorySegment SEGMENT$vkCmdSetCoverageModulationTableEnableNV;
@@ -13190,6 +15151,7 @@ public final class VkDeviceCommands {
     public final @Nullable MemorySegment SEGMENT$vkCmdSetDiscardRectangleEXT;
     public final @Nullable MemorySegment SEGMENT$vkCmdSetDiscardRectangleEnableEXT;
     public final @Nullable MemorySegment SEGMENT$vkCmdSetDiscardRectangleModeEXT;
+    public final @Nullable MemorySegment SEGMENT$vkCmdSetDispatchParametersARM;
     public final @Nullable MemorySegment SEGMENT$vkCmdSetEvent;
     public final @Nullable MemorySegment SEGMENT$vkCmdSetEvent2;
     public final @Nullable MemorySegment SEGMENT$vkCmdSetEvent2KHR;
@@ -13215,6 +15177,7 @@ public final class VkDeviceCommands {
     public final @Nullable MemorySegment SEGMENT$vkCmdSetPolygonModeEXT;
     public final @Nullable MemorySegment SEGMENT$vkCmdSetPrimitiveRestartEnable;
     public final @Nullable MemorySegment SEGMENT$vkCmdSetPrimitiveRestartEnableEXT;
+    public final @Nullable MemorySegment SEGMENT$vkCmdSetPrimitiveRestartIndexEXT;
     public final @Nullable MemorySegment SEGMENT$vkCmdSetPrimitiveTopology;
     public final @Nullable MemorySegment SEGMENT$vkCmdSetPrimitiveTopologyEXT;
     public final @Nullable MemorySegment SEGMENT$vkCmdSetProvokingVertexModeEXT;
@@ -13257,6 +15220,7 @@ public final class VkDeviceCommands {
     public final @Nullable MemorySegment SEGMENT$vkCmdTraceRaysKHR;
     public final @Nullable MemorySegment SEGMENT$vkCmdTraceRaysNV;
     public final @Nullable MemorySegment SEGMENT$vkCmdUpdateBuffer;
+    public final @Nullable MemorySegment SEGMENT$vkCmdUpdateMemoryKHR;
     public final @Nullable MemorySegment SEGMENT$vkCmdUpdatePipelineIndirectBufferNV;
     public final @Nullable MemorySegment SEGMENT$vkCmdWaitEvents;
     public final @Nullable MemorySegment SEGMENT$vkCmdWaitEvents2;
@@ -13265,6 +15229,7 @@ public final class VkDeviceCommands {
     public final @Nullable MemorySegment SEGMENT$vkCmdWriteAccelerationStructuresPropertiesNV;
     public final @Nullable MemorySegment SEGMENT$vkCmdWriteBufferMarker2AMD;
     public final @Nullable MemorySegment SEGMENT$vkCmdWriteBufferMarkerAMD;
+    public final @Nullable MemorySegment SEGMENT$vkCmdWriteMarkerToMemoryAMD;
     public final @Nullable MemorySegment SEGMENT$vkCmdWriteMicromapsPropertiesEXT;
     public final @Nullable MemorySegment SEGMENT$vkCmdWriteTimestamp;
     public final @Nullable MemorySegment SEGMENT$vkCmdWriteTimestamp2;
@@ -13283,6 +15248,7 @@ public final class VkDeviceCommands {
     public final @Nullable MemorySegment SEGMENT$vkCopyMemoryToMicromapEXT;
     public final @Nullable MemorySegment SEGMENT$vkCopyMicromapEXT;
     public final @Nullable MemorySegment SEGMENT$vkCopyMicromapToMemoryEXT;
+    public final @Nullable MemorySegment SEGMENT$vkCreateAccelerationStructure2KHR;
     public final @Nullable MemorySegment SEGMENT$vkCreateAccelerationStructureKHR;
     public final @Nullable MemorySegment SEGMENT$vkCreateAccelerationStructureNV;
     public final @Nullable MemorySegment SEGMENT$vkCreateBuffer;
@@ -13294,6 +15260,8 @@ public final class VkDeviceCommands {
     public final @Nullable MemorySegment SEGMENT$vkCreateCuModuleNVX;
     public final @Nullable MemorySegment SEGMENT$vkCreateCudaFunctionNV;
     public final @Nullable MemorySegment SEGMENT$vkCreateCudaModuleNV;
+    public final @Nullable MemorySegment SEGMENT$vkCreateDataGraphPipelineSessionARM;
+    public final @Nullable MemorySegment SEGMENT$vkCreateDataGraphPipelinesARM;
     public final @Nullable MemorySegment SEGMENT$vkCreateDeferredOperationKHR;
     public final @Nullable MemorySegment SEGMENT$vkCreateDescriptorPool;
     public final @Nullable MemorySegment SEGMENT$vkCreateDescriptorSetLayout;
@@ -13304,6 +15272,7 @@ public final class VkDeviceCommands {
     public final @Nullable MemorySegment SEGMENT$vkCreateExternalComputeQueueNV;
     public final @Nullable MemorySegment SEGMENT$vkCreateFence;
     public final @Nullable MemorySegment SEGMENT$vkCreateFramebuffer;
+    public final @Nullable MemorySegment SEGMENT$vkCreateGpaSessionAMD;
     public final @Nullable MemorySegment SEGMENT$vkCreateGraphicsPipelines;
     public final @Nullable MemorySegment SEGMENT$vkCreateImage;
     public final @Nullable MemorySegment SEGMENT$vkCreateImageView;
@@ -13328,10 +15297,13 @@ public final class VkDeviceCommands {
     public final @Nullable MemorySegment SEGMENT$vkCreateSamplerYcbcrConversionKHR;
     public final @Nullable MemorySegment SEGMENT$vkCreateSemaphore;
     public final @Nullable MemorySegment SEGMENT$vkCreateSemaphoreSciSyncPoolNV;
+    public final @Nullable MemorySegment SEGMENT$vkCreateShaderInstrumentationARM;
     public final @Nullable MemorySegment SEGMENT$vkCreateShaderModule;
     public final @Nullable MemorySegment SEGMENT$vkCreateShadersEXT;
     public final @Nullable MemorySegment SEGMENT$vkCreateSharedSwapchainsKHR;
     public final @Nullable MemorySegment SEGMENT$vkCreateSwapchainKHR;
+    public final @Nullable MemorySegment SEGMENT$vkCreateTensorARM;
+    public final @Nullable MemorySegment SEGMENT$vkCreateTensorViewARM;
     public final @Nullable MemorySegment SEGMENT$vkCreateValidationCacheEXT;
     public final @Nullable MemorySegment SEGMENT$vkCreateVideoSessionKHR;
     public final @Nullable MemorySegment SEGMENT$vkCreateVideoSessionParametersKHR;
@@ -13348,6 +15320,7 @@ public final class VkDeviceCommands {
     public final @Nullable MemorySegment SEGMENT$vkDestroyCuModuleNVX;
     public final @Nullable MemorySegment SEGMENT$vkDestroyCudaFunctionNV;
     public final @Nullable MemorySegment SEGMENT$vkDestroyCudaModuleNV;
+    public final @Nullable MemorySegment SEGMENT$vkDestroyDataGraphPipelineSessionARM;
     public final @Nullable MemorySegment SEGMENT$vkDestroyDeferredOperationKHR;
     public final @Nullable MemorySegment SEGMENT$vkDestroyDescriptorPool;
     public final @Nullable MemorySegment SEGMENT$vkDestroyDescriptorSetLayout;
@@ -13358,6 +15331,7 @@ public final class VkDeviceCommands {
     public final @Nullable MemorySegment SEGMENT$vkDestroyExternalComputeQueueNV;
     public final @Nullable MemorySegment SEGMENT$vkDestroyFence;
     public final @Nullable MemorySegment SEGMENT$vkDestroyFramebuffer;
+    public final @Nullable MemorySegment SEGMENT$vkDestroyGpaSessionAMD;
     public final @Nullable MemorySegment SEGMENT$vkDestroyImage;
     public final @Nullable MemorySegment SEGMENT$vkDestroyImageView;
     public final @Nullable MemorySegment SEGMENT$vkDestroyIndirectCommandsLayoutEXT;
@@ -13379,8 +15353,11 @@ public final class VkDeviceCommands {
     public final @Nullable MemorySegment SEGMENT$vkDestroySemaphore;
     public final @Nullable MemorySegment SEGMENT$vkDestroySemaphoreSciSyncPoolNV;
     public final @Nullable MemorySegment SEGMENT$vkDestroyShaderEXT;
+    public final @Nullable MemorySegment SEGMENT$vkDestroyShaderInstrumentationARM;
     public final @Nullable MemorySegment SEGMENT$vkDestroyShaderModule;
     public final @Nullable MemorySegment SEGMENT$vkDestroySwapchainKHR;
+    public final @Nullable MemorySegment SEGMENT$vkDestroyTensorARM;
+    public final @Nullable MemorySegment SEGMENT$vkDestroyTensorViewARM;
     public final @Nullable MemorySegment SEGMENT$vkDestroyValidationCacheEXT;
     public final @Nullable MemorySegment SEGMENT$vkDestroyVideoSessionKHR;
     public final @Nullable MemorySegment SEGMENT$vkDestroyVideoSessionParametersKHR;
@@ -13412,6 +15389,10 @@ public final class VkDeviceCommands {
     public final @Nullable MemorySegment SEGMENT$vkGetCalibratedTimestampsKHR;
     public final @Nullable MemorySegment SEGMENT$vkGetClusterAccelerationStructureBuildSizesNV;
     public final @Nullable MemorySegment SEGMENT$vkGetCudaModuleCacheNV;
+    public final @Nullable MemorySegment SEGMENT$vkGetDataGraphPipelineAvailablePropertiesARM;
+    public final @Nullable MemorySegment SEGMENT$vkGetDataGraphPipelinePropertiesARM;
+    public final @Nullable MemorySegment SEGMENT$vkGetDataGraphPipelineSessionBindPointRequirementsARM;
+    public final @Nullable MemorySegment SEGMENT$vkGetDataGraphPipelineSessionMemoryRequirementsARM;
     public final @Nullable MemorySegment SEGMENT$vkGetDeferredOperationMaxConcurrencyKHR;
     public final @Nullable MemorySegment SEGMENT$vkGetDeferredOperationResultKHR;
     public final @Nullable MemorySegment SEGMENT$vkGetDescriptorEXT;
@@ -13424,7 +15405,10 @@ public final class VkDeviceCommands {
     public final @Nullable MemorySegment SEGMENT$vkGetDeviceAccelerationStructureCompatibilityKHR;
     public final @Nullable MemorySegment SEGMENT$vkGetDeviceBufferMemoryRequirements;
     public final @Nullable MemorySegment SEGMENT$vkGetDeviceBufferMemoryRequirementsKHR;
+    public final @Nullable MemorySegment SEGMENT$vkGetDeviceCombinedImageSamplerIndexNVX;
+    public final @Nullable MemorySegment SEGMENT$vkGetDeviceFaultDebugInfoKHR;
     public final @Nullable MemorySegment SEGMENT$vkGetDeviceFaultInfoEXT;
+    public final @Nullable MemorySegment SEGMENT$vkGetDeviceFaultReportsKHR;
     public final @Nullable MemorySegment SEGMENT$vkGetDeviceGroupPeerMemoryFeatures;
     public final @Nullable MemorySegment SEGMENT$vkGetDeviceGroupPeerMemoryFeaturesKHR;
     public final @Nullable MemorySegment SEGMENT$vkGetDeviceGroupPresentCapabilitiesKHR;
@@ -13443,6 +15427,7 @@ public final class VkDeviceCommands {
     public final @Nullable MemorySegment SEGMENT$vkGetDeviceQueue;
     public final @Nullable MemorySegment SEGMENT$vkGetDeviceQueue2;
     public final @Nullable MemorySegment SEGMENT$vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI;
+    public final @Nullable MemorySegment SEGMENT$vkGetDeviceTensorMemoryRequirementsARM;
     public final @Nullable MemorySegment SEGMENT$vkGetDynamicRenderingTilePropertiesQCOM;
     public final @Nullable MemorySegment SEGMENT$vkGetEncodedVideoSessionParametersKHR;
     public final @Nullable MemorySegment SEGMENT$vkGetEventStatus;
@@ -13457,10 +15442,14 @@ public final class VkDeviceCommands {
     public final @Nullable MemorySegment SEGMENT$vkGetFramebufferTilePropertiesQCOM;
     public final @Nullable MemorySegment SEGMENT$vkGetGeneratedCommandsMemoryRequirementsEXT;
     public final @Nullable MemorySegment SEGMENT$vkGetGeneratedCommandsMemoryRequirementsNV;
+    public final @Nullable MemorySegment SEGMENT$vkGetGpaDeviceClockInfoAMD;
+    public final @Nullable MemorySegment SEGMENT$vkGetGpaSessionResultsAMD;
+    public final @Nullable MemorySegment SEGMENT$vkGetGpaSessionStatusAMD;
     public final @Nullable MemorySegment SEGMENT$vkGetImageDrmFormatModifierPropertiesEXT;
     public final @Nullable MemorySegment SEGMENT$vkGetImageMemoryRequirements;
     public final @Nullable MemorySegment SEGMENT$vkGetImageMemoryRequirements2;
     public final @Nullable MemorySegment SEGMENT$vkGetImageMemoryRequirements2KHR;
+    public final @Nullable MemorySegment SEGMENT$vkGetImageOpaqueCaptureDataEXT;
     public final @Nullable MemorySegment SEGMENT$vkGetImageOpaqueCaptureDescriptorDataEXT;
     public final @Nullable MemorySegment SEGMENT$vkGetImageSparseMemoryRequirements;
     public final @Nullable MemorySegment SEGMENT$vkGetImageSparseMemoryRequirements2;
@@ -13473,6 +15462,7 @@ public final class VkDeviceCommands {
     public final @Nullable MemorySegment SEGMENT$vkGetImageViewHandle64NVX;
     public final @Nullable MemorySegment SEGMENT$vkGetImageViewHandleNVX;
     public final @Nullable MemorySegment SEGMENT$vkGetImageViewOpaqueCaptureDescriptorDataEXT;
+    public final @Nullable MemorySegment SEGMENT$vkGetLatencyTimingsLegacyNV;
     public final @Nullable MemorySegment SEGMENT$vkGetLatencyTimingsNV;
     public final @Nullable MemorySegment SEGMENT$vkGetMemoryAndroidHardwareBufferANDROID;
     public final @Nullable MemorySegment SEGMENT$vkGetMemoryFdKHR;
@@ -13480,6 +15470,7 @@ public final class VkDeviceCommands {
     public final @Nullable MemorySegment SEGMENT$vkGetMemoryHostPointerPropertiesEXT;
     public final @Nullable MemorySegment SEGMENT$vkGetMemoryMetalHandleEXT;
     public final @Nullable MemorySegment SEGMENT$vkGetMemoryMetalHandlePropertiesEXT;
+    public final @Nullable MemorySegment SEGMENT$vkGetMemoryNativeBufferOHOS;
     public final @Nullable MemorySegment SEGMENT$vkGetMemoryRemoteAddressNV;
     public final @Nullable MemorySegment SEGMENT$vkGetMemorySciBufNV;
     public final @Nullable MemorySegment SEGMENT$vkGetMemoryWin32HandleKHR;
@@ -13488,7 +15479,9 @@ public final class VkDeviceCommands {
     public final @Nullable MemorySegment SEGMENT$vkGetMemoryZirconHandleFUCHSIA;
     public final @Nullable MemorySegment SEGMENT$vkGetMemoryZirconHandlePropertiesFUCHSIA;
     public final @Nullable MemorySegment SEGMENT$vkGetMicromapBuildSizesEXT;
+    public final @Nullable MemorySegment SEGMENT$vkGetNativeBufferPropertiesOHOS;
     public final @Nullable MemorySegment SEGMENT$vkGetPartitionedAccelerationStructuresBuildSizesNV;
+    public final @Nullable MemorySegment SEGMENT$vkGetPastPresentationTimingEXT;
     public final @Nullable MemorySegment SEGMENT$vkGetPastPresentationTimingGOOGLE;
     public final @Nullable MemorySegment SEGMENT$vkGetPerformanceParameterINTEL;
     public final @Nullable MemorySegment SEGMENT$vkGetPipelineBinaryDataKHR;
@@ -13523,11 +15516,19 @@ public final class VkDeviceCommands {
     public final @Nullable MemorySegment SEGMENT$vkGetSemaphoreZirconHandleFUCHSIA;
     public final @Nullable MemorySegment SEGMENT$vkGetShaderBinaryDataEXT;
     public final @Nullable MemorySegment SEGMENT$vkGetShaderInfoAMD;
+    public final @Nullable MemorySegment SEGMENT$vkGetShaderInstrumentationValuesARM;
     public final @Nullable MemorySegment SEGMENT$vkGetShaderModuleCreateInfoIdentifierEXT;
     public final @Nullable MemorySegment SEGMENT$vkGetShaderModuleIdentifierEXT;
+    public final @Nullable MemorySegment SEGMENT$vkGetSleepStatusLegacyNV;
     public final @Nullable MemorySegment SEGMENT$vkGetSwapchainCounterEXT;
     public final @Nullable MemorySegment SEGMENT$vkGetSwapchainImagesKHR;
     public final @Nullable MemorySegment SEGMENT$vkGetSwapchainStatusKHR;
+    public final @Nullable MemorySegment SEGMENT$vkGetSwapchainTimeDomainPropertiesEXT;
+    public final @Nullable MemorySegment SEGMENT$vkGetSwapchainTimingPropertiesEXT;
+    public final @Nullable MemorySegment SEGMENT$vkGetTensorMemoryRequirementsARM;
+    public final @Nullable MemorySegment SEGMENT$vkGetTensorOpaqueCaptureDataARM;
+    public final @Nullable MemorySegment SEGMENT$vkGetTensorOpaqueCaptureDescriptorDataARM;
+    public final @Nullable MemorySegment SEGMENT$vkGetTensorViewOpaqueCaptureDescriptorDataARM;
     public final @Nullable MemorySegment SEGMENT$vkGetValidationCacheDataEXT;
     public final @Nullable MemorySegment SEGMENT$vkGetVideoSessionMemoryRequirementsKHR;
     public final @Nullable MemorySegment SEGMENT$vkImportFenceFdKHR;
@@ -13540,6 +15541,7 @@ public final class VkDeviceCommands {
     public final @Nullable MemorySegment SEGMENT$vkImportSemaphoreZirconHandleFUCHSIA;
     public final @Nullable MemorySegment SEGMENT$vkInitializePerformanceApiINTEL;
     public final @Nullable MemorySegment SEGMENT$vkInvalidateMappedMemoryRanges;
+    public final @Nullable MemorySegment SEGMENT$vkLatencySleepLegacyNV;
     public final @Nullable MemorySegment SEGMENT$vkLatencySleepNV;
     public final @Nullable MemorySegment SEGMENT$vkMapMemory;
     public final @Nullable MemorySegment SEGMENT$vkMapMemory2;
@@ -13547,13 +15549,16 @@ public final class VkDeviceCommands {
     public final @Nullable MemorySegment SEGMENT$vkMergePipelineCaches;
     public final @Nullable MemorySegment SEGMENT$vkMergeValidationCachesEXT;
     public final @Nullable MemorySegment SEGMENT$vkQueueBindSparse;
+    public final @Nullable MemorySegment SEGMENT$vkQueueNotifyOutOfBandLegacyNV;
     public final @Nullable MemorySegment SEGMENT$vkQueueNotifyOutOfBandNV;
     public final @Nullable MemorySegment SEGMENT$vkQueuePresentKHR;
+    public final @Nullable MemorySegment SEGMENT$vkQueueSetPerfHintQCOM;
     public final @Nullable MemorySegment SEGMENT$vkQueueSetPerformanceConfigurationINTEL;
     public final @Nullable MemorySegment SEGMENT$vkQueueSubmit;
     public final @Nullable MemorySegment SEGMENT$vkQueueSubmit2;
     public final @Nullable MemorySegment SEGMENT$vkQueueSubmit2KHR;
     public final @Nullable MemorySegment SEGMENT$vkQueueWaitIdle;
+    public final @Nullable MemorySegment SEGMENT$vkRegisterCustomBorderColorEXT;
     public final @Nullable MemorySegment SEGMENT$vkRegisterDeviceEventEXT;
     public final @Nullable MemorySegment SEGMENT$vkRegisterDisplayEventEXT;
     public final @Nullable MemorySegment SEGMENT$vkReleaseCapturedPipelineDataKHR;
@@ -13561,23 +15566,30 @@ public final class VkDeviceCommands {
     public final @Nullable MemorySegment SEGMENT$vkReleasePerformanceConfigurationINTEL;
     public final @Nullable MemorySegment SEGMENT$vkReleaseProfilingLockKHR;
     public final @Nullable MemorySegment SEGMENT$vkReleaseSwapchainImagesEXT;
+    public final @Nullable MemorySegment SEGMENT$vkReleaseSwapchainImagesKHR;
     public final @Nullable MemorySegment SEGMENT$vkResetCommandBuffer;
     public final @Nullable MemorySegment SEGMENT$vkResetCommandPool;
     public final @Nullable MemorySegment SEGMENT$vkResetDescriptorPool;
     public final @Nullable MemorySegment SEGMENT$vkResetEvent;
     public final @Nullable MemorySegment SEGMENT$vkResetFences;
+    public final @Nullable MemorySegment SEGMENT$vkResetGpaSessionAMD;
     public final @Nullable MemorySegment SEGMENT$vkResetQueryPool;
     public final @Nullable MemorySegment SEGMENT$vkResetQueryPoolEXT;
     public final @Nullable MemorySegment SEGMENT$vkSetBufferCollectionBufferConstraintsFUCHSIA;
     public final @Nullable MemorySegment SEGMENT$vkSetBufferCollectionImageConstraintsFUCHSIA;
     public final @Nullable MemorySegment SEGMENT$vkSetDeviceMemoryPriorityEXT;
     public final @Nullable MemorySegment SEGMENT$vkSetEvent;
+    public final @Nullable MemorySegment SEGMENT$vkSetGpaDeviceClockModeAMD;
     public final @Nullable MemorySegment SEGMENT$vkSetHdrMetadataEXT;
+    public final @Nullable MemorySegment SEGMENT$vkSetLatencyMarkerLegacyNV;
     public final @Nullable MemorySegment SEGMENT$vkSetLatencyMarkerNV;
+    public final @Nullable MemorySegment SEGMENT$vkSetLatencySleepModeLegacyNV;
     public final @Nullable MemorySegment SEGMENT$vkSetLatencySleepModeNV;
     public final @Nullable MemorySegment SEGMENT$vkSetLocalDimmingAMD;
     public final @Nullable MemorySegment SEGMENT$vkSetPrivateData;
     public final @Nullable MemorySegment SEGMENT$vkSetPrivateDataEXT;
+    public final @Nullable MemorySegment SEGMENT$vkSetSwapchainPresentTimingQueueSizeEXT;
+    public final @Nullable MemorySegment SEGMENT$vkShutdownLatencyDeviceLegacyNV;
     public final @Nullable MemorySegment SEGMENT$vkSignalSemaphore;
     public final @Nullable MemorySegment SEGMENT$vkSignalSemaphoreKHR;
     public final @Nullable MemorySegment SEGMENT$vkTransitionImageLayout;
@@ -13588,6 +15600,7 @@ public final class VkDeviceCommands {
     public final @Nullable MemorySegment SEGMENT$vkUnmapMemory;
     public final @Nullable MemorySegment SEGMENT$vkUnmapMemory2;
     public final @Nullable MemorySegment SEGMENT$vkUnmapMemory2KHR;
+    public final @Nullable MemorySegment SEGMENT$vkUnregisterCustomBorderColorEXT;
     public final @Nullable MemorySegment SEGMENT$vkUpdateDescriptorSetWithTemplate;
     public final @Nullable MemorySegment SEGMENT$vkUpdateDescriptorSetWithTemplateKHR;
     public final @Nullable MemorySegment SEGMENT$vkUpdateDescriptorSets;
@@ -13595,11 +15608,14 @@ public final class VkDeviceCommands {
     public final @Nullable MemorySegment SEGMENT$vkUpdateIndirectExecutionSetShaderEXT;
     public final @Nullable MemorySegment SEGMENT$vkUpdateVideoSessionParametersKHR;
     public final @Nullable MemorySegment SEGMENT$vkWaitForFences;
+    public final @Nullable MemorySegment SEGMENT$vkWaitForPresent2KHR;
     public final @Nullable MemorySegment SEGMENT$vkWaitForPresentKHR;
     public final @Nullable MemorySegment SEGMENT$vkWaitSemaphores;
     public final @Nullable MemorySegment SEGMENT$vkWaitSemaphoresKHR;
     public final @Nullable MemorySegment SEGMENT$vkWriteAccelerationStructuresPropertiesKHR;
     public final @Nullable MemorySegment SEGMENT$vkWriteMicromapsPropertiesEXT;
+    public final @Nullable MemorySegment SEGMENT$vkWriteResourceDescriptorsEXT;
+    public final @Nullable MemorySegment SEGMENT$vkWriteSamplerDescriptorsEXT;
     public final @Nullable MethodHandle HANDLE$vkAcquireFullScreenExclusiveModeEXT;
     public final @Nullable MethodHandle HANDLE$vkAcquireNextImage2KHR;
     public final @Nullable MethodHandle HANDLE$vkAcquireNextImageKHR;
@@ -13614,14 +15630,21 @@ public final class VkDeviceCommands {
     public final @Nullable MethodHandle HANDLE$vkBindBufferMemory;
     public final @Nullable MethodHandle HANDLE$vkBindBufferMemory2;
     public final @Nullable MethodHandle HANDLE$vkBindBufferMemory2KHR;
+    public final @Nullable MethodHandle HANDLE$vkBindDataGraphPipelineSessionMemoryARM;
     public final @Nullable MethodHandle HANDLE$vkBindImageMemory;
     public final @Nullable MethodHandle HANDLE$vkBindImageMemory2;
     public final @Nullable MethodHandle HANDLE$vkBindImageMemory2KHR;
     public final @Nullable MethodHandle HANDLE$vkBindOpticalFlowSessionImageNV;
+    public final @Nullable MethodHandle HANDLE$vkBindTensorMemoryARM;
     public final @Nullable MethodHandle HANDLE$vkBindVideoSessionMemoryKHR;
     public final @Nullable MethodHandle HANDLE$vkBuildAccelerationStructuresKHR;
     public final @Nullable MethodHandle HANDLE$vkBuildMicromapsEXT;
+    public final @Nullable MethodHandle HANDLE$vkClearShaderInstrumentationMetricsARM;
+    public final @Nullable MethodHandle HANDLE$vkCmdBeginConditionalRendering2EXT;
     public final @Nullable MethodHandle HANDLE$vkCmdBeginConditionalRenderingEXT;
+    public final @Nullable MethodHandle HANDLE$vkCmdBeginCustomResolveEXT;
+    public final @Nullable MethodHandle HANDLE$vkCmdBeginGpaSampleAMD;
+    public final @Nullable MethodHandle HANDLE$vkCmdBeginGpaSessionAMD;
     public final @Nullable MethodHandle HANDLE$vkCmdBeginPerTileExecutionQCOM;
     public final @Nullable MethodHandle HANDLE$vkCmdBeginQuery;
     public final @Nullable MethodHandle HANDLE$vkCmdBeginQueryIndexedEXT;
@@ -13630,6 +15653,8 @@ public final class VkDeviceCommands {
     public final @Nullable MethodHandle HANDLE$vkCmdBeginRenderPass2KHR;
     public final @Nullable MethodHandle HANDLE$vkCmdBeginRendering;
     public final @Nullable MethodHandle HANDLE$vkCmdBeginRenderingKHR;
+    public final @Nullable MethodHandle HANDLE$vkCmdBeginShaderInstrumentationARM;
+    public final @Nullable MethodHandle HANDLE$vkCmdBeginTransformFeedback2EXT;
     public final @Nullable MethodHandle HANDLE$vkCmdBeginTransformFeedbackEXT;
     public final @Nullable MethodHandle HANDLE$vkCmdBeginVideoCodingKHR;
     public final @Nullable MethodHandle HANDLE$vkCmdBindDescriptorBufferEmbeddedSamplers2EXT;
@@ -13641,16 +15666,21 @@ public final class VkDeviceCommands {
     public final @Nullable MethodHandle HANDLE$vkCmdBindIndexBuffer;
     public final @Nullable MethodHandle HANDLE$vkCmdBindIndexBuffer2;
     public final @Nullable MethodHandle HANDLE$vkCmdBindIndexBuffer2KHR;
+    public final @Nullable MethodHandle HANDLE$vkCmdBindIndexBuffer3KHR;
     public final @Nullable MethodHandle HANDLE$vkCmdBindInvocationMaskHUAWEI;
     public final @Nullable MethodHandle HANDLE$vkCmdBindPipeline;
     public final @Nullable MethodHandle HANDLE$vkCmdBindPipelineShaderGroupNV;
+    public final @Nullable MethodHandle HANDLE$vkCmdBindResourceHeapEXT;
+    public final @Nullable MethodHandle HANDLE$vkCmdBindSamplerHeapEXT;
     public final @Nullable MethodHandle HANDLE$vkCmdBindShadersEXT;
     public final @Nullable MethodHandle HANDLE$vkCmdBindShadingRateImageNV;
     public final @Nullable MethodHandle HANDLE$vkCmdBindTileMemoryQCOM;
+    public final @Nullable MethodHandle HANDLE$vkCmdBindTransformFeedbackBuffers2EXT;
     public final @Nullable MethodHandle HANDLE$vkCmdBindTransformFeedbackBuffersEXT;
     public final @Nullable MethodHandle HANDLE$vkCmdBindVertexBuffers;
     public final @Nullable MethodHandle HANDLE$vkCmdBindVertexBuffers2;
     public final @Nullable MethodHandle HANDLE$vkCmdBindVertexBuffers2EXT;
+    public final @Nullable MethodHandle HANDLE$vkCmdBindVertexBuffers3KHR;
     public final @Nullable MethodHandle HANDLE$vkCmdBlitImage;
     public final @Nullable MethodHandle HANDLE$vkCmdBlitImage2;
     public final @Nullable MethodHandle HANDLE$vkCmdBlitImage2KHR;
@@ -13674,49 +15704,68 @@ public final class VkDeviceCommands {
     public final @Nullable MethodHandle HANDLE$vkCmdCopyBufferToImage;
     public final @Nullable MethodHandle HANDLE$vkCmdCopyBufferToImage2;
     public final @Nullable MethodHandle HANDLE$vkCmdCopyBufferToImage2KHR;
+    public final @Nullable MethodHandle HANDLE$vkCmdCopyGpaSessionResultsAMD;
     public final @Nullable MethodHandle HANDLE$vkCmdCopyImage;
     public final @Nullable MethodHandle HANDLE$vkCmdCopyImage2;
     public final @Nullable MethodHandle HANDLE$vkCmdCopyImage2KHR;
     public final @Nullable MethodHandle HANDLE$vkCmdCopyImageToBuffer;
     public final @Nullable MethodHandle HANDLE$vkCmdCopyImageToBuffer2;
     public final @Nullable MethodHandle HANDLE$vkCmdCopyImageToBuffer2KHR;
+    public final @Nullable MethodHandle HANDLE$vkCmdCopyImageToMemoryKHR;
+    public final @Nullable MethodHandle HANDLE$vkCmdCopyMemoryIndirectKHR;
     public final @Nullable MethodHandle HANDLE$vkCmdCopyMemoryIndirectNV;
+    public final @Nullable MethodHandle HANDLE$vkCmdCopyMemoryKHR;
     public final @Nullable MethodHandle HANDLE$vkCmdCopyMemoryToAccelerationStructureKHR;
+    public final @Nullable MethodHandle HANDLE$vkCmdCopyMemoryToImageIndirectKHR;
     public final @Nullable MethodHandle HANDLE$vkCmdCopyMemoryToImageIndirectNV;
+    public final @Nullable MethodHandle HANDLE$vkCmdCopyMemoryToImageKHR;
     public final @Nullable MethodHandle HANDLE$vkCmdCopyMemoryToMicromapEXT;
     public final @Nullable MethodHandle HANDLE$vkCmdCopyMicromapEXT;
     public final @Nullable MethodHandle HANDLE$vkCmdCopyMicromapToMemoryEXT;
     public final @Nullable MethodHandle HANDLE$vkCmdCopyQueryPoolResults;
+    public final @Nullable MethodHandle HANDLE$vkCmdCopyQueryPoolResultsToMemoryKHR;
+    public final @Nullable MethodHandle HANDLE$vkCmdCopyTensorARM;
     public final @Nullable MethodHandle HANDLE$vkCmdCuLaunchKernelNVX;
     public final @Nullable MethodHandle HANDLE$vkCmdCudaLaunchKernelNV;
     public final @Nullable MethodHandle HANDLE$vkCmdDebugMarkerBeginEXT;
     public final @Nullable MethodHandle HANDLE$vkCmdDebugMarkerEndEXT;
     public final @Nullable MethodHandle HANDLE$vkCmdDebugMarkerInsertEXT;
     public final @Nullable MethodHandle HANDLE$vkCmdDecodeVideoKHR;
+    public final @Nullable MethodHandle HANDLE$vkCmdDecompressMemoryEXT;
+    public final @Nullable MethodHandle HANDLE$vkCmdDecompressMemoryIndirectCountEXT;
     public final @Nullable MethodHandle HANDLE$vkCmdDecompressMemoryIndirectCountNV;
     public final @Nullable MethodHandle HANDLE$vkCmdDecompressMemoryNV;
     public final @Nullable MethodHandle HANDLE$vkCmdDispatch;
     public final @Nullable MethodHandle HANDLE$vkCmdDispatchBase;
     public final @Nullable MethodHandle HANDLE$vkCmdDispatchBaseKHR;
+    public final @Nullable MethodHandle HANDLE$vkCmdDispatchDataGraphARM;
     public final @Nullable MethodHandle HANDLE$vkCmdDispatchGraphAMDX;
     public final @Nullable MethodHandle HANDLE$vkCmdDispatchGraphIndirectAMDX;
     public final @Nullable MethodHandle HANDLE$vkCmdDispatchGraphIndirectCountAMDX;
     public final @Nullable MethodHandle HANDLE$vkCmdDispatchIndirect;
+    public final @Nullable MethodHandle HANDLE$vkCmdDispatchIndirect2KHR;
     public final @Nullable MethodHandle HANDLE$vkCmdDispatchTileQCOM;
     public final @Nullable MethodHandle HANDLE$vkCmdDraw;
     public final @Nullable MethodHandle HANDLE$vkCmdDrawClusterHUAWEI;
     public final @Nullable MethodHandle HANDLE$vkCmdDrawClusterIndirectHUAWEI;
     public final @Nullable MethodHandle HANDLE$vkCmdDrawIndexed;
     public final @Nullable MethodHandle HANDLE$vkCmdDrawIndexedIndirect;
+    public final @Nullable MethodHandle HANDLE$vkCmdDrawIndexedIndirect2KHR;
     public final @Nullable MethodHandle HANDLE$vkCmdDrawIndexedIndirectCount;
+    public final @Nullable MethodHandle HANDLE$vkCmdDrawIndexedIndirectCount2KHR;
     public final @Nullable MethodHandle HANDLE$vkCmdDrawIndexedIndirectCountAMD;
     public final @Nullable MethodHandle HANDLE$vkCmdDrawIndexedIndirectCountKHR;
     public final @Nullable MethodHandle HANDLE$vkCmdDrawIndirect;
+    public final @Nullable MethodHandle HANDLE$vkCmdDrawIndirect2KHR;
+    public final @Nullable MethodHandle HANDLE$vkCmdDrawIndirectByteCount2EXT;
     public final @Nullable MethodHandle HANDLE$vkCmdDrawIndirectByteCountEXT;
     public final @Nullable MethodHandle HANDLE$vkCmdDrawIndirectCount;
+    public final @Nullable MethodHandle HANDLE$vkCmdDrawIndirectCount2KHR;
     public final @Nullable MethodHandle HANDLE$vkCmdDrawIndirectCountAMD;
     public final @Nullable MethodHandle HANDLE$vkCmdDrawIndirectCountKHR;
     public final @Nullable MethodHandle HANDLE$vkCmdDrawMeshTasksEXT;
+    public final @Nullable MethodHandle HANDLE$vkCmdDrawMeshTasksIndirect2EXT;
+    public final @Nullable MethodHandle HANDLE$vkCmdDrawMeshTasksIndirectCount2EXT;
     public final @Nullable MethodHandle HANDLE$vkCmdDrawMeshTasksIndirectCountEXT;
     public final @Nullable MethodHandle HANDLE$vkCmdDrawMeshTasksIndirectCountNV;
     public final @Nullable MethodHandle HANDLE$vkCmdDrawMeshTasksIndirectEXT;
@@ -13726,6 +15775,8 @@ public final class VkDeviceCommands {
     public final @Nullable MethodHandle HANDLE$vkCmdDrawMultiIndexedEXT;
     public final @Nullable MethodHandle HANDLE$vkCmdEncodeVideoKHR;
     public final @Nullable MethodHandle HANDLE$vkCmdEndConditionalRenderingEXT;
+    public final @Nullable MethodHandle HANDLE$vkCmdEndGpaSampleAMD;
+    public final @Nullable MethodHandle HANDLE$vkCmdEndGpaSessionAMD;
     public final @Nullable MethodHandle HANDLE$vkCmdEndPerTileExecutionQCOM;
     public final @Nullable MethodHandle HANDLE$vkCmdEndQuery;
     public final @Nullable MethodHandle HANDLE$vkCmdEndQueryIndexedEXT;
@@ -13734,13 +15785,17 @@ public final class VkDeviceCommands {
     public final @Nullable MethodHandle HANDLE$vkCmdEndRenderPass2KHR;
     public final @Nullable MethodHandle HANDLE$vkCmdEndRendering;
     public final @Nullable MethodHandle HANDLE$vkCmdEndRendering2EXT;
+    public final @Nullable MethodHandle HANDLE$vkCmdEndRendering2KHR;
     public final @Nullable MethodHandle HANDLE$vkCmdEndRenderingKHR;
+    public final @Nullable MethodHandle HANDLE$vkCmdEndShaderInstrumentationARM;
+    public final @Nullable MethodHandle HANDLE$vkCmdEndTransformFeedback2EXT;
     public final @Nullable MethodHandle HANDLE$vkCmdEndTransformFeedbackEXT;
     public final @Nullable MethodHandle HANDLE$vkCmdEndVideoCodingKHR;
     public final @Nullable MethodHandle HANDLE$vkCmdExecuteCommands;
     public final @Nullable MethodHandle HANDLE$vkCmdExecuteGeneratedCommandsEXT;
     public final @Nullable MethodHandle HANDLE$vkCmdExecuteGeneratedCommandsNV;
     public final @Nullable MethodHandle HANDLE$vkCmdFillBuffer;
+    public final @Nullable MethodHandle HANDLE$vkCmdFillMemoryKHR;
     public final @Nullable MethodHandle HANDLE$vkCmdInitializeGraphScratchMemoryAMDX;
     public final @Nullable MethodHandle HANDLE$vkCmdNextSubpass;
     public final @Nullable MethodHandle HANDLE$vkCmdNextSubpass2;
@@ -13754,6 +15809,7 @@ public final class VkDeviceCommands {
     public final @Nullable MethodHandle HANDLE$vkCmdPushConstants;
     public final @Nullable MethodHandle HANDLE$vkCmdPushConstants2;
     public final @Nullable MethodHandle HANDLE$vkCmdPushConstants2KHR;
+    public final @Nullable MethodHandle HANDLE$vkCmdPushDataEXT;
     public final @Nullable MethodHandle HANDLE$vkCmdPushDescriptorSet;
     public final @Nullable MethodHandle HANDLE$vkCmdPushDescriptorSet2;
     public final @Nullable MethodHandle HANDLE$vkCmdPushDescriptorSet2KHR;
@@ -13781,6 +15837,7 @@ public final class VkDeviceCommands {
     public final @Nullable MethodHandle HANDLE$vkCmdSetColorBlendEquationEXT;
     public final @Nullable MethodHandle HANDLE$vkCmdSetColorWriteEnableEXT;
     public final @Nullable MethodHandle HANDLE$vkCmdSetColorWriteMaskEXT;
+    public final @Nullable MethodHandle HANDLE$vkCmdSetComputeOccupancyPriorityNV;
     public final @Nullable MethodHandle HANDLE$vkCmdSetConservativeRasterizationModeEXT;
     public final @Nullable MethodHandle HANDLE$vkCmdSetCoverageModulationModeNV;
     public final @Nullable MethodHandle HANDLE$vkCmdSetCoverageModulationTableEnableNV;
@@ -13814,6 +15871,7 @@ public final class VkDeviceCommands {
     public final @Nullable MethodHandle HANDLE$vkCmdSetDiscardRectangleEXT;
     public final @Nullable MethodHandle HANDLE$vkCmdSetDiscardRectangleEnableEXT;
     public final @Nullable MethodHandle HANDLE$vkCmdSetDiscardRectangleModeEXT;
+    public final @Nullable MethodHandle HANDLE$vkCmdSetDispatchParametersARM;
     public final @Nullable MethodHandle HANDLE$vkCmdSetEvent;
     public final @Nullable MethodHandle HANDLE$vkCmdSetEvent2;
     public final @Nullable MethodHandle HANDLE$vkCmdSetEvent2KHR;
@@ -13839,6 +15897,7 @@ public final class VkDeviceCommands {
     public final @Nullable MethodHandle HANDLE$vkCmdSetPolygonModeEXT;
     public final @Nullable MethodHandle HANDLE$vkCmdSetPrimitiveRestartEnable;
     public final @Nullable MethodHandle HANDLE$vkCmdSetPrimitiveRestartEnableEXT;
+    public final @Nullable MethodHandle HANDLE$vkCmdSetPrimitiveRestartIndexEXT;
     public final @Nullable MethodHandle HANDLE$vkCmdSetPrimitiveTopology;
     public final @Nullable MethodHandle HANDLE$vkCmdSetPrimitiveTopologyEXT;
     public final @Nullable MethodHandle HANDLE$vkCmdSetProvokingVertexModeEXT;
@@ -13881,6 +15940,7 @@ public final class VkDeviceCommands {
     public final @Nullable MethodHandle HANDLE$vkCmdTraceRaysKHR;
     public final @Nullable MethodHandle HANDLE$vkCmdTraceRaysNV;
     public final @Nullable MethodHandle HANDLE$vkCmdUpdateBuffer;
+    public final @Nullable MethodHandle HANDLE$vkCmdUpdateMemoryKHR;
     public final @Nullable MethodHandle HANDLE$vkCmdUpdatePipelineIndirectBufferNV;
     public final @Nullable MethodHandle HANDLE$vkCmdWaitEvents;
     public final @Nullable MethodHandle HANDLE$vkCmdWaitEvents2;
@@ -13889,6 +15949,7 @@ public final class VkDeviceCommands {
     public final @Nullable MethodHandle HANDLE$vkCmdWriteAccelerationStructuresPropertiesNV;
     public final @Nullable MethodHandle HANDLE$vkCmdWriteBufferMarker2AMD;
     public final @Nullable MethodHandle HANDLE$vkCmdWriteBufferMarkerAMD;
+    public final @Nullable MethodHandle HANDLE$vkCmdWriteMarkerToMemoryAMD;
     public final @Nullable MethodHandle HANDLE$vkCmdWriteMicromapsPropertiesEXT;
     public final @Nullable MethodHandle HANDLE$vkCmdWriteTimestamp;
     public final @Nullable MethodHandle HANDLE$vkCmdWriteTimestamp2;
@@ -13907,6 +15968,7 @@ public final class VkDeviceCommands {
     public final @Nullable MethodHandle HANDLE$vkCopyMemoryToMicromapEXT;
     public final @Nullable MethodHandle HANDLE$vkCopyMicromapEXT;
     public final @Nullable MethodHandle HANDLE$vkCopyMicromapToMemoryEXT;
+    public final @Nullable MethodHandle HANDLE$vkCreateAccelerationStructure2KHR;
     public final @Nullable MethodHandle HANDLE$vkCreateAccelerationStructureKHR;
     public final @Nullable MethodHandle HANDLE$vkCreateAccelerationStructureNV;
     public final @Nullable MethodHandle HANDLE$vkCreateBuffer;
@@ -13918,6 +15980,8 @@ public final class VkDeviceCommands {
     public final @Nullable MethodHandle HANDLE$vkCreateCuModuleNVX;
     public final @Nullable MethodHandle HANDLE$vkCreateCudaFunctionNV;
     public final @Nullable MethodHandle HANDLE$vkCreateCudaModuleNV;
+    public final @Nullable MethodHandle HANDLE$vkCreateDataGraphPipelineSessionARM;
+    public final @Nullable MethodHandle HANDLE$vkCreateDataGraphPipelinesARM;
     public final @Nullable MethodHandle HANDLE$vkCreateDeferredOperationKHR;
     public final @Nullable MethodHandle HANDLE$vkCreateDescriptorPool;
     public final @Nullable MethodHandle HANDLE$vkCreateDescriptorSetLayout;
@@ -13928,6 +15992,7 @@ public final class VkDeviceCommands {
     public final @Nullable MethodHandle HANDLE$vkCreateExternalComputeQueueNV;
     public final @Nullable MethodHandle HANDLE$vkCreateFence;
     public final @Nullable MethodHandle HANDLE$vkCreateFramebuffer;
+    public final @Nullable MethodHandle HANDLE$vkCreateGpaSessionAMD;
     public final @Nullable MethodHandle HANDLE$vkCreateGraphicsPipelines;
     public final @Nullable MethodHandle HANDLE$vkCreateImage;
     public final @Nullable MethodHandle HANDLE$vkCreateImageView;
@@ -13952,10 +16017,13 @@ public final class VkDeviceCommands {
     public final @Nullable MethodHandle HANDLE$vkCreateSamplerYcbcrConversionKHR;
     public final @Nullable MethodHandle HANDLE$vkCreateSemaphore;
     public final @Nullable MethodHandle HANDLE$vkCreateSemaphoreSciSyncPoolNV;
+    public final @Nullable MethodHandle HANDLE$vkCreateShaderInstrumentationARM;
     public final @Nullable MethodHandle HANDLE$vkCreateShaderModule;
     public final @Nullable MethodHandle HANDLE$vkCreateShadersEXT;
     public final @Nullable MethodHandle HANDLE$vkCreateSharedSwapchainsKHR;
     public final @Nullable MethodHandle HANDLE$vkCreateSwapchainKHR;
+    public final @Nullable MethodHandle HANDLE$vkCreateTensorARM;
+    public final @Nullable MethodHandle HANDLE$vkCreateTensorViewARM;
     public final @Nullable MethodHandle HANDLE$vkCreateValidationCacheEXT;
     public final @Nullable MethodHandle HANDLE$vkCreateVideoSessionKHR;
     public final @Nullable MethodHandle HANDLE$vkCreateVideoSessionParametersKHR;
@@ -13972,6 +16040,7 @@ public final class VkDeviceCommands {
     public final @Nullable MethodHandle HANDLE$vkDestroyCuModuleNVX;
     public final @Nullable MethodHandle HANDLE$vkDestroyCudaFunctionNV;
     public final @Nullable MethodHandle HANDLE$vkDestroyCudaModuleNV;
+    public final @Nullable MethodHandle HANDLE$vkDestroyDataGraphPipelineSessionARM;
     public final @Nullable MethodHandle HANDLE$vkDestroyDeferredOperationKHR;
     public final @Nullable MethodHandle HANDLE$vkDestroyDescriptorPool;
     public final @Nullable MethodHandle HANDLE$vkDestroyDescriptorSetLayout;
@@ -13982,6 +16051,7 @@ public final class VkDeviceCommands {
     public final @Nullable MethodHandle HANDLE$vkDestroyExternalComputeQueueNV;
     public final @Nullable MethodHandle HANDLE$vkDestroyFence;
     public final @Nullable MethodHandle HANDLE$vkDestroyFramebuffer;
+    public final @Nullable MethodHandle HANDLE$vkDestroyGpaSessionAMD;
     public final @Nullable MethodHandle HANDLE$vkDestroyImage;
     public final @Nullable MethodHandle HANDLE$vkDestroyImageView;
     public final @Nullable MethodHandle HANDLE$vkDestroyIndirectCommandsLayoutEXT;
@@ -14003,8 +16073,11 @@ public final class VkDeviceCommands {
     public final @Nullable MethodHandle HANDLE$vkDestroySemaphore;
     public final @Nullable MethodHandle HANDLE$vkDestroySemaphoreSciSyncPoolNV;
     public final @Nullable MethodHandle HANDLE$vkDestroyShaderEXT;
+    public final @Nullable MethodHandle HANDLE$vkDestroyShaderInstrumentationARM;
     public final @Nullable MethodHandle HANDLE$vkDestroyShaderModule;
     public final @Nullable MethodHandle HANDLE$vkDestroySwapchainKHR;
+    public final @Nullable MethodHandle HANDLE$vkDestroyTensorARM;
+    public final @Nullable MethodHandle HANDLE$vkDestroyTensorViewARM;
     public final @Nullable MethodHandle HANDLE$vkDestroyValidationCacheEXT;
     public final @Nullable MethodHandle HANDLE$vkDestroyVideoSessionKHR;
     public final @Nullable MethodHandle HANDLE$vkDestroyVideoSessionParametersKHR;
@@ -14036,6 +16109,10 @@ public final class VkDeviceCommands {
     public final @Nullable MethodHandle HANDLE$vkGetCalibratedTimestampsKHR;
     public final @Nullable MethodHandle HANDLE$vkGetClusterAccelerationStructureBuildSizesNV;
     public final @Nullable MethodHandle HANDLE$vkGetCudaModuleCacheNV;
+    public final @Nullable MethodHandle HANDLE$vkGetDataGraphPipelineAvailablePropertiesARM;
+    public final @Nullable MethodHandle HANDLE$vkGetDataGraphPipelinePropertiesARM;
+    public final @Nullable MethodHandle HANDLE$vkGetDataGraphPipelineSessionBindPointRequirementsARM;
+    public final @Nullable MethodHandle HANDLE$vkGetDataGraphPipelineSessionMemoryRequirementsARM;
     public final @Nullable MethodHandle HANDLE$vkGetDeferredOperationMaxConcurrencyKHR;
     public final @Nullable MethodHandle HANDLE$vkGetDeferredOperationResultKHR;
     public final @Nullable MethodHandle HANDLE$vkGetDescriptorEXT;
@@ -14048,7 +16125,10 @@ public final class VkDeviceCommands {
     public final @Nullable MethodHandle HANDLE$vkGetDeviceAccelerationStructureCompatibilityKHR;
     public final @Nullable MethodHandle HANDLE$vkGetDeviceBufferMemoryRequirements;
     public final @Nullable MethodHandle HANDLE$vkGetDeviceBufferMemoryRequirementsKHR;
+    public final @Nullable MethodHandle HANDLE$vkGetDeviceCombinedImageSamplerIndexNVX;
+    public final @Nullable MethodHandle HANDLE$vkGetDeviceFaultDebugInfoKHR;
     public final @Nullable MethodHandle HANDLE$vkGetDeviceFaultInfoEXT;
+    public final @Nullable MethodHandle HANDLE$vkGetDeviceFaultReportsKHR;
     public final @Nullable MethodHandle HANDLE$vkGetDeviceGroupPeerMemoryFeatures;
     public final @Nullable MethodHandle HANDLE$vkGetDeviceGroupPeerMemoryFeaturesKHR;
     public final @Nullable MethodHandle HANDLE$vkGetDeviceGroupPresentCapabilitiesKHR;
@@ -14067,6 +16147,7 @@ public final class VkDeviceCommands {
     public final @Nullable MethodHandle HANDLE$vkGetDeviceQueue;
     public final @Nullable MethodHandle HANDLE$vkGetDeviceQueue2;
     public final @Nullable MethodHandle HANDLE$vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI;
+    public final @Nullable MethodHandle HANDLE$vkGetDeviceTensorMemoryRequirementsARM;
     public final @Nullable MethodHandle HANDLE$vkGetDynamicRenderingTilePropertiesQCOM;
     public final @Nullable MethodHandle HANDLE$vkGetEncodedVideoSessionParametersKHR;
     public final @Nullable MethodHandle HANDLE$vkGetEventStatus;
@@ -14081,10 +16162,14 @@ public final class VkDeviceCommands {
     public final @Nullable MethodHandle HANDLE$vkGetFramebufferTilePropertiesQCOM;
     public final @Nullable MethodHandle HANDLE$vkGetGeneratedCommandsMemoryRequirementsEXT;
     public final @Nullable MethodHandle HANDLE$vkGetGeneratedCommandsMemoryRequirementsNV;
+    public final @Nullable MethodHandle HANDLE$vkGetGpaDeviceClockInfoAMD;
+    public final @Nullable MethodHandle HANDLE$vkGetGpaSessionResultsAMD;
+    public final @Nullable MethodHandle HANDLE$vkGetGpaSessionStatusAMD;
     public final @Nullable MethodHandle HANDLE$vkGetImageDrmFormatModifierPropertiesEXT;
     public final @Nullable MethodHandle HANDLE$vkGetImageMemoryRequirements;
     public final @Nullable MethodHandle HANDLE$vkGetImageMemoryRequirements2;
     public final @Nullable MethodHandle HANDLE$vkGetImageMemoryRequirements2KHR;
+    public final @Nullable MethodHandle HANDLE$vkGetImageOpaqueCaptureDataEXT;
     public final @Nullable MethodHandle HANDLE$vkGetImageOpaqueCaptureDescriptorDataEXT;
     public final @Nullable MethodHandle HANDLE$vkGetImageSparseMemoryRequirements;
     public final @Nullable MethodHandle HANDLE$vkGetImageSparseMemoryRequirements2;
@@ -14097,6 +16182,7 @@ public final class VkDeviceCommands {
     public final @Nullable MethodHandle HANDLE$vkGetImageViewHandle64NVX;
     public final @Nullable MethodHandle HANDLE$vkGetImageViewHandleNVX;
     public final @Nullable MethodHandle HANDLE$vkGetImageViewOpaqueCaptureDescriptorDataEXT;
+    public final @Nullable MethodHandle HANDLE$vkGetLatencyTimingsLegacyNV;
     public final @Nullable MethodHandle HANDLE$vkGetLatencyTimingsNV;
     public final @Nullable MethodHandle HANDLE$vkGetMemoryAndroidHardwareBufferANDROID;
     public final @Nullable MethodHandle HANDLE$vkGetMemoryFdKHR;
@@ -14104,6 +16190,7 @@ public final class VkDeviceCommands {
     public final @Nullable MethodHandle HANDLE$vkGetMemoryHostPointerPropertiesEXT;
     public final @Nullable MethodHandle HANDLE$vkGetMemoryMetalHandleEXT;
     public final @Nullable MethodHandle HANDLE$vkGetMemoryMetalHandlePropertiesEXT;
+    public final @Nullable MethodHandle HANDLE$vkGetMemoryNativeBufferOHOS;
     public final @Nullable MethodHandle HANDLE$vkGetMemoryRemoteAddressNV;
     public final @Nullable MethodHandle HANDLE$vkGetMemorySciBufNV;
     public final @Nullable MethodHandle HANDLE$vkGetMemoryWin32HandleKHR;
@@ -14112,7 +16199,9 @@ public final class VkDeviceCommands {
     public final @Nullable MethodHandle HANDLE$vkGetMemoryZirconHandleFUCHSIA;
     public final @Nullable MethodHandle HANDLE$vkGetMemoryZirconHandlePropertiesFUCHSIA;
     public final @Nullable MethodHandle HANDLE$vkGetMicromapBuildSizesEXT;
+    public final @Nullable MethodHandle HANDLE$vkGetNativeBufferPropertiesOHOS;
     public final @Nullable MethodHandle HANDLE$vkGetPartitionedAccelerationStructuresBuildSizesNV;
+    public final @Nullable MethodHandle HANDLE$vkGetPastPresentationTimingEXT;
     public final @Nullable MethodHandle HANDLE$vkGetPastPresentationTimingGOOGLE;
     public final @Nullable MethodHandle HANDLE$vkGetPerformanceParameterINTEL;
     public final @Nullable MethodHandle HANDLE$vkGetPipelineBinaryDataKHR;
@@ -14147,11 +16236,19 @@ public final class VkDeviceCommands {
     public final @Nullable MethodHandle HANDLE$vkGetSemaphoreZirconHandleFUCHSIA;
     public final @Nullable MethodHandle HANDLE$vkGetShaderBinaryDataEXT;
     public final @Nullable MethodHandle HANDLE$vkGetShaderInfoAMD;
+    public final @Nullable MethodHandle HANDLE$vkGetShaderInstrumentationValuesARM;
     public final @Nullable MethodHandle HANDLE$vkGetShaderModuleCreateInfoIdentifierEXT;
     public final @Nullable MethodHandle HANDLE$vkGetShaderModuleIdentifierEXT;
+    public final @Nullable MethodHandle HANDLE$vkGetSleepStatusLegacyNV;
     public final @Nullable MethodHandle HANDLE$vkGetSwapchainCounterEXT;
     public final @Nullable MethodHandle HANDLE$vkGetSwapchainImagesKHR;
     public final @Nullable MethodHandle HANDLE$vkGetSwapchainStatusKHR;
+    public final @Nullable MethodHandle HANDLE$vkGetSwapchainTimeDomainPropertiesEXT;
+    public final @Nullable MethodHandle HANDLE$vkGetSwapchainTimingPropertiesEXT;
+    public final @Nullable MethodHandle HANDLE$vkGetTensorMemoryRequirementsARM;
+    public final @Nullable MethodHandle HANDLE$vkGetTensorOpaqueCaptureDataARM;
+    public final @Nullable MethodHandle HANDLE$vkGetTensorOpaqueCaptureDescriptorDataARM;
+    public final @Nullable MethodHandle HANDLE$vkGetTensorViewOpaqueCaptureDescriptorDataARM;
     public final @Nullable MethodHandle HANDLE$vkGetValidationCacheDataEXT;
     public final @Nullable MethodHandle HANDLE$vkGetVideoSessionMemoryRequirementsKHR;
     public final @Nullable MethodHandle HANDLE$vkImportFenceFdKHR;
@@ -14164,6 +16261,7 @@ public final class VkDeviceCommands {
     public final @Nullable MethodHandle HANDLE$vkImportSemaphoreZirconHandleFUCHSIA;
     public final @Nullable MethodHandle HANDLE$vkInitializePerformanceApiINTEL;
     public final @Nullable MethodHandle HANDLE$vkInvalidateMappedMemoryRanges;
+    public final @Nullable MethodHandle HANDLE$vkLatencySleepLegacyNV;
     public final @Nullable MethodHandle HANDLE$vkLatencySleepNV;
     public final @Nullable MethodHandle HANDLE$vkMapMemory;
     public final @Nullable MethodHandle HANDLE$vkMapMemory2;
@@ -14171,13 +16269,16 @@ public final class VkDeviceCommands {
     public final @Nullable MethodHandle HANDLE$vkMergePipelineCaches;
     public final @Nullable MethodHandle HANDLE$vkMergeValidationCachesEXT;
     public final @Nullable MethodHandle HANDLE$vkQueueBindSparse;
+    public final @Nullable MethodHandle HANDLE$vkQueueNotifyOutOfBandLegacyNV;
     public final @Nullable MethodHandle HANDLE$vkQueueNotifyOutOfBandNV;
     public final @Nullable MethodHandle HANDLE$vkQueuePresentKHR;
+    public final @Nullable MethodHandle HANDLE$vkQueueSetPerfHintQCOM;
     public final @Nullable MethodHandle HANDLE$vkQueueSetPerformanceConfigurationINTEL;
     public final @Nullable MethodHandle HANDLE$vkQueueSubmit;
     public final @Nullable MethodHandle HANDLE$vkQueueSubmit2;
     public final @Nullable MethodHandle HANDLE$vkQueueSubmit2KHR;
     public final @Nullable MethodHandle HANDLE$vkQueueWaitIdle;
+    public final @Nullable MethodHandle HANDLE$vkRegisterCustomBorderColorEXT;
     public final @Nullable MethodHandle HANDLE$vkRegisterDeviceEventEXT;
     public final @Nullable MethodHandle HANDLE$vkRegisterDisplayEventEXT;
     public final @Nullable MethodHandle HANDLE$vkReleaseCapturedPipelineDataKHR;
@@ -14185,23 +16286,30 @@ public final class VkDeviceCommands {
     public final @Nullable MethodHandle HANDLE$vkReleasePerformanceConfigurationINTEL;
     public final @Nullable MethodHandle HANDLE$vkReleaseProfilingLockKHR;
     public final @Nullable MethodHandle HANDLE$vkReleaseSwapchainImagesEXT;
+    public final @Nullable MethodHandle HANDLE$vkReleaseSwapchainImagesKHR;
     public final @Nullable MethodHandle HANDLE$vkResetCommandBuffer;
     public final @Nullable MethodHandle HANDLE$vkResetCommandPool;
     public final @Nullable MethodHandle HANDLE$vkResetDescriptorPool;
     public final @Nullable MethodHandle HANDLE$vkResetEvent;
     public final @Nullable MethodHandle HANDLE$vkResetFences;
+    public final @Nullable MethodHandle HANDLE$vkResetGpaSessionAMD;
     public final @Nullable MethodHandle HANDLE$vkResetQueryPool;
     public final @Nullable MethodHandle HANDLE$vkResetQueryPoolEXT;
     public final @Nullable MethodHandle HANDLE$vkSetBufferCollectionBufferConstraintsFUCHSIA;
     public final @Nullable MethodHandle HANDLE$vkSetBufferCollectionImageConstraintsFUCHSIA;
     public final @Nullable MethodHandle HANDLE$vkSetDeviceMemoryPriorityEXT;
     public final @Nullable MethodHandle HANDLE$vkSetEvent;
+    public final @Nullable MethodHandle HANDLE$vkSetGpaDeviceClockModeAMD;
     public final @Nullable MethodHandle HANDLE$vkSetHdrMetadataEXT;
+    public final @Nullable MethodHandle HANDLE$vkSetLatencyMarkerLegacyNV;
     public final @Nullable MethodHandle HANDLE$vkSetLatencyMarkerNV;
+    public final @Nullable MethodHandle HANDLE$vkSetLatencySleepModeLegacyNV;
     public final @Nullable MethodHandle HANDLE$vkSetLatencySleepModeNV;
     public final @Nullable MethodHandle HANDLE$vkSetLocalDimmingAMD;
     public final @Nullable MethodHandle HANDLE$vkSetPrivateData;
     public final @Nullable MethodHandle HANDLE$vkSetPrivateDataEXT;
+    public final @Nullable MethodHandle HANDLE$vkSetSwapchainPresentTimingQueueSizeEXT;
+    public final @Nullable MethodHandle HANDLE$vkShutdownLatencyDeviceLegacyNV;
     public final @Nullable MethodHandle HANDLE$vkSignalSemaphore;
     public final @Nullable MethodHandle HANDLE$vkSignalSemaphoreKHR;
     public final @Nullable MethodHandle HANDLE$vkTransitionImageLayout;
@@ -14212,6 +16320,7 @@ public final class VkDeviceCommands {
     public final @Nullable MethodHandle HANDLE$vkUnmapMemory;
     public final @Nullable MethodHandle HANDLE$vkUnmapMemory2;
     public final @Nullable MethodHandle HANDLE$vkUnmapMemory2KHR;
+    public final @Nullable MethodHandle HANDLE$vkUnregisterCustomBorderColorEXT;
     public final @Nullable MethodHandle HANDLE$vkUpdateDescriptorSetWithTemplate;
     public final @Nullable MethodHandle HANDLE$vkUpdateDescriptorSetWithTemplateKHR;
     public final @Nullable MethodHandle HANDLE$vkUpdateDescriptorSets;
@@ -14219,11 +16328,14 @@ public final class VkDeviceCommands {
     public final @Nullable MethodHandle HANDLE$vkUpdateIndirectExecutionSetShaderEXT;
     public final @Nullable MethodHandle HANDLE$vkUpdateVideoSessionParametersKHR;
     public final @Nullable MethodHandle HANDLE$vkWaitForFences;
+    public final @Nullable MethodHandle HANDLE$vkWaitForPresent2KHR;
     public final @Nullable MethodHandle HANDLE$vkWaitForPresentKHR;
     public final @Nullable MethodHandle HANDLE$vkWaitSemaphores;
     public final @Nullable MethodHandle HANDLE$vkWaitSemaphoresKHR;
     public final @Nullable MethodHandle HANDLE$vkWriteAccelerationStructuresPropertiesKHR;
     public final @Nullable MethodHandle HANDLE$vkWriteMicromapsPropertiesEXT;
+    public final @Nullable MethodHandle HANDLE$vkWriteResourceDescriptorsEXT;
+    public final @Nullable MethodHandle HANDLE$vkWriteSamplerDescriptorsEXT;
     // endregion
 
     public static final class Descriptors {
@@ -14318,6 +16430,13 @@ public final class VkDeviceCommands {
             ValueLayout.ADDRESS.withTargetLayout(VkBindBufferMemoryInfo.LAYOUT)
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkBindDataGraphPipelineSessionMemoryARM = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS.withTargetLayout(VkBindDataGraphPipelineSessionMemoryInfoARM.LAYOUT)
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkBindImageMemory = FunctionDescriptor.of(
             ValueLayout.JAVA_INT,
             ValueLayout.ADDRESS,
@@ -14340,6 +16459,13 @@ public final class VkDeviceCommands {
             ValueLayout.JAVA_INT,
             ValueLayout.ADDRESS,
             ValueLayout.JAVA_INT
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkBindTensorMemoryARM = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS.withTargetLayout(VkBindTensorMemoryInfoARM.LAYOUT)
         );
 
         public static final FunctionDescriptor DESCRIPTOR$vkBindVideoSessionMemoryKHR = FunctionDescriptor.of(
@@ -14367,9 +16493,38 @@ public final class VkDeviceCommands {
             ValueLayout.ADDRESS.withTargetLayout(VkMicromapBuildInfoEXT.LAYOUT)
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkClearShaderInstrumentationMetricsARM = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdBeginConditionalRendering2EXT = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkConditionalRenderingBeginInfo2EXT.LAYOUT)
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkCmdBeginConditionalRenderingEXT = FunctionDescriptor.ofVoid(
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS.withTargetLayout(VkConditionalRenderingBeginInfoEXT.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdBeginCustomResolveEXT = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkBeginCustomResolveInfoEXT.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdBeginGpaSampleAMD = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkGpaSampleBeginInfoAMD.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.JAVA_INT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdBeginGpaSessionAMD = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS
         );
 
         public static final FunctionDescriptor DESCRIPTOR$vkCmdBeginPerTileExecutionQCOM = FunctionDescriptor.ofVoid(
@@ -14407,6 +16562,18 @@ public final class VkDeviceCommands {
         public static final FunctionDescriptor DESCRIPTOR$vkCmdBeginRendering = FunctionDescriptor.ofVoid(
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS.withTargetLayout(VkRenderingInfo.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdBeginShaderInstrumentationARM = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdBeginTransformFeedback2EXT = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_INT,
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS.withTargetLayout(VkBindTransformFeedbackBuffer2InfoEXT.LAYOUT)
         );
 
         public static final FunctionDescriptor DESCRIPTOR$vkCmdBeginTransformFeedbackEXT = FunctionDescriptor.ofVoid(
@@ -14471,6 +16638,11 @@ public final class VkDeviceCommands {
             ValueLayout.JAVA_INT
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdBindIndexBuffer3KHR = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkBindIndexBuffer3InfoKHR.LAYOUT)
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkCmdBindInvocationMaskHUAWEI = FunctionDescriptor.ofVoid(
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS,
@@ -14490,6 +16662,16 @@ public final class VkDeviceCommands {
             ValueLayout.JAVA_INT
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdBindResourceHeapEXT = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkBindHeapInfoEXT.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdBindSamplerHeapEXT = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkBindHeapInfoEXT.LAYOUT)
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkCmdBindShadersEXT = FunctionDescriptor.ofVoid(
             ValueLayout.ADDRESS,
             ValueLayout.JAVA_INT,
@@ -14506,6 +16688,13 @@ public final class VkDeviceCommands {
         public static final FunctionDescriptor DESCRIPTOR$vkCmdBindTileMemoryQCOM = FunctionDescriptor.ofVoid(
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS.withTargetLayout(VkTileMemoryBindInfoQCOM.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdBindTransformFeedbackBuffers2EXT = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_INT,
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS.withTargetLayout(VkBindTransformFeedbackBuffer2InfoEXT.LAYOUT)
         );
 
         public static final FunctionDescriptor DESCRIPTOR$vkCmdBindTransformFeedbackBuffersEXT = FunctionDescriptor.ofVoid(
@@ -14533,6 +16722,13 @@ public final class VkDeviceCommands {
             ValueLayout.ADDRESS.withTargetLayout(ValueLayout.JAVA_LONG),
             ValueLayout.ADDRESS.withTargetLayout(ValueLayout.JAVA_LONG),
             ValueLayout.ADDRESS.withTargetLayout(ValueLayout.JAVA_LONG)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdBindVertexBuffers3KHR = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_INT,
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS.withTargetLayout(VkBindVertexBuffer3InfoKHR.LAYOUT)
         );
 
         public static final FunctionDescriptor DESCRIPTOR$vkCmdBlitImage = FunctionDescriptor.ofVoid(
@@ -14676,6 +16872,11 @@ public final class VkDeviceCommands {
             ValueLayout.ADDRESS.withTargetLayout(VkCopyBufferToImageInfo2.LAYOUT)
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdCopyGpaSessionResultsAMD = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkCmdCopyImage = FunctionDescriptor.ofVoid(
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS,
@@ -14705,6 +16906,16 @@ public final class VkDeviceCommands {
             ValueLayout.ADDRESS.withTargetLayout(VkCopyImageToBufferInfo2.LAYOUT)
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdCopyImageToMemoryKHR = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkCopyDeviceMemoryImageInfoKHR.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdCopyMemoryIndirectKHR = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkCopyMemoryIndirectInfoKHR.LAYOUT)
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkCmdCopyMemoryIndirectNV = FunctionDescriptor.ofVoid(
             ValueLayout.ADDRESS,
             ValueLayout.JAVA_LONG,
@@ -14712,9 +16923,19 @@ public final class VkDeviceCommands {
             ValueLayout.JAVA_INT
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdCopyMemoryKHR = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkCopyDeviceMemoryInfoKHR.LAYOUT)
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkCmdCopyMemoryToAccelerationStructureKHR = FunctionDescriptor.ofVoid(
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS.withTargetLayout(VkCopyMemoryToAccelerationStructureInfoKHR.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdCopyMemoryToImageIndirectKHR = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkCopyMemoryToImageIndirectInfoKHR.LAYOUT)
         );
 
         public static final FunctionDescriptor DESCRIPTOR$vkCmdCopyMemoryToImageIndirectNV = FunctionDescriptor.ofVoid(
@@ -14725,6 +16946,11 @@ public final class VkDeviceCommands {
             ValueLayout.ADDRESS,
             ValueLayout.JAVA_INT,
             ValueLayout.ADDRESS.withTargetLayout(VkImageSubresourceLayers.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdCopyMemoryToImageKHR = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkCopyDeviceMemoryImageInfoKHR.LAYOUT)
         );
 
         public static final FunctionDescriptor DESCRIPTOR$vkCmdCopyMemoryToMicromapEXT = FunctionDescriptor.ofVoid(
@@ -14751,6 +16977,21 @@ public final class VkDeviceCommands {
             ValueLayout.JAVA_LONG,
             ValueLayout.JAVA_LONG,
             ValueLayout.JAVA_INT
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdCopyQueryPoolResultsToMemoryKHR = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_INT,
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS.withTargetLayout(VkStridedDeviceAddressRangeKHR.LAYOUT),
+            ValueLayout.JAVA_INT,
+            ValueLayout.JAVA_INT
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdCopyTensorARM = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkCopyTensorInfoARM.LAYOUT)
         );
 
         public static final FunctionDescriptor DESCRIPTOR$vkCmdCuLaunchKernelNVX = FunctionDescriptor.ofVoid(
@@ -14780,6 +17021,20 @@ public final class VkDeviceCommands {
         public static final FunctionDescriptor DESCRIPTOR$vkCmdDecodeVideoKHR = FunctionDescriptor.ofVoid(
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS.withTargetLayout(VkVideoDecodeInfoKHR.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdDecompressMemoryEXT = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkDecompressMemoryInfoEXT.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdDecompressMemoryIndirectCountEXT = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_LONG,
+            ValueLayout.JAVA_LONG,
+            ValueLayout.JAVA_LONG,
+            ValueLayout.JAVA_INT,
+            ValueLayout.JAVA_INT
         );
 
         public static final FunctionDescriptor DESCRIPTOR$vkCmdDecompressMemoryIndirectCountNV = FunctionDescriptor.ofVoid(
@@ -14812,6 +17067,12 @@ public final class VkDeviceCommands {
             ValueLayout.JAVA_INT
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdDispatchDataGraphARM = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkDataGraphPipelineDispatchInfoARM.LAYOUT)
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkCmdDispatchGraphAMDX = FunctionDescriptor.ofVoid(
             ValueLayout.ADDRESS,
             ValueLayout.JAVA_LONG,
@@ -14839,8 +17100,14 @@ public final class VkDeviceCommands {
             ValueLayout.JAVA_LONG
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdDispatchIndirect2KHR = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkDispatchIndirect2InfoKHR.LAYOUT)
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkCmdDispatchTileQCOM = FunctionDescriptor.ofVoid(
-            ValueLayout.ADDRESS
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkDispatchTileInfoQCOM.LAYOUT)
         );
 
         public static final FunctionDescriptor DESCRIPTOR$vkCmdDraw = FunctionDescriptor.ofVoid(
@@ -14881,6 +17148,11 @@ public final class VkDeviceCommands {
             ValueLayout.JAVA_INT
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdDrawIndexedIndirect2KHR = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkDrawIndirect2InfoKHR.LAYOUT)
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkCmdDrawIndexedIndirectCount = FunctionDescriptor.ofVoid(
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS,
@@ -14891,10 +17163,29 @@ public final class VkDeviceCommands {
             ValueLayout.JAVA_INT
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdDrawIndexedIndirectCount2KHR = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkDrawIndirectCount2InfoKHR.LAYOUT)
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkCmdDrawIndirect = FunctionDescriptor.ofVoid(
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS,
             ValueLayout.JAVA_LONG,
+            ValueLayout.JAVA_INT,
+            ValueLayout.JAVA_INT
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdDrawIndirect2KHR = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkDrawIndirect2InfoKHR.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdDrawIndirectByteCount2EXT = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_INT,
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS.withTargetLayout(VkBindTransformFeedbackBuffer2InfoEXT.LAYOUT),
             ValueLayout.JAVA_INT,
             ValueLayout.JAVA_INT
         );
@@ -14919,11 +17210,26 @@ public final class VkDeviceCommands {
             ValueLayout.JAVA_INT
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdDrawIndirectCount2KHR = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkDrawIndirectCount2InfoKHR.LAYOUT)
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkCmdDrawMeshTasksEXT = FunctionDescriptor.ofVoid(
             ValueLayout.ADDRESS,
             ValueLayout.JAVA_INT,
             ValueLayout.JAVA_INT,
             ValueLayout.JAVA_INT
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdDrawMeshTasksIndirect2EXT = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkDrawIndirect2InfoKHR.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdDrawMeshTasksIndirectCount2EXT = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkDrawIndirectCount2InfoKHR.LAYOUT)
         );
 
         public static final FunctionDescriptor DESCRIPTOR$vkCmdDrawMeshTasksIndirectCountEXT = FunctionDescriptor.ofVoid(
@@ -14996,6 +17302,18 @@ public final class VkDeviceCommands {
             ValueLayout.ADDRESS
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdEndGpaSampleAMD = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_INT
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdEndGpaSessionAMD = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkCmdEndPerTileExecutionQCOM = FunctionDescriptor.ofVoid(
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS.withTargetLayout(VkPerTileEndInfoQCOM.LAYOUT)
@@ -15027,9 +17345,20 @@ public final class VkDeviceCommands {
             ValueLayout.ADDRESS
         );
 
-        public static final FunctionDescriptor DESCRIPTOR$vkCmdEndRendering2EXT = FunctionDescriptor.ofVoid(
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdEndRendering2KHR = FunctionDescriptor.ofVoid(
             ValueLayout.ADDRESS,
-            ValueLayout.ADDRESS.withTargetLayout(VkRenderingEndInfoEXT.LAYOUT)
+            ValueLayout.ADDRESS.withTargetLayout(VkRenderingEndInfoKHR.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdEndShaderInstrumentationARM = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdEndTransformFeedback2EXT = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_INT,
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS.withTargetLayout(VkBindTransformFeedbackBuffer2InfoEXT.LAYOUT)
         );
 
         public static final FunctionDescriptor DESCRIPTOR$vkCmdEndTransformFeedbackEXT = FunctionDescriptor.ofVoid(
@@ -15068,6 +17397,13 @@ public final class VkDeviceCommands {
             ValueLayout.ADDRESS,
             ValueLayout.JAVA_LONG,
             ValueLayout.JAVA_LONG,
+            ValueLayout.JAVA_INT
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdFillMemoryKHR = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkDeviceAddressRangeKHR.LAYOUT),
+            ValueLayout.JAVA_INT,
             ValueLayout.JAVA_INT
         );
 
@@ -15136,6 +17472,11 @@ public final class VkDeviceCommands {
         public static final FunctionDescriptor DESCRIPTOR$vkCmdPushConstants2 = FunctionDescriptor.ofVoid(
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS.withTargetLayout(VkPushConstantsInfo.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdPushDataEXT = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkPushDataInfoEXT.LAYOUT)
         );
 
         public static final FunctionDescriptor DESCRIPTOR$vkCmdPushDescriptorSet = FunctionDescriptor.ofVoid(
@@ -15268,6 +17609,11 @@ public final class VkDeviceCommands {
             ValueLayout.JAVA_INT,
             ValueLayout.JAVA_INT,
             ValueLayout.ADDRESS.withTargetLayout(ValueLayout.JAVA_INT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdSetComputeOccupancyPriorityNV = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkComputeOccupancyPriorityParametersNV.LAYOUT)
         );
 
         public static final FunctionDescriptor DESCRIPTOR$vkCmdSetConservativeRasterizationModeEXT = FunctionDescriptor.ofVoid(
@@ -15412,6 +17758,11 @@ public final class VkDeviceCommands {
             ValueLayout.JAVA_INT
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdSetDispatchParametersARM = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkDispatchParametersARM.LAYOUT)
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkCmdSetEvent = FunctionDescriptor.ofVoid(
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS,
@@ -15520,6 +17871,11 @@ public final class VkDeviceCommands {
         );
 
         public static final FunctionDescriptor DESCRIPTOR$vkCmdSetPrimitiveRestartEnable = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_INT
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdSetPrimitiveRestartIndexEXT = FunctionDescriptor.ofVoid(
             ValueLayout.ADDRESS,
             ValueLayout.JAVA_INT
         );
@@ -15742,6 +18098,14 @@ public final class VkDeviceCommands {
             ValueLayout.ADDRESS
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdUpdateMemoryKHR = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkDeviceAddressRangeKHR.LAYOUT),
+            ValueLayout.JAVA_INT,
+            ValueLayout.JAVA_LONG,
+            ValueLayout.ADDRESS
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkCmdUpdatePipelineIndirectBufferNV = FunctionDescriptor.ofVoid(
             ValueLayout.ADDRESS,
             ValueLayout.JAVA_INT,
@@ -15801,6 +18165,11 @@ public final class VkDeviceCommands {
             ValueLayout.ADDRESS,
             ValueLayout.JAVA_LONG,
             ValueLayout.JAVA_INT
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkCmdWriteMarkerToMemoryAMD = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkMemoryMarkerInfoAMD.LAYOUT)
         );
 
         public static final FunctionDescriptor DESCRIPTOR$vkCmdWriteMicromapsPropertiesEXT = FunctionDescriptor.ofVoid(
@@ -15899,6 +18268,14 @@ public final class VkDeviceCommands {
             ValueLayout.ADDRESS.withTargetLayout(VkCopyMicromapToMemoryInfoEXT.LAYOUT)
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkCreateAccelerationStructure2KHR = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkAccelerationStructureCreateInfo2KHR.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(VkAllocationCallbacks.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.ADDRESS)
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkCreateAccelerationStructureKHR = FunctionDescriptor.of(
             ValueLayout.JAVA_INT,
             ValueLayout.ADDRESS,
@@ -15989,6 +18366,25 @@ public final class VkDeviceCommands {
             ValueLayout.ADDRESS.withTargetLayout(ValueLayout.ADDRESS)
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkCreateDataGraphPipelineSessionARM = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkDataGraphPipelineSessionCreateInfoARM.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(VkAllocationCallbacks.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.ADDRESS)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkCreateDataGraphPipelinesARM = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS.withTargetLayout(VkDataGraphPipelineCreateInfoARM.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(VkAllocationCallbacks.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.ADDRESS)
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkCreateDeferredOperationKHR = FunctionDescriptor.of(
             ValueLayout.JAVA_INT,
             ValueLayout.ADDRESS,
@@ -16058,6 +18454,14 @@ public final class VkDeviceCommands {
             ValueLayout.JAVA_INT,
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS.withTargetLayout(VkFramebufferCreateInfo.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(VkAllocationCallbacks.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.ADDRESS)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkCreateGpaSessionAMD = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkGpaSessionCreateInfoAMD.LAYOUT),
             ValueLayout.ADDRESS.withTargetLayout(VkAllocationCallbacks.LAYOUT),
             ValueLayout.ADDRESS.withTargetLayout(ValueLayout.ADDRESS)
         );
@@ -16237,6 +18641,14 @@ public final class VkDeviceCommands {
             ValueLayout.ADDRESS.withTargetLayout(ValueLayout.ADDRESS)
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkCreateShaderInstrumentationARM = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkShaderInstrumentationCreateInfoARM.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(VkAllocationCallbacks.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.ADDRESS)
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkCreateShaderModule = FunctionDescriptor.of(
             ValueLayout.JAVA_INT,
             ValueLayout.ADDRESS,
@@ -16267,6 +18679,22 @@ public final class VkDeviceCommands {
             ValueLayout.JAVA_INT,
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS.withTargetLayout(VkSwapchainCreateInfoKHR.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(VkAllocationCallbacks.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.ADDRESS)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkCreateTensorARM = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkTensorCreateInfoARM.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(VkAllocationCallbacks.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.ADDRESS)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkCreateTensorViewARM = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkTensorViewCreateInfoARM.LAYOUT),
             ValueLayout.ADDRESS.withTargetLayout(VkAllocationCallbacks.LAYOUT),
             ValueLayout.ADDRESS.withTargetLayout(ValueLayout.ADDRESS)
         );
@@ -16373,6 +18801,12 @@ public final class VkDeviceCommands {
             ValueLayout.ADDRESS.withTargetLayout(VkAllocationCallbacks.LAYOUT)
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkDestroyDataGraphPipelineSessionARM = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkAllocationCallbacks.LAYOUT)
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkDestroyDeferredOperationKHR = FunctionDescriptor.ofVoid(
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS,
@@ -16421,6 +18855,12 @@ public final class VkDeviceCommands {
         );
 
         public static final FunctionDescriptor DESCRIPTOR$vkDestroyFramebuffer = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkAllocationCallbacks.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkDestroyGpaSessionAMD = FunctionDescriptor.ofVoid(
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS.withTargetLayout(VkAllocationCallbacks.LAYOUT)
@@ -16540,6 +18980,12 @@ public final class VkDeviceCommands {
             ValueLayout.ADDRESS.withTargetLayout(VkAllocationCallbacks.LAYOUT)
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkDestroyShaderInstrumentationARM = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkAllocationCallbacks.LAYOUT)
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkDestroyShaderModule = FunctionDescriptor.ofVoid(
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS,
@@ -16547,6 +18993,18 @@ public final class VkDeviceCommands {
         );
 
         public static final FunctionDescriptor DESCRIPTOR$vkDestroySwapchainKHR = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkAllocationCallbacks.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkDestroyTensorARM = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkAllocationCallbacks.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkDestroyTensorViewARM = FunctionDescriptor.ofVoid(
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS.withTargetLayout(VkAllocationCallbacks.LAYOUT)
@@ -16723,6 +19181,36 @@ public final class VkDeviceCommands {
             ValueLayout.ADDRESS
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkGetDataGraphPipelineAvailablePropertiesARM = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkDataGraphPipelineInfoARM.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.JAVA_INT),
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.JAVA_INT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkGetDataGraphPipelinePropertiesARM = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkDataGraphPipelineInfoARM.LAYOUT),
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS.withTargetLayout(VkDataGraphPipelinePropertyQueryResultARM.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkGetDataGraphPipelineSessionBindPointRequirementsARM = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkDataGraphPipelineSessionBindPointRequirementsInfoARM.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.JAVA_INT),
+            ValueLayout.ADDRESS.withTargetLayout(VkDataGraphPipelineSessionBindPointRequirementARM.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkGetDataGraphPipelineSessionMemoryRequirementsARM = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkDataGraphPipelineSessionMemoryRequirementsInfoARM.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(VkMemoryRequirements2.LAYOUT)
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkGetDeferredOperationMaxConcurrencyKHR = FunctionDescriptor.of(
             ValueLayout.JAVA_INT,
             ValueLayout.ADDRESS,
@@ -16785,11 +19273,32 @@ public final class VkDeviceCommands {
             ValueLayout.ADDRESS.withTargetLayout(VkMemoryRequirements2.LAYOUT)
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkGetDeviceCombinedImageSamplerIndexNVX = FunctionDescriptor.of(
+            ValueLayout.JAVA_LONG,
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_LONG,
+            ValueLayout.JAVA_LONG
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkGetDeviceFaultDebugInfoKHR = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkDeviceFaultDebugInfoKHR.LAYOUT)
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkGetDeviceFaultInfoEXT = FunctionDescriptor.of(
             ValueLayout.JAVA_INT,
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS.withTargetLayout(VkDeviceFaultCountsEXT.LAYOUT),
             ValueLayout.ADDRESS.withTargetLayout(VkDeviceFaultInfoEXT.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkGetDeviceFaultReportsKHR = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_LONG,
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.JAVA_INT),
+            ValueLayout.ADDRESS.withTargetLayout(VkDeviceFaultInfoKHR.LAYOUT)
         );
 
         public static final FunctionDescriptor DESCRIPTOR$vkGetDeviceGroupPeerMemoryFeatures = FunctionDescriptor.ofVoid(
@@ -16875,6 +19384,12 @@ public final class VkDeviceCommands {
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS.withTargetLayout(VkExtent2D.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkGetDeviceTensorMemoryRequirementsARM = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkDeviceTensorMemoryRequirementsARM.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(VkMemoryRequirements2.LAYOUT)
         );
 
         public static final FunctionDescriptor DESCRIPTOR$vkGetDynamicRenderingTilePropertiesQCOM = FunctionDescriptor.of(
@@ -16974,6 +19489,27 @@ public final class VkDeviceCommands {
             ValueLayout.ADDRESS.withTargetLayout(VkMemoryRequirements2.LAYOUT)
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkGetGpaDeviceClockInfoAMD = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkGpaDeviceGetClockInfoAMD.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkGetGpaSessionResultsAMD = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS.withTargetLayout(NativeLayout.C_SIZE_T),
+            ValueLayout.ADDRESS
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkGetGpaSessionStatusAMD = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkGetImageDrmFormatModifierPropertiesEXT = FunctionDescriptor.of(
             ValueLayout.JAVA_INT,
             ValueLayout.ADDRESS,
@@ -16991,6 +19527,14 @@ public final class VkDeviceCommands {
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS.withTargetLayout(VkImageMemoryRequirementsInfo2.LAYOUT),
             ValueLayout.ADDRESS.withTargetLayout(VkMemoryRequirements2.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkGetImageOpaqueCaptureDataEXT = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.ADDRESS),
+            ValueLayout.ADDRESS.withTargetLayout(VkHostAddressRangeEXT.LAYOUT)
         );
 
         public static final FunctionDescriptor DESCRIPTOR$vkGetImageOpaqueCaptureDescriptorDataEXT = FunctionDescriptor.of(
@@ -17054,6 +19598,11 @@ public final class VkDeviceCommands {
             ValueLayout.ADDRESS
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkGetLatencyTimingsLegacyNV = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkGetLatencyTimingsNV = FunctionDescriptor.ofVoid(
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS,
@@ -17103,6 +19652,13 @@ public final class VkDeviceCommands {
             ValueLayout.JAVA_INT,
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS.withTargetLayout(VkMemoryMetalHandlePropertiesEXT.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkGetMemoryNativeBufferOHOS = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkMemoryGetNativeBufferInfoOHOS.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.ADDRESS)
         );
 
         public static final FunctionDescriptor DESCRIPTOR$vkGetMemoryRemoteAddressNV = FunctionDescriptor.of(
@@ -17164,10 +19720,24 @@ public final class VkDeviceCommands {
             ValueLayout.ADDRESS.withTargetLayout(VkMicromapBuildSizesInfoEXT.LAYOUT)
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkGetNativeBufferPropertiesOHOS = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkNativeBufferPropertiesOHOS.LAYOUT)
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkGetPartitionedAccelerationStructuresBuildSizesNV = FunctionDescriptor.ofVoid(
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS.withTargetLayout(VkPartitionedAccelerationStructureInstancesInputNV.LAYOUT),
             ValueLayout.ADDRESS.withTargetLayout(VkAccelerationStructureBuildSizesInfoKHR.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkGetPastPresentationTimingEXT = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkPastPresentationTimingInfoEXT.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(VkPastPresentationTimingPropertiesEXT.LAYOUT)
         );
 
         public static final FunctionDescriptor DESCRIPTOR$vkGetPastPresentationTimingGOOGLE = FunctionDescriptor.of(
@@ -17398,6 +19968,15 @@ public final class VkDeviceCommands {
             ValueLayout.ADDRESS
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkGetShaderInstrumentationValuesARM = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.JAVA_INT),
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_INT
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkGetShaderModuleCreateInfoIdentifierEXT = FunctionDescriptor.ofVoid(
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS.withTargetLayout(VkShaderModuleCreateInfo.LAYOUT),
@@ -17408,6 +19987,11 @@ public final class VkDeviceCommands {
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS.withTargetLayout(VkShaderModuleIdentifierEXT.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkGetSleepStatusLegacyNV = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.JAVA_INT)
         );
 
         public static final FunctionDescriptor DESCRIPTOR$vkGetSwapchainCounterEXT = FunctionDescriptor.of(
@@ -17429,6 +20013,50 @@ public final class VkDeviceCommands {
         public static final FunctionDescriptor DESCRIPTOR$vkGetSwapchainStatusKHR = FunctionDescriptor.of(
             ValueLayout.JAVA_INT,
             ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkGetSwapchainTimeDomainPropertiesEXT = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkSwapchainTimeDomainPropertiesEXT.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.JAVA_LONG)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkGetSwapchainTimingPropertiesEXT = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkSwapchainTimingPropertiesEXT.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.JAVA_LONG)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkGetTensorMemoryRequirementsARM = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkTensorMemoryRequirementsInfoARM.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(VkMemoryRequirements2.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkGetTensorOpaqueCaptureDataARM = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.ADDRESS),
+            ValueLayout.ADDRESS.withTargetLayout(VkHostAddressRangeEXT.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkGetTensorOpaqueCaptureDescriptorDataARM = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkTensorCaptureDescriptorDataInfoARM.LAYOUT),
+            ValueLayout.ADDRESS
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkGetTensorViewOpaqueCaptureDescriptorDataARM = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkTensorViewCaptureDescriptorDataInfoARM.LAYOUT),
             ValueLayout.ADDRESS
         );
 
@@ -17509,6 +20137,12 @@ public final class VkDeviceCommands {
             ValueLayout.ADDRESS.withTargetLayout(VkMappedMemoryRange.LAYOUT)
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkLatencySleepLegacyNV = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_LONG
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkLatencySleepNV = FunctionDescriptor.of(
             ValueLayout.JAVA_INT,
             ValueLayout.ADDRESS,
@@ -17557,6 +20191,11 @@ public final class VkDeviceCommands {
             ValueLayout.ADDRESS
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkQueueNotifyOutOfBandLegacyNV = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_INT
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkQueueNotifyOutOfBandNV = FunctionDescriptor.ofVoid(
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS.withTargetLayout(VkOutOfBandQueueTypeInfoNV.LAYOUT)
@@ -17566,6 +20205,12 @@ public final class VkDeviceCommands {
             ValueLayout.JAVA_INT,
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS.withTargetLayout(VkPresentInfoKHR.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkQueueSetPerfHintQCOM = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkPerfHintInfoQCOM.LAYOUT)
         );
 
         public static final FunctionDescriptor DESCRIPTOR$vkQueueSetPerformanceConfigurationINTEL = FunctionDescriptor.of(
@@ -17593,6 +20238,14 @@ public final class VkDeviceCommands {
         public static final FunctionDescriptor DESCRIPTOR$vkQueueWaitIdle = FunctionDescriptor.of(
             ValueLayout.JAVA_INT,
             ValueLayout.ADDRESS
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkRegisterCustomBorderColorEXT = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkSamplerCustomBorderColorCreateInfoEXT.LAYOUT),
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.JAVA_INT)
         );
 
         public static final FunctionDescriptor DESCRIPTOR$vkRegisterDeviceEventEXT = FunctionDescriptor.of(
@@ -17635,10 +20288,10 @@ public final class VkDeviceCommands {
             ValueLayout.ADDRESS
         );
 
-        public static final FunctionDescriptor DESCRIPTOR$vkReleaseSwapchainImagesEXT = FunctionDescriptor.of(
+        public static final FunctionDescriptor DESCRIPTOR$vkReleaseSwapchainImagesKHR = FunctionDescriptor.of(
             ValueLayout.JAVA_INT,
             ValueLayout.ADDRESS,
-            ValueLayout.ADDRESS.withTargetLayout(VkReleaseSwapchainImagesInfoEXT.LAYOUT)
+            ValueLayout.ADDRESS.withTargetLayout(VkReleaseSwapchainImagesInfoKHR.LAYOUT)
         );
 
         public static final FunctionDescriptor DESCRIPTOR$vkResetCommandBuffer = FunctionDescriptor.of(
@@ -17674,6 +20327,12 @@ public final class VkDeviceCommands {
             ValueLayout.ADDRESS.withTargetLayout(ValueLayout.ADDRESS)
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkResetGpaSessionAMD = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkResetQueryPool = FunctionDescriptor.ofVoid(
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS,
@@ -17707,6 +20366,12 @@ public final class VkDeviceCommands {
             ValueLayout.ADDRESS
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkSetGpaDeviceClockModeAMD = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkGpaDeviceClockModeInfoAMD.LAYOUT)
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkSetHdrMetadataEXT = FunctionDescriptor.ofVoid(
             ValueLayout.ADDRESS,
             ValueLayout.JAVA_INT,
@@ -17714,10 +20379,23 @@ public final class VkDeviceCommands {
             ValueLayout.ADDRESS.withTargetLayout(VkHdrMetadataEXT.LAYOUT)
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkSetLatencyMarkerLegacyNV = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_LONG,
+            ValueLayout.JAVA_INT
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkSetLatencyMarkerNV = FunctionDescriptor.ofVoid(
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS.withTargetLayout(VkSetLatencyMarkerInfoNV.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkSetLatencySleepModeLegacyNV = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_INT,
+            ValueLayout.JAVA_INT,
+            ValueLayout.JAVA_INT
         );
 
         public static final FunctionDescriptor DESCRIPTOR$vkSetLatencySleepModeNV = FunctionDescriptor.of(
@@ -17740,6 +20418,17 @@ public final class VkDeviceCommands {
             ValueLayout.JAVA_LONG,
             ValueLayout.ADDRESS,
             ValueLayout.JAVA_LONG
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkSetSwapchainPresentTimingQueueSizeEXT = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_INT
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkShutdownLatencyDeviceLegacyNV = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS
         );
 
         public static final FunctionDescriptor DESCRIPTOR$vkSignalSemaphore = FunctionDescriptor.of(
@@ -17774,6 +20463,11 @@ public final class VkDeviceCommands {
             ValueLayout.JAVA_INT,
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS.withTargetLayout(VkMemoryUnmapInfo.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkUnregisterCustomBorderColorEXT = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_INT
         );
 
         public static final FunctionDescriptor DESCRIPTOR$vkUpdateDescriptorSetWithTemplate = FunctionDescriptor.ofVoid(
@@ -17821,6 +20515,13 @@ public final class VkDeviceCommands {
             ValueLayout.JAVA_LONG
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkWaitForPresent2KHR = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkPresentWait2InfoKHR.LAYOUT)
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkWaitForPresentKHR = FunctionDescriptor.of(
             ValueLayout.JAVA_INT,
             ValueLayout.ADDRESS,
@@ -17856,6 +20557,22 @@ public final class VkDeviceCommands {
             NativeLayout.C_SIZE_T,
             ValueLayout.ADDRESS,
             NativeLayout.C_SIZE_T
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkWriteResourceDescriptorsEXT = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS.withTargetLayout(VkResourceDescriptorInfoEXT.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(VkHostAddressRangeEXT.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkWriteSamplerDescriptorsEXT = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS.withTargetLayout(VkSamplerCreateInfo.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(VkHostAddressRangeEXT.LAYOUT)
         );
 
         /// Constructing this class is nonsense so the constructor is made private.

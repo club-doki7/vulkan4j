@@ -30,8 +30,8 @@ public final class VkObjectType {
     public static final int DESCRIPTOR_SET = 0x17;
     public static final int FRAMEBUFFER = 0x18;
     public static final int COMMAND_POOL = 0x19;
-    public static final int SAMPLER_YCBCR_CONVERSION = 0x3b9d2b60;
     public static final int DESCRIPTOR_UPDATE_TEMPLATE = 0x3b9c1608;
+    public static final int SAMPLER_YCBCR_CONVERSION = 0x3b9d2b60;
     public static final int PRIVATE_DATA_SLOT = 0x3b9f4a58;
     public static final int SURFACE_KHR = 0x3b9aca00;
     public static final int SWAPCHAIN_KHR = 0x3b9acde8;
@@ -43,6 +43,7 @@ public final class VkObjectType {
     public static final int CU_MODULE_NVX = 0x3b9b3b48;
     public static final int CU_FUNCTION_NVX = 0x3b9b3b49;
     public static final int DEBUG_UTILS_MESSENGER_EXT = 0x3b9cbe00;
+    public static final int GPA_SESSION_AMD = 0x3b9cd188;
     public static final int ACCELERATION_STRUCTURE_KHR = 0x3b9d13f0;
     public static final int VALIDATION_CACHE_EXT = 0x3b9d3b00;
     public static final int ACCELERATION_STRUCTURE_NV = 0x3b9d4e88;
@@ -53,13 +54,17 @@ public final class VkObjectType {
     public static final int CUDA_FUNCTION_NV = 0x3b9f7939;
     public static final int BUFFER_COLLECTION_FUCHSIA = 0x3ba05fb0;
     public static final int MICROMAP_EXT = 0x3ba0d4e0;
+    public static final int TENSOR_ARM = 0x3ba1cee0;
+    public static final int TENSOR_VIEW_ARM = 0x3ba1cee1;
     public static final int OPTICAL_FLOW_SESSION_NV = 0x3ba1de80;
     public static final int SHADER_EXT = 0x3ba224d0;
     public static final int PIPELINE_BINARY_KHR = 0x3ba228b8;
     public static final int SEMAPHORE_SCI_SYNC_POOL_NV = 0x3ba24028;
+    public static final int DATA_GRAPH_PIPELINE_SESSION_ARM = 0x3ba28678;
     public static final int EXTERNAL_COMPUTE_QUEUE_NV = 0x3ba345e0;
     public static final int INDIRECT_COMMANDS_LAYOUT_EXT = 0x3ba38460;
     public static final int INDIRECT_EXECUTION_SET_EXT = 0x3ba38461;
+    public static final int SHADER_INSTRUMENTATION_ARM = 0x3ba40d18;
 
     public static String explain(@EnumType(VkObjectType.class) int value) {
         return switch (value) {
@@ -74,6 +79,7 @@ public final class VkObjectType {
             case VkObjectType.CUDA_MODULE_NV -> "VK_OBJECT_TYPE_CUDA_MODULE_NV";
             case VkObjectType.CU_FUNCTION_NVX -> "VK_OBJECT_TYPE_CU_FUNCTION_NVX";
             case VkObjectType.CU_MODULE_NVX -> "VK_OBJECT_TYPE_CU_MODULE_NVX";
+            case VkObjectType.DATA_GRAPH_PIPELINE_SESSION_ARM -> "VK_OBJECT_TYPE_DATA_GRAPH_PIPELINE_SESSION_ARM";
             case VkObjectType.DEBUG_REPORT_CALLBACK_EXT -> "VK_OBJECT_TYPE_DEBUG_REPORT_CALLBACK_EXT";
             case VkObjectType.DEBUG_UTILS_MESSENGER_EXT -> "VK_OBJECT_TYPE_DEBUG_UTILS_MESSENGER_EXT";
             case VkObjectType.DEFERRED_OPERATION_KHR -> "VK_OBJECT_TYPE_DEFERRED_OPERATION_KHR";
@@ -89,6 +95,7 @@ public final class VkObjectType {
             case VkObjectType.EXTERNAL_COMPUTE_QUEUE_NV -> "VK_OBJECT_TYPE_EXTERNAL_COMPUTE_QUEUE_NV";
             case VkObjectType.FENCE -> "VK_OBJECT_TYPE_FENCE";
             case VkObjectType.FRAMEBUFFER -> "VK_OBJECT_TYPE_FRAMEBUFFER";
+            case VkObjectType.GPA_SESSION_AMD -> "VK_OBJECT_TYPE_GPA_SESSION_AMD";
             case VkObjectType.IMAGE -> "VK_OBJECT_TYPE_IMAGE";
             case VkObjectType.IMAGE_VIEW -> "VK_OBJECT_TYPE_IMAGE_VIEW";
             case VkObjectType.INDIRECT_COMMANDS_LAYOUT_EXT -> "VK_OBJECT_TYPE_INDIRECT_COMMANDS_LAYOUT_EXT";
@@ -112,9 +119,12 @@ public final class VkObjectType {
             case VkObjectType.SEMAPHORE -> "VK_OBJECT_TYPE_SEMAPHORE";
             case VkObjectType.SEMAPHORE_SCI_SYNC_POOL_NV -> "VK_OBJECT_TYPE_SEMAPHORE_SCI_SYNC_POOL_NV";
             case VkObjectType.SHADER_EXT -> "VK_OBJECT_TYPE_SHADER_EXT";
+            case VkObjectType.SHADER_INSTRUMENTATION_ARM -> "VK_OBJECT_TYPE_SHADER_INSTRUMENTATION_ARM";
             case VkObjectType.SHADER_MODULE -> "VK_OBJECT_TYPE_SHADER_MODULE";
             case VkObjectType.SURFACE_KHR -> "VK_OBJECT_TYPE_SURFACE_KHR";
             case VkObjectType.SWAPCHAIN_KHR -> "VK_OBJECT_TYPE_SWAPCHAIN_KHR";
+            case VkObjectType.TENSOR_ARM -> "VK_OBJECT_TYPE_TENSOR_ARM";
+            case VkObjectType.TENSOR_VIEW_ARM -> "VK_OBJECT_TYPE_TENSOR_VIEW_ARM";
             case VkObjectType.UNKNOWN -> "VK_OBJECT_TYPE_UNKNOWN";
             case VkObjectType.VALIDATION_CACHE_EXT -> "VK_OBJECT_TYPE_VALIDATION_CACHE_EXT";
             case VkObjectType.VIDEO_SESSION_KHR -> "VK_OBJECT_TYPE_VIDEO_SESSION_KHR";

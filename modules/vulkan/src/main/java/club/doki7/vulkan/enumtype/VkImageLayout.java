@@ -33,7 +33,9 @@ public final class VkImageLayout {
     public static final int VIDEO_ENCODE_SRC_KHR = 0x3b9f59f9;
     public static final int VIDEO_ENCODE_DPB_KHR = 0x3b9f59fa;
     public static final int ATTACHMENT_FEEDBACK_LOOP_OPTIMAL_EXT = 0x3b9ff638;
+    public static final int TENSOR_ALIASING_ARM = 0x3ba1cee0;
     public static final int VIDEO_ENCODE_QUANTIZATION_MAP_KHR = 0x3ba33a28;
+    public static final int ZERO_INITIALIZED_EXT = 0x3ba43fe0;
 
     public static String explain(@EnumType(VkImageLayout.class) int value) {
         return switch (value) {
@@ -57,6 +59,7 @@ public final class VkImageLayout {
             case VkImageLayout.SHARED_PRESENT_KHR -> "VK_IMAGE_LAYOUT_SHARED_PRESENT_KHR";
             case VkImageLayout.STENCIL_ATTACHMENT_OPTIMAL -> "VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL";
             case VkImageLayout.STENCIL_READ_ONLY_OPTIMAL -> "VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL";
+            case VkImageLayout.TENSOR_ALIASING_ARM -> "VK_IMAGE_LAYOUT_TENSOR_ALIASING_ARM";
             case VkImageLayout.TRANSFER_DST_OPTIMAL -> "VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL";
             case VkImageLayout.TRANSFER_SRC_OPTIMAL -> "VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL";
             case VkImageLayout.UNDEFINED -> "VK_IMAGE_LAYOUT_UNDEFINED";
@@ -67,6 +70,7 @@ public final class VkImageLayout {
             case VkImageLayout.VIDEO_ENCODE_DST_KHR -> "VK_IMAGE_LAYOUT_VIDEO_ENCODE_DST_KHR";
             case VkImageLayout.VIDEO_ENCODE_QUANTIZATION_MAP_KHR -> "VK_IMAGE_LAYOUT_VIDEO_ENCODE_QUANTIZATION_MAP_KHR";
             case VkImageLayout.VIDEO_ENCODE_SRC_KHR -> "VK_IMAGE_LAYOUT_VIDEO_ENCODE_SRC_KHR";
+            case VkImageLayout.ZERO_INITIALIZED_EXT -> "VK_IMAGE_LAYOUT_ZERO_INITIALIZED_EXT";
             default -> "UNKNOWN(" + value + ")";
         };
     }

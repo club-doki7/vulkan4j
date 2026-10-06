@@ -58,6 +58,10 @@ public final class VkInstanceCommands {
         HANDLE$vkCreateScreenSurfaceQNX = RawFunctionLoader.link(SEGMENT$vkCreateScreenSurfaceQNX, Descriptors.DESCRIPTOR$vkCreateScreenSurfaceQNX);
         SEGMENT$vkCreateStreamDescriptorSurfaceGGP = loader.apply("vkCreateStreamDescriptorSurfaceGGP");
         HANDLE$vkCreateStreamDescriptorSurfaceGGP = RawFunctionLoader.link(SEGMENT$vkCreateStreamDescriptorSurfaceGGP, Descriptors.DESCRIPTOR$vkCreateStreamDescriptorSurfaceGGP);
+        SEGMENT$vkCreateSurfaceOHOS = loader.apply("vkCreateSurfaceOHOS");
+        HANDLE$vkCreateSurfaceOHOS = RawFunctionLoader.link(SEGMENT$vkCreateSurfaceOHOS, Descriptors.DESCRIPTOR$vkCreateSurfaceOHOS);
+        SEGMENT$vkCreateUbmSurfaceSEC = loader.apply("vkCreateUbmSurfaceSEC");
+        HANDLE$vkCreateUbmSurfaceSEC = RawFunctionLoader.link(SEGMENT$vkCreateUbmSurfaceSEC, Descriptors.DESCRIPTOR$vkCreateUbmSurfaceSEC);
         SEGMENT$vkCreateViSurfaceNN = loader.apply("vkCreateViSurfaceNN");
         HANDLE$vkCreateViSurfaceNN = RawFunctionLoader.link(SEGMENT$vkCreateViSurfaceNN, Descriptors.DESCRIPTOR$vkCreateViSurfaceNN);
         SEGMENT$vkCreateWaylandSurfaceKHR = loader.apply("vkCreateWaylandSurfaceKHR");
@@ -86,8 +90,12 @@ public final class VkInstanceCommands {
         HANDLE$vkEnumeratePhysicalDeviceGroups = RawFunctionLoader.link(SEGMENT$vkEnumeratePhysicalDeviceGroups, Descriptors.DESCRIPTOR$vkEnumeratePhysicalDeviceGroups);
         SEGMENT$vkEnumeratePhysicalDeviceGroupsKHR = loader.apply("vkEnumeratePhysicalDeviceGroupsKHR");
         HANDLE$vkEnumeratePhysicalDeviceGroupsKHR = RawFunctionLoader.link(SEGMENT$vkEnumeratePhysicalDeviceGroupsKHR, Descriptors.DESCRIPTOR$vkEnumeratePhysicalDeviceGroups);
+        SEGMENT$vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM = loader.apply("vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM");
+        HANDLE$vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM = RawFunctionLoader.link(SEGMENT$vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM, Descriptors.DESCRIPTOR$vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM);
         SEGMENT$vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR = loader.apply("vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR");
         HANDLE$vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR = RawFunctionLoader.link(SEGMENT$vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR, Descriptors.DESCRIPTOR$vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR);
+        SEGMENT$vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM = loader.apply("vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM");
+        HANDLE$vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM = RawFunctionLoader.link(SEGMENT$vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM, Descriptors.DESCRIPTOR$vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM);
         SEGMENT$vkEnumeratePhysicalDevices = loader.apply("vkEnumeratePhysicalDevices");
         HANDLE$vkEnumeratePhysicalDevices = RawFunctionLoader.link(SEGMENT$vkEnumeratePhysicalDevices, Descriptors.DESCRIPTOR$vkEnumeratePhysicalDevices);
         SEGMENT$vkGetDisplayModeProperties2KHR = loader.apply("vkGetDisplayModeProperties2KHR");
@@ -108,12 +116,16 @@ public final class VkInstanceCommands {
         HANDLE$vkGetPhysicalDeviceCalibrateableTimeDomainsKHR = RawFunctionLoader.link(SEGMENT$vkGetPhysicalDeviceCalibrateableTimeDomainsKHR, Descriptors.DESCRIPTOR$vkGetPhysicalDeviceCalibrateableTimeDomainsKHR);
         SEGMENT$vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV = loader.apply("vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV");
         HANDLE$vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV = RawFunctionLoader.link(SEGMENT$vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV, Descriptors.DESCRIPTOR$vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV);
+        SEGMENT$vkGetPhysicalDeviceCooperativeMatrixProperties2EXT = loader.apply("vkGetPhysicalDeviceCooperativeMatrixProperties2EXT");
+        HANDLE$vkGetPhysicalDeviceCooperativeMatrixProperties2EXT = RawFunctionLoader.link(SEGMENT$vkGetPhysicalDeviceCooperativeMatrixProperties2EXT, Descriptors.DESCRIPTOR$vkGetPhysicalDeviceCooperativeMatrixProperties2EXT);
         SEGMENT$vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR = loader.apply("vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR");
         HANDLE$vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR = RawFunctionLoader.link(SEGMENT$vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR, Descriptors.DESCRIPTOR$vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR);
         SEGMENT$vkGetPhysicalDeviceCooperativeMatrixPropertiesNV = loader.apply("vkGetPhysicalDeviceCooperativeMatrixPropertiesNV");
         HANDLE$vkGetPhysicalDeviceCooperativeMatrixPropertiesNV = RawFunctionLoader.link(SEGMENT$vkGetPhysicalDeviceCooperativeMatrixPropertiesNV, Descriptors.DESCRIPTOR$vkGetPhysicalDeviceCooperativeMatrixPropertiesNV);
         SEGMENT$vkGetPhysicalDeviceCooperativeVectorPropertiesNV = loader.apply("vkGetPhysicalDeviceCooperativeVectorPropertiesNV");
         HANDLE$vkGetPhysicalDeviceCooperativeVectorPropertiesNV = RawFunctionLoader.link(SEGMENT$vkGetPhysicalDeviceCooperativeVectorPropertiesNV, Descriptors.DESCRIPTOR$vkGetPhysicalDeviceCooperativeVectorPropertiesNV);
+        SEGMENT$vkGetPhysicalDeviceDescriptorSizeEXT = loader.apply("vkGetPhysicalDeviceDescriptorSizeEXT");
+        HANDLE$vkGetPhysicalDeviceDescriptorSizeEXT = RawFunctionLoader.link(SEGMENT$vkGetPhysicalDeviceDescriptorSizeEXT, Descriptors.DESCRIPTOR$vkGetPhysicalDeviceDescriptorSizeEXT);
         SEGMENT$vkGetPhysicalDeviceDirectFBPresentationSupportEXT = loader.apply("vkGetPhysicalDeviceDirectFBPresentationSupportEXT");
         HANDLE$vkGetPhysicalDeviceDirectFBPresentationSupportEXT = RawFunctionLoader.link(SEGMENT$vkGetPhysicalDeviceDirectFBPresentationSupportEXT, Descriptors.DESCRIPTOR$vkGetPhysicalDeviceDirectFBPresentationSupportEXT);
         SEGMENT$vkGetPhysicalDeviceDisplayPlaneProperties2KHR = loader.apply("vkGetPhysicalDeviceDisplayPlaneProperties2KHR");
@@ -140,6 +152,8 @@ public final class VkInstanceCommands {
         HANDLE$vkGetPhysicalDeviceExternalSemaphoreProperties = RawFunctionLoader.link(SEGMENT$vkGetPhysicalDeviceExternalSemaphoreProperties, Descriptors.DESCRIPTOR$vkGetPhysicalDeviceExternalSemaphoreProperties);
         SEGMENT$vkGetPhysicalDeviceExternalSemaphorePropertiesKHR = loader.apply("vkGetPhysicalDeviceExternalSemaphorePropertiesKHR");
         HANDLE$vkGetPhysicalDeviceExternalSemaphorePropertiesKHR = RawFunctionLoader.link(SEGMENT$vkGetPhysicalDeviceExternalSemaphorePropertiesKHR, Descriptors.DESCRIPTOR$vkGetPhysicalDeviceExternalSemaphoreProperties);
+        SEGMENT$vkGetPhysicalDeviceExternalTensorPropertiesARM = loader.apply("vkGetPhysicalDeviceExternalTensorPropertiesARM");
+        HANDLE$vkGetPhysicalDeviceExternalTensorPropertiesARM = RawFunctionLoader.link(SEGMENT$vkGetPhysicalDeviceExternalTensorPropertiesARM, Descriptors.DESCRIPTOR$vkGetPhysicalDeviceExternalTensorPropertiesARM);
         SEGMENT$vkGetPhysicalDeviceFeatures = loader.apply("vkGetPhysicalDeviceFeatures");
         HANDLE$vkGetPhysicalDeviceFeatures = RawFunctionLoader.link(SEGMENT$vkGetPhysicalDeviceFeatures, Descriptors.DESCRIPTOR$vkGetPhysicalDeviceFeatures);
         SEGMENT$vkGetPhysicalDeviceFeatures2 = loader.apply("vkGetPhysicalDeviceFeatures2");
@@ -178,6 +192,14 @@ public final class VkInstanceCommands {
         HANDLE$vkGetPhysicalDeviceProperties2 = RawFunctionLoader.link(SEGMENT$vkGetPhysicalDeviceProperties2, Descriptors.DESCRIPTOR$vkGetPhysicalDeviceProperties2);
         SEGMENT$vkGetPhysicalDeviceProperties2KHR = loader.apply("vkGetPhysicalDeviceProperties2KHR");
         HANDLE$vkGetPhysicalDeviceProperties2KHR = RawFunctionLoader.link(SEGMENT$vkGetPhysicalDeviceProperties2KHR, Descriptors.DESCRIPTOR$vkGetPhysicalDeviceProperties2);
+        SEGMENT$vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM = loader.apply("vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM");
+        HANDLE$vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM = RawFunctionLoader.link(SEGMENT$vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM, Descriptors.DESCRIPTOR$vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM);
+        SEGMENT$vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM = loader.apply("vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM");
+        HANDLE$vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM = RawFunctionLoader.link(SEGMENT$vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM, Descriptors.DESCRIPTOR$vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM);
+        SEGMENT$vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM = loader.apply("vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM");
+        HANDLE$vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM = RawFunctionLoader.link(SEGMENT$vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM, Descriptors.DESCRIPTOR$vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM);
+        SEGMENT$vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM = loader.apply("vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM");
+        HANDLE$vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM = RawFunctionLoader.link(SEGMENT$vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM, Descriptors.DESCRIPTOR$vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM);
         SEGMENT$vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR = loader.apply("vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR");
         HANDLE$vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR = RawFunctionLoader.link(SEGMENT$vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR, Descriptors.DESCRIPTOR$vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR);
         SEGMENT$vkGetPhysicalDeviceQueueFamilyProperties = loader.apply("vkGetPhysicalDeviceQueueFamilyProperties");
@@ -222,6 +244,8 @@ public final class VkInstanceCommands {
         HANDLE$vkGetPhysicalDeviceToolProperties = RawFunctionLoader.link(SEGMENT$vkGetPhysicalDeviceToolProperties, Descriptors.DESCRIPTOR$vkGetPhysicalDeviceToolProperties);
         SEGMENT$vkGetPhysicalDeviceToolPropertiesEXT = loader.apply("vkGetPhysicalDeviceToolPropertiesEXT");
         HANDLE$vkGetPhysicalDeviceToolPropertiesEXT = RawFunctionLoader.link(SEGMENT$vkGetPhysicalDeviceToolPropertiesEXT, Descriptors.DESCRIPTOR$vkGetPhysicalDeviceToolProperties);
+        SEGMENT$vkGetPhysicalDeviceUbmPresentationSupportSEC = loader.apply("vkGetPhysicalDeviceUbmPresentationSupportSEC");
+        HANDLE$vkGetPhysicalDeviceUbmPresentationSupportSEC = RawFunctionLoader.link(SEGMENT$vkGetPhysicalDeviceUbmPresentationSupportSEC, Descriptors.DESCRIPTOR$vkGetPhysicalDeviceUbmPresentationSupportSEC);
         SEGMENT$vkGetPhysicalDeviceVideoCapabilitiesKHR = loader.apply("vkGetPhysicalDeviceVideoCapabilitiesKHR");
         HANDLE$vkGetPhysicalDeviceVideoCapabilitiesKHR = RawFunctionLoader.link(SEGMENT$vkGetPhysicalDeviceVideoCapabilitiesKHR, Descriptors.DESCRIPTOR$vkGetPhysicalDeviceVideoCapabilitiesKHR);
         SEGMENT$vkGetPhysicalDeviceVideoEncodeQualityLevelPropertiesKHR = loader.apply("vkGetPhysicalDeviceVideoEncodeQualityLevelPropertiesKHR");
@@ -638,6 +662,46 @@ public final class VkInstanceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateSurfaceOHOS.html"><code>vkCreateSurfaceOHOS</code></a>
+    public @EnumType(VkResult.class) int createSurfaceOHOS(
+        VkInstance instance,
+        @Pointer VkSurfaceCreateInfoOHOS pCreateInfo,
+        @Nullable @Pointer VkAllocationCallbacks pAllocator,
+        @Pointer VkSurfaceKHR.Ptr pSurface
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCreateSurfaceOHOS);
+        try {
+            return (int) hFunction.invokeExact(
+                instance.segment(),
+                pCreateInfo.segment(),
+                (MemorySegment) (pAllocator != null ? pAllocator.segment() : MemorySegment.NULL),
+                pSurface.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateUbmSurfaceSEC.html"><code>vkCreateUbmSurfaceSEC</code></a>
+    public @EnumType(VkResult.class) int createUbmSurfaceSEC(
+        VkInstance instance,
+        @Pointer VkUbmSurfaceCreateInfoSEC pCreateInfo,
+        @Nullable @Pointer VkAllocationCallbacks pAllocator,
+        @Pointer VkSurfaceKHR.Ptr pSurface
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCreateUbmSurfaceSEC);
+        try {
+            return (int) hFunction.invokeExact(
+                instance.segment(),
+                pCreateInfo.segment(),
+                (MemorySegment) (pAllocator != null ? pAllocator.segment() : MemorySegment.NULL),
+                pSurface.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateViSurfaceNN.html"><code>vkCreateViSurfaceNN</code></a>
     public @EnumType(VkResult.class) int createViSurfaceNN(
         VkInstance instance,
@@ -910,6 +974,28 @@ public final class VkInstanceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM.html"><code>vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM</code></a>
+    public @EnumType(VkResult.class) int enumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM(
+        VkPhysicalDevice physicalDevice,
+        @Unsigned int queueFamilyIndex,
+        @Unsigned IntPtr pCounterCount,
+        @Nullable @Pointer IVkPerformanceCounterARM pCounters,
+        @Nullable @Pointer IVkPerformanceCounterDescriptionARM pCounterDescriptions
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM);
+        try {
+            return (int) hFunction.invokeExact(
+                physicalDevice.segment(),
+                queueFamilyIndex,
+                pCounterCount.segment(),
+                (MemorySegment) (pCounters != null ? pCounters.segment() : MemorySegment.NULL),
+                (MemorySegment) (pCounterDescriptions != null ? pCounterDescriptions.segment() : MemorySegment.NULL)
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR.html"><code>vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR</code></a>
     public @EnumType(VkResult.class) int enumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR(
         VkPhysicalDevice physicalDevice,
@@ -926,6 +1012,24 @@ public final class VkInstanceCommands {
                 pCounterCount.segment(),
                 (MemorySegment) (pCounters != null ? pCounters.segment() : MemorySegment.NULL),
                 (MemorySegment) (pCounterDescriptions != null ? pCounterDescriptions.segment() : MemorySegment.NULL)
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM.html"><code>vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM</code></a>
+    public @EnumType(VkResult.class) int enumeratePhysicalDeviceShaderInstrumentationMetricsARM(
+        VkPhysicalDevice physicalDevice,
+        @Unsigned IntPtr pDescriptionCount,
+        @Nullable @Pointer IVkShaderInstrumentationMetricDescriptionARM pDescriptions
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM);
+        try {
+            return (int) hFunction.invokeExact(
+                physicalDevice.segment(),
+                pDescriptionCount.segment(),
+                (MemorySegment) (pDescriptions != null ? pDescriptions.segment() : MemorySegment.NULL)
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -1122,6 +1226,26 @@ public final class VkInstanceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceCooperativeMatrixProperties2EXT.html"><code>vkGetPhysicalDeviceCooperativeMatrixProperties2EXT</code></a>
+    public @EnumType(VkResult.class) int getPhysicalDeviceCooperativeMatrixProperties2EXT(
+        VkPhysicalDevice physicalDevice,
+        @Pointer VkPhysicalDeviceCooperativeMatrixInfo2EXT pCooperativeMatrixInfo,
+        @Unsigned IntPtr pPropertyCount,
+        @Nullable @Pointer IVkCooperativeMatrixProperties2EXT pProperties
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkGetPhysicalDeviceCooperativeMatrixProperties2EXT);
+        try {
+            return (int) hFunction.invokeExact(
+                physicalDevice.segment(),
+                pCooperativeMatrixInfo.segment(),
+                pPropertyCount.segment(),
+                (MemorySegment) (pProperties != null ? pProperties.segment() : MemorySegment.NULL)
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR.html"><code>vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR</code></a>
     public @EnumType(VkResult.class) int getPhysicalDeviceCooperativeMatrixPropertiesKHR(
         VkPhysicalDevice physicalDevice,
@@ -1170,6 +1294,22 @@ public final class VkInstanceCommands {
                 physicalDevice.segment(),
                 pPropertyCount.segment(),
                 (MemorySegment) (pProperties != null ? pProperties.segment() : MemorySegment.NULL)
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceDescriptorSizeEXT.html"><code>vkGetPhysicalDeviceDescriptorSizeEXT</code></a>
+    public @NativeType("VkDeviceSize") @Unsigned long getPhysicalDeviceDescriptorSizeEXT(
+        VkPhysicalDevice physicalDevice,
+        @EnumType(VkDescriptorType.class) int descriptorType
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkGetPhysicalDeviceDescriptorSizeEXT);
+        try {
+            return (long) hFunction.invokeExact(
+                physicalDevice.segment(),
+                descriptorType
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -1416,6 +1556,24 @@ public final class VkInstanceCommands {
                 physicalDevice.segment(),
                 pExternalSemaphoreInfo.segment(),
                 pExternalSemaphoreProperties.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceExternalTensorPropertiesARM.html"><code>vkGetPhysicalDeviceExternalTensorPropertiesARM</code></a>
+    public void getPhysicalDeviceExternalTensorPropertiesARM(
+        VkPhysicalDevice physicalDevice,
+        @Pointer VkPhysicalDeviceExternalTensorInfoARM pExternalTensorInfo,
+        @Pointer VkExternalTensorPropertiesARM pExternalTensorProperties
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkGetPhysicalDeviceExternalTensorPropertiesARM);
+        try {
+            hFunction.invokeExact(
+                physicalDevice.segment(),
+                pExternalTensorInfo.segment(),
+                pExternalTensorProperties.segment()
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -1752,6 +1910,88 @@ public final class VkInstanceCommands {
             hFunction.invokeExact(
                 physicalDevice.segment(),
                 pProperties.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM.html"><code>vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM</code></a>
+    public @EnumType(VkResult.class) int getPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM(
+        VkPhysicalDevice physicalDevice,
+        @Unsigned int queueFamilyIndex,
+        @Pointer VkQueueFamilyDataGraphPropertiesARM pQueueFamilyDataGraphProperties,
+        @Pointer VkBaseOutStructure pProperties
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM);
+        try {
+            return (int) hFunction.invokeExact(
+                physicalDevice.segment(),
+                queueFamilyIndex,
+                pQueueFamilyDataGraphProperties.segment(),
+                pProperties.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM.html"><code>vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM</code></a>
+    public @EnumType(VkResult.class) int getPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM(
+        VkPhysicalDevice physicalDevice,
+        @Unsigned int queueFamilyIndex,
+        @Pointer VkQueueFamilyDataGraphPropertiesARM pQueueFamilyDataGraphProperties,
+        @Pointer VkDataGraphOpticalFlowImageFormatInfoARM pOpticalFlowImageFormatInfo,
+        @Unsigned IntPtr pFormatCount,
+        @Nullable @Pointer IVkDataGraphOpticalFlowImageFormatPropertiesARM pImageFormatProperties
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM);
+        try {
+            return (int) hFunction.invokeExact(
+                physicalDevice.segment(),
+                queueFamilyIndex,
+                pQueueFamilyDataGraphProperties.segment(),
+                pOpticalFlowImageFormatInfo.segment(),
+                pFormatCount.segment(),
+                (MemorySegment) (pImageFormatProperties != null ? pImageFormatProperties.segment() : MemorySegment.NULL)
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM.html"><code>vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM</code></a>
+    public void getPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM(
+        VkPhysicalDevice physicalDevice,
+        @Pointer VkPhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM pQueueFamilyDataGraphProcessingEngineInfo,
+        @Pointer VkQueueFamilyDataGraphProcessingEnginePropertiesARM pQueueFamilyDataGraphProcessingEngineProperties
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM);
+        try {
+            hFunction.invokeExact(
+                physicalDevice.segment(),
+                pQueueFamilyDataGraphProcessingEngineInfo.segment(),
+                pQueueFamilyDataGraphProcessingEngineProperties.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM.html"><code>vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM</code></a>
+    public @EnumType(VkResult.class) int getPhysicalDeviceQueueFamilyDataGraphPropertiesARM(
+        VkPhysicalDevice physicalDevice,
+        @Unsigned int queueFamilyIndex,
+        @Unsigned IntPtr pQueueFamilyDataGraphPropertyCount,
+        @Nullable @Pointer IVkQueueFamilyDataGraphPropertiesARM pQueueFamilyDataGraphProperties
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM);
+        try {
+            return (int) hFunction.invokeExact(
+                physicalDevice.segment(),
+                queueFamilyIndex,
+                pQueueFamilyDataGraphPropertyCount.segment(),
+                (MemorySegment) (pQueueFamilyDataGraphProperties != null ? pQueueFamilyDataGraphProperties.segment() : MemorySegment.NULL)
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -2176,6 +2416,24 @@ public final class VkInstanceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceUbmPresentationSupportSEC.html"><code>vkGetPhysicalDeviceUbmPresentationSupportSEC</code></a>
+    public @NativeType("VkBool32") @Unsigned int getPhysicalDeviceUbmPresentationSupportSEC(
+        VkPhysicalDevice physicalDevice,
+        @Unsigned int queueFamilyIndex,
+        @Pointer(comment="void*") @NotNull MemorySegment device
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkGetPhysicalDeviceUbmPresentationSupportSEC);
+        try {
+            return (int) hFunction.invokeExact(
+                physicalDevice.segment(),
+                queueFamilyIndex,
+                device
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceVideoCapabilitiesKHR.html"><code>vkGetPhysicalDeviceVideoCapabilitiesKHR</code></a>
     public @EnumType(VkResult.class) int getPhysicalDeviceVideoCapabilitiesKHR(
         VkPhysicalDevice physicalDevice,
@@ -2480,6 +2738,8 @@ public final class VkInstanceCommands {
     public final @Nullable MemorySegment SEGMENT$vkCreateMetalSurfaceEXT;
     public final @Nullable MemorySegment SEGMENT$vkCreateScreenSurfaceQNX;
     public final @Nullable MemorySegment SEGMENT$vkCreateStreamDescriptorSurfaceGGP;
+    public final @Nullable MemorySegment SEGMENT$vkCreateSurfaceOHOS;
+    public final @Nullable MemorySegment SEGMENT$vkCreateUbmSurfaceSEC;
     public final @Nullable MemorySegment SEGMENT$vkCreateViSurfaceNN;
     public final @Nullable MemorySegment SEGMENT$vkCreateWaylandSurfaceKHR;
     public final @Nullable MemorySegment SEGMENT$vkCreateWin32SurfaceKHR;
@@ -2494,7 +2754,9 @@ public final class VkInstanceCommands {
     public final @Nullable MemorySegment SEGMENT$vkEnumerateDeviceLayerProperties;
     public final @Nullable MemorySegment SEGMENT$vkEnumeratePhysicalDeviceGroups;
     public final @Nullable MemorySegment SEGMENT$vkEnumeratePhysicalDeviceGroupsKHR;
+    public final @Nullable MemorySegment SEGMENT$vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM;
     public final @Nullable MemorySegment SEGMENT$vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR;
+    public final @Nullable MemorySegment SEGMENT$vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM;
     public final @Nullable MemorySegment SEGMENT$vkEnumeratePhysicalDevices;
     public final @Nullable MemorySegment SEGMENT$vkGetDisplayModeProperties2KHR;
     public final @Nullable MemorySegment SEGMENT$vkGetDisplayModePropertiesKHR;
@@ -2505,9 +2767,11 @@ public final class VkInstanceCommands {
     public final @Nullable MemorySegment SEGMENT$vkGetPhysicalDeviceCalibrateableTimeDomainsEXT;
     public final @Nullable MemorySegment SEGMENT$vkGetPhysicalDeviceCalibrateableTimeDomainsKHR;
     public final @Nullable MemorySegment SEGMENT$vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV;
+    public final @Nullable MemorySegment SEGMENT$vkGetPhysicalDeviceCooperativeMatrixProperties2EXT;
     public final @Nullable MemorySegment SEGMENT$vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR;
     public final @Nullable MemorySegment SEGMENT$vkGetPhysicalDeviceCooperativeMatrixPropertiesNV;
     public final @Nullable MemorySegment SEGMENT$vkGetPhysicalDeviceCooperativeVectorPropertiesNV;
+    public final @Nullable MemorySegment SEGMENT$vkGetPhysicalDeviceDescriptorSizeEXT;
     public final @Nullable MemorySegment SEGMENT$vkGetPhysicalDeviceDirectFBPresentationSupportEXT;
     public final @Nullable MemorySegment SEGMENT$vkGetPhysicalDeviceDisplayPlaneProperties2KHR;
     public final @Nullable MemorySegment SEGMENT$vkGetPhysicalDeviceDisplayPlanePropertiesKHR;
@@ -2521,6 +2785,7 @@ public final class VkInstanceCommands {
     public final @Nullable MemorySegment SEGMENT$vkGetPhysicalDeviceExternalMemorySciBufPropertiesNV;
     public final @Nullable MemorySegment SEGMENT$vkGetPhysicalDeviceExternalSemaphoreProperties;
     public final @Nullable MemorySegment SEGMENT$vkGetPhysicalDeviceExternalSemaphorePropertiesKHR;
+    public final @Nullable MemorySegment SEGMENT$vkGetPhysicalDeviceExternalTensorPropertiesARM;
     public final @Nullable MemorySegment SEGMENT$vkGetPhysicalDeviceFeatures;
     public final @Nullable MemorySegment SEGMENT$vkGetPhysicalDeviceFeatures2;
     public final @Nullable MemorySegment SEGMENT$vkGetPhysicalDeviceFeatures2KHR;
@@ -2540,6 +2805,10 @@ public final class VkInstanceCommands {
     public final @Nullable MemorySegment SEGMENT$vkGetPhysicalDeviceProperties;
     public final @Nullable MemorySegment SEGMENT$vkGetPhysicalDeviceProperties2;
     public final @Nullable MemorySegment SEGMENT$vkGetPhysicalDeviceProperties2KHR;
+    public final @Nullable MemorySegment SEGMENT$vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM;
+    public final @Nullable MemorySegment SEGMENT$vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM;
+    public final @Nullable MemorySegment SEGMENT$vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM;
+    public final @Nullable MemorySegment SEGMENT$vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM;
     public final @Nullable MemorySegment SEGMENT$vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR;
     public final @Nullable MemorySegment SEGMENT$vkGetPhysicalDeviceQueueFamilyProperties;
     public final @Nullable MemorySegment SEGMENT$vkGetPhysicalDeviceQueueFamilyProperties2;
@@ -2562,6 +2831,7 @@ public final class VkInstanceCommands {
     public final @Nullable MemorySegment SEGMENT$vkGetPhysicalDeviceSurfaceSupportKHR;
     public final @Nullable MemorySegment SEGMENT$vkGetPhysicalDeviceToolProperties;
     public final @Nullable MemorySegment SEGMENT$vkGetPhysicalDeviceToolPropertiesEXT;
+    public final @Nullable MemorySegment SEGMENT$vkGetPhysicalDeviceUbmPresentationSupportSEC;
     public final @Nullable MemorySegment SEGMENT$vkGetPhysicalDeviceVideoCapabilitiesKHR;
     public final @Nullable MemorySegment SEGMENT$vkGetPhysicalDeviceVideoEncodeQualityLevelPropertiesKHR;
     public final @Nullable MemorySegment SEGMENT$vkGetPhysicalDeviceVideoFormatPropertiesKHR;
@@ -2598,6 +2868,8 @@ public final class VkInstanceCommands {
     public final @Nullable MethodHandle HANDLE$vkCreateMetalSurfaceEXT;
     public final @Nullable MethodHandle HANDLE$vkCreateScreenSurfaceQNX;
     public final @Nullable MethodHandle HANDLE$vkCreateStreamDescriptorSurfaceGGP;
+    public final @Nullable MethodHandle HANDLE$vkCreateSurfaceOHOS;
+    public final @Nullable MethodHandle HANDLE$vkCreateUbmSurfaceSEC;
     public final @Nullable MethodHandle HANDLE$vkCreateViSurfaceNN;
     public final @Nullable MethodHandle HANDLE$vkCreateWaylandSurfaceKHR;
     public final @Nullable MethodHandle HANDLE$vkCreateWin32SurfaceKHR;
@@ -2612,7 +2884,9 @@ public final class VkInstanceCommands {
     public final @Nullable MethodHandle HANDLE$vkEnumerateDeviceLayerProperties;
     public final @Nullable MethodHandle HANDLE$vkEnumeratePhysicalDeviceGroups;
     public final @Nullable MethodHandle HANDLE$vkEnumeratePhysicalDeviceGroupsKHR;
+    public final @Nullable MethodHandle HANDLE$vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM;
     public final @Nullable MethodHandle HANDLE$vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR;
+    public final @Nullable MethodHandle HANDLE$vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM;
     public final @Nullable MethodHandle HANDLE$vkEnumeratePhysicalDevices;
     public final @Nullable MethodHandle HANDLE$vkGetDisplayModeProperties2KHR;
     public final @Nullable MethodHandle HANDLE$vkGetDisplayModePropertiesKHR;
@@ -2623,9 +2897,11 @@ public final class VkInstanceCommands {
     public final @Nullable MethodHandle HANDLE$vkGetPhysicalDeviceCalibrateableTimeDomainsEXT;
     public final @Nullable MethodHandle HANDLE$vkGetPhysicalDeviceCalibrateableTimeDomainsKHR;
     public final @Nullable MethodHandle HANDLE$vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV;
+    public final @Nullable MethodHandle HANDLE$vkGetPhysicalDeviceCooperativeMatrixProperties2EXT;
     public final @Nullable MethodHandle HANDLE$vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR;
     public final @Nullable MethodHandle HANDLE$vkGetPhysicalDeviceCooperativeMatrixPropertiesNV;
     public final @Nullable MethodHandle HANDLE$vkGetPhysicalDeviceCooperativeVectorPropertiesNV;
+    public final @Nullable MethodHandle HANDLE$vkGetPhysicalDeviceDescriptorSizeEXT;
     public final @Nullable MethodHandle HANDLE$vkGetPhysicalDeviceDirectFBPresentationSupportEXT;
     public final @Nullable MethodHandle HANDLE$vkGetPhysicalDeviceDisplayPlaneProperties2KHR;
     public final @Nullable MethodHandle HANDLE$vkGetPhysicalDeviceDisplayPlanePropertiesKHR;
@@ -2639,6 +2915,7 @@ public final class VkInstanceCommands {
     public final @Nullable MethodHandle HANDLE$vkGetPhysicalDeviceExternalMemorySciBufPropertiesNV;
     public final @Nullable MethodHandle HANDLE$vkGetPhysicalDeviceExternalSemaphoreProperties;
     public final @Nullable MethodHandle HANDLE$vkGetPhysicalDeviceExternalSemaphorePropertiesKHR;
+    public final @Nullable MethodHandle HANDLE$vkGetPhysicalDeviceExternalTensorPropertiesARM;
     public final @Nullable MethodHandle HANDLE$vkGetPhysicalDeviceFeatures;
     public final @Nullable MethodHandle HANDLE$vkGetPhysicalDeviceFeatures2;
     public final @Nullable MethodHandle HANDLE$vkGetPhysicalDeviceFeatures2KHR;
@@ -2658,6 +2935,10 @@ public final class VkInstanceCommands {
     public final @Nullable MethodHandle HANDLE$vkGetPhysicalDeviceProperties;
     public final @Nullable MethodHandle HANDLE$vkGetPhysicalDeviceProperties2;
     public final @Nullable MethodHandle HANDLE$vkGetPhysicalDeviceProperties2KHR;
+    public final @Nullable MethodHandle HANDLE$vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM;
+    public final @Nullable MethodHandle HANDLE$vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM;
+    public final @Nullable MethodHandle HANDLE$vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM;
+    public final @Nullable MethodHandle HANDLE$vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM;
     public final @Nullable MethodHandle HANDLE$vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR;
     public final @Nullable MethodHandle HANDLE$vkGetPhysicalDeviceQueueFamilyProperties;
     public final @Nullable MethodHandle HANDLE$vkGetPhysicalDeviceQueueFamilyProperties2;
@@ -2680,6 +2961,7 @@ public final class VkInstanceCommands {
     public final @Nullable MethodHandle HANDLE$vkGetPhysicalDeviceSurfaceSupportKHR;
     public final @Nullable MethodHandle HANDLE$vkGetPhysicalDeviceToolProperties;
     public final @Nullable MethodHandle HANDLE$vkGetPhysicalDeviceToolPropertiesEXT;
+    public final @Nullable MethodHandle HANDLE$vkGetPhysicalDeviceUbmPresentationSupportSEC;
     public final @Nullable MethodHandle HANDLE$vkGetPhysicalDeviceVideoCapabilitiesKHR;
     public final @Nullable MethodHandle HANDLE$vkGetPhysicalDeviceVideoEncodeQualityLevelPropertiesKHR;
     public final @Nullable MethodHandle HANDLE$vkGetPhysicalDeviceVideoFormatPropertiesKHR;
@@ -2846,6 +3128,22 @@ public final class VkInstanceCommands {
             ValueLayout.ADDRESS.withTargetLayout(ValueLayout.ADDRESS)
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkCreateSurfaceOHOS = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkSurfaceCreateInfoOHOS.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(VkAllocationCallbacks.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.ADDRESS)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkCreateUbmSurfaceSEC = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkUbmSurfaceCreateInfoSEC.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(VkAllocationCallbacks.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.ADDRESS)
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkCreateViSurfaceNN = FunctionDescriptor.of(
             ValueLayout.JAVA_INT,
             ValueLayout.ADDRESS,
@@ -2942,6 +3240,15 @@ public final class VkInstanceCommands {
             ValueLayout.ADDRESS.withTargetLayout(VkPhysicalDeviceGroupProperties.LAYOUT)
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.JAVA_INT),
+            ValueLayout.ADDRESS.withTargetLayout(VkPerformanceCounterARM.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(VkPerformanceCounterDescriptionARM.LAYOUT)
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR = FunctionDescriptor.of(
             ValueLayout.JAVA_INT,
             ValueLayout.ADDRESS,
@@ -2949,6 +3256,13 @@ public final class VkInstanceCommands {
             ValueLayout.ADDRESS.withTargetLayout(ValueLayout.JAVA_INT),
             ValueLayout.ADDRESS.withTargetLayout(VkPerformanceCounterKHR.LAYOUT),
             ValueLayout.ADDRESS.withTargetLayout(VkPerformanceCounterDescriptionKHR.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.JAVA_INT),
+            ValueLayout.ADDRESS.withTargetLayout(VkShaderInstrumentationMetricDescriptionARM.LAYOUT)
         );
 
         public static final FunctionDescriptor DESCRIPTOR$vkEnumeratePhysicalDevices = FunctionDescriptor.of(
@@ -3019,6 +3333,14 @@ public final class VkInstanceCommands {
             ValueLayout.ADDRESS.withTargetLayout(VkCooperativeMatrixFlexibleDimensionsPropertiesNV.LAYOUT)
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkGetPhysicalDeviceCooperativeMatrixProperties2EXT = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkPhysicalDeviceCooperativeMatrixInfo2EXT.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.JAVA_INT),
+            ValueLayout.ADDRESS.withTargetLayout(VkCooperativeMatrixProperties2EXT.LAYOUT)
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR = FunctionDescriptor.of(
             ValueLayout.JAVA_INT,
             ValueLayout.ADDRESS,
@@ -3038,6 +3360,12 @@ public final class VkInstanceCommands {
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS.withTargetLayout(ValueLayout.JAVA_INT),
             ValueLayout.ADDRESS.withTargetLayout(VkCooperativeVectorPropertiesNV.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkGetPhysicalDeviceDescriptorSizeEXT = FunctionDescriptor.of(
+            ValueLayout.JAVA_LONG,
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_INT
         );
 
         public static final FunctionDescriptor DESCRIPTOR$vkGetPhysicalDeviceDirectFBPresentationSupportEXT = FunctionDescriptor.of(
@@ -3111,6 +3439,12 @@ public final class VkInstanceCommands {
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS.withTargetLayout(VkPhysicalDeviceExternalSemaphoreInfo.LAYOUT),
             ValueLayout.ADDRESS.withTargetLayout(VkExternalSemaphoreProperties.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkGetPhysicalDeviceExternalTensorPropertiesARM = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkPhysicalDeviceExternalTensorInfoARM.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(VkExternalTensorPropertiesARM.LAYOUT)
         );
 
         public static final FunctionDescriptor DESCRIPTOR$vkGetPhysicalDeviceFeatures = FunctionDescriptor.ofVoid(
@@ -3200,6 +3534,38 @@ public final class VkInstanceCommands {
         public static final FunctionDescriptor DESCRIPTOR$vkGetPhysicalDeviceProperties2 = FunctionDescriptor.ofVoid(
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS.withTargetLayout(VkPhysicalDeviceProperties2.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS.withTargetLayout(VkQueueFamilyDataGraphPropertiesARM.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(VkBaseOutStructure.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS.withTargetLayout(VkQueueFamilyDataGraphPropertiesARM.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(VkDataGraphOpticalFlowImageFormatInfoARM.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.JAVA_INT),
+            ValueLayout.ADDRESS.withTargetLayout(VkDataGraphOpticalFlowImageFormatPropertiesARM.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM = FunctionDescriptor.ofVoid(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkPhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(VkQueueFamilyDataGraphProcessingEnginePropertiesARM.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.JAVA_INT),
+            ValueLayout.ADDRESS.withTargetLayout(VkQueueFamilyDataGraphPropertiesARM.LAYOUT)
         );
 
         public static final FunctionDescriptor DESCRIPTOR$vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR = FunctionDescriptor.ofVoid(
@@ -3338,6 +3704,13 @@ public final class VkInstanceCommands {
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS.withTargetLayout(ValueLayout.JAVA_INT),
             ValueLayout.ADDRESS.withTargetLayout(VkPhysicalDeviceToolProperties.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkGetPhysicalDeviceUbmPresentationSupportSEC = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS
         );
 
         public static final FunctionDescriptor DESCRIPTOR$vkGetPhysicalDeviceVideoCapabilitiesKHR = FunctionDescriptor.of(

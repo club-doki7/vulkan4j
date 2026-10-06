@@ -110,9 +110,11 @@ fun parseType(s: String): RawType {
     return parseType(tokenizer)
 }
 
+private fun String.sanitizeFlagBits() = replace("FlagBits", "Flags")
+
 /// Only call this function when you're sure that you DO NOT need to retain trivia
 fun RawType.toType(): Type = when (this) {
-    is RawIdentifierType -> IdentifierType(ident)
+    is RawIdentifierType -> IdentifierType(ident.sanitizeFlagBits())
     is RawArrayType -> if (size.isBlank()) {
         PointerType(
             pointee = element.toType(),

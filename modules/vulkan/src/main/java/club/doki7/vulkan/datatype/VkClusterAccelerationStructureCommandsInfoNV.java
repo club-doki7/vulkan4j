@@ -28,12 +28,12 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 ///     VkStructureType sType; // @link substring="VkStructureType" target="VkStructureType" @link substring="sType" target="#sType"
 ///     void* pNext; // optional // @link substring="pNext" target="#pNext"
 ///     VkClusterAccelerationStructureInputInfoNV input; // @link substring="VkClusterAccelerationStructureInputInfoNV" target="VkClusterAccelerationStructureInputInfoNV" @link substring="input" target="#input"
-///     VkDeviceAddress dstImplicitData; // @link substring="dstImplicitData" target="#dstImplicitData"
+///     VkDeviceAddress dstImplicitData; // optional // @link substring="dstImplicitData" target="#dstImplicitData"
 ///     VkDeviceAddress scratchData; // @link substring="scratchData" target="#scratchData"
 ///     VkStridedDeviceAddressRegionKHR dstAddressesArray; // @link substring="VkStridedDeviceAddressRegionKHR" target="VkStridedDeviceAddressRegionKHR" @link substring="dstAddressesArray" target="#dstAddressesArray"
 ///     VkStridedDeviceAddressRegionKHR dstSizesArray; // @link substring="VkStridedDeviceAddressRegionKHR" target="VkStridedDeviceAddressRegionKHR" @link substring="dstSizesArray" target="#dstSizesArray"
 ///     VkStridedDeviceAddressRegionKHR srcInfosArray; // @link substring="VkStridedDeviceAddressRegionKHR" target="VkStridedDeviceAddressRegionKHR" @link substring="srcInfosArray" target="#srcInfosArray"
-///     VkDeviceAddress srcInfosCount; // @link substring="srcInfosCount" target="#srcInfosCount"
+///     VkDeviceAddress srcInfosCount; // optional // @link substring="srcInfosCount" target="#srcInfosCount"
 ///     VkClusterAccelerationStructureAddressResolutionFlagsNV addressResolutionFlags; // optional // @link substring="VkClusterAccelerationStructureAddressResolutionFlagsNV" target="VkClusterAccelerationStructureAddressResolutionFlagsNV" @link substring="addressResolutionFlags" target="#addressResolutionFlags"
 /// } VkClusterAccelerationStructureCommandsInfoNV;
 /// }

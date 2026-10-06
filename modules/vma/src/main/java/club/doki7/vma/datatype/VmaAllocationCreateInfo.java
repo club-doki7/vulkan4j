@@ -39,6 +39,7 @@ import static club.doki7.vulkan.VkConstants.*;
 ///     VmaPool pool; // optional // @link substring="VmaPool" target="VmaPool" @link substring="pool" target="#pool"
 ///     void* pUserData; // optional // @link substring="pUserData" target="#pUserData"
 ///     float priority; // @link substring="priority" target="#priority"
+///     VkDeviceSize minAlignment; // @link substring="minAlignment" target="#minAlignment"
 /// } VmaAllocationCreateInfo;
 /// }
 ///
@@ -98,6 +99,18 @@ import static club.doki7.vulkan.VkConstants.*;
 /// It is used only when {@code VMA_ALLOCATOR_CREATE_EXT_MEMORY_PRIORITY_BIT} flag was used during creation of the {@code VmaAllocator} object
 /// and this allocation ends up as dedicated or is explicitly forced as dedicated using {@code VMA_ALLOCATION_CREATE_DEDICATED_MEMORY_BIT}.
 /// Otherwise, it has the priority of a memory block where it is placed and this variable is ignored.
+/// </li>
+/// <li>{@link #minAlignment} Additional minimum alignment to be used for this allocation. Can be 0.
+///
+/// Leave 0 (default) not to impose any additional alignment. If not 0, it must be a power of two.
+///
+/// When creating a buffer or an image, specifying a custom alignment is not needed in most cases,
+/// because Vulkan implementation inspects the `CreateInfo` structure (including intended usage flags)
+/// and returns required alignment through functions like `vkGetBufferMemoryRequirements2`, which VMA automatically
+/// uses and respects.
+/// Extra alignment may be needed in some cases, like when using a buffer for acceleration structure scratch
+/// (`VkPhysicalDeviceAccelerationStructurePropertiesKHR::minAccelerationStructureScratchOffsetAlignment`, see also issue {@code 523})
+/// or when doing interop with OpenGL.
 /// </li>
 /// </ul>
 @ValueBasedCandidate
@@ -316,6 +329,15 @@ public record VmaAllocationCreateInfo(@NotNull MemorySegment segment) implements
         return this;
     }
 
+    public @NativeType("VkDeviceSize") @Unsigned long minAlignment() {
+        return segment.get(LAYOUT$minAlignment, OFFSET$minAlignment);
+    }
+
+    public VmaAllocationCreateInfo minAlignment(@NativeType("VkDeviceSize") @Unsigned long value) {
+        segment.set(LAYOUT$minAlignment, OFFSET$minAlignment, value);
+        return this;
+    }
+
     public static final StructLayout LAYOUT = NativeLayout.structLayout(
         ValueLayout.JAVA_INT.withName("flags"),
         ValueLayout.JAVA_INT.withName("usage"),
@@ -324,7 +346,8 @@ public record VmaAllocationCreateInfo(@NotNull MemorySegment segment) implements
         ValueLayout.JAVA_INT.withName("memoryTypeBits"),
         ValueLayout.ADDRESS.withName("pool"),
         ValueLayout.ADDRESS.withName("pUserData"),
-        ValueLayout.JAVA_FLOAT.withName("priority")
+        ValueLayout.JAVA_FLOAT.withName("priority"),
+        ValueLayout.JAVA_LONG.withName("minAlignment")
     );
     public static final long BYTES = LAYOUT.byteSize();
 
@@ -336,6 +359,7 @@ public record VmaAllocationCreateInfo(@NotNull MemorySegment segment) implements
     public static final PathElement PATH$pool = PathElement.groupElement("pool");
     public static final PathElement PATH$pUserData = PathElement.groupElement("pUserData");
     public static final PathElement PATH$priority = PathElement.groupElement("priority");
+    public static final PathElement PATH$minAlignment = PathElement.groupElement("minAlignment");
 
     public static final OfInt LAYOUT$flags = (OfInt) LAYOUT.select(PATH$flags);
     public static final OfInt LAYOUT$usage = (OfInt) LAYOUT.select(PATH$usage);
@@ -345,6 +369,7 @@ public record VmaAllocationCreateInfo(@NotNull MemorySegment segment) implements
     public static final AddressLayout LAYOUT$pool = (AddressLayout) LAYOUT.select(PATH$pool);
     public static final AddressLayout LAYOUT$pUserData = (AddressLayout) LAYOUT.select(PATH$pUserData);
     public static final OfFloat LAYOUT$priority = (OfFloat) LAYOUT.select(PATH$priority);
+    public static final OfLong LAYOUT$minAlignment = (OfLong) LAYOUT.select(PATH$minAlignment);
 
     public static final long SIZE$flags = LAYOUT$flags.byteSize();
     public static final long SIZE$usage = LAYOUT$usage.byteSize();
@@ -354,6 +379,7 @@ public record VmaAllocationCreateInfo(@NotNull MemorySegment segment) implements
     public static final long SIZE$pool = LAYOUT$pool.byteSize();
     public static final long SIZE$pUserData = LAYOUT$pUserData.byteSize();
     public static final long SIZE$priority = LAYOUT$priority.byteSize();
+    public static final long SIZE$minAlignment = LAYOUT$minAlignment.byteSize();
 
     public static final long OFFSET$flags = LAYOUT.byteOffset(PATH$flags);
     public static final long OFFSET$usage = LAYOUT.byteOffset(PATH$usage);
@@ -363,4 +389,5 @@ public record VmaAllocationCreateInfo(@NotNull MemorySegment segment) implements
     public static final long OFFSET$pool = LAYOUT.byteOffset(PATH$pool);
     public static final long OFFSET$pUserData = LAYOUT.byteOffset(PATH$pUserData);
     public static final long OFFSET$priority = LAYOUT.byteOffset(PATH$priority);
+    public static final long OFFSET$minAlignment = LAYOUT.byteOffset(PATH$minAlignment);
 }

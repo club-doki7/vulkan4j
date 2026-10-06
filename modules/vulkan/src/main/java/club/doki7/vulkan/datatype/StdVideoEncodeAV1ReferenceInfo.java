@@ -30,7 +30,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 ///     StdVideoAV1FrameType frame_type; // @link substring="StdVideoAV1FrameType" target="StdVideoAV1FrameType" @link substring="frame_type" target="#frame_type"
 ///     uint8_t OrderHint; // @link substring="OrderHint" target="#OrderHint"
 ///     uint8_t[3] reserved1;
-///     StdVideoEncodeAV1ExtensionHeader const* pExtensionHeader; // @link substring="StdVideoEncodeAV1ExtensionHeader" target="StdVideoEncodeAV1ExtensionHeader" @link substring="pExtensionHeader" target="#pExtensionHeader"
+///     StdVideoEncodeAV1ExtensionHeader const* pExtensionHeader; // optional // @link substring="StdVideoEncodeAV1ExtensionHeader" target="StdVideoEncodeAV1ExtensionHeader" @link substring="pExtensionHeader" target="#pExtensionHeader"
 /// } StdVideoEncodeAV1ReferenceInfo;
 /// }
 ///

@@ -40,7 +40,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 ///     uint8_t chroma_sample_loc_type_top_field; // @link substring="chroma_sample_loc_type_top_field" target="#chroma_sample_loc_type_top_field"
 ///     uint8_t chroma_sample_loc_type_bottom_field; // @link substring="chroma_sample_loc_type_bottom_field" target="#chroma_sample_loc_type_bottom_field"
 ///     uint32_t reserved1;
-///     StdVideoH264HrdParameters const* pHrdParameters; // @link substring="StdVideoH264HrdParameters" target="StdVideoH264HrdParameters" @link substring="pHrdParameters" target="#pHrdParameters"
+///     StdVideoH264HrdParameters const* pHrdParameters; // optional // @link substring="StdVideoH264HrdParameters" target="StdVideoH264HrdParameters" @link substring="pHrdParameters" target="#pHrdParameters"
 /// } StdVideoH264SequenceParameterSetVui;
 /// }
 ///

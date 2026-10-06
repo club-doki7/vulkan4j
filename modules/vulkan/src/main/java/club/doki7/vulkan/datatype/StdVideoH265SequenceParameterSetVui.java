@@ -50,7 +50,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 ///     uint8_t max_bits_per_min_cu_denom; // @link substring="max_bits_per_min_cu_denom" target="#max_bits_per_min_cu_denom"
 ///     uint8_t log2_max_mv_length_horizontal; // @link substring="log2_max_mv_length_horizontal" target="#log2_max_mv_length_horizontal"
 ///     uint8_t log2_max_mv_length_vertical; // @link substring="log2_max_mv_length_vertical" target="#log2_max_mv_length_vertical"
-///     StdVideoH265HrdParameters const* pHrdParameters; // @link substring="StdVideoH265HrdParameters" target="StdVideoH265HrdParameters" @link substring="pHrdParameters" target="#pHrdParameters"
+///     StdVideoH265HrdParameters const* pHrdParameters; // optional // @link substring="StdVideoH265HrdParameters" target="StdVideoH265HrdParameters" @link substring="pHrdParameters" target="#pHrdParameters"
 /// } StdVideoH265SequenceParameterSetVui;
 /// }
 ///

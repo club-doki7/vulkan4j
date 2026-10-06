@@ -30,7 +30,7 @@ public final class VkPipelineCreateFlags {
     public static final int RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_KHR = 0x8000;
     public static final int RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_KHR = 0x20000;
     public static final int RAY_TRACING_NO_NULL_MISS_SHADERS_KHR = 0x10000;
-    public static final int RAY_TRACING_OPACITY_MICROMAP_EXT = 0x1000000;
+    public static final int RAY_TRACING_OPACITY_MICROMAP_KHR = 0x1000000;
     public static final int RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_KHR = 0x80000;
     public static final int RAY_TRACING_SKIP_AABBS_KHR = 0x2000;
     public static final int RAY_TRACING_SKIP_TRIANGLES_KHR = 0x1000;
@@ -110,8 +110,8 @@ public final class VkPipelineCreateFlags {
         if ((flags & RAY_TRACING_NO_NULL_MISS_SHADERS_KHR) != 0) {
             detectedFlagBits.add("VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_MISS_SHADERS_BIT_KHR");
         }
-        if ((flags & RAY_TRACING_OPACITY_MICROMAP_EXT) != 0) {
-            detectedFlagBits.add("VK_PIPELINE_CREATE_RAY_TRACING_OPACITY_MICROMAP_BIT_EXT");
+        if ((flags & RAY_TRACING_OPACITY_MICROMAP_KHR) != 0) {
+            detectedFlagBits.add("VK_PIPELINE_CREATE_RAY_TRACING_OPACITY_MICROMAP_BIT_KHR");
         }
         if ((flags & RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_KHR) != 0) {
             detectedFlagBits.add("VK_PIPELINE_CREATE_RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_BIT_KHR");

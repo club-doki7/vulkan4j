@@ -29,7 +29,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 ///     void const* pNext; // optional // @link substring="pNext" target="#pNext"
 ///     VkDeviceAddress deviceAddress; // @link substring="deviceAddress" target="#deviceAddress"
 ///     VkDeviceSize size; // @link substring="size" target="#size"
-///     VkDeviceAddress pipelineDeviceAddressCaptureReplay; // @link substring="pipelineDeviceAddressCaptureReplay" target="#pipelineDeviceAddressCaptureReplay"
+///     VkDeviceAddress pipelineDeviceAddressCaptureReplay; // optional // @link substring="pipelineDeviceAddressCaptureReplay" target="#pipelineDeviceAddressCaptureReplay"
 /// } VkComputePipelineIndirectBufferInfoNV;
 /// }
 ///

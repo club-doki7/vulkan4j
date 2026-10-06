@@ -19,6 +19,7 @@ public final class VkImageUsageFlags {
     public static final int SAMPLE_BLOCK_MATCH_QCOM = 0x200000;
     public static final int SAMPLE_WEIGHT_QCOM = 0x100000;
     public static final int STORAGE = 0x8;
+    public static final int TENSOR_ALIASING_ARM = 0x800000;
     public static final int TILE_MEMORY_QCOM = 0x8000000;
     public static final int TRANSFER_DST = 0x2;
     public static final int TRANSFER_SRC = 0x1;
@@ -70,8 +71,11 @@ public final class VkImageUsageFlags {
         if ((flags & STORAGE) != 0) {
             detectedFlagBits.add("VK_IMAGE_USAGE_STORAGE_BIT");
         }
+        if ((flags & TENSOR_ALIASING_ARM) != 0) {
+            detectedFlagBits.add("VK_IMAGE_USAGE_TENSOR_ALIASING_BIT_ARM");
+        }
         if ((flags & TILE_MEMORY_QCOM) != 0) {
-            detectedFlagBits.add("VK_IMAGE_USAGE_TILE_MEMORY_QCOM");
+            detectedFlagBits.add("VK_IMAGE_USAGE_TILE_MEMORY_BIT_QCOM");
         }
         if ((flags & TRANSFER_DST) != 0) {
             detectedFlagBits.add("VK_IMAGE_USAGE_TRANSFER_DST_BIT");

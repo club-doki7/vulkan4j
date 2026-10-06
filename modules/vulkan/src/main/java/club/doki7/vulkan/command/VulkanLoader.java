@@ -84,7 +84,7 @@ public final class VulkanLoader {
     /// @throws IllegalArgumentException see {@link Linker#downcallHandle(MemorySegment, FunctionDescriptor, Linker.Option...)}
     /// @throws IllegalCallerException see {@link Linker#downcallHandle(MemorySegment, FunctionDescriptor, Linker.Option...)}
     public static @NotNull VkEntryCommands loadEntryCommands(
-            @NotNull VkStaticCommands staticCommands
+        @NotNull VkStaticCommands staticCommands
     ) {
         return new VkEntryCommands(name -> {
             try (Arena arena = Arena.ofConfined()) {
@@ -117,8 +117,8 @@ public final class VulkanLoader {
     /// @throws IllegalArgumentException see {@link Linker#downcallHandle(MemorySegment, FunctionDescriptor, Linker.Option...)}
     /// @throws IllegalCallerException see {@link Linker#downcallHandle(MemorySegment, FunctionDescriptor, Linker.Option...)}
     public static @NotNull VkInstanceCommands loadInstanceCommands(
-            @NotNull VkInstance instance,
-            @NotNull VkStaticCommands staticCommands
+        @NotNull VkInstance instance,
+        @NotNull VkStaticCommands staticCommands
     ) {
         return new VkInstanceCommands(name -> {
             try (Arena arena = Arena.ofConfined()) {
@@ -147,8 +147,8 @@ public final class VulkanLoader {
     /// @throws IllegalArgumentException see {@link Linker#downcallHandle(MemorySegment, FunctionDescriptor, Linker.Option...)}
     /// @throws IllegalCallerException see {@link Linker#downcallHandle(MemorySegment, FunctionDescriptor, Linker.Option...)}
     public static @NotNull VkDeviceCommands loadDeviceCommands(
-            @NotNull VkDevice device,
-            @NotNull VkStaticCommands staticCommands
+        @NotNull VkDevice device,
+        @NotNull VkStaticCommands staticCommands
     ) {
         return new VkDeviceCommands(name -> {
             try (Arena arena = Arena.ofConfined()) {

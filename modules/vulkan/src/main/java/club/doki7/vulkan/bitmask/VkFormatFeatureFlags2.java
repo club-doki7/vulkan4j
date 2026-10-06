@@ -12,10 +12,17 @@ public final class VkFormatFeatureFlags2 {
     public static final long BLIT_DST = 0x800L;
     public static final long BLIT_SRC = 0x400L;
     public static final long BLOCK_MATCHING_QCOM = 0x1000000000L;
+    public static final long BLOCK_MATCHING_SXD_QCOM = 0x100000000000L;
     public static final long BOX_FILTER_SAMPLED_QCOM = 0x2000000000L;
     public static final long COLOR_ATTACHMENT = 0x80L;
     public static final long COLOR_ATTACHMENT_BLEND = 0x100L;
+    public static final long COPY_IMAGE_INDIRECT_DST_KHR = 0x800000000000000L;
     public static final long COSITED_CHROMA_SAMPLES = 0x800000L;
+    public static final long DATA_GRAPH_OPTICAL_FLOW_COST_ARM = 0x400000000000000L;
+    public static final long DATA_GRAPH_OPTICAL_FLOW_IMAGE_ARM = 0x100000000000000L;
+    public static final long DATA_GRAPH_OPTICAL_FLOW_VECTOR_ARM = 0x200000000000000L;
+    public static final long DEPTH_COPY_ON_COMPUTE_QUEUE_KHR = 0x10000000000000L;
+    public static final long DEPTH_COPY_ON_TRANSFER_QUEUE_KHR = 0x20000000000000L;
     public static final long DEPTH_STENCIL_ATTACHMENT = 0x200L;
     public static final long DISJOINT = 0x400000L;
     public static final long FRAGMENT_DENSITY_MAP_EXT = 0x1000000L;
@@ -29,18 +36,24 @@ public final class VkFormatFeatureFlags2 {
     public static final long SAMPLED_IMAGE = 0x1L;
     public static final long SAMPLED_IMAGE_DEPTH_COMPARISON = 0x200000000L;
     public static final long SAMPLED_IMAGE_FILTER_CUBIC = 0x2000L;
+    public static final long SAMPLED_IMAGE_FILTER_LINEAR_2D_IMG = 0x200000000000L;
     public static final long SAMPLED_IMAGE_FILTER_LINEAR = 0x1000L;
     public static final long SAMPLED_IMAGE_FILTER_MINMAX = 0x10000L;
     public static final long SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT = 0x100000L;
     public static final long SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE = 0x200000L;
     public static final long SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER = 0x40000L;
     public static final long SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER = 0x80000L;
+    public static final long STENCIL_COPY_ON_COMPUTE_QUEUE_KHR = 0x40000000000000L;
+    public static final long STENCIL_COPY_ON_TRANSFER_QUEUE_KHR = 0x80000000000000L;
     public static final long STORAGE_IMAGE_ATOMIC = 0x4L;
     public static final long STORAGE_IMAGE = 0x2L;
     public static final long STORAGE_READ_WITHOUT_FORMAT = 0x80000000L;
     public static final long STORAGE_TEXEL_BUFFER_ATOMIC = 0x20L;
     public static final long STORAGE_TEXEL_BUFFER = 0x10L;
     public static final long STORAGE_WRITE_WITHOUT_FORMAT = 0x100000000L;
+    public static final long TENSOR_DATA_GRAPH_ARM = 0x1000000000000L;
+    public static final long TENSOR_IMAGE_ALIASING_ARM = 0x80000000000L;
+    public static final long TENSOR_SHADER_ARM = 0x8000000000L;
     public static final long TRANSFER_DST = 0x8000L;
     public static final long TRANSFER_SRC = 0x4000L;
     public static final long UNIFORM_TEXEL_BUFFER = 0x8L;
@@ -71,6 +84,9 @@ public final class VkFormatFeatureFlags2 {
         if ((flags & BLOCK_MATCHING_QCOM) != 0) {
             detectedFlagBits.add("VK_FORMAT_FEATURE_2_BLOCK_MATCHING_BIT_QCOM");
         }
+        if ((flags & BLOCK_MATCHING_SXD_QCOM) != 0) {
+            detectedFlagBits.add("VK_FORMAT_FEATURE_2_BLOCK_MATCHING_SXD_BIT_QCOM");
+        }
         if ((flags & BOX_FILTER_SAMPLED_QCOM) != 0) {
             detectedFlagBits.add("VK_FORMAT_FEATURE_2_BOX_FILTER_SAMPLED_BIT_QCOM");
         }
@@ -80,8 +96,26 @@ public final class VkFormatFeatureFlags2 {
         if ((flags & COLOR_ATTACHMENT_BLEND) != 0) {
             detectedFlagBits.add("VK_FORMAT_FEATURE_2_COLOR_ATTACHMENT_BLEND_BIT");
         }
+        if ((flags & COPY_IMAGE_INDIRECT_DST_KHR) != 0) {
+            detectedFlagBits.add("VK_FORMAT_FEATURE_2_COPY_IMAGE_INDIRECT_DST_BIT_KHR");
+        }
         if ((flags & COSITED_CHROMA_SAMPLES) != 0) {
             detectedFlagBits.add("VK_FORMAT_FEATURE_2_COSITED_CHROMA_SAMPLES_BIT");
+        }
+        if ((flags & DATA_GRAPH_OPTICAL_FLOW_COST_ARM) != 0) {
+            detectedFlagBits.add("VK_FORMAT_FEATURE_2_DATA_GRAPH_OPTICAL_FLOW_COST_BIT_ARM");
+        }
+        if ((flags & DATA_GRAPH_OPTICAL_FLOW_IMAGE_ARM) != 0) {
+            detectedFlagBits.add("VK_FORMAT_FEATURE_2_DATA_GRAPH_OPTICAL_FLOW_IMAGE_BIT_ARM");
+        }
+        if ((flags & DATA_GRAPH_OPTICAL_FLOW_VECTOR_ARM) != 0) {
+            detectedFlagBits.add("VK_FORMAT_FEATURE_2_DATA_GRAPH_OPTICAL_FLOW_VECTOR_BIT_ARM");
+        }
+        if ((flags & DEPTH_COPY_ON_COMPUTE_QUEUE_KHR) != 0) {
+            detectedFlagBits.add("VK_FORMAT_FEATURE_2_DEPTH_COPY_ON_COMPUTE_QUEUE_BIT_KHR");
+        }
+        if ((flags & DEPTH_COPY_ON_TRANSFER_QUEUE_KHR) != 0) {
+            detectedFlagBits.add("VK_FORMAT_FEATURE_2_DEPTH_COPY_ON_TRANSFER_QUEUE_BIT_KHR");
         }
         if ((flags & DEPTH_STENCIL_ATTACHMENT) != 0) {
             detectedFlagBits.add("VK_FORMAT_FEATURE_2_DEPTH_STENCIL_ATTACHMENT_BIT");
@@ -122,6 +156,9 @@ public final class VkFormatFeatureFlags2 {
         if ((flags & SAMPLED_IMAGE_FILTER_CUBIC) != 0) {
             detectedFlagBits.add("VK_FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_CUBIC_BIT");
         }
+        if ((flags & SAMPLED_IMAGE_FILTER_LINEAR_2D_IMG) != 0) {
+            detectedFlagBits.add("VK_FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_LINEAR_2D_BIT_IMG");
+        }
         if ((flags & SAMPLED_IMAGE_FILTER_LINEAR) != 0) {
             detectedFlagBits.add("VK_FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_LINEAR_BIT");
         }
@@ -140,6 +177,12 @@ public final class VkFormatFeatureFlags2 {
         if ((flags & SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER) != 0) {
             detectedFlagBits.add("VK_FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_BIT");
         }
+        if ((flags & STENCIL_COPY_ON_COMPUTE_QUEUE_KHR) != 0) {
+            detectedFlagBits.add("VK_FORMAT_FEATURE_2_STENCIL_COPY_ON_COMPUTE_QUEUE_BIT_KHR");
+        }
+        if ((flags & STENCIL_COPY_ON_TRANSFER_QUEUE_KHR) != 0) {
+            detectedFlagBits.add("VK_FORMAT_FEATURE_2_STENCIL_COPY_ON_TRANSFER_QUEUE_BIT_KHR");
+        }
         if ((flags & STORAGE_IMAGE_ATOMIC) != 0) {
             detectedFlagBits.add("VK_FORMAT_FEATURE_2_STORAGE_IMAGE_ATOMIC_BIT");
         }
@@ -157,6 +200,15 @@ public final class VkFormatFeatureFlags2 {
         }
         if ((flags & STORAGE_WRITE_WITHOUT_FORMAT) != 0) {
             detectedFlagBits.add("VK_FORMAT_FEATURE_2_STORAGE_WRITE_WITHOUT_FORMAT_BIT");
+        }
+        if ((flags & TENSOR_DATA_GRAPH_ARM) != 0) {
+            detectedFlagBits.add("VK_FORMAT_FEATURE_2_TENSOR_DATA_GRAPH_BIT_ARM");
+        }
+        if ((flags & TENSOR_IMAGE_ALIASING_ARM) != 0) {
+            detectedFlagBits.add("VK_FORMAT_FEATURE_2_TENSOR_IMAGE_ALIASING_BIT_ARM");
+        }
+        if ((flags & TENSOR_SHADER_ARM) != 0) {
+            detectedFlagBits.add("VK_FORMAT_FEATURE_2_TENSOR_SHADER_BIT_ARM");
         }
         if ((flags & TRANSFER_DST) != 0) {
             detectedFlagBits.add("VK_FORMAT_FEATURE_2_TRANSFER_DST_BIT");
