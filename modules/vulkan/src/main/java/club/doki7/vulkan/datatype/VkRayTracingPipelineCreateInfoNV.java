@@ -33,7 +33,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 ///     uint32_t groupCount; // @link substring="groupCount" target="#groupCount"
 ///     VkRayTracingShaderGroupCreateInfoNV const* pGroups; // @link substring="VkRayTracingShaderGroupCreateInfoNV" target="VkRayTracingShaderGroupCreateInfoNV" @link substring="pGroups" target="#pGroups"
 ///     uint32_t maxRecursionDepth; // @link substring="maxRecursionDepth" target="#maxRecursionDepth"
-///     VkPipelineLayout layout; // @link substring="VkPipelineLayout" target="VkPipelineLayout" @link substring="layout" target="#layout"
+///     VkPipelineLayout layout; // optional // @link substring="VkPipelineLayout" target="VkPipelineLayout" @link substring="layout" target="#layout"
 ///     VkPipeline basePipelineHandle; // optional // @link substring="VkPipeline" target="VkPipeline" @link substring="basePipelineHandle" target="#basePipelineHandle"
 ///     int32_t basePipelineIndex; // @link substring="basePipelineIndex" target="#basePipelineIndex"
 /// } VkRayTracingPipelineCreateInfoNV;

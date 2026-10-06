@@ -13,6 +13,7 @@ public final class VkQueryType {
     public static final int ACCELERATION_STRUCTURE_COMPACTED_SIZE_KHR = 0x3b9d13f0;
     public static final int ACCELERATION_STRUCTURE_SERIALIZATION_SIZE_KHR = 0x3b9d13f1;
     public static final int ACCELERATION_STRUCTURE_COMPACTED_SIZE_NV = 0x3b9d4e88;
+    public static final int TIME_ELAPSED_QCOM = 0x3b9d6dc8;
     public static final int PERFORMANCE_QUERY_INTEL = 0x3b9dfe50;
     public static final int VIDEO_ENCODE_FEEDBACK_KHR = 0x3b9f59f8;
     public static final int MESH_PRIMITIVES_GENERATED_EXT = 0x3b9fcb40;
@@ -39,6 +40,7 @@ public final class VkQueryType {
             case VkQueryType.PRIMITIVES_GENERATED_EXT -> "VK_QUERY_TYPE_PRIMITIVES_GENERATED_EXT";
             case VkQueryType.RESULT_STATUS_ONLY_KHR -> "VK_QUERY_TYPE_RESULT_STATUS_ONLY_KHR";
             case VkQueryType.TIMESTAMP -> "VK_QUERY_TYPE_TIMESTAMP";
+            case VkQueryType.TIME_ELAPSED_QCOM -> "VK_QUERY_TYPE_TIME_ELAPSED_QCOM";
             case VkQueryType.TRANSFORM_FEEDBACK_STREAM_EXT -> "VK_QUERY_TYPE_TRANSFORM_FEEDBACK_STREAM_EXT";
             case VkQueryType.VIDEO_ENCODE_FEEDBACK_KHR -> "VK_QUERY_TYPE_VIDEO_ENCODE_FEEDBACK_KHR";
             default -> "UNKNOWN(" + value + ")";

@@ -512,6 +512,15 @@ private val knownTypes = mapOf(
     "wl_surface" to pvoidType("wl_surface"),
     "wl_output" to voidType.copy(cType = "wl_output"),
 
+    // UBM
+    "ubm_device" to voidType.copy(cType = "ubm_device"),
+    "ubm_surface" to voidType.copy(cType = "ubm_surface"),
+
+    // OpenHarmony
+    "OHNativeWindow" to voidType.copy(cType = "OHNativeWindow"),
+    "OHBufferHandle" to voidType.copy(cType = "OHBufferHandle"),
+    "OH_NativeBuffer" to voidType.copy(cType = "OH_NativeBuffer"),
+
     // Windows
     "UINT" to uint32Type.copyWithComment("UINT"),
     "DWORD" to uint32Type.copyWithComment(comment = "DWORD"),

@@ -58,6 +58,7 @@ import static club.doki7.vulkan.VkConstants.*;
 ///     PFN_vkGetDeviceBufferMemoryRequirementsKHR getDeviceBufferMemoryRequirements; // optional // @link substring="getDeviceBufferMemoryRequirements" target="#getDeviceBufferMemoryRequirements"
 ///     PFN_vkGetDeviceImageMemoryRequirementsKHR getDeviceImageMemoryRequirements; // optional // @link substring="getDeviceImageMemoryRequirements" target="#getDeviceImageMemoryRequirements"
 ///     PFN_vkGetMemoryWin32HandleKHR getMemoryWin32HandleKHR; // optional // @link substring="getMemoryWin32HandleKHR" target="#getMemoryWin32HandleKHR"
+///     PFN_vkGetPhysicalDeviceProperties2KHR getPhysicalDeviceProperties2KHR; // optional // @link substring="getPhysicalDeviceProperties2KHR" target="#getPhysicalDeviceProperties2KHR"
 ///     void*[8] reserved;
 /// } VmaVulkanFunctions;
 /// }
@@ -84,6 +85,7 @@ import static club.doki7.vulkan.VkConstants.*;
 /// <li>{@link #getPhysicalDeviceMemoryProperties2KHR} Fetch from "vkGetPhysicalDeviceMemoryProperties2" on Vulkan &amp;gt;= 1.1, but you can also fetch it from "vkGetPhysicalDeviceMemoryProperties2KHR" if you enabled extension VK_KHR_get_physical_device_properties2.</li>
 /// <li>{@link #getDeviceBufferMemoryRequirements} Fetch from "vkGetDeviceBufferMemoryRequirements" on Vulkan &amp;gt;= 1.3, but you can also fetch it from "vkGetDeviceBufferMemoryRequirementsKHR" if you enabled extension VK_KHR_maintenance4.</li>
 /// <li>{@link #getDeviceImageMemoryRequirements} Fetch from "vkGetDeviceImageMemoryRequirements" on Vulkan &amp;gt;= 1.3, but you can also fetch it from "vkGetDeviceImageMemoryRequirementsKHR" if you enabled extension VK_KHR_maintenance4.</li>
+/// <li>{@link #getPhysicalDeviceProperties2KHR} Fetch from "vkGetPhysicalDeviceProperties2" on Vulkan &amp;gt;= 1.1, but you can also fetch it from "vkGetPhysicalDeviceProperties2KHR" if you enabled extension VK_KHR_get_physical_device_properties2.</li>
 /// </ul>
 @ValueBasedCandidate
 @UnsafeConstructor
@@ -598,6 +600,20 @@ public record VmaVulkanFunctions(@NotNull MemorySegment segment) implements IVma
         return this;
     }
 
+    public @Pointer(comment="PFN_vkGetPhysicalDeviceProperties2KHR") @NotNull MemorySegment getPhysicalDeviceProperties2KHR() {
+        return segment.get(LAYOUT$getPhysicalDeviceProperties2KHR, OFFSET$getPhysicalDeviceProperties2KHR);
+    }
+
+    public VmaVulkanFunctions getPhysicalDeviceProperties2KHR(@Pointer(comment="PFN_vkGetPhysicalDeviceProperties2KHR") @NotNull MemorySegment value) {
+        segment.set(LAYOUT$getPhysicalDeviceProperties2KHR, OFFSET$getPhysicalDeviceProperties2KHR, value);
+        return this;
+    }
+
+    public VmaVulkanFunctions getPhysicalDeviceProperties2KHR(@Nullable IPointer pointer) {
+        getPhysicalDeviceProperties2KHR(pointer != null ? pointer.segment() : MemorySegment.NULL);
+        return this;
+    }
+
 
     public static final StructLayout LAYOUT = NativeLayout.structLayout(
         ValueLayout.ADDRESS.withName("getInstanceProcAddr"),
@@ -627,6 +643,7 @@ public record VmaVulkanFunctions(@NotNull MemorySegment segment) implements IVma
         ValueLayout.ADDRESS.withName("getDeviceBufferMemoryRequirements"),
         ValueLayout.ADDRESS.withName("getDeviceImageMemoryRequirements"),
         ValueLayout.ADDRESS.withName("getMemoryWin32HandleKHR"),
+        ValueLayout.ADDRESS.withName("getPhysicalDeviceProperties2KHR"),
         MemoryLayout.sequenceLayout(8, ValueLayout.ADDRESS).withName("reserved")
     );
     public static final long BYTES = LAYOUT.byteSize();
@@ -658,6 +675,7 @@ public record VmaVulkanFunctions(@NotNull MemorySegment segment) implements IVma
     public static final PathElement PATH$getDeviceBufferMemoryRequirements = PathElement.groupElement("getDeviceBufferMemoryRequirements");
     public static final PathElement PATH$getDeviceImageMemoryRequirements = PathElement.groupElement("getDeviceImageMemoryRequirements");
     public static final PathElement PATH$getMemoryWin32HandleKHR = PathElement.groupElement("getMemoryWin32HandleKHR");
+    public static final PathElement PATH$getPhysicalDeviceProperties2KHR = PathElement.groupElement("getPhysicalDeviceProperties2KHR");
 
     public static final AddressLayout LAYOUT$getInstanceProcAddr = (AddressLayout) LAYOUT.select(PATH$getInstanceProcAddr);
     public static final AddressLayout LAYOUT$getDeviceProcAddr = (AddressLayout) LAYOUT.select(PATH$getDeviceProcAddr);
@@ -686,6 +704,7 @@ public record VmaVulkanFunctions(@NotNull MemorySegment segment) implements IVma
     public static final AddressLayout LAYOUT$getDeviceBufferMemoryRequirements = (AddressLayout) LAYOUT.select(PATH$getDeviceBufferMemoryRequirements);
     public static final AddressLayout LAYOUT$getDeviceImageMemoryRequirements = (AddressLayout) LAYOUT.select(PATH$getDeviceImageMemoryRequirements);
     public static final AddressLayout LAYOUT$getMemoryWin32HandleKHR = (AddressLayout) LAYOUT.select(PATH$getMemoryWin32HandleKHR);
+    public static final AddressLayout LAYOUT$getPhysicalDeviceProperties2KHR = (AddressLayout) LAYOUT.select(PATH$getPhysicalDeviceProperties2KHR);
 
     public static final long SIZE$getInstanceProcAddr = LAYOUT$getInstanceProcAddr.byteSize();
     public static final long SIZE$getDeviceProcAddr = LAYOUT$getDeviceProcAddr.byteSize();
@@ -714,6 +733,7 @@ public record VmaVulkanFunctions(@NotNull MemorySegment segment) implements IVma
     public static final long SIZE$getDeviceBufferMemoryRequirements = LAYOUT$getDeviceBufferMemoryRequirements.byteSize();
     public static final long SIZE$getDeviceImageMemoryRequirements = LAYOUT$getDeviceImageMemoryRequirements.byteSize();
     public static final long SIZE$getMemoryWin32HandleKHR = LAYOUT$getMemoryWin32HandleKHR.byteSize();
+    public static final long SIZE$getPhysicalDeviceProperties2KHR = LAYOUT$getPhysicalDeviceProperties2KHR.byteSize();
 
     public static final long OFFSET$getInstanceProcAddr = LAYOUT.byteOffset(PATH$getInstanceProcAddr);
     public static final long OFFSET$getDeviceProcAddr = LAYOUT.byteOffset(PATH$getDeviceProcAddr);
@@ -742,4 +762,5 @@ public record VmaVulkanFunctions(@NotNull MemorySegment segment) implements IVma
     public static final long OFFSET$getDeviceBufferMemoryRequirements = LAYOUT.byteOffset(PATH$getDeviceBufferMemoryRequirements);
     public static final long OFFSET$getDeviceImageMemoryRequirements = LAYOUT.byteOffset(PATH$getDeviceImageMemoryRequirements);
     public static final long OFFSET$getMemoryWin32HandleKHR = LAYOUT.byteOffset(PATH$getMemoryWin32HandleKHR);
+    public static final long OFFSET$getPhysicalDeviceProperties2KHR = LAYOUT.byteOffset(PATH$getPhysicalDeviceProperties2KHR);
 }

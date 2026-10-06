@@ -26,7 +26,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 /// {@snippet lang=c :
 /// typedef struct VkPipelineCreateInfoKHR {
 ///     VkStructureType sType; // @link substring="VkStructureType" target="VkStructureType" @link substring="sType" target="#sType"
-///     void* pNext; // optional // @link substring="pNext" target="#pNext"
+///     void* pNext; // @link substring="pNext" target="#pNext"
 /// } VkPipelineCreateInfoKHR;
 /// }
 ///

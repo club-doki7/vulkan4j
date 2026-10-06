@@ -18,6 +18,7 @@ public final class VkExternalMemoryHandleTypeFlags {
     public static final int MTLBUFFER_EXT = 0x10000;
     public static final int MTLHEAP_EXT = 0x40000;
     public static final int MTLTEXTURE_EXT = 0x20000;
+    public static final int OH_NATIVE_BUFFER_OHOS = 0x8000;
     public static final int OPAQUE_FD = 0x1;
     public static final int OPAQUE_WIN32 = 0x2;
     public static final int OPAQUE_WIN32_KMT = 0x4;
@@ -60,6 +61,9 @@ public final class VkExternalMemoryHandleTypeFlags {
         }
         if ((flags & MTLTEXTURE_EXT) != 0) {
             detectedFlagBits.add("VK_EXTERNAL_MEMORY_HANDLE_TYPE_MTLTEXTURE_BIT_EXT");
+        }
+        if ((flags & OH_NATIVE_BUFFER_OHOS) != 0) {
+            detectedFlagBits.add("VK_EXTERNAL_MEMORY_HANDLE_TYPE_OH_NATIVE_BUFFER_BIT_OHOS");
         }
         if ((flags & OPAQUE_FD) != 0) {
             detectedFlagBits.add("VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD_BIT");

@@ -9,10 +9,14 @@ import java.util.List;
 public final class VkBufferUsageFlags2 {
     public static final long ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_KHR = 0x80000L;
     public static final long ACCELERATION_STRUCTURE_STORAGE_KHR = 0x100000L;
+    public static final long COMPRESSED_DATA_DGF1_AMDX = 0x200000000L;
     public static final long CONDITIONAL_RENDERING_EXT = 0x200L;
+    public static final long DATA_GRAPH_FOREIGN_DESCRIPTOR_ARM = 0x20000000L;
+    public static final long DESCRIPTOR_HEAP_EXT = 0x10000000L;
     public static final long EXECUTION_GRAPH_SCRATCH_AMDX = 0x2000000L;
     public static final long INDEX_BUFFER = 0x40L;
     public static final long INDIRECT_BUFFER = 0x100L;
+    public static final long MEMORY_DECOMPRESSION_EXT = 0x100000000L;
     public static final long MICROMAP_BUILD_INPUT_READ_ONLY_EXT = 0x800000L;
     public static final long MICROMAP_STORAGE_EXT = 0x1000000L;
     public static final long PREPROCESS_BUFFER_EXT = 0x80000000L;
@@ -44,8 +48,17 @@ public final class VkBufferUsageFlags2 {
         if ((flags & ACCELERATION_STRUCTURE_STORAGE_KHR) != 0) {
             detectedFlagBits.add("VK_BUFFER_USAGE_2_ACCELERATION_STRUCTURE_STORAGE_BIT_KHR");
         }
+        if ((flags & COMPRESSED_DATA_DGF1_AMDX) != 0) {
+            detectedFlagBits.add("VK_BUFFER_USAGE_2_COMPRESSED_DATA_DGF1_BIT_AMDX");
+        }
         if ((flags & CONDITIONAL_RENDERING_EXT) != 0) {
             detectedFlagBits.add("VK_BUFFER_USAGE_2_CONDITIONAL_RENDERING_BIT_EXT");
+        }
+        if ((flags & DATA_GRAPH_FOREIGN_DESCRIPTOR_ARM) != 0) {
+            detectedFlagBits.add("VK_BUFFER_USAGE_2_DATA_GRAPH_FOREIGN_DESCRIPTOR_BIT_ARM");
+        }
+        if ((flags & DESCRIPTOR_HEAP_EXT) != 0) {
+            detectedFlagBits.add("VK_BUFFER_USAGE_2_DESCRIPTOR_HEAP_BIT_EXT");
         }
         if ((flags & EXECUTION_GRAPH_SCRATCH_AMDX) != 0) {
             detectedFlagBits.add("VK_BUFFER_USAGE_2_EXECUTION_GRAPH_SCRATCH_BIT_AMDX");
@@ -55,6 +68,9 @@ public final class VkBufferUsageFlags2 {
         }
         if ((flags & INDIRECT_BUFFER) != 0) {
             detectedFlagBits.add("VK_BUFFER_USAGE_2_INDIRECT_BUFFER_BIT");
+        }
+        if ((flags & MEMORY_DECOMPRESSION_EXT) != 0) {
+            detectedFlagBits.add("VK_BUFFER_USAGE_2_MEMORY_DECOMPRESSION_BIT_EXT");
         }
         if ((flags & MICROMAP_BUILD_INPUT_READ_ONLY_EXT) != 0) {
             detectedFlagBits.add("VK_BUFFER_USAGE_2_MICROMAP_BUILD_INPUT_READ_ONLY_BIT_EXT");
@@ -87,7 +103,7 @@ public final class VkBufferUsageFlags2 {
             detectedFlagBits.add("VK_BUFFER_USAGE_2_STORAGE_TEXEL_BUFFER_BIT");
         }
         if ((flags & TILE_MEMORY_QCOM) != 0) {
-            detectedFlagBits.add("VK_BUFFER_USAGE_2_TILE_MEMORY_QCOM");
+            detectedFlagBits.add("VK_BUFFER_USAGE_2_TILE_MEMORY_BIT_QCOM");
         }
         if ((flags & TRANSFER_DST) != 0) {
             detectedFlagBits.add("VK_BUFFER_USAGE_2_TRANSFER_DST_BIT");

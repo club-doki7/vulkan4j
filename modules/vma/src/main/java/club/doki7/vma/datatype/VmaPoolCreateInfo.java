@@ -83,8 +83,14 @@ import static club.doki7.vulkan.VkConstants.*;
 /// <li>{@link #minAllocationAlignment} Additional minimum alignment to be used for all allocations created from this pool. Can be 0.
 ///
 /// Leave 0 (default) not to impose any additional alignment. If not 0, it must be a power of two.
-/// It can be useful in cases where alignment returned by Vulkan by functions like `vkGetBufferMemoryRequirements` is not enough,
-/// e.g. when doing interop with OpenGL.
+///
+/// When creating a buffer or an image, specifying a custom alignment is not needed in most cases,
+/// because Vulkan implementation inspects the `CreateInfo` structure (including intended usage flags)
+/// and returns required alignment through functions like `vkGetBufferMemoryRequirements2`, which VMA automatically
+/// uses and respects.
+/// Extra alignment may be needed in some cases, like when using a buffer for acceleration structure scratch
+/// (`VkPhysicalDeviceAccelerationStructurePropertiesKHR::minAccelerationStructureScratchOffsetAlignment`, see also issue {@code 523})
+/// or when doing interop with OpenGL.
 /// </li>
 /// <li>{@link #pMemoryAllocateNext} Additional `pNext` chain to be attached to `VkMemoryAllocateInfo` used for every allocation made by this pool. Optional.
 ///

@@ -26,7 +26,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 /// {@snippet lang=c :
 /// typedef struct VkCommandBufferInheritanceRenderPassTransformInfoQCOM {
 ///     VkStructureType sType; // @link substring="VkStructureType" target="VkStructureType" @link substring="sType" target="#sType"
-///     void* pNext; // optional // @link substring="pNext" target="#pNext"
+///     void const* pNext; // optional // @link substring="pNext" target="#pNext"
 ///     VkSurfaceTransformFlagsKHR transform; // @link substring="VkSurfaceTransformFlagsKHR" target="VkSurfaceTransformFlagsKHR" @link substring="transform" target="#transform"
 ///     VkRect2D renderArea; // @link substring="VkRect2D" target="VkRect2D" @link substring="renderArea" target="#renderArea"
 /// } VkCommandBufferInheritanceRenderPassTransformInfoQCOM;

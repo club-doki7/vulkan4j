@@ -23,6 +23,7 @@ fun vulkanAdditionalRegistry(): Registry<EmptyMergeable> {
     pfn("PFN_vkGetInstanceProcAddr")
     pfn("PFN_vkGetDeviceProcAddr")
     pfn("PFN_vkGetPhysicalDeviceProperties")
+    pfn("PFN_vkGetPhysicalDeviceProperties2KHR")
     pfn("PFN_vkGetPhysicalDeviceMemoryProperties")
     pfn("PFN_vkAllocateMemory")
     pfn("PFN_vkFreeMemory")

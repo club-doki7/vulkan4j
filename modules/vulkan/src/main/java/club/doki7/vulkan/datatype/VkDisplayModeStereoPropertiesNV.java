@@ -26,7 +26,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 /// {@snippet lang=c :
 /// typedef struct VkDisplayModeStereoPropertiesNV {
 ///     VkStructureType sType; // @link substring="VkStructureType" target="VkStructureType" @link substring="sType" target="#sType"
-///     void const* pNext; // optional // @link substring="pNext" target="#pNext"
+///     void* pNext; // optional // @link substring="pNext" target="#pNext"
 ///     VkBool32 hdmi3DSupported; // @link substring="hdmi3DSupported" target="#hdmi3DSupported"
 /// } VkDisplayModeStereoPropertiesNV;
 /// }

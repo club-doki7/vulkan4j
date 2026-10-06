@@ -5,6 +5,7 @@ import club.doki7.babel.extract.renameVariantOrBitflag
 import club.doki7.babel.registry.Entity
 import club.doki7.babel.registry.Registry
 import club.doki7.babel.registry.intern
+import club.doki7.babel.util.Either
 import java.io.File
 
 private const val renamedEntitiesFile = "codegen-v2/output/vulkan-renamed-entities.csv"
@@ -38,6 +39,24 @@ internal fun Registry<VulkanRegistryExt>.renameEntities() {
         for (bitflag in bitmask.bitflags) {
             bitflag.rename { renameVariantOrBitflag(this, bitmask.name.value, true) }
             putEntityIfNameReplaced(bitflag)
+        }
+    }
+
+    // 别名项的值以原始名称引用目标项，需要替换为重命名后的名称
+    for (enum in enumerations.values) {
+        for (variant in enum.variants) {
+            val value = variant.value
+            if (value is Either.Right && value.value.size == 1) {
+                variant.value = Either.Right(listOf(value.value.first().intern().value))
+            }
+        }
+    }
+    for (bitmask in bitmasks.values) {
+        for (bitflag in bitmask.bitflags) {
+            val value = bitflag.value
+            if (value is Either.Right && value.value.size == 1) {
+                value.value[0] = value.value[0].intern().value
+            }
         }
     }
 

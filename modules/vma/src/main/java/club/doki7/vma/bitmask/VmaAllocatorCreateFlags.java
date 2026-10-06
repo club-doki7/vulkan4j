@@ -118,7 +118,7 @@ public final class VmaAllocatorCreateFlags {
     ///
     /// You should set this flag if you found available and enabled this device extension,
     /// while creating Vulkan device passed as VmaAllocatorCreateInfo::device.
-    /// For more information, see  vk_khr_external_memory_win32.
+    /// For more information, see  other_api_interop.
     public static final int KHR_EXTERNAL_MEMORY_WIN32 = 0x200;
 
     /// Enables usage of VK_KHR_maintenance4 extension in the library.

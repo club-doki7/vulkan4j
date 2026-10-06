@@ -36,7 +36,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 ///     VkPipelineLibraryCreateInfoKHR const* pLibraryInfo; // optional // @link substring="VkPipelineLibraryCreateInfoKHR" target="VkPipelineLibraryCreateInfoKHR" @link substring="pLibraryInfo" target="#pLibraryInfo"
 ///     VkRayTracingPipelineInterfaceCreateInfoKHR const* pLibraryInterface; // optional // @link substring="VkRayTracingPipelineInterfaceCreateInfoKHR" target="VkRayTracingPipelineInterfaceCreateInfoKHR" @link substring="pLibraryInterface" target="#pLibraryInterface"
 ///     VkPipelineDynamicStateCreateInfo const* pDynamicState; // optional // @link substring="VkPipelineDynamicStateCreateInfo" target="VkPipelineDynamicStateCreateInfo" @link substring="pDynamicState" target="#pDynamicState"
-///     VkPipelineLayout layout; // @link substring="VkPipelineLayout" target="VkPipelineLayout" @link substring="layout" target="#layout"
+///     VkPipelineLayout layout; // optional // @link substring="VkPipelineLayout" target="VkPipelineLayout" @link substring="layout" target="#layout"
 ///     VkPipeline basePipelineHandle; // optional // @link substring="VkPipeline" target="VkPipeline" @link substring="basePipelineHandle" target="#basePipelineHandle"
 ///     int32_t basePipelineIndex; // @link substring="basePipelineIndex" target="#basePipelineIndex"
 /// } VkRayTracingPipelineCreateInfoKHR;

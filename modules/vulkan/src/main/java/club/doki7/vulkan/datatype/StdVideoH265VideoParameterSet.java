@@ -34,9 +34,9 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 ///     uint32_t vps_time_scale; // @link substring="vps_time_scale" target="#vps_time_scale"
 ///     uint32_t vps_num_ticks_poc_diff_one_minus1; // @link substring="vps_num_ticks_poc_diff_one_minus1" target="#vps_num_ticks_poc_diff_one_minus1"
 ///     uint32_t reserved3;
-///     StdVideoH265DecPicBufMgr const* pDecPicBufMgr; // @link substring="StdVideoH265DecPicBufMgr" target="StdVideoH265DecPicBufMgr" @link substring="pDecPicBufMgr" target="#pDecPicBufMgr"
-///     StdVideoH265HrdParameters const* pHrdParameters; // @link substring="StdVideoH265HrdParameters" target="StdVideoH265HrdParameters" @link substring="pHrdParameters" target="#pHrdParameters"
-///     StdVideoH265ProfileTierLevel const* pProfileTierLevel; // @link substring="StdVideoH265ProfileTierLevel" target="StdVideoH265ProfileTierLevel" @link substring="pProfileTierLevel" target="#pProfileTierLevel"
+///     StdVideoH265DecPicBufMgr const* pDecPicBufMgr; // optional // @link substring="StdVideoH265DecPicBufMgr" target="StdVideoH265DecPicBufMgr" @link substring="pDecPicBufMgr" target="#pDecPicBufMgr"
+///     StdVideoH265HrdParameters const* pHrdParameters; // optional // @link substring="StdVideoH265HrdParameters" target="StdVideoH265HrdParameters" @link substring="pHrdParameters" target="#pHrdParameters"
+///     StdVideoH265ProfileTierLevel const* pProfileTierLevel; // optional // @link substring="StdVideoH265ProfileTierLevel" target="StdVideoH265ProfileTierLevel" @link substring="pProfileTierLevel" target="#pProfileTierLevel"
 /// } StdVideoH265VideoParameterSet;
 /// }
 ///

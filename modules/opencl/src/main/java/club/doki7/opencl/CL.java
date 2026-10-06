@@ -248,6 +248,14 @@ public final class CL implements CLConstants {
         HANDLE$clRemapCommandBufferKHR = RawFunctionLoader.link(SEGMENT$clRemapCommandBufferKHR, Descriptors.DESCRIPTOR$clRemapCommandBufferKHR);
         SEGMENT$clSetContentSizeBufferPoCL = loader.apply("clSetContentSizeBufferPoCL");
         HANDLE$clSetContentSizeBufferPoCL = RawFunctionLoader.link(SEGMENT$clSetContentSizeBufferPoCL, Descriptors.DESCRIPTOR$clSetContentSizeBufferPoCL);
+        SEGMENT$clSVMAllocWithPropertiesKHR = loader.apply("clSVMAllocWithPropertiesKHR");
+        HANDLE$clSVMAllocWithPropertiesKHR = RawFunctionLoader.link(SEGMENT$clSVMAllocWithPropertiesKHR, Descriptors.DESCRIPTOR$clSVMAllocWithPropertiesKHR);
+        SEGMENT$clSVMFreeWithPropertiesKHR = loader.apply("clSVMFreeWithPropertiesKHR");
+        HANDLE$clSVMFreeWithPropertiesKHR = RawFunctionLoader.link(SEGMENT$clSVMFreeWithPropertiesKHR, Descriptors.DESCRIPTOR$clSVMFreeWithPropertiesKHR);
+        SEGMENT$clGetSVMPointerInfoKHR = loader.apply("clGetSVMPointerInfoKHR");
+        HANDLE$clGetSVMPointerInfoKHR = RawFunctionLoader.link(SEGMENT$clGetSVMPointerInfoKHR, Descriptors.DESCRIPTOR$clGetSVMPointerInfoKHR);
+        SEGMENT$clGetSVMSuggestedTypeIndexKHR = loader.apply("clGetSVMSuggestedTypeIndexKHR");
+        HANDLE$clGetSVMSuggestedTypeIndexKHR = RawFunctionLoader.link(SEGMENT$clGetSVMSuggestedTypeIndexKHR, Descriptors.DESCRIPTOR$clGetSVMSuggestedTypeIndexKHR);
         SEGMENT$clGetPlatformIDs = loader.apply("clGetPlatformIDs");
         HANDLE$clGetPlatformIDs = RawFunctionLoader.link(SEGMENT$clGetPlatformIDs, Descriptors.DESCRIPTOR$clGetPlatformIDs);
         SEGMENT$clGetPlatformInfo = loader.apply("clGetPlatformInfo");
@@ -382,6 +390,8 @@ public final class CL implements CLConstants {
         HANDLE$clGetKernelWorkGroupInfo = RawFunctionLoader.link(SEGMENT$clGetKernelWorkGroupInfo, Descriptors.DESCRIPTOR$clGetKernelWorkGroupInfo);
         SEGMENT$clGetKernelSubGroupInfo = loader.apply("clGetKernelSubGroupInfo");
         HANDLE$clGetKernelSubGroupInfo = RawFunctionLoader.link(SEGMENT$clGetKernelSubGroupInfo, Descriptors.DESCRIPTOR$clGetKernelSubGroupInfo);
+        SEGMENT$clGetKernelSuggestedLocalWorkSize = loader.apply("clGetKernelSuggestedLocalWorkSize");
+        HANDLE$clGetKernelSuggestedLocalWorkSize = RawFunctionLoader.link(SEGMENT$clGetKernelSuggestedLocalWorkSize, Descriptors.DESCRIPTOR$clGetKernelSuggestedLocalWorkSize);
         SEGMENT$clWaitForEvents = loader.apply("clWaitForEvents");
         HANDLE$clWaitForEvents = RawFunctionLoader.link(SEGMENT$clWaitForEvents, Descriptors.DESCRIPTOR$clWaitForEvents);
         SEGMENT$clGetEventInfo = loader.apply("clGetEventInfo");
@@ -484,6 +494,10 @@ public final class CL implements CLConstants {
         HANDLE$clGetLayerInfo = RawFunctionLoader.link(SEGMENT$clGetLayerInfo, Descriptors.DESCRIPTOR$clGetLayerInfo);
         SEGMENT$clInitLayer = loader.apply("clInitLayer");
         HANDLE$clInitLayer = RawFunctionLoader.link(SEGMENT$clInitLayer, Descriptors.DESCRIPTOR$clInitLayer);
+        SEGMENT$clInitLayerWithProperties = loader.apply("clInitLayerWithProperties");
+        HANDLE$clInitLayerWithProperties = RawFunctionLoader.link(SEGMENT$clInitLayerWithProperties, Descriptors.DESCRIPTOR$clInitLayerWithProperties);
+        SEGMENT$clDeinitLayer = loader.apply("clDeinitLayer");
+        HANDLE$clDeinitLayer = RawFunctionLoader.link(SEGMENT$clDeinitLayer, Descriptors.DESCRIPTOR$clDeinitLayer);
         SEGMENT$clGetICDLoaderInfoOCLICD = loader.apply("clGetICDLoaderInfoOCLICD");
         HANDLE$clGetICDLoaderInfoOCLICD = RawFunctionLoader.link(SEGMENT$clGetICDLoaderInfoOCLICD, Descriptors.DESCRIPTOR$clGetICDLoaderInfoOCLICD);
         SEGMENT$clGetSupportedGLTextureFormatsINTEL = loader.apply("clGetSupportedGLTextureFormatsINTEL");
@@ -3277,6 +3291,98 @@ public final class CL implements CLConstants {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/OpenCL/sdk/latest/docs/man/html/clSVMAllocWithPropertiesKHR.html">clSVMAllocWithPropertiesKHR</a>
+    public @Pointer(comment="void*") @NotNull MemorySegment SVMAllocWithPropertiesKHR(
+        @Nullable CLContext context,
+        @Nullable @Pointer(comment="cl_svm_alloc_properties_khr") @Unsigned LongPtr properties,
+        @NativeType("cl_uint") @Unsigned int svm_type_index,
+        long size,
+        @Nullable @Pointer(comment="cl_int") IntPtr errcode_ret
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$clSVMAllocWithPropertiesKHR);
+        try {
+            return (MemorySegment) hFunction.invokeExact(
+                (MemorySegment) (context != null ? context.segment() : MemorySegment.NULL),
+                (MemorySegment) (properties != null ? properties.segment() : MemorySegment.NULL),
+                svm_type_index,
+                MemorySegment.ofAddress(size),
+                (MemorySegment) (errcode_ret != null ? errcode_ret.segment() : MemorySegment.NULL)
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/OpenCL/sdk/latest/docs/man/html/clSVMFreeWithPropertiesKHR.html">clSVMFreeWithPropertiesKHR</a>
+    public @NativeType("cl_int") int SVMFreeWithPropertiesKHR(
+        @Nullable CLContext context,
+        @Nullable @Pointer(comment="cl_svm_free_properties_khr") @Unsigned LongPtr properties,
+        @NativeType("cl_svm_free_flags_khr") @Unsigned long flags,
+        @Pointer(comment="void*") @NotNull MemorySegment ptr
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$clSVMFreeWithPropertiesKHR);
+        try {
+            return (int) hFunction.invokeExact(
+                (MemorySegment) (context != null ? context.segment() : MemorySegment.NULL),
+                (MemorySegment) (properties != null ? properties.segment() : MemorySegment.NULL),
+                flags,
+                ptr
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/OpenCL/sdk/latest/docs/man/html/clGetSVMPointerInfoKHR.html">clGetSVMPointerInfoKHR</a>
+    public @NativeType("cl_int") int getSVMPointerInfoKHR(
+        @Nullable CLContext context,
+        @Nullable CLDeviceId device,
+        @Pointer(comment="void*") @NotNull MemorySegment ptr,
+        @NativeType("cl_svm_pointer_info_khr") @Unsigned int paramName,
+        long paramValueSize,
+        @Pointer(comment="void*") @NotNull MemorySegment paramValue,
+        @Nullable PointerPtr param_value_size_ret
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$clGetSVMPointerInfoKHR);
+        try {
+            return (int) hFunction.invokeExact(
+                (MemorySegment) (context != null ? context.segment() : MemorySegment.NULL),
+                (MemorySegment) (device != null ? device.segment() : MemorySegment.NULL),
+                ptr,
+                paramName,
+                MemorySegment.ofAddress(paramValueSize),
+                paramValue,
+                (MemorySegment) (param_value_size_ret != null ? param_value_size_ret.segment() : MemorySegment.NULL)
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/OpenCL/sdk/latest/docs/man/html/clGetSVMSuggestedTypeIndexKHR.html">clGetSVMSuggestedTypeIndexKHR</a>
+    public @NativeType("cl_int") int getSVMSuggestedTypeIndexKHR(
+        @Nullable CLContext context,
+        @NativeType("cl_svm_capabilities_khr") @Unsigned long required_capabilities,
+        @NativeType("cl_svm_capabilities_khr") @Unsigned long desired_capabilities,
+        @Nullable @Pointer(comment="cl_svm_alloc_properties_khr") @Unsigned LongPtr properties,
+        long size,
+        @Nullable @Pointer(comment="cl_uint") @Unsigned IntPtr suggested_svm_type_index
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$clGetSVMSuggestedTypeIndexKHR);
+        try {
+            return (int) hFunction.invokeExact(
+                (MemorySegment) (context != null ? context.segment() : MemorySegment.NULL),
+                required_capabilities,
+                desired_capabilities,
+                (MemorySegment) (properties != null ? properties.segment() : MemorySegment.NULL),
+                MemorySegment.ofAddress(size),
+                (MemorySegment) (suggested_svm_type_index != null ? suggested_svm_type_index.segment() : MemorySegment.NULL)
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/OpenCL/sdk/latest/docs/man/html/clGetPlatformIDs.html">clGetPlatformIDs</a>
     public @NativeType("cl_int") int getPlatformIDs(
         @NativeType("cl_uint") @Unsigned int num_entries,
@@ -4934,6 +5040,30 @@ public final class CL implements CLConstants {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/OpenCL/sdk/latest/docs/man/html/clGetKernelSuggestedLocalWorkSize.html">clGetKernelSuggestedLocalWorkSize</a>
+    public @NativeType("cl_int") int getKernelSuggestedLocalWorkSize(
+        @Nullable CLCommandQueue command_queue,
+        @Nullable CLKernel kernel,
+        @NativeType("cl_uint") @Unsigned int workDim,
+        @Nullable PointerPtr globalWorkOffset,
+        @Nullable PointerPtr globalWorkSize,
+        @Nullable PointerPtr suggested_local_work_size
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$clGetKernelSuggestedLocalWorkSize);
+        try {
+            return (int) hFunction.invokeExact(
+                (MemorySegment) (command_queue != null ? command_queue.segment() : MemorySegment.NULL),
+                (MemorySegment) (kernel != null ? kernel.segment() : MemorySegment.NULL),
+                workDim,
+                (MemorySegment) (globalWorkOffset != null ? globalWorkOffset.segment() : MemorySegment.NULL),
+                (MemorySegment) (globalWorkSize != null ? globalWorkSize.segment() : MemorySegment.NULL),
+                (MemorySegment) (suggested_local_work_size != null ? suggested_local_work_size.segment() : MemorySegment.NULL)
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/OpenCL/sdk/latest/docs/man/html/clWaitForEvents.html">clWaitForEvents</a>
     public @NativeType("cl_int") int waitForEvents(
         @NativeType("cl_uint") @Unsigned int num_events,
@@ -6316,6 +6446,39 @@ public final class CL implements CLConstants {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/OpenCL/sdk/latest/docs/man/html/clInitLayerWithProperties.html">clInitLayerWithProperties</a>
+    public @NativeType("cl_int") int initLayerWithProperties(
+        @NativeType("cl_uint") @Unsigned int num_entries,
+        @Nullable CLIcdDispatch target_dispatch,
+        @Nullable @Pointer(comment="cl_uint") @Unsigned IntPtr num_entries_ret,
+        @Nullable @Pointer CLIcdDispatch.Ptr layer_dispatch_ret,
+        @Nullable @Pointer(comment="cl_layer_properties") @Unsigned LongPtr properties
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$clInitLayerWithProperties);
+        try {
+            return (int) hFunction.invokeExact(
+                num_entries,
+                (MemorySegment) (target_dispatch != null ? target_dispatch.segment() : MemorySegment.NULL),
+                (MemorySegment) (num_entries_ret != null ? num_entries_ret.segment() : MemorySegment.NULL),
+                (MemorySegment) (layer_dispatch_ret != null ? layer_dispatch_ret.segment() : MemorySegment.NULL),
+                (MemorySegment) (properties != null ? properties.segment() : MemorySegment.NULL)
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/OpenCL/sdk/latest/docs/man/html/clDeinitLayer.html">clDeinitLayer</a>
+    public @NativeType("cl_int") int deinitLayer() {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$clDeinitLayer);
+        try {
+            return (int) hFunction.invokeExact(
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/OpenCL/sdk/latest/docs/man/html/clGetICDLoaderInfoOCLICD.html">clGetICDLoaderInfoOCLICD</a>
     public @NativeType("cl_int") int getICDLoaderInfoOCLICD(
         @NativeType("cl_icdl_info") @Unsigned int paramName,
@@ -6702,6 +6865,10 @@ public final class CL implements CLConstants {
     public final @Nullable MemorySegment SEGMENT$clGetMutableCommandInfoKHR;
     public final @Nullable MemorySegment SEGMENT$clRemapCommandBufferKHR;
     public final @Nullable MemorySegment SEGMENT$clSetContentSizeBufferPoCL;
+    public final @Nullable MemorySegment SEGMENT$clSVMAllocWithPropertiesKHR;
+    public final @Nullable MemorySegment SEGMENT$clSVMFreeWithPropertiesKHR;
+    public final @Nullable MemorySegment SEGMENT$clGetSVMPointerInfoKHR;
+    public final @Nullable MemorySegment SEGMENT$clGetSVMSuggestedTypeIndexKHR;
     public final @Nullable MemorySegment SEGMENT$clGetPlatformIDs;
     public final @Nullable MemorySegment SEGMENT$clGetPlatformInfo;
     public final @Nullable MemorySegment SEGMENT$clGetDeviceIDs;
@@ -6769,6 +6936,7 @@ public final class CL implements CLConstants {
     public final @Nullable MemorySegment SEGMENT$clGetKernelArgInfo;
     public final @Nullable MemorySegment SEGMENT$clGetKernelWorkGroupInfo;
     public final @Nullable MemorySegment SEGMENT$clGetKernelSubGroupInfo;
+    public final @Nullable MemorySegment SEGMENT$clGetKernelSuggestedLocalWorkSize;
     public final @Nullable MemorySegment SEGMENT$clWaitForEvents;
     public final @Nullable MemorySegment SEGMENT$clGetEventInfo;
     public final @Nullable MemorySegment SEGMENT$clCreateUserEvent;
@@ -6820,6 +6988,8 @@ public final class CL implements CLConstants {
     public final @Nullable MemorySegment SEGMENT$clEnqueueTask;
     public final @Nullable MemorySegment SEGMENT$clGetLayerInfo;
     public final @Nullable MemorySegment SEGMENT$clInitLayer;
+    public final @Nullable MemorySegment SEGMENT$clInitLayerWithProperties;
+    public final @Nullable MemorySegment SEGMENT$clDeinitLayer;
     public final @Nullable MemorySegment SEGMENT$clGetICDLoaderInfoOCLICD;
     public final @Nullable MemorySegment SEGMENT$clGetSupportedGLTextureFormatsINTEL;
     public final @Nullable MemorySegment SEGMENT$clGetSupportedDX9MediaSurfaceFormatsINTEL;
@@ -6947,6 +7117,10 @@ public final class CL implements CLConstants {
     public final @Nullable MethodHandle HANDLE$clGetMutableCommandInfoKHR;
     public final @Nullable MethodHandle HANDLE$clRemapCommandBufferKHR;
     public final @Nullable MethodHandle HANDLE$clSetContentSizeBufferPoCL;
+    public final @Nullable MethodHandle HANDLE$clSVMAllocWithPropertiesKHR;
+    public final @Nullable MethodHandle HANDLE$clSVMFreeWithPropertiesKHR;
+    public final @Nullable MethodHandle HANDLE$clGetSVMPointerInfoKHR;
+    public final @Nullable MethodHandle HANDLE$clGetSVMSuggestedTypeIndexKHR;
     public final @Nullable MethodHandle HANDLE$clGetPlatformIDs;
     public final @Nullable MethodHandle HANDLE$clGetPlatformInfo;
     public final @Nullable MethodHandle HANDLE$clGetDeviceIDs;
@@ -7014,6 +7188,7 @@ public final class CL implements CLConstants {
     public final @Nullable MethodHandle HANDLE$clGetKernelArgInfo;
     public final @Nullable MethodHandle HANDLE$clGetKernelWorkGroupInfo;
     public final @Nullable MethodHandle HANDLE$clGetKernelSubGroupInfo;
+    public final @Nullable MethodHandle HANDLE$clGetKernelSuggestedLocalWorkSize;
     public final @Nullable MethodHandle HANDLE$clWaitForEvents;
     public final @Nullable MethodHandle HANDLE$clGetEventInfo;
     public final @Nullable MethodHandle HANDLE$clCreateUserEvent;
@@ -7065,6 +7240,8 @@ public final class CL implements CLConstants {
     public final @Nullable MethodHandle HANDLE$clEnqueueTask;
     public final @Nullable MethodHandle HANDLE$clGetLayerInfo;
     public final @Nullable MethodHandle HANDLE$clInitLayer;
+    public final @Nullable MethodHandle HANDLE$clInitLayerWithProperties;
+    public final @Nullable MethodHandle HANDLE$clDeinitLayer;
     public final @Nullable MethodHandle HANDLE$clGetICDLoaderInfoOCLICD;
     public final @Nullable MethodHandle HANDLE$clGetSupportedGLTextureFormatsINTEL;
     public final @Nullable MethodHandle HANDLE$clGetSupportedDX9MediaSurfaceFormatsINTEL;
@@ -8191,6 +8368,44 @@ public final class CL implements CLConstants {
             ValueLayout.ADDRESS
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$clSVMAllocWithPropertiesKHR = FunctionDescriptor.of(
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.JAVA_LONG),
+            ValueLayout.JAVA_INT,
+            NativeLayout.C_SIZE_T,
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.JAVA_INT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$clSVMFreeWithPropertiesKHR = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.JAVA_LONG),
+            ValueLayout.JAVA_LONG,
+            ValueLayout.ADDRESS
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$clGetSVMPointerInfoKHR = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_INT,
+            NativeLayout.C_SIZE_T,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(NativeLayout.C_SIZE_T)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$clGetSVMSuggestedTypeIndexKHR = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_LONG,
+            ValueLayout.JAVA_LONG,
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.JAVA_LONG),
+            NativeLayout.C_SIZE_T,
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.JAVA_INT)
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$clGetPlatformIDs = FunctionDescriptor.of(
             ValueLayout.JAVA_INT,
             ValueLayout.JAVA_INT,
@@ -8719,6 +8934,16 @@ public final class CL implements CLConstants {
             ValueLayout.ADDRESS.withTargetLayout(NativeLayout.C_SIZE_T)
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$clGetKernelSuggestedLocalWorkSize = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS.withTargetLayout(NativeLayout.C_SIZE_T),
+            ValueLayout.ADDRESS.withTargetLayout(NativeLayout.C_SIZE_T),
+            ValueLayout.ADDRESS.withTargetLayout(NativeLayout.C_SIZE_T)
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$clWaitForEvents = FunctionDescriptor.of(
             ValueLayout.JAVA_INT,
             ValueLayout.JAVA_INT,
@@ -9239,6 +9464,19 @@ public final class CL implements CLConstants {
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS.withTargetLayout(ValueLayout.JAVA_INT),
             ValueLayout.ADDRESS.withTargetLayout(ValueLayout.ADDRESS)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$clInitLayerWithProperties = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.JAVA_INT),
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.ADDRESS),
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.JAVA_LONG)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$clDeinitLayer = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT
         );
 
         public static final FunctionDescriptor DESCRIPTOR$clGetICDLoaderInfoOCLICD = FunctionDescriptor.of(

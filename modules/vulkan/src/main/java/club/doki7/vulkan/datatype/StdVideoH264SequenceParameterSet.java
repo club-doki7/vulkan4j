@@ -48,8 +48,8 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 ///     uint32_t frame_crop_bottom_offset; // @link substring="frame_crop_bottom_offset" target="#frame_crop_bottom_offset"
 ///     uint32_t reserved2;
 ///     int32_t const* pOffsetForRefFrame; // @link substring="pOffsetForRefFrame" target="#pOffsetForRefFrame"
-///     StdVideoH264ScalingLists const* pScalingLists; // @link substring="StdVideoH264ScalingLists" target="StdVideoH264ScalingLists" @link substring="pScalingLists" target="#pScalingLists"
-///     StdVideoH264SequenceParameterSetVui const* pSequenceParameterSetVui; // @link substring="StdVideoH264SequenceParameterSetVui" target="StdVideoH264SequenceParameterSetVui" @link substring="pSequenceParameterSetVui" target="#pSequenceParameterSetVui"
+///     StdVideoH264ScalingLists const* pScalingLists; // optional // @link substring="StdVideoH264ScalingLists" target="StdVideoH264ScalingLists" @link substring="pScalingLists" target="#pScalingLists"
+///     StdVideoH264SequenceParameterSetVui const* pSequenceParameterSetVui; // optional // @link substring="StdVideoH264SequenceParameterSetVui" target="StdVideoH264SequenceParameterSetVui" @link substring="pSequenceParameterSetVui" target="#pSequenceParameterSetVui"
 /// } StdVideoH264SequenceParameterSet;
 /// }
 ///

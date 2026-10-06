@@ -12,6 +12,7 @@ public final class VkIndirectCommandsTokenTypeNV {
     public static final int DRAW_INDEXED = 0x5;
     public static final int DRAW = 0x6;
     public static final int DRAW_TASKS = 0x7;
+    public static final int PUSH_DATA = 0x3b9cd958;
     public static final int DRAW_MESH_TASKS = 0x3b9fcb40;
     public static final int PIPELINE = 0x3ba151e3;
     public static final int DISPATCH = 0x3ba151e4;
@@ -26,6 +27,7 @@ public final class VkIndirectCommandsTokenTypeNV {
             case VkIndirectCommandsTokenTypeNV.INDEX_BUFFER -> "VK_INDIRECT_COMMANDS_TOKEN_TYPE_INDEX_BUFFER_NV";
             case VkIndirectCommandsTokenTypeNV.PIPELINE -> "VK_INDIRECT_COMMANDS_TOKEN_TYPE_PIPELINE_NV";
             case VkIndirectCommandsTokenTypeNV.PUSH_CONSTANT -> "VK_INDIRECT_COMMANDS_TOKEN_TYPE_PUSH_CONSTANT_NV";
+            case VkIndirectCommandsTokenTypeNV.PUSH_DATA -> "VK_INDIRECT_COMMANDS_TOKEN_TYPE_PUSH_DATA_NV";
             case VkIndirectCommandsTokenTypeNV.SHADER_GROUP -> "VK_INDIRECT_COMMANDS_TOKEN_TYPE_SHADER_GROUP_NV";
             case VkIndirectCommandsTokenTypeNV.STATE_FLAGS -> "VK_INDIRECT_COMMANDS_TOKEN_TYPE_STATE_FLAGS_NV";
             case VkIndirectCommandsTokenTypeNV.VERTEX_BUFFER -> "VK_INDIRECT_COMMANDS_TOKEN_TYPE_VERTEX_BUFFER_NV";

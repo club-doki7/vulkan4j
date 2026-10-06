@@ -27,7 +27,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 /// typedef struct VkPrivateDataSlotCreateInfo {
 ///     VkStructureType sType; // @link substring="VkStructureType" target="VkStructureType" @link substring="sType" target="#sType"
 ///     void const* pNext; // optional // @link substring="pNext" target="#pNext"
-///     VkPrivateDataSlotCreateFlags flags; // @link substring="VkPrivateDataSlotCreateFlags" target="VkPrivateDataSlotCreateFlags" @link substring="flags" target="#flags"
+///     VkPrivateDataSlotCreateFlags flags; // optional // @link substring="VkPrivateDataSlotCreateFlags" target="VkPrivateDataSlotCreateFlags" @link substring="flags" target="#flags"
 /// } VkPrivateDataSlotCreateInfo;
 /// }
 ///

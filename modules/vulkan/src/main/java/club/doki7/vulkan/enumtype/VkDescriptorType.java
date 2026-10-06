@@ -20,6 +20,7 @@ public final class VkDescriptorType {
     public static final int ACCELERATION_STRUCTURE_NV = 0x3b9d4e88;
     public static final int SAMPLE_WEIGHT_IMAGE_QCOM = 0x3ba180c0;
     public static final int BLOCK_MATCH_IMAGE_QCOM = 0x3ba180c1;
+    public static final int TENSOR_ARM = 0x3ba1cee0;
     public static final int MUTABLE_EXT = 0x3ba02518;
     public static final int PARTITIONED_ACCELERATION_STRUCTURE_NV = 0x3ba37c90;
 
@@ -40,6 +41,7 @@ public final class VkDescriptorType {
             case VkDescriptorType.STORAGE_BUFFER_DYNAMIC -> "VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC";
             case VkDescriptorType.STORAGE_IMAGE -> "VK_DESCRIPTOR_TYPE_STORAGE_IMAGE";
             case VkDescriptorType.STORAGE_TEXEL_BUFFER -> "VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER";
+            case VkDescriptorType.TENSOR_ARM -> "VK_DESCRIPTOR_TYPE_TENSOR_ARM";
             case VkDescriptorType.UNIFORM_BUFFER -> "VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER";
             case VkDescriptorType.UNIFORM_BUFFER_DYNAMIC -> "VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC";
             case VkDescriptorType.UNIFORM_TEXEL_BUFFER -> "VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER";

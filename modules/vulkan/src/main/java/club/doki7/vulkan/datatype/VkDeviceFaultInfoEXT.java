@@ -28,8 +28,8 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 ///     VkStructureType sType; // @link substring="VkStructureType" target="VkStructureType" @link substring="sType" target="#sType"
 ///     void* pNext; // optional // @link substring="pNext" target="#pNext"
 ///     char[VK_MAX_DESCRIPTION_SIZE] description; // @link substring="description" target="#description"
-///     VkDeviceFaultAddressInfoEXT* pAddressInfos; // optional // @link substring="VkDeviceFaultAddressInfoEXT" target="VkDeviceFaultAddressInfoEXT" @link substring="pAddressInfos" target="#pAddressInfos"
-///     VkDeviceFaultVendorInfoEXT* pVendorInfos; // optional // @link substring="VkDeviceFaultVendorInfoEXT" target="VkDeviceFaultVendorInfoEXT" @link substring="pVendorInfos" target="#pVendorInfos"
+///     VkDeviceFaultAddressInfoKHR* pAddressInfos; // optional // @link substring="VkDeviceFaultAddressInfoKHR" target="VkDeviceFaultAddressInfoKHR" @link substring="pAddressInfos" target="#pAddressInfos"
+///     VkDeviceFaultVendorInfoKHR* pVendorInfos; // optional // @link substring="VkDeviceFaultVendorInfoKHR" target="VkDeviceFaultVendorInfoKHR" @link substring="pVendorInfos" target="#pVendorInfos"
 ///     void* pVendorBinaryData; // optional // @link substring="pVendorBinaryData" target="#pVendorBinaryData"
 /// } VkDeviceFaultInfoEXT;
 /// }
@@ -242,67 +242,67 @@ public record VkDeviceFaultInfoEXT(@NotNull MemorySegment segment) implements IV
         return segment.asSlice(OFFSET$description, SIZE$description);
     }
 
-    public VkDeviceFaultInfoEXT pAddressInfos(@Nullable IVkDeviceFaultAddressInfoEXT value) {
+    public VkDeviceFaultInfoEXT pAddressInfos(@Nullable IVkDeviceFaultAddressInfoKHR value) {
         MemorySegment s = value == null ? MemorySegment.NULL : value.segment();
         pAddressInfosRaw(s);
         return this;
     }
 
-    @Unsafe public @Nullable VkDeviceFaultAddressInfoEXT.Ptr pAddressInfos(int assumedCount) {
+    @Unsafe public @Nullable VkDeviceFaultAddressInfoKHR.Ptr pAddressInfos(int assumedCount) {
         MemorySegment s = pAddressInfosRaw();
         if (s.equals(MemorySegment.NULL)) {
             return null;
         }
 
-        s = s.reinterpret(assumedCount * VkDeviceFaultAddressInfoEXT.BYTES);
-        return new VkDeviceFaultAddressInfoEXT.Ptr(s);
+        s = s.reinterpret(assumedCount * VkDeviceFaultAddressInfoKHR.BYTES);
+        return new VkDeviceFaultAddressInfoKHR.Ptr(s);
     }
 
-    public @Nullable VkDeviceFaultAddressInfoEXT pAddressInfos() {
+    public @Nullable VkDeviceFaultAddressInfoKHR pAddressInfos() {
         MemorySegment s = pAddressInfosRaw();
         if (s.equals(MemorySegment.NULL)) {
             return null;
         }
-        return new VkDeviceFaultAddressInfoEXT(s);
+        return new VkDeviceFaultAddressInfoKHR(s);
     }
 
-    public @Pointer(target=VkDeviceFaultAddressInfoEXT.class) @NotNull MemorySegment pAddressInfosRaw() {
+    public @Pointer(target=VkDeviceFaultAddressInfoKHR.class) @NotNull MemorySegment pAddressInfosRaw() {
         return segment.get(LAYOUT$pAddressInfos, OFFSET$pAddressInfos);
     }
 
-    public void pAddressInfosRaw(@Pointer(target=VkDeviceFaultAddressInfoEXT.class) @NotNull MemorySegment value) {
+    public void pAddressInfosRaw(@Pointer(target=VkDeviceFaultAddressInfoKHR.class) @NotNull MemorySegment value) {
         segment.set(LAYOUT$pAddressInfos, OFFSET$pAddressInfos, value);
     }
 
-    public VkDeviceFaultInfoEXT pVendorInfos(@Nullable IVkDeviceFaultVendorInfoEXT value) {
+    public VkDeviceFaultInfoEXT pVendorInfos(@Nullable IVkDeviceFaultVendorInfoKHR value) {
         MemorySegment s = value == null ? MemorySegment.NULL : value.segment();
         pVendorInfosRaw(s);
         return this;
     }
 
-    @Unsafe public @Nullable VkDeviceFaultVendorInfoEXT.Ptr pVendorInfos(int assumedCount) {
+    @Unsafe public @Nullable VkDeviceFaultVendorInfoKHR.Ptr pVendorInfos(int assumedCount) {
         MemorySegment s = pVendorInfosRaw();
         if (s.equals(MemorySegment.NULL)) {
             return null;
         }
 
-        s = s.reinterpret(assumedCount * VkDeviceFaultVendorInfoEXT.BYTES);
-        return new VkDeviceFaultVendorInfoEXT.Ptr(s);
+        s = s.reinterpret(assumedCount * VkDeviceFaultVendorInfoKHR.BYTES);
+        return new VkDeviceFaultVendorInfoKHR.Ptr(s);
     }
 
-    public @Nullable VkDeviceFaultVendorInfoEXT pVendorInfos() {
+    public @Nullable VkDeviceFaultVendorInfoKHR pVendorInfos() {
         MemorySegment s = pVendorInfosRaw();
         if (s.equals(MemorySegment.NULL)) {
             return null;
         }
-        return new VkDeviceFaultVendorInfoEXT(s);
+        return new VkDeviceFaultVendorInfoKHR(s);
     }
 
-    public @Pointer(target=VkDeviceFaultVendorInfoEXT.class) @NotNull MemorySegment pVendorInfosRaw() {
+    public @Pointer(target=VkDeviceFaultVendorInfoKHR.class) @NotNull MemorySegment pVendorInfosRaw() {
         return segment.get(LAYOUT$pVendorInfos, OFFSET$pVendorInfos);
     }
 
-    public void pVendorInfosRaw(@Pointer(target=VkDeviceFaultVendorInfoEXT.class) @NotNull MemorySegment value) {
+    public void pVendorInfosRaw(@Pointer(target=VkDeviceFaultVendorInfoKHR.class) @NotNull MemorySegment value) {
         segment.set(LAYOUT$pVendorInfos, OFFSET$pVendorInfos, value);
     }
 
@@ -324,8 +324,8 @@ public record VkDeviceFaultInfoEXT(@NotNull MemorySegment segment) implements IV
         ValueLayout.JAVA_INT.withName("sType"),
         ValueLayout.ADDRESS.withName("pNext"),
         MemoryLayout.sequenceLayout(MAX_DESCRIPTION_SIZE, ValueLayout.JAVA_BYTE).withName("description"),
-        ValueLayout.ADDRESS.withTargetLayout(VkDeviceFaultAddressInfoEXT.LAYOUT).withName("pAddressInfos"),
-        ValueLayout.ADDRESS.withTargetLayout(VkDeviceFaultVendorInfoEXT.LAYOUT).withName("pVendorInfos"),
+        ValueLayout.ADDRESS.withTargetLayout(VkDeviceFaultAddressInfoKHR.LAYOUT).withName("pAddressInfos"),
+        ValueLayout.ADDRESS.withTargetLayout(VkDeviceFaultVendorInfoKHR.LAYOUT).withName("pVendorInfos"),
         ValueLayout.ADDRESS.withName("pVendorBinaryData")
     );
     public static final long BYTES = LAYOUT.byteSize();

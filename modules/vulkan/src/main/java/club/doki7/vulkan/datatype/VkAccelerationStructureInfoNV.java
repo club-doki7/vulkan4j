@@ -28,7 +28,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 ///     VkStructureType sType; // @link substring="VkStructureType" target="VkStructureType" @link substring="sType" target="#sType"
 ///     void const* pNext; // optional // @link substring="pNext" target="#pNext"
 ///     VkAccelerationStructureTypeNV type; // @link substring="VkAccelerationStructureTypeKHR" target="VkAccelerationStructureTypeNV" @link substring="type" target="#type"
-///     VkBuildAccelerationStructureFlagsNV flags; // optional // @link substring="VkBuildAccelerationStructureFlagsKHR" target="VkBuildAccelerationStructureFlagsNV" @link substring="flags" target="#flags"
+///     VkBuildAccelerationStructureFlagsKHR flags; // optional // @link substring="VkBuildAccelerationStructureFlagsKHR" target="VkBuildAccelerationStructureFlagsKHR" @link substring="flags" target="#flags"
 ///     uint32_t instanceCount; // optional // @link substring="instanceCount" target="#instanceCount"
 ///     uint32_t geometryCount; // optional // @link substring="geometryCount" target="#geometryCount"
 ///     VkGeometryNV const* pGeometries; // optional // @link substring="VkGeometryNV" target="VkGeometryNV" @link substring="pGeometries" target="#pGeometries"

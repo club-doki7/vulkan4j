@@ -22,6 +22,8 @@ public final class VkPipelineStageFlags2 {
     public static final long CONDITIONAL_RENDERING_EXT = 0x40000L;
     public static final long CONVERT_COOPERATIVE_VECTOR_MATRIX_NV = 0x100000000000L;
     public static final long COPY = 0x100000000L;
+    public static final long COPY_INDIRECT_KHR = 0x400000000000L;
+    public static final long DATA_GRAPH_ARM = 0x40000000000L;
     public static final long DRAW_INDIRECT = 0x2L;
     public static final long EARLY_FRAGMENT_TESTS = 0x100L;
     public static final long FRAGMENT_DENSITY_PROCESS_EXT = 0x800000L;
@@ -32,6 +34,7 @@ public final class VkPipelineStageFlags2 {
     public static final long INDEX_INPUT = 0x1000000000L;
     public static final long INVOCATION_MASK_HUAWEI = 0x10000000000L;
     public static final long LATE_FRAGMENT_TESTS = 0x200L;
+    public static final long MEMORY_DECOMPRESSION_EXT = 0x200000000000L;
     public static final long MESH_SHADER_EXT = 0x100000L;
     public static final long MICROMAP_BUILD_EXT = 0x40000000L;
     public static final long NONE = 0x0L;
@@ -98,6 +101,12 @@ public final class VkPipelineStageFlags2 {
         if ((flags & COPY) != 0) {
             detectedFlagBits.add("VK_PIPELINE_STAGE_2_COPY_BIT");
         }
+        if ((flags & COPY_INDIRECT_KHR) != 0) {
+            detectedFlagBits.add("VK_PIPELINE_STAGE_2_COPY_INDIRECT_BIT_KHR");
+        }
+        if ((flags & DATA_GRAPH_ARM) != 0) {
+            detectedFlagBits.add("VK_PIPELINE_STAGE_2_DATA_GRAPH_BIT_ARM");
+        }
         if ((flags & DRAW_INDIRECT) != 0) {
             detectedFlagBits.add("VK_PIPELINE_STAGE_2_DRAW_INDIRECT_BIT");
         }
@@ -127,6 +136,9 @@ public final class VkPipelineStageFlags2 {
         }
         if ((flags & LATE_FRAGMENT_TESTS) != 0) {
             detectedFlagBits.add("VK_PIPELINE_STAGE_2_LATE_FRAGMENT_TESTS_BIT");
+        }
+        if ((flags & MEMORY_DECOMPRESSION_EXT) != 0) {
+            detectedFlagBits.add("VK_PIPELINE_STAGE_2_MEMORY_DECOMPRESSION_BIT_EXT");
         }
         if ((flags & MESH_SHADER_EXT) != 0) {
             detectedFlagBits.add("VK_PIPELINE_STAGE_2_MESH_SHADER_BIT_EXT");

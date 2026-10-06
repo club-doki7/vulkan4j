@@ -31,11 +31,18 @@ public final class VkDriverId {
     public static final int IMAGINATION_OPEN_SOURCE_MESA = 0x19;
     public static final int MESA_HONEYKRISP = 0x1a;
     public static final int VULKAN_SC_EMULATION_ON_VULKAN = 0x1b;
+    public static final int MESA_KOSMICKRISP = 0x1c;
+    public static final int MESA_GFXSTREAM = 0x1d;
+    public static final int APE_SOFT = 0x1e;
+    public static final int RESERVED_31 = 0x1f;
+    public static final int APEX = 0x20;
 
     public static String explain(@EnumType(VkDriverId.class) int value) {
         return switch (value) {
             case VkDriverId.AMD_OPEN_SOURCE -> "VK_DRIVER_ID_AMD_OPEN_SOURCE";
             case VkDriverId.AMD_PROPRIETARY -> "VK_DRIVER_ID_AMD_PROPRIETARY";
+            case VkDriverId.APEX -> "VK_DRIVER_ID_APEX";
+            case VkDriverId.APE_SOFT -> "VK_DRIVER_ID_APE_SOFT";
             case VkDriverId.ARM_PROPRIETARY -> "VK_DRIVER_ID_ARM_PROPRIETARY";
             case VkDriverId.BROADCOM_PROPRIETARY -> "VK_DRIVER_ID_BROADCOM_PROPRIETARY";
             case VkDriverId.COREAVI_PROPRIETARY -> "VK_DRIVER_ID_COREAVI_PROPRIETARY";
@@ -47,7 +54,9 @@ public final class VkDriverId {
             case VkDriverId.INTEL_PROPRIETARY_WINDOWS -> "VK_DRIVER_ID_INTEL_PROPRIETARY_WINDOWS";
             case VkDriverId.JUICE_PROPRIETARY -> "VK_DRIVER_ID_JUICE_PROPRIETARY";
             case VkDriverId.MESA_DOZEN -> "VK_DRIVER_ID_MESA_DOZEN";
+            case VkDriverId.MESA_GFXSTREAM -> "VK_DRIVER_ID_MESA_GFXSTREAM";
             case VkDriverId.MESA_HONEYKRISP -> "VK_DRIVER_ID_MESA_HONEYKRISP";
+            case VkDriverId.MESA_KOSMICKRISP -> "VK_DRIVER_ID_MESA_KOSMICKRISP";
             case VkDriverId.MESA_LLVMPIPE -> "VK_DRIVER_ID_MESA_LLVMPIPE";
             case VkDriverId.MESA_NVK -> "VK_DRIVER_ID_MESA_NVK";
             case VkDriverId.MESA_PANVK -> "VK_DRIVER_ID_MESA_PANVK";
@@ -58,6 +67,7 @@ public final class VkDriverId {
             case VkDriverId.MOLTENVK -> "VK_DRIVER_ID_MOLTENVK";
             case VkDriverId.NVIDIA_PROPRIETARY -> "VK_DRIVER_ID_NVIDIA_PROPRIETARY";
             case VkDriverId.QUALCOMM_PROPRIETARY -> "VK_DRIVER_ID_QUALCOMM_PROPRIETARY";
+            case VkDriverId.RESERVED_31 -> "VK_DRIVER_ID_RESERVED_31";
             case VkDriverId.SAMSUNG_PROPRIETARY -> "VK_DRIVER_ID_SAMSUNG_PROPRIETARY";
             case VkDriverId.VERISILICON_PROPRIETARY -> "VK_DRIVER_ID_VERISILICON_PROPRIETARY";
             case VkDriverId.VULKAN_SC_EMULATION_ON_VULKAN -> "VK_DRIVER_ID_VULKAN_SC_EMULATION_ON_VULKAN";

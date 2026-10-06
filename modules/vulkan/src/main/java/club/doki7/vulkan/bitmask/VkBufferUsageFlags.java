@@ -10,6 +10,7 @@ public final class VkBufferUsageFlags {
     public static final int ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_KHR = 0x80000;
     public static final int ACCELERATION_STRUCTURE_STORAGE_KHR = 0x100000;
     public static final int CONDITIONAL_RENDERING_EXT = 0x200;
+    public static final int DESCRIPTOR_HEAP_EXT = 0x10000000;
     public static final int EXECUTION_GRAPH_SCRATCH_AMDX = 0x2000000;
     public static final int INDEX_BUFFER = 0x40;
     public static final int INDIRECT_BUFFER = 0x100;
@@ -45,6 +46,9 @@ public final class VkBufferUsageFlags {
         }
         if ((flags & CONDITIONAL_RENDERING_EXT) != 0) {
             detectedFlagBits.add("VK_BUFFER_USAGE_CONDITIONAL_RENDERING_BIT_EXT");
+        }
+        if ((flags & DESCRIPTOR_HEAP_EXT) != 0) {
+            detectedFlagBits.add("VK_BUFFER_USAGE_DESCRIPTOR_HEAP_BIT_EXT");
         }
         if ((flags & EXECUTION_GRAPH_SCRATCH_AMDX) != 0) {
             detectedFlagBits.add("VK_BUFFER_USAGE_EXECUTION_GRAPH_SCRATCH_BIT_AMDX");
@@ -83,7 +87,7 @@ public final class VkBufferUsageFlags {
             detectedFlagBits.add("VK_BUFFER_USAGE_STORAGE_TEXEL_BUFFER_BIT");
         }
         if ((flags & TILE_MEMORY_QCOM) != 0) {
-            detectedFlagBits.add("VK_BUFFER_USAGE_TILE_MEMORY_QCOM");
+            detectedFlagBits.add("VK_BUFFER_USAGE_TILE_MEMORY_BIT_QCOM");
         }
         if ((flags & TRANSFER_DST) != 0) {
             detectedFlagBits.add("VK_BUFFER_USAGE_TRANSFER_DST_BIT");

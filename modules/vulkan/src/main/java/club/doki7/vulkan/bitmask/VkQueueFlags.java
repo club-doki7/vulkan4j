@@ -8,6 +8,7 @@ import java.util.List;
 /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkQueueFlags.html"><code>VkQueueFlags</code></a>
 public final class VkQueueFlags {
     public static final int COMPUTE = 0x2;
+    public static final int DATA_GRAPH_ARM = 0x400;
     public static final int GRAPHICS = 0x1;
     public static final int OPTICAL_FLOW_NV = 0x100;
     public static final int PROTECTED = 0x10;
@@ -20,6 +21,9 @@ public final class VkQueueFlags {
         List<String> detectedFlagBits = new ArrayList<>();
         if ((flags & COMPUTE) != 0) {
             detectedFlagBits.add("VK_QUEUE_COMPUTE_BIT");
+        }
+        if ((flags & DATA_GRAPH_ARM) != 0) {
+            detectedFlagBits.add("VK_QUEUE_DATA_GRAPH_BIT_ARM");
         }
         if ((flags & GRAPHICS) != 0) {
             detectedFlagBits.add("VK_QUEUE_GRAPHICS_BIT");

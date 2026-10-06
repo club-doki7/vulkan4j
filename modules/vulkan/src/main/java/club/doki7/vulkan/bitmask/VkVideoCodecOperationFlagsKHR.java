@@ -10,6 +10,7 @@ public final class VkVideoCodecOperationFlagsKHR {
     public static final int DECODE_AV1 = 0x4;
     public static final int DECODE_H264 = 0x1;
     public static final int DECODE_H265 = 0x2;
+    public static final int DECODE_VP9 = 0x8;
     public static final int ENCODE_AV1 = 0x40000;
     public static final int ENCODE_H264 = 0x10000;
     public static final int ENCODE_H265 = 0x20000;
@@ -25,6 +26,9 @@ public final class VkVideoCodecOperationFlagsKHR {
         }
         if ((flags & DECODE_H265) != 0) {
             detectedFlagBits.add("VK_VIDEO_CODEC_OPERATION_DECODE_H265_BIT_KHR");
+        }
+        if ((flags & DECODE_VP9) != 0) {
+            detectedFlagBits.add("VK_VIDEO_CODEC_OPERATION_DECODE_VP9_BIT_KHR");
         }
         if ((flags & ENCODE_AV1) != 0) {
             detectedFlagBits.add("VK_VIDEO_CODEC_OPERATION_ENCODE_AV1_BIT_KHR");

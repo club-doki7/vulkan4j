@@ -27,7 +27,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 /// typedef struct VkDescriptorAddressInfoEXT {
 ///     VkStructureType sType; // @link substring="VkStructureType" target="VkStructureType" @link substring="sType" target="#sType"
 ///     void* pNext; // optional // @link substring="pNext" target="#pNext"
-///     VkDeviceAddress address; // @link substring="address" target="#address"
+///     VkDeviceAddress address; // optional // @link substring="address" target="#address"
 ///     VkDeviceSize range; // @link substring="range" target="#range"
 ///     VkFormat format; // @link substring="VkFormat" target="VkFormat" @link substring="format" target="#format"
 /// } VkDescriptorAddressInfoEXT;

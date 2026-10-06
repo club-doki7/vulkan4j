@@ -49,6 +49,8 @@ public final class GLFW implements GLFWConstants {
         HANDLE$glfwGetCurrentContext = RawFunctionLoader.link(SEGMENT$glfwGetCurrentContext, Descriptors.DESCRIPTOR$glfwGetCurrentContext);
         SEGMENT$glfwGetCursorPos = loader.apply("glfwGetCursorPos");
         HANDLE$glfwGetCursorPos = RawFunctionLoader.link(SEGMENT$glfwGetCursorPos, Descriptors.DESCRIPTOR$glfwGetCursorPos);
+        SEGMENT$glfwGetEGLConfig = loader.apply("glfwGetEGLConfig");
+        HANDLE$glfwGetEGLConfig = RawFunctionLoader.link(SEGMENT$glfwGetEGLConfig, Descriptors.DESCRIPTOR$glfwGetEGLConfig);
         SEGMENT$glfwGetEGLContext = loader.apply("glfwGetEGLContext");
         HANDLE$glfwGetEGLContext = RawFunctionLoader.link(SEGMENT$glfwGetEGLContext, Descriptors.DESCRIPTOR$glfwGetEGLContext);
         SEGMENT$glfwGetEGLDisplay = loader.apply("glfwGetEGLDisplay");
@@ -61,6 +63,8 @@ public final class GLFW implements GLFWConstants {
         HANDLE$glfwGetFramebufferSize = RawFunctionLoader.link(SEGMENT$glfwGetFramebufferSize, Descriptors.DESCRIPTOR$glfwGetFramebufferSize);
         SEGMENT$glfwGetGLXContext = loader.apply("glfwGetGLXContext");
         HANDLE$glfwGetGLXContext = RawFunctionLoader.link(SEGMENT$glfwGetGLXContext, Descriptors.DESCRIPTOR$glfwGetGLXContext);
+        SEGMENT$glfwGetGLXFBConfig = loader.apply("glfwGetGLXFBConfig");
+        HANDLE$glfwGetGLXFBConfig = RawFunctionLoader.link(SEGMENT$glfwGetGLXFBConfig, Descriptors.DESCRIPTOR$glfwGetGLXFBConfig);
         SEGMENT$glfwGetGLXWindow = loader.apply("glfwGetGLXWindow");
         HANDLE$glfwGetGLXWindow = RawFunctionLoader.link(SEGMENT$glfwGetGLXWindow, Descriptors.DESCRIPTOR$glfwGetGLXWindow);
         SEGMENT$glfwGetGamepadName = loader.apply("glfwGetGamepadName");
@@ -1089,6 +1093,41 @@ public final class GLFW implements GLFWConstants {
         }
     }
 
+    ///  @brief Retrieves the `EGLConfig` of the specified window's `EGLSurface`.
+    ///
+    ///  @param[in] window The window whose `EGLSurface` to query.
+    ///  @param[out] config The `EGLConfig` of the window `EGLSurface`, if available.
+    ///  @return `GLFW_TRUE` if successful, or `GLFW_FALSE` if an
+    ///  [error](@ref error_handling) occurred.
+    ///
+    ///  @errors Possible errors include @ref GLFW_NOT_INITIALIZED and @ref
+    ///  GLFW_NO_WINDOW_CONTEXT.
+    ///
+    ///  @remark `EGLConfig` is an opaque type.  Unlike other GLFW functions, the @p
+    ///  config out parameter is not cleared on error, as core EGL does not define
+    ///  any invalid value.
+    ///
+    ///  @thread_safety This function may be called from any thread.  Access is not
+    ///  synchronized.
+    ///
+    ///  @since Added in version 3.5.
+    ///
+    ///  @ingroup native
+    public int getEGLConfig(
+        @Nullable GLFWwindow window,
+        @Nullable PointerPtr config
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$glfwGetEGLConfig);
+        try {
+            return (int) hFunction.invokeExact(
+                (MemorySegment) (window != null ? window.segment() : MemorySegment.NULL),
+                (MemorySegment) (config != null ? config.segment() : MemorySegment.NULL)
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     ///  @brief Returns the `EGLContext` of the specified window.
     ///
     ///  @return The `EGLContext` of the specified window, or `EGL_NO_CONTEXT` if an
@@ -1274,6 +1313,41 @@ public final class GLFW implements GLFWConstants {
         try {
             return (MemorySegment) hFunction.invokeExact(
                 (MemorySegment) (window != null ? window.segment() : MemorySegment.NULL)
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    ///  @brief Retrieves the `GLXFBConfig` of the specified window's `GLXWindow`.
+    ///
+    ///  @param[in] window The window whose `GLXWindow` to query.
+    ///  @param[out] config The `GLXFBConfig` of the window `GLXWindow`, if available.
+    ///  @return `GLFW_TRUE` if successful, or `GLFW_FALSE` if an
+    ///  [error](@ref error_handling) occurred.
+    ///
+    ///  @errors Possible errors include @ref GLFW_NOT_INITIALIZED, @ref
+    ///  GLFW_NO_WINDOW_CONTEXT and @ref GLFW_PLATFORM_UNAVAILABLE.
+    ///
+    ///  @remark `GLXFBConfig` is an opaque type.  Unlike other GLFW functions, the
+    ///  @p config out parameter is not cleared on error, as core GLX does not define
+    ///  any invalid value.
+    ///
+    ///  @thread_safety This function may be called from any thread.  Access is not
+    ///  synchronized.
+    ///
+    ///  @since Added in version 3.5
+    ///
+    ///  @ingroup native
+    public int getGLXFBConfig(
+        @Nullable GLFWwindow window,
+        @Nullable PointerPtr config
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$glfwGetGLXFBConfig);
+        try {
+            return (int) hFunction.invokeExact(
+                (MemorySegment) (window != null ? window.segment() : MemorySegment.NULL),
+                (MemorySegment) (config != null ? config.segment() : MemorySegment.NULL)
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -7270,12 +7344,14 @@ public final class GLFW implements GLFWConstants {
     public final @Nullable MemorySegment SEGMENT$glfwGetCocoaWindow;
     public final @Nullable MemorySegment SEGMENT$glfwGetCurrentContext;
     public final @Nullable MemorySegment SEGMENT$glfwGetCursorPos;
+    public final @Nullable MemorySegment SEGMENT$glfwGetEGLConfig;
     public final @Nullable MemorySegment SEGMENT$glfwGetEGLContext;
     public final @Nullable MemorySegment SEGMENT$glfwGetEGLDisplay;
     public final @Nullable MemorySegment SEGMENT$glfwGetEGLSurface;
     public final @Nullable MemorySegment SEGMENT$glfwGetError;
     public final @Nullable MemorySegment SEGMENT$glfwGetFramebufferSize;
     public final @Nullable MemorySegment SEGMENT$glfwGetGLXContext;
+    public final @Nullable MemorySegment SEGMENT$glfwGetGLXFBConfig;
     public final @Nullable MemorySegment SEGMENT$glfwGetGLXWindow;
     public final @Nullable MemorySegment SEGMENT$glfwGetGamepadName;
     public final @Nullable MemorySegment SEGMENT$glfwGetGamepadState;
@@ -7419,12 +7495,14 @@ public final class GLFW implements GLFWConstants {
     public final @Nullable MethodHandle HANDLE$glfwGetCocoaWindow;
     public final @Nullable MethodHandle HANDLE$glfwGetCurrentContext;
     public final @Nullable MethodHandle HANDLE$glfwGetCursorPos;
+    public final @Nullable MethodHandle HANDLE$glfwGetEGLConfig;
     public final @Nullable MethodHandle HANDLE$glfwGetEGLContext;
     public final @Nullable MethodHandle HANDLE$glfwGetEGLDisplay;
     public final @Nullable MethodHandle HANDLE$glfwGetEGLSurface;
     public final @Nullable MethodHandle HANDLE$glfwGetError;
     public final @Nullable MethodHandle HANDLE$glfwGetFramebufferSize;
     public final @Nullable MethodHandle HANDLE$glfwGetGLXContext;
+    public final @Nullable MethodHandle HANDLE$glfwGetGLXFBConfig;
     public final @Nullable MethodHandle HANDLE$glfwGetGLXWindow;
     public final @Nullable MethodHandle HANDLE$glfwGetGamepadName;
     public final @Nullable MethodHandle HANDLE$glfwGetGamepadState;
@@ -7635,6 +7713,12 @@ public final class GLFW implements GLFWConstants {
             ValueLayout.ADDRESS.withTargetLayout(ValueLayout.JAVA_DOUBLE)
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$glfwGetEGLConfig = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.ADDRESS)
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$glfwGetEGLContext = FunctionDescriptor.of(
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS
@@ -7663,6 +7747,12 @@ public final class GLFW implements GLFWConstants {
         public static final FunctionDescriptor DESCRIPTOR$glfwGetGLXContext = FunctionDescriptor.of(
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$glfwGetGLXFBConfig = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.ADDRESS)
         );
 
         public static final FunctionDescriptor DESCRIPTOR$glfwGetGLXWindow = FunctionDescriptor.of(

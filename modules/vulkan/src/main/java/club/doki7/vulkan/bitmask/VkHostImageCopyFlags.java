@@ -12,7 +12,7 @@ public final class VkHostImageCopyFlags {
     public static String explain(@Bitmask(VkHostImageCopyFlags.class) int flags) {
         List<String> detectedFlagBits = new ArrayList<>();
         if ((flags & MEMCPY) != 0) {
-            detectedFlagBits.add("VK_HOST_IMAGE_COPY_MEMCPY");
+            detectedFlagBits.add("VK_HOST_IMAGE_COPY_MEMCPY_BIT");
         }
 
         if (detectedFlagBits.isEmpty()) {

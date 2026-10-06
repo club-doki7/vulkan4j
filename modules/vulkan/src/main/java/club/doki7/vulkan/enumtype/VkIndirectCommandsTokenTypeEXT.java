@@ -14,6 +14,8 @@ public final class VkIndirectCommandsTokenTypeEXT {
     public static final int DRAW_INDEXED_COUNT = 0x7;
     public static final int DRAW_COUNT = 0x8;
     public static final int DISPATCH = 0x9;
+    public static final int PUSH_DATA = 0x3b9cd958;
+    public static final int PUSH_DATA_SEQUENCE_INDEX = 0x3b9cd959;
     public static final int DRAW_MESH_TASKS_NV = 0x3b9ddf12;
     public static final int DRAW_MESH_TASKS_COUNT_NV = 0x3b9ddf13;
     public static final int DRAW_MESH_TASKS = 0x3b9fcb40;
@@ -34,6 +36,8 @@ public final class VkIndirectCommandsTokenTypeEXT {
             case VkIndirectCommandsTokenTypeEXT.EXECUTION_SET -> "VK_INDIRECT_COMMANDS_TOKEN_TYPE_EXECUTION_SET_EXT";
             case VkIndirectCommandsTokenTypeEXT.INDEX_BUFFER -> "VK_INDIRECT_COMMANDS_TOKEN_TYPE_INDEX_BUFFER_EXT";
             case VkIndirectCommandsTokenTypeEXT.PUSH_CONSTANT -> "VK_INDIRECT_COMMANDS_TOKEN_TYPE_PUSH_CONSTANT_EXT";
+            case VkIndirectCommandsTokenTypeEXT.PUSH_DATA -> "VK_INDIRECT_COMMANDS_TOKEN_TYPE_PUSH_DATA_EXT";
+            case VkIndirectCommandsTokenTypeEXT.PUSH_DATA_SEQUENCE_INDEX -> "VK_INDIRECT_COMMANDS_TOKEN_TYPE_PUSH_DATA_SEQUENCE_INDEX_EXT";
             case VkIndirectCommandsTokenTypeEXT.SEQUENCE_INDEX -> "VK_INDIRECT_COMMANDS_TOKEN_TYPE_SEQUENCE_INDEX_EXT";
             case VkIndirectCommandsTokenTypeEXT.TRACE_RAYS2 -> "VK_INDIRECT_COMMANDS_TOKEN_TYPE_TRACE_RAYS2_EXT";
             case VkIndirectCommandsTokenTypeEXT.VERTEX_BUFFER -> "VK_INDIRECT_COMMANDS_TOKEN_TYPE_VERTEX_BUFFER_EXT";

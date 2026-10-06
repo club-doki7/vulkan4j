@@ -26,7 +26,7 @@ import club.doki7.vulkan.VkFunctionTypes.*;
 /// {@snippet lang=c :
 /// typedef struct VkOpticalFlowImageFormatPropertiesNV {
 ///     VkStructureType sType; // @link substring="VkStructureType" target="VkStructureType" @link substring="sType" target="#sType"
-///     void const* pNext; // optional // @link substring="pNext" target="#pNext"
+///     void* pNext; // optional // @link substring="pNext" target="#pNext"
 ///     VkFormat format; // @link substring="VkFormat" target="VkFormat" @link substring="format" target="#format"
 /// } VkOpticalFlowImageFormatPropertiesNV;
 /// }

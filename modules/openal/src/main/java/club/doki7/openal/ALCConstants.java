@@ -47,6 +47,7 @@ public interface ALCConstants {
     int EXT_DEDICATED = 1;
     int EXT_DEFAULT_FILTER_ORDER = 1;
     int EXT_EFX = 1;
+    int EXT_debug = 1;
     int EXT_disconnect = 1;
     int EXT_thread_local_context = 1;
     int FALSE = 0;
@@ -93,7 +94,11 @@ public interface ALCConstants {
     int SOFT_device_clock = 1;
     int SOFT_loopback = 1;
     int SOFT_loopback_bformat = 1;
+    int SOFT_output_limiter = 1;
+    int SOFT_output_mode = 1;
     int SOFT_pause_device = 1;
+    int SOFT_reopen_device = 1;
+    int SOFT_system_events = 1;
     int STEREO_BASIC_SOFT = 0x19AE;
     int STEREO_HRTF_SOFT = 0x19B2;
     int STEREO_SOFT = 0x1501;
@@ -108,4 +113,6 @@ public interface ALCConstants {
     int UNSIGNED_INT_SOFT = 0x1405;
     int UNSIGNED_SHORT_SOFT = 0x1403;
     int VERSION_0_1 = 1;
+    int VERSION_1_0 = 1;
+    int VERSION_1_1 = 1;
 }

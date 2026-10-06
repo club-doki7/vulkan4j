@@ -6,6 +6,7 @@ import org.w3c.dom.Element
 import org.w3c.dom.Node
 import java.io.File
 import java.math.BigInteger
+import kotlin.sequences.map
 
 internal fun extractRawVulkanRegistry(): Registry<VulkanRegistryExt> {
     log.info("正在从 Vulkan 核心注册表中抽取数据")
@@ -253,19 +254,16 @@ private fun extractVariant(e: Element) =
         value = e.getAttributeText("value")!!.parseDecOrHex(),
     ).apply { setExt(VkCommonMetadata(api = e.getAttributeText("api"))) }
 
-private fun extractFunctionTypedef(e: Element) =
-    FunctionTypedef(
-        name = e.getFirstElement("name")!!.textContent.trim(),
-        params = e.getElementSeq("type").map(::extractType).toList(),
-        result =
-            when (val type = e.textContent.substring(8, e.textContent.indexOf("(VKAPI_PTR")).trim()) {
-                "void" -> IdentifierType("void".intern())
-                "void*" -> PointerType(IdentifierType("void".intern()), false)
-                "VkBool32" -> IdentifierType("VkBool32".intern())
-                "PFN_vkVoidFunction" -> IdentifierType("PFN_vkVoidFunction".intern())
-                else -> error("Unsupported function pointer result type ($type).")
-            },
+private fun extractFunctionTypedef(e: Element): FunctionTypedef {
+    val proto = e.getFirstElement("proto")!!
+    return FunctionTypedef(
+        name = proto.getFirstElement("name")!!.textContent.trim(),
+        params = e.getElementSeq("param")
+            .map { extractType(it.getFirstElement("type")!!) }
+            .toList(),
+        result = extractType(proto.getFirstElement("type")!!),
     ).apply { setExt(VkCommonMetadata(api = e.getAttributeText("api"))) }
+}
 
 private fun extractOpaqueHandleTypedef(e: Element) =
     OpaqueHandleTypedef(
@@ -386,10 +384,6 @@ private fun extractRequire(es: Sequence<Element>): Require {
 }
 
 private fun extractRequireValue(e: Element): RequireValue? {
-    if (e.hasAttribute("alias")) {
-        return null
-    }
-
     return RequireValue(
         name = e.getAttributeText("name")!!,
         api = e.getAttributeText("api"),
@@ -398,7 +392,7 @@ private fun extractRequireValue(e: Element): RequireValue? {
         bitpos = e.getAttributeText("bitpos")?.parseDecOrHex(),
         extNumber = e.getAttributeText("extnumber")?.parseDecOrHex(),
         offset = e.getAttributeText("offset")?.parseDecOrHex(),
-        negative = e.getAttributeText("dir") == "-",
+        negative = e.getAttributeText("dir") == "-"
     )
 }
 

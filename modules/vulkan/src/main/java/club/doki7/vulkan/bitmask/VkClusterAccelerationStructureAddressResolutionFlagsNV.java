@@ -13,6 +13,7 @@ public final class VkClusterAccelerationStructureAddressResolutionFlagsNV {
     public static final int INDIRECTED_SCRATCH_DATA = 0x2;
     public static final int INDIRECTED_SRC_INFOS_ARRAY = 0x10;
     public static final int INDIRECTED_SRC_INFOS_COUNT = 0x20;
+    public static final int NONE = 0x0;
 
     public static String explain(@Bitmask(VkClusterAccelerationStructureAddressResolutionFlagsNV.class) int flags) {
         List<String> detectedFlagBits = new ArrayList<>();
@@ -33,6 +34,9 @@ public final class VkClusterAccelerationStructureAddressResolutionFlagsNV {
         }
         if ((flags & INDIRECTED_SRC_INFOS_COUNT) != 0) {
             detectedFlagBits.add("VK_CLUSTER_ACCELERATION_STRUCTURE_ADDRESS_RESOLUTION_INDIRECTED_SRC_INFOS_COUNT_BIT_NV");
+        }
+        if ((flags & NONE) != 0) {
+            detectedFlagBits.add("VK_CLUSTER_ACCELERATION_STRUCTURE_ADDRESS_RESOLUTION_NONE_NV");
         }
 
         if (detectedFlagBits.isEmpty()) {

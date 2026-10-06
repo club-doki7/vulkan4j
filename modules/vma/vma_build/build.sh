@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VK_MEM_ALLOC_H_URI=https://raw.githubusercontent.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator/refs/tags/v3.2.0/include/vk_mem_alloc.h
+VK_MEM_ALLOC_H_URI=https://raw.githubusercontent.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator/refs/tags/v3.4.0/include/vk_mem_alloc.h
 
 # if the file does not exist
 if [ ! -f vk_mem_alloc.h ]; then

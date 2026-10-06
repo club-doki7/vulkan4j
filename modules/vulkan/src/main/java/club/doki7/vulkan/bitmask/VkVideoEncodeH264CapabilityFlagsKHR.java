@@ -9,6 +9,7 @@ import java.util.List;
 public final class VkVideoEncodeH264CapabilityFlagsKHR {
     public static final int VK_VIDEO_ENCODE_H264_CAPABILITY_B_FRAME_IN_L0_LIST = 0x10;
     public static final int VK_VIDEO_ENCODE_H264_CAPABILITY_B_FRAME_IN_L1_LIST = 0x20;
+    public static final int VK_VIDEO_ENCODE_H264_CAPABILITY_B_PICTURE_INTRA_REFRESH = 0x400;
     public static final int VK_VIDEO_ENCODE_H264_CAPABILITY_DIFFERENT_SLICE_TYPE = 0x8;
     public static final int VK_VIDEO_ENCODE_H264_CAPABILITY_GENERATE_PREFIX_NALU = 0x100;
     public static final int VK_VIDEO_ENCODE_H264_CAPABILITY_HRD_COMPLIANCE = 0x1;
@@ -25,6 +26,9 @@ public final class VkVideoEncodeH264CapabilityFlagsKHR {
         }
         if ((flags & VK_VIDEO_ENCODE_H264_CAPABILITY_B_FRAME_IN_L1_LIST) != 0) {
             detectedFlagBits.add("VK_VIDEO_ENCODE_H264_CAPABILITY_B_FRAME_IN_L1_LIST_BIT_KHR");
+        }
+        if ((flags & VK_VIDEO_ENCODE_H264_CAPABILITY_B_PICTURE_INTRA_REFRESH) != 0) {
+            detectedFlagBits.add("VK_VIDEO_ENCODE_H264_CAPABILITY_B_PICTURE_INTRA_REFRESH_BIT_KHR");
         }
         if ((flags & VK_VIDEO_ENCODE_H264_CAPABILITY_DIFFERENT_SLICE_TYPE) != 0) {
             detectedFlagBits.add("VK_VIDEO_ENCODE_H264_CAPABILITY_DIFFERENT_SLICE_TYPE_BIT_KHR");
