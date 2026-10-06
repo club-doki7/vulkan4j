@@ -1273,7 +1273,7 @@ public interface CLConstants {
     int INVALID_WORK_GROUP_SIZE = -54;
     int INVALID_WORK_ITEM_SIZE = -55;
     int KERNEL_ARG_INFO_NOT_AVAILABLE = -19;
-    @Unsigned int LAYER_PROPERTIES_LIST_END = ((cl_layer_properties)0);
+    @Unsigned int LAYER_PROPERTIES_LIST_END = 0;
     int LINKER_NOT_AVAILABLE = -16;
     int LINK_PROGRAM_FAILURE = -17;
     long LONG_MAX = Long.MAX_VALUE;
