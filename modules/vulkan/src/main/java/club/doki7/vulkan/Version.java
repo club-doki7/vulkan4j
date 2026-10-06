@@ -8,10 +8,10 @@ import club.doki7.ffm.annotation.ValueBasedCandidate;
 /// @see <a href="https://docs.vulkan.org/guide/latest/versions.html">Vulkan versions</a>
 @ValueBasedCandidate
 public record Version(
-        @Unsigned int variant,
-        @Unsigned int major,
-        @Unsigned int minor,
-        @Unsigned int patch
+    @Unsigned int variant,
+    @Unsigned int major,
+    @Unsigned int minor,
+    @Unsigned int patch
 ) {
     public static final Version VK_API_VERSION_1_0 = new Version(0, 1, 0, 0);
     public static final Version VK_API_VERSION_1_1 = new Version(0, 1, 1, 0);
@@ -21,10 +21,10 @@ public record Version(
 
     public static Version decode(@Unsigned int version) {
         return new Version(
-                (version >> 29) & 0x7,
-                (version >> 22) & 0x7F,
-                (version >> 12) & 0x3FF,
-                version & 0xFFF
+            (version >> 29) & 0x7,
+            (version >> 22) & 0x7F,
+            (version >> 12) & 0x3FF,
+            version & 0xFFF
         );
     }
 
