@@ -36,6 +36,8 @@ public final class VkInstanceCommands {
         HANDLE$vkCreateDebugReportCallbackEXT = RawFunctionLoader.link(SEGMENT$vkCreateDebugReportCallbackEXT, Descriptors.DESCRIPTOR$vkCreateDebugReportCallbackEXT);
         SEGMENT$vkCreateDebugUtilsMessengerEXT = loader.apply("vkCreateDebugUtilsMessengerEXT");
         HANDLE$vkCreateDebugUtilsMessengerEXT = RawFunctionLoader.link(SEGMENT$vkCreateDebugUtilsMessengerEXT, Descriptors.DESCRIPTOR$vkCreateDebugUtilsMessengerEXT);
+        SEGMENT$vkCreateDevice = loader.apply("vkCreateDevice");
+        HANDLE$vkCreateDevice = RawFunctionLoader.link(SEGMENT$vkCreateDevice, Descriptors.DESCRIPTOR$vkCreateDevice);
         SEGMENT$vkCreateDirectFBSurfaceEXT = loader.apply("vkCreateDirectFBSurfaceEXT");
         HANDLE$vkCreateDirectFBSurfaceEXT = RawFunctionLoader.link(SEGMENT$vkCreateDirectFBSurfaceEXT, Descriptors.DESCRIPTOR$vkCreateDirectFBSurfaceEXT);
         SEGMENT$vkCreateDisplayModeKHR = loader.apply("vkCreateDisplayModeKHR");
@@ -82,6 +84,8 @@ public final class VkInstanceCommands {
         HANDLE$vkDestroySurfaceKHR = RawFunctionLoader.link(SEGMENT$vkDestroySurfaceKHR, Descriptors.DESCRIPTOR$vkDestroySurfaceKHR);
         SEGMENT$vkEnumerateDeviceExtensionProperties = loader.apply("vkEnumerateDeviceExtensionProperties");
         HANDLE$vkEnumerateDeviceExtensionProperties = RawFunctionLoader.link(SEGMENT$vkEnumerateDeviceExtensionProperties, Descriptors.DESCRIPTOR$vkEnumerateDeviceExtensionProperties);
+        SEGMENT$vkEnumerateDeviceLayerProperties = loader.apply("vkEnumerateDeviceLayerProperties");
+        HANDLE$vkEnumerateDeviceLayerProperties = RawFunctionLoader.link(SEGMENT$vkEnumerateDeviceLayerProperties, Descriptors.DESCRIPTOR$vkEnumerateDeviceLayerProperties);
         SEGMENT$vkEnumeratePhysicalDeviceGroups = loader.apply("vkEnumeratePhysicalDeviceGroups");
         HANDLE$vkEnumeratePhysicalDeviceGroups = RawFunctionLoader.link(SEGMENT$vkEnumeratePhysicalDeviceGroups, Descriptors.DESCRIPTOR$vkEnumeratePhysicalDeviceGroups);
         SEGMENT$vkEnumeratePhysicalDeviceGroupsKHR = loader.apply("vkEnumeratePhysicalDeviceGroupsKHR");
@@ -430,6 +434,26 @@ public final class VkInstanceCommands {
                 pCreateInfo.segment(),
                 (MemorySegment) (pAllocator != null ? pAllocator.segment() : MemorySegment.NULL),
                 pMessenger.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateDevice.html"><code>vkCreateDevice</code></a>
+    public @EnumType(VkResult.class) int createDevice(
+        VkPhysicalDevice physicalDevice,
+        @Pointer VkDeviceCreateInfo pCreateInfo,
+        @Nullable @Pointer VkAllocationCallbacks pAllocator,
+        @Pointer VkDevice.Ptr pDevice
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCreateDevice);
+        try {
+            return (int) hFunction.invokeExact(
+                physicalDevice.segment(),
+                pCreateInfo.segment(),
+                (MemorySegment) (pAllocator != null ? pAllocator.segment() : MemorySegment.NULL),
+                pDevice.segment()
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -888,6 +912,24 @@ public final class VkInstanceCommands {
             return (int) hFunction.invokeExact(
                 physicalDevice.segment(),
                 (MemorySegment) (pLayerName != null ? pLayerName.segment() : MemorySegment.NULL),
+                pPropertyCount.segment(),
+                (MemorySegment) (pProperties != null ? pProperties.segment() : MemorySegment.NULL)
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkEnumerateDeviceLayerProperties.html"><code>vkEnumerateDeviceLayerProperties</code></a>
+    public @EnumType(VkResult.class) int enumerateDeviceLayerProperties(
+        VkPhysicalDevice physicalDevice,
+        @Unsigned IntPtr pPropertyCount,
+        @Nullable @Pointer IVkLayerProperties pProperties
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkEnumerateDeviceLayerProperties);
+        try {
+            return (int) hFunction.invokeExact(
+                physicalDevice.segment(),
                 pPropertyCount.segment(),
                 (MemorySegment) (pProperties != null ? pProperties.segment() : MemorySegment.NULL)
             );
@@ -2685,6 +2727,7 @@ public final class VkInstanceCommands {
     public final @Nullable MemorySegment SEGMENT$vkCreateAndroidSurfaceKHR;
     public final @Nullable MemorySegment SEGMENT$vkCreateDebugReportCallbackEXT;
     public final @Nullable MemorySegment SEGMENT$vkCreateDebugUtilsMessengerEXT;
+    public final @Nullable MemorySegment SEGMENT$vkCreateDevice;
     public final @Nullable MemorySegment SEGMENT$vkCreateDirectFBSurfaceEXT;
     public final @Nullable MemorySegment SEGMENT$vkCreateDisplayModeKHR;
     public final @Nullable MemorySegment SEGMENT$vkCreateDisplayPlaneSurfaceKHR;
@@ -2708,6 +2751,7 @@ public final class VkInstanceCommands {
     public final @Nullable MemorySegment SEGMENT$vkDestroyInstance;
     public final @Nullable MemorySegment SEGMENT$vkDestroySurfaceKHR;
     public final @Nullable MemorySegment SEGMENT$vkEnumerateDeviceExtensionProperties;
+    public final @Nullable MemorySegment SEGMENT$vkEnumerateDeviceLayerProperties;
     public final @Nullable MemorySegment SEGMENT$vkEnumeratePhysicalDeviceGroups;
     public final @Nullable MemorySegment SEGMENT$vkEnumeratePhysicalDeviceGroupsKHR;
     public final @Nullable MemorySegment SEGMENT$vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM;
@@ -2813,6 +2857,7 @@ public final class VkInstanceCommands {
     public final @Nullable MethodHandle HANDLE$vkCreateAndroidSurfaceKHR;
     public final @Nullable MethodHandle HANDLE$vkCreateDebugReportCallbackEXT;
     public final @Nullable MethodHandle HANDLE$vkCreateDebugUtilsMessengerEXT;
+    public final @Nullable MethodHandle HANDLE$vkCreateDevice;
     public final @Nullable MethodHandle HANDLE$vkCreateDirectFBSurfaceEXT;
     public final @Nullable MethodHandle HANDLE$vkCreateDisplayModeKHR;
     public final @Nullable MethodHandle HANDLE$vkCreateDisplayPlaneSurfaceKHR;
@@ -2836,6 +2881,7 @@ public final class VkInstanceCommands {
     public final @Nullable MethodHandle HANDLE$vkDestroyInstance;
     public final @Nullable MethodHandle HANDLE$vkDestroySurfaceKHR;
     public final @Nullable MethodHandle HANDLE$vkEnumerateDeviceExtensionProperties;
+    public final @Nullable MethodHandle HANDLE$vkEnumerateDeviceLayerProperties;
     public final @Nullable MethodHandle HANDLE$vkEnumeratePhysicalDeviceGroups;
     public final @Nullable MethodHandle HANDLE$vkEnumeratePhysicalDeviceGroupsKHR;
     public final @Nullable MethodHandle HANDLE$vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM;
@@ -2989,6 +3035,14 @@ public final class VkInstanceCommands {
             ValueLayout.JAVA_INT,
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS.withTargetLayout(VkDebugUtilsMessengerCreateInfoEXT.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(VkAllocationCallbacks.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.ADDRESS)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkCreateDevice = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkDeviceCreateInfo.LAYOUT),
             ValueLayout.ADDRESS.withTargetLayout(VkAllocationCallbacks.LAYOUT),
             ValueLayout.ADDRESS.withTargetLayout(ValueLayout.ADDRESS)
         );
@@ -3170,6 +3224,13 @@ public final class VkInstanceCommands {
             ValueLayout.ADDRESS.withTargetLayout(ValueLayout.JAVA_BYTE),
             ValueLayout.ADDRESS.withTargetLayout(ValueLayout.JAVA_INT),
             ValueLayout.ADDRESS.withTargetLayout(VkExtensionProperties.LAYOUT)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkEnumerateDeviceLayerProperties = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.JAVA_INT),
+            ValueLayout.ADDRESS.withTargetLayout(VkLayerProperties.LAYOUT)
         );
 
         public static final FunctionDescriptor DESCRIPTOR$vkEnumeratePhysicalDeviceGroups = FunctionDescriptor.of(

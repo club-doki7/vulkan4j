@@ -736,6 +736,8 @@ public final class VkDeviceCommands {
         HANDLE$vkCreateBufferView = RawFunctionLoader.link(SEGMENT$vkCreateBufferView, Descriptors.DESCRIPTOR$vkCreateBufferView);
         SEGMENT$vkCreateCommandPool = loader.apply("vkCreateCommandPool");
         HANDLE$vkCreateCommandPool = RawFunctionLoader.link(SEGMENT$vkCreateCommandPool, Descriptors.DESCRIPTOR$vkCreateCommandPool);
+        SEGMENT$vkCreateComputePipelines = loader.apply("vkCreateComputePipelines");
+        HANDLE$vkCreateComputePipelines = RawFunctionLoader.link(SEGMENT$vkCreateComputePipelines, Descriptors.DESCRIPTOR$vkCreateComputePipelines);
         SEGMENT$vkCreateCuFunctionNVX = loader.apply("vkCreateCuFunctionNVX");
         HANDLE$vkCreateCuFunctionNVX = RawFunctionLoader.link(SEGMENT$vkCreateCuFunctionNVX, Descriptors.DESCRIPTOR$vkCreateCuFunctionNVX);
         SEGMENT$vkCreateCuModuleNVX = loader.apply("vkCreateCuModuleNVX");
@@ -770,6 +772,8 @@ public final class VkDeviceCommands {
         HANDLE$vkCreateFramebuffer = RawFunctionLoader.link(SEGMENT$vkCreateFramebuffer, Descriptors.DESCRIPTOR$vkCreateFramebuffer);
         SEGMENT$vkCreateGpaSessionAMD = loader.apply("vkCreateGpaSessionAMD");
         HANDLE$vkCreateGpaSessionAMD = RawFunctionLoader.link(SEGMENT$vkCreateGpaSessionAMD, Descriptors.DESCRIPTOR$vkCreateGpaSessionAMD);
+        SEGMENT$vkCreateGraphicsPipelines = loader.apply("vkCreateGraphicsPipelines");
+        HANDLE$vkCreateGraphicsPipelines = RawFunctionLoader.link(SEGMENT$vkCreateGraphicsPipelines, Descriptors.DESCRIPTOR$vkCreateGraphicsPipelines);
         SEGMENT$vkCreateImage = loader.apply("vkCreateImage");
         HANDLE$vkCreateImage = RawFunctionLoader.link(SEGMENT$vkCreateImage, Descriptors.DESCRIPTOR$vkCreateImage);
         SEGMENT$vkCreateImageView = loader.apply("vkCreateImageView");
@@ -786,6 +790,8 @@ public final class VkDeviceCommands {
         HANDLE$vkCreateOpticalFlowSessionNV = RawFunctionLoader.link(SEGMENT$vkCreateOpticalFlowSessionNV, Descriptors.DESCRIPTOR$vkCreateOpticalFlowSessionNV);
         SEGMENT$vkCreatePipelineBinariesKHR = loader.apply("vkCreatePipelineBinariesKHR");
         HANDLE$vkCreatePipelineBinariesKHR = RawFunctionLoader.link(SEGMENT$vkCreatePipelineBinariesKHR, Descriptors.DESCRIPTOR$vkCreatePipelineBinariesKHR);
+        SEGMENT$vkCreatePipelineCache = loader.apply("vkCreatePipelineCache");
+        HANDLE$vkCreatePipelineCache = RawFunctionLoader.link(SEGMENT$vkCreatePipelineCache, Descriptors.DESCRIPTOR$vkCreatePipelineCache);
         SEGMENT$vkCreatePipelineLayout = loader.apply("vkCreatePipelineLayout");
         HANDLE$vkCreatePipelineLayout = RawFunctionLoader.link(SEGMENT$vkCreatePipelineLayout, Descriptors.DESCRIPTOR$vkCreatePipelineLayout);
         SEGMENT$vkCreatePrivateDataSlot = loader.apply("vkCreatePrivateDataSlot");
@@ -794,6 +800,10 @@ public final class VkDeviceCommands {
         HANDLE$vkCreatePrivateDataSlotEXT = RawFunctionLoader.link(SEGMENT$vkCreatePrivateDataSlotEXT, Descriptors.DESCRIPTOR$vkCreatePrivateDataSlot);
         SEGMENT$vkCreateQueryPool = loader.apply("vkCreateQueryPool");
         HANDLE$vkCreateQueryPool = RawFunctionLoader.link(SEGMENT$vkCreateQueryPool, Descriptors.DESCRIPTOR$vkCreateQueryPool);
+        SEGMENT$vkCreateRayTracingPipelinesKHR = loader.apply("vkCreateRayTracingPipelinesKHR");
+        HANDLE$vkCreateRayTracingPipelinesKHR = RawFunctionLoader.link(SEGMENT$vkCreateRayTracingPipelinesKHR, Descriptors.DESCRIPTOR$vkCreateRayTracingPipelinesKHR);
+        SEGMENT$vkCreateRayTracingPipelinesNV = loader.apply("vkCreateRayTracingPipelinesNV");
+        HANDLE$vkCreateRayTracingPipelinesNV = RawFunctionLoader.link(SEGMENT$vkCreateRayTracingPipelinesNV, Descriptors.DESCRIPTOR$vkCreateRayTracingPipelinesNV);
         SEGMENT$vkCreateRenderPass = loader.apply("vkCreateRenderPass");
         HANDLE$vkCreateRenderPass = RawFunctionLoader.link(SEGMENT$vkCreateRenderPass, Descriptors.DESCRIPTOR$vkCreateRenderPass);
         SEGMENT$vkCreateRenderPass2 = loader.apply("vkCreateRenderPass2");
@@ -8142,6 +8152,30 @@ public final class VkDeviceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateComputePipelines.html"><code>vkCreateComputePipelines</code></a>
+    public @EnumType(VkResult.class) int createComputePipelines(
+        VkDevice device,
+        @Nullable VkPipelineCache pipelineCache,
+        @Unsigned int createInfoCount,
+        @Pointer IVkComputePipelineCreateInfo pCreateInfos,
+        @Nullable @Pointer VkAllocationCallbacks pAllocator,
+        @Pointer VkPipeline.Ptr pPipelines
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCreateComputePipelines);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                (MemorySegment) (pipelineCache != null ? pipelineCache.segment() : MemorySegment.NULL),
+                createInfoCount,
+                pCreateInfos.segment(),
+                (MemorySegment) (pAllocator != null ? pAllocator.segment() : MemorySegment.NULL),
+                pPipelines.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateCuFunctionNVX.html"><code>vkCreateCuFunctionNVX</code></a>
     public @EnumType(VkResult.class) int createCuFunctionNVX(
         VkDevice device,
@@ -8490,6 +8524,30 @@ public final class VkDeviceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateGraphicsPipelines.html"><code>vkCreateGraphicsPipelines</code></a>
+    public @EnumType(VkResult.class) int createGraphicsPipelines(
+        VkDevice device,
+        @Nullable VkPipelineCache pipelineCache,
+        @Unsigned int createInfoCount,
+        @Pointer IVkGraphicsPipelineCreateInfo pCreateInfos,
+        @Nullable @Pointer VkAllocationCallbacks pAllocator,
+        @Pointer VkPipeline.Ptr pPipelines
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCreateGraphicsPipelines);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                (MemorySegment) (pipelineCache != null ? pipelineCache.segment() : MemorySegment.NULL),
+                createInfoCount,
+                pCreateInfos.segment(),
+                (MemorySegment) (pAllocator != null ? pAllocator.segment() : MemorySegment.NULL),
+                pPipelines.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateImage.html"><code>vkCreateImage</code></a>
     public @EnumType(VkResult.class) int createImage(
         VkDevice device,
@@ -8650,6 +8708,26 @@ public final class VkDeviceCommands {
         }
     }
 
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreatePipelineCache.html"><code>vkCreatePipelineCache</code></a>
+    public @EnumType(VkResult.class) int createPipelineCache(
+        VkDevice device,
+        @Pointer VkPipelineCacheCreateInfo pCreateInfo,
+        @Nullable @Pointer VkAllocationCallbacks pAllocator,
+        @Pointer VkPipelineCache.Ptr pPipelineCache
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCreatePipelineCache);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                pCreateInfo.segment(),
+                (MemorySegment) (pAllocator != null ? pAllocator.segment() : MemorySegment.NULL),
+                pPipelineCache.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreatePipelineLayout.html"><code>vkCreatePipelineLayout</code></a>
     public @EnumType(VkResult.class) int createPipelineLayout(
         VkDevice device,
@@ -8724,6 +8802,56 @@ public final class VkDeviceCommands {
                 pCreateInfo.segment(),
                 (MemorySegment) (pAllocator != null ? pAllocator.segment() : MemorySegment.NULL),
                 pQueryPool.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateRayTracingPipelinesKHR.html"><code>vkCreateRayTracingPipelinesKHR</code></a>
+    public @EnumType(VkResult.class) int createRayTracingPipelinesKHR(
+        VkDevice device,
+        @Nullable VkDeferredOperationKHR deferredOperation,
+        @Nullable VkPipelineCache pipelineCache,
+        @Unsigned int createInfoCount,
+        @Pointer IVkRayTracingPipelineCreateInfoKHR pCreateInfos,
+        @Nullable @Pointer VkAllocationCallbacks pAllocator,
+        @Pointer VkPipeline.Ptr pPipelines
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCreateRayTracingPipelinesKHR);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                (MemorySegment) (deferredOperation != null ? deferredOperation.segment() : MemorySegment.NULL),
+                (MemorySegment) (pipelineCache != null ? pipelineCache.segment() : MemorySegment.NULL),
+                createInfoCount,
+                pCreateInfos.segment(),
+                (MemorySegment) (pAllocator != null ? pAllocator.segment() : MemorySegment.NULL),
+                pPipelines.segment()
+            );
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /// @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateRayTracingPipelinesNV.html"><code>vkCreateRayTracingPipelinesNV</code></a>
+    public @EnumType(VkResult.class) int createRayTracingPipelinesNV(
+        VkDevice device,
+        @Nullable VkPipelineCache pipelineCache,
+        @Unsigned int createInfoCount,
+        @Pointer IVkRayTracingPipelineCreateInfoNV pCreateInfos,
+        @Nullable @Pointer VkAllocationCallbacks pAllocator,
+        @Pointer VkPipeline.Ptr pPipelines
+    ) {
+        MethodHandle hFunction = Objects.requireNonNull(HANDLE$vkCreateRayTracingPipelinesNV);
+        try {
+            return (int) hFunction.invokeExact(
+                device.segment(),
+                (MemorySegment) (pipelineCache != null ? pipelineCache.segment() : MemorySegment.NULL),
+                createInfoCount,
+                pCreateInfos.segment(),
+                (MemorySegment) (pAllocator != null ? pAllocator.segment() : MemorySegment.NULL),
+                pPipelines.segment()
             );
         } catch (Throwable e) {
             throw new RuntimeException(e);
@@ -15127,6 +15255,7 @@ public final class VkDeviceCommands {
     public final @Nullable MemorySegment SEGMENT$vkCreateBufferCollectionFUCHSIA;
     public final @Nullable MemorySegment SEGMENT$vkCreateBufferView;
     public final @Nullable MemorySegment SEGMENT$vkCreateCommandPool;
+    public final @Nullable MemorySegment SEGMENT$vkCreateComputePipelines;
     public final @Nullable MemorySegment SEGMENT$vkCreateCuFunctionNVX;
     public final @Nullable MemorySegment SEGMENT$vkCreateCuModuleNVX;
     public final @Nullable MemorySegment SEGMENT$vkCreateCudaFunctionNV;
@@ -15144,6 +15273,7 @@ public final class VkDeviceCommands {
     public final @Nullable MemorySegment SEGMENT$vkCreateFence;
     public final @Nullable MemorySegment SEGMENT$vkCreateFramebuffer;
     public final @Nullable MemorySegment SEGMENT$vkCreateGpaSessionAMD;
+    public final @Nullable MemorySegment SEGMENT$vkCreateGraphicsPipelines;
     public final @Nullable MemorySegment SEGMENT$vkCreateImage;
     public final @Nullable MemorySegment SEGMENT$vkCreateImageView;
     public final @Nullable MemorySegment SEGMENT$vkCreateIndirectCommandsLayoutEXT;
@@ -15152,10 +15282,13 @@ public final class VkDeviceCommands {
     public final @Nullable MemorySegment SEGMENT$vkCreateMicromapEXT;
     public final @Nullable MemorySegment SEGMENT$vkCreateOpticalFlowSessionNV;
     public final @Nullable MemorySegment SEGMENT$vkCreatePipelineBinariesKHR;
+    public final @Nullable MemorySegment SEGMENT$vkCreatePipelineCache;
     public final @Nullable MemorySegment SEGMENT$vkCreatePipelineLayout;
     public final @Nullable MemorySegment SEGMENT$vkCreatePrivateDataSlot;
     public final @Nullable MemorySegment SEGMENT$vkCreatePrivateDataSlotEXT;
     public final @Nullable MemorySegment SEGMENT$vkCreateQueryPool;
+    public final @Nullable MemorySegment SEGMENT$vkCreateRayTracingPipelinesKHR;
+    public final @Nullable MemorySegment SEGMENT$vkCreateRayTracingPipelinesNV;
     public final @Nullable MemorySegment SEGMENT$vkCreateRenderPass;
     public final @Nullable MemorySegment SEGMENT$vkCreateRenderPass2;
     public final @Nullable MemorySegment SEGMENT$vkCreateRenderPass2KHR;
@@ -15842,6 +15975,7 @@ public final class VkDeviceCommands {
     public final @Nullable MethodHandle HANDLE$vkCreateBufferCollectionFUCHSIA;
     public final @Nullable MethodHandle HANDLE$vkCreateBufferView;
     public final @Nullable MethodHandle HANDLE$vkCreateCommandPool;
+    public final @Nullable MethodHandle HANDLE$vkCreateComputePipelines;
     public final @Nullable MethodHandle HANDLE$vkCreateCuFunctionNVX;
     public final @Nullable MethodHandle HANDLE$vkCreateCuModuleNVX;
     public final @Nullable MethodHandle HANDLE$vkCreateCudaFunctionNV;
@@ -15859,6 +15993,7 @@ public final class VkDeviceCommands {
     public final @Nullable MethodHandle HANDLE$vkCreateFence;
     public final @Nullable MethodHandle HANDLE$vkCreateFramebuffer;
     public final @Nullable MethodHandle HANDLE$vkCreateGpaSessionAMD;
+    public final @Nullable MethodHandle HANDLE$vkCreateGraphicsPipelines;
     public final @Nullable MethodHandle HANDLE$vkCreateImage;
     public final @Nullable MethodHandle HANDLE$vkCreateImageView;
     public final @Nullable MethodHandle HANDLE$vkCreateIndirectCommandsLayoutEXT;
@@ -15867,10 +16002,13 @@ public final class VkDeviceCommands {
     public final @Nullable MethodHandle HANDLE$vkCreateMicromapEXT;
     public final @Nullable MethodHandle HANDLE$vkCreateOpticalFlowSessionNV;
     public final @Nullable MethodHandle HANDLE$vkCreatePipelineBinariesKHR;
+    public final @Nullable MethodHandle HANDLE$vkCreatePipelineCache;
     public final @Nullable MethodHandle HANDLE$vkCreatePipelineLayout;
     public final @Nullable MethodHandle HANDLE$vkCreatePrivateDataSlot;
     public final @Nullable MethodHandle HANDLE$vkCreatePrivateDataSlotEXT;
     public final @Nullable MethodHandle HANDLE$vkCreateQueryPool;
+    public final @Nullable MethodHandle HANDLE$vkCreateRayTracingPipelinesKHR;
+    public final @Nullable MethodHandle HANDLE$vkCreateRayTracingPipelinesNV;
     public final @Nullable MethodHandle HANDLE$vkCreateRenderPass;
     public final @Nullable MethodHandle HANDLE$vkCreateRenderPass2;
     public final @Nullable MethodHandle HANDLE$vkCreateRenderPass2KHR;
@@ -18186,6 +18324,16 @@ public final class VkDeviceCommands {
             ValueLayout.ADDRESS.withTargetLayout(ValueLayout.ADDRESS)
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkCreateComputePipelines = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS.withTargetLayout(VkComputePipelineCreateInfo.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(VkAllocationCallbacks.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.ADDRESS)
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkCreateCuFunctionNVX = FunctionDescriptor.of(
             ValueLayout.JAVA_INT,
             ValueLayout.ADDRESS,
@@ -18318,6 +18466,16 @@ public final class VkDeviceCommands {
             ValueLayout.ADDRESS.withTargetLayout(ValueLayout.ADDRESS)
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkCreateGraphicsPipelines = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS.withTargetLayout(VkGraphicsPipelineCreateInfo.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(VkAllocationCallbacks.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.ADDRESS)
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkCreateImage = FunctionDescriptor.of(
             ValueLayout.JAVA_INT,
             ValueLayout.ADDRESS,
@@ -18382,6 +18540,14 @@ public final class VkDeviceCommands {
             ValueLayout.ADDRESS.withTargetLayout(VkPipelineBinaryHandlesInfoKHR.LAYOUT)
         );
 
+        public static final FunctionDescriptor DESCRIPTOR$vkCreatePipelineCache = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS.withTargetLayout(VkPipelineCacheCreateInfo.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(VkAllocationCallbacks.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.ADDRESS)
+        );
+
         public static final FunctionDescriptor DESCRIPTOR$vkCreatePipelineLayout = FunctionDescriptor.of(
             ValueLayout.JAVA_INT,
             ValueLayout.ADDRESS,
@@ -18402,6 +18568,27 @@ public final class VkDeviceCommands {
             ValueLayout.JAVA_INT,
             ValueLayout.ADDRESS,
             ValueLayout.ADDRESS.withTargetLayout(VkQueryPoolCreateInfo.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(VkAllocationCallbacks.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.ADDRESS)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkCreateRayTracingPipelinesKHR = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS.withTargetLayout(VkRayTracingPipelineCreateInfoKHR.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(VkAllocationCallbacks.LAYOUT),
+            ValueLayout.ADDRESS.withTargetLayout(ValueLayout.ADDRESS)
+        );
+
+        public static final FunctionDescriptor DESCRIPTOR$vkCreateRayTracingPipelinesNV = FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS,
+            ValueLayout.ADDRESS,
+            ValueLayout.JAVA_INT,
+            ValueLayout.ADDRESS.withTargetLayout(VkRayTracingPipelineCreateInfoNV.LAYOUT),
             ValueLayout.ADDRESS.withTargetLayout(VkAllocationCallbacks.LAYOUT),
             ValueLayout.ADDRESS.withTargetLayout(ValueLayout.ADDRESS)
         );

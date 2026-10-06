@@ -44,8 +44,9 @@ private fun Element.extractEntities(): Registry<VulkanRegistryExt> {
         .forEach { bitmasks.putEntityIfAbsent(it) }
 
     log.info(" - 抽取: 命令")
-    val commands = e.query("commands/command[not(@alias) and (not(@api) or @api='vulkan')]")
+    val commands = e.query("commands/command[not(@alias)]")
         .map(::extractCommand)
+        .filter { it.isVulkanAPI() }
         .associateBy { it.name }
         .toMutableMap()
 
